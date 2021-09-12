@@ -1,78 +1,93 @@
-{
-  "startYear": -50,
-  "endYear": 35,
-  "events": [
-    {
-      "title": "Republic Era",
-      "startYear": -50,
-      "endYear": -19,
-      "type": "era"
-    },
-    {
-      "title": "Imperial Era",
-      "startYear": -19,
-      "endYear": 5,
-      "type": "era"
-    },
-    {
-      "title": "Anakin Skywalker",
-      "startYear": -41,
-      "endYear": 4,
-      "type": "character",
-      "imageUrl": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/1000?cb=20130621175844",
-      "altTitle": "Darth Vadar",
-      "seenIn": [
-        "Episode I: The Phantom Menace",
-        "Episode II: Attack of the Clones",
-        "The Clone Wars (movie)",
-        "The Clone Wars (TV series)"
-      ]
-    },
-    {
-      "title": "Grogu",
-      "startYear": -41,
-      "endYear": 15,
-      "type": "character",
-      "imageUrl": "https://static.wikia.nocookie.net/starwars/images/4/43/TheChild-Fathead.png/revision/latest/scale-to-width-down/1000?cb=20201031231040",
-      "altTitle": "The Child"
-    },
-    {
-      "title": "Ahsoka Tano",
-      "startYear": -36,
-      "endYear": 20,
-      "type": "character",
-      "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
-      "seenIn": [
-        "The Clone Wars (movie)",
-        "The Clone Wars (TV series)"
-      ]
-    },
-    {
-      "title": "New Republic Era",
-      "startYear": 5,
-      "endYear": 34,
-      "type": "era"
-    },
-    {
-      "title": "Episode I: The Phantom Menace",
-      "startYear": -32,
-      "type": "movie"
-    },
-    {
-      "title": "Episode II: Attack of the Clones",
-      "startYear": -22,
-      "type": "movie"
-    },
-    {
-      "title": "The Clone Wars (movie)",
-      "startYear": -22,
-      "type": "movie"
-    },
-    {
-      "title": "The Clone Wars (TV series)",
-      "startYear": -22,
-      "endYear": -19,
-      "type": "tv"
-    }
-  ]
-}
+[
+  {
+    "endYear": -19,
+    "startYear": -84,
+    "title": "Republic Era",
+    "type": "era"
+  },
+  {
+    "endYear": 5,
+    "startYear": -19,
+    "title": "Imperial Era",
+    "type": "era"
+  },
+  {
+    "endYear": 34,
+    "startYear": 5,
+    "title": "New Republic Era",
+    "type": "era"
+  },
+  {
+    "altTitle": "Darth Vadar",
+    "endYear": 4,
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/1000?cb=20130621175844",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)"
+    ],
+    "startYear": -41,
+    "title": "Anakin Skywalker",
+    "type": "character"
+  },
+  {
+    "endYear": 34,
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/1000?cb=20130621175844",
+    "seenIn": [],
+    "startYear": -19,
+    "title": "Luke Skywalker",
+    "type": "character"
+  },
+  {
+    "altTitle": "The Child",
+    "endYear": 15,
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/4/43/TheChild-Fathead.png/revision/latest/scale-to-width-down/1000?cb=20201031231040",
+    "startYear": -41,
+    "title": "Grogu",
+    "type": "character"
+  },
+  {
+    "endYear": 20,
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
+    "seenIn": [
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)"
+    ],
+    "startYear": -36,
+    "title": "Ahsoka Tano",
+    "type": "character"
+  },
+  {
+    "startYear": -32,
+    "title": "Episode I: The Phantom Menace",
+    "type": "movie"
+  },
+  {
+    "startYear": -22,
+    "title": "Episode II: Attack of the Clones",
+    "type": "movie"
+  },
+  {
+    "startYear": -22,
+    "title": "The Clone Wars (movie)",
+    "type": "movie"
+  },
+  {
+    "endYear": -19,
+    "startYear": -22,
+    "title": "The Clone Wars (TV series)",
+    "type": "tv"
+  },
+  {
+    "endYear": 35,
+    "startYear": -84,
+    "title": "Darth Sidious",
+    "type": "character",
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones"
+    ]
+  }
+]
