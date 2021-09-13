@@ -30,8 +30,8 @@ jobs:
     - run: npm run build --if-present
     - uses: MadaraUchiha/copy-action@0.0.1
       with:
-        source: 'build'
-        target: 'docs'
+        source: 'build/**/*.*'
+        target: 'docs/**/*.*'
     - uses: EndBug/add-and-commit@v7.3.0
       with:
         add: '.'
