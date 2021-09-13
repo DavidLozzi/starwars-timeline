@@ -3,24 +3,27 @@
     "endYear": -19,
     "startYear": -84,
     "title": "Republic Era",
-    "type": "era"
+    "type": "era",
+    "background": "linear-gradient(120deg, rgba(131,58,180,0.75) 0%, rgba(131,58,180,0.75) 10%, rgba(131,58,180,0.1) 100%)"
   },
   {
     "endYear": 5,
     "startYear": -19,
     "title": "Imperial Era",
-    "type": "era"
+    "type": "era",
+    "background": "linear-gradient(120deg, rgba(69,102,252,0.75) 0%, rgba(69,102,252,0.75) 10%, rgba(69,102,252,0.1) 100%)"
   },
   {
-    "endYear": 34,
+    "endYear": 50,
     "startYear": 5,
     "title": "New Republic Era",
-    "type": "era"
+    "type": "era",
+    "background": "linear-gradient(120deg, rgba(252,69,69,0.75) 0%, rgba(252,69,69,0.75) 10%, rgba(252,69,69,0.1) 100%)"
   },
   {
     "altTitle": "Darth Vadar",
     "endYear": 4,
-    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/1000?cb=20130621175844",
+    "imageUrl": "/images/anakin.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
@@ -33,8 +36,15 @@
   },
   {
     "endYear": 34,
-    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/1000?cb=20130621175844",
-    "seenIn": [],
+    "imageUrl": "/images/luke.png",
+    "seenIn": [
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
     "startYear": -19,
     "title": "Luke Skywalker",
     "type": "character"
@@ -42,7 +52,7 @@
   {
     "altTitle": "The Child",
     "endYear": 15,
-    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/4/43/TheChild-Fathead.png/revision/latest/scale-to-width-down/1000?cb=20201031231040",
+    "imageUrl": "/images/grogu.png",
     "startYear": -41,
     "title": "Grogu",
     "type": "character"
@@ -60,16 +70,19 @@
   },
   {
     "startYear": -32,
+    "endYear": -32,
     "title": "Episode I: The Phantom Menace",
     "type": "movie"
   },
   {
     "startYear": -22,
+    "endYear": -22,
     "title": "Episode II: Attack of the Clones",
     "type": "movie"
   },
   {
     "startYear": -22,
+    "endYear": -22,
     "title": "The Clone Wars (movie)",
     "type": "movie"
   },
@@ -80,14 +93,146 @@
     "type": "tv"
   },
   {
+    "startYear": -19,
+    "endYear": -19,
+    "title": "Episode III: Revenge of the Sith",
+    "type": "movie"
+  },
+  {
+    "startYear": -10,
+    "endYear": -10,
+    "title": "Solo: A Star Wars Story",
+    "type": "movie"
+  },
+  {
+    "startYear": 0,
+    "endYear": 0,
+    "title": "Rogue One",
+    "type": "movie"
+  },
+  {
+    "startYear": 0,
+    "endYear": 0,
+    "title": "Episode IV: A New Hope",
+    "type": "movie"
+  },
+  {
+    "startYear": 3,
+    "endYear": 3,
+    "title": "Episode V: The Empire Strikes Back",
+    "type": "movie"
+  },
+  {
+    "startYear": 4,
+    "endYear": 4,
+    "title": "Episode VI: Return of the Jedi",
+    "type": "movie"
+  },
+  {
+    "startYear": 34,
+    "endYear": 34,
+    "title": "Episode VII: The Force Awakens",
+    "type": "movie"
+  },
+  {
+    "startYear": 34,
+    "endYear": 34,
+    "title": "Episode VIII: The Last Jedi",
+    "type": "movie"
+  },
+  {
+    "startYear": 35,
+    "endYear": 35,
+    "title": "Episode IX: The Rise of Skywalker",
+    "type": "movie"
+  },
+  {
     "endYear": 35,
     "startYear": -84,
-    "title": "Darth Sidious",
+    "altTitle": "Darth Sidious",
+    "title": "Sheev Palpatine",
+    "type": "character",
+    "imageUrl": "/images/sheev.jpeg",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "Episode IX: The Rise of Skywalker"
+    ]
+  },
+  {
+    "endYear": 50,
+    "startYear": 15,
+    "title": "Rey Skywalker",
     "type": "character",
     "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
     "seenIn": [
-      "Episode I: The Phantom Menace",
-      "Episode II: Attack of the Clones"
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ]
+  },
+  {
+    "endYear": 50,
+    "startYear": 2,
+    "title": "Poe Dameron",
+    "type": "character",
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ]
+  },
+  {
+    "endYear": 50,
+    "startYear": 11,
+    "title": "Finn",
+    "altTitle": "FN-2187",
+    "type": "character",
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ]
+  },
+  {
+    "endYear": 34,
+    "startYear": -32,
+    "title": "Han Solo",
+    "altTitle": "Nerf Herder",
+    "type": "character",
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/e/e2/TFAHanSolo.png/revision/latest/scale-to-width-down/1000?cb=20160208055002",
+    "seenIn": [
+      "Solo: A Star Wars Story",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "Episode VII: The Force Awakens"
+    ]
+  },
+  {
+    "endYear": 4,
+    "startYear": -85,
+    "title": "Yoda",
+    "altTitle": "",
+    "type": "character",
+    "imageUrl": "/images/yoda.png",
+    "seenIn": [
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back"
+    ]
+  },
+  {
+    "endYear": 4,
+    "startYear": -50,
+    "title": "Thrawn",
+    "altTitle": "Mitth'raw' nuruodo",
+    "type": "character",
+    "imageUrl": "/images/thrawn.png",
+    "seenIn": [
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)"
     ]
   }
 ]

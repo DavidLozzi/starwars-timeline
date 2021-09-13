@@ -15,16 +15,18 @@ export const Era = styled(({ era, ...rest }) => <div {...rest} />)`
   position: absolute;
   top: ${({ era }) => gridHeight * era.yearIndex + topMargin}rem;
   left: ${gridWidth}rem;
-  width: ${gridWidth * 5}rem;
+  width: 100vh;
   height: ${({ era }) => gridHeight * era.years}rem;
   border-top: solid 2px #fff;
-  background-color: rgba(100,255,255,0.5);
+  background: ${({ era }) => era.background};
   z-index: 1;
 `;
 
 export const Sticky = styled.div`
   position: sticky;
   top: 0;
+  left: 0;
+  display: inline-block;
 `;
 
 export const EraLabel = styled.div`
@@ -43,6 +45,10 @@ export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
   left: ${gridWidth * 2}rem;
   top: ${({ year }) => gridHeight * year.yearIndex + topMargin}rem;
   z-index: 2;
+
+  ${Sticky} {
+    left: 1rem;
+  }
 `;
 
 export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
@@ -50,10 +56,13 @@ export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
   top: ${({ movie, index }) => gridHeight * movie.yearIndex + topMargin + index}rem;
   left: ${({ index }) => gridWidth * 4 + index}rem;
   width: 100vh;
-  height: ${({ movie }) => gridHeight * movie.years}rem;
-  background-color: rgba(100,100,255,0.2);
+  height: ${({ movie }) => gridHeight * (movie.years + 1)}rem;
+  background-color: rgba(200,200,200,0.4);
   z-index: 3;
-  padding: 0.25rem;
+
+  ${Sticky} {
+    left: 5rem;
+  }
 `;
 
 export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
@@ -62,15 +71,23 @@ export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
   left: ${({ character }) => gridWidth * 8 + character.index * (gridWidth + .5) * 2}rem;
   width: ${gridWidth * 2}rem;
   height: ${({ character }) => gridHeight * character.years}rem;
-  background: linear-gradient(#990, #990) no-repeat center/10px 100%;
-  border-radius: ${gridWidth + .5}rem;
+  background: linear-gradient(rgba(200,200,0,0.5), rgba(200,200,0,0.7)) no-repeat center/8px 100%;
   z-index: 4;
-  padding: 0.25rem;
-  padding: 0;
+  border-radius: 50%;
 
-  ${Sticky} & {
+  ${Sticky} {
     z-index: 6;
+    top: 1rem;
   }
+`;
+
+export const CharacterDetail = styled(({ ...rest }) => <div {...rest} />)`
+  background-color: rgba(50,50,50,0.8);
+  border-radius: ${gridWidth}rem; //${gridWidth}rem ${gridWidth * 0.25}rem ${gridWidth * 0.25}rem;
+  font-size: .8rem;
+  color: #fff;
+  text-align: center;
+  min-height: 9rem;
 `;
 
 export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
@@ -78,12 +95,27 @@ export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
   top: ${({ seen }) => gridHeight * seen.seenInYear.yearIndex + topMargin + seen.seenInEvent.index}rem;
   left: ${({ seen }) => gridWidth * 8 + seen.character.index * (gridWidth + .5) * 2}rem;
   z-index: 5;
-  width: ${gridWidth * 1.5}rem;
-  height: ${gridWidth * 1.5}rem;
-  text-align: center;
-  background-color: #009;
-  border-radius: 50%;
-  border: 5px solid #990;
+  width: ${gridWidth * 2}rem;
+  height: ${({ seen }) => gridWidth * seen.seenInEvent.years}rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  div {
+    background-color: rgba(100,100,255,0.8);
+    border-radius: 50%;
+    border: 3px solid rgba(200,200,0,0.8);;
+    width: ${gridWidth * .75}rem;
+    height: ${gridWidth * .75}rem;
+    position: relative;
+    transition: all ease-in-out 200ms;
+
+    &:hover {
+      width: ${gridWidth}rem;
+      height: ${gridWidth}rem;
+      background-color: rgba(100,100,255,1);
+    }
+  }
 `;
 
 export const Image = styled.img`
@@ -93,7 +125,7 @@ export const Image = styled.img`
 `;
 
 export const AltTitle = styled.div`
-  font-size: 13px;
+  font-size: .7rem;
   font-style: italic;
 `;
 

@@ -7,8 +7,6 @@ const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
   const [seenIn, setSeenIn] = React.useState([]);
-  const [startYear, setStartYear] = React.useState(0);
-  const [endYear, setEndYear] = React.useState(0);
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -43,9 +41,7 @@ const Home = () => {
     const _newYears = [...years];
     const _startYear = data.sort((a, b) => a.startYear > b.startYear ? 1 : -1)[0].startYear;
     const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear;
-    console.log('start', _startYear, 'end',  _endYear);
-    setStartYear(_startYear);
-    setEndYear(_endYear);
+
     let yearIndex = 0;
     for(let i = _startYear - zoomLevel; i <= _endYear + zoomLevel; i++) {
       const year = { year: i, display: convertYear(i) };
@@ -90,8 +86,8 @@ const Home = () => {
       .forEach(c => {
         if (c.seenIn && c.seenIn.length > 0) {
           c.seenIn.forEach(seen => {
-            const seenInYear = _newYears.filter(y => y.events.some(e => e.title === seen))[0];
-            const seenInEvent = seenInYear.events.filter(e => e.title === seen)[0];
+            const seenInYear = _newYears.find(y => y.events.some(e => e.title === seen));
+            const seenInEvent = seenInYear.events.find(e => e.title === seen);
             console.log(seenInEvent);
             _seenIn.push({
               character: c,
@@ -104,6 +100,14 @@ const Home = () => {
     setSeenIn(_seenIn);
   }, [data]);
 
+  React.useEffect(() => {
+    if (years.length > 0 && characters.length > 0) {
+      const scrollToY = years.find(y => y.year === 0).yearIndex * 32;
+      const scrollToX = characters.find(c => c.title === "Luke Skywalker").index * 32 + 96;
+      window.scrollTo(scrollToX, scrollToY);
+    }
+  }, [seenIn]);
+
   return (
     <>
       <h1>Interactive Star Wars Timeline</h1>
@@ -113,11 +117,14 @@ const Home = () => {
             .filter(({year}) => year % zoomLevel === 0)
             .map(year => {
               return (
-                <>
+                <React.Fragment
+                  key={year.display}
+                >
                   <Styled.Year 
-                    key={year.display}
                     year={year}>
-                    {year.display}
+                    <Styled.Sticky>
+                      {year.display}
+                    </Styled.Sticky>
                   </Styled.Year>
                   {year
                     .events
@@ -127,16 +134,15 @@ const Home = () => {
                       if (a.index < b.index) return -1;
                       return 0;
                     })
-                    .map((e, index) => <Styled.Era
-                      era={e}
+                    .map((era, index) => <Styled.Era
+                      era={era}
+                      key={era.title}
                     >
-                      <Styled.Sticky>
-                        <Styled.EraLabel>
-                          {e.imageUrl && <Styled.Image src={e.imageUrl} alt={e.title} />}
-                          {e.title} {e.startYearDisplay} - {e.endYearDisplay}
-                          {e.altTitle && <Styled.AltTitle>{e.altTitle}</Styled.AltTitle>}
-                        </Styled.EraLabel>
-                      </Styled.Sticky>
+                      <Styled.EraLabel>
+                        {era.imageUrl && <Styled.Image src={era.imageUrl} alt={era.title} />}
+                        {era.title} {era.startYearDisplay} - {era.endYearDisplay}
+                        {era.altTitle && <Styled.AltTitle>{era.altTitle}</Styled.AltTitle>}
+                      </Styled.EraLabel>
                     </Styled.Era>
                     )}
                   {year
@@ -147,16 +153,19 @@ const Home = () => {
                       if (a.index < b.index) return -1;
                       return 0;
                     })
-                    .map((e, index) => <Styled.Movie
-                      movie={e}
+                    .map((movie, index) => <Styled.Movie
+                      movie={movie}
                       index={index}
+                      key={movie.title}
                     >
-                      {e.imageUrl && <Styled.Image src={e.imageUrl} alt={e.title} />}
-                      {e.title}
-                      {e.altTitle && <Styled.AltTitle>{e.altTitle}</Styled.AltTitle>}
+                      <Styled.Sticky>
+                        {movie.imageUrl && <Styled.Image src={movie.imageUrl} alt={movie.title} />}
+                        {movie.title}
+                        {movie.altTitle && <Styled.AltTitle>{movie.altTitle}</Styled.AltTitle>}
+                      </Styled.Sticky>
                     </Styled.Movie>
                     )}
-                </>
+                </React.Fragment>
               );
             }
             )
@@ -165,11 +174,14 @@ const Home = () => {
           characters
             .map(character => <Styled.Character
               character={character}
+              key={character.title}
             >
               <Styled.Sticky>
-                {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
-                {character.title}
-                {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
+                <Styled.CharacterDetail>
+                  {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
+                  {character.title}
+                  {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
+                </Styled.CharacterDetail>
               </Styled.Sticky>
             </Styled.Character>
             )
@@ -179,7 +191,9 @@ const Home = () => {
             .map(seen => <Styled.SeenIn
               seen={seen}
               title={`${seen.character.title} - ${seen.seenInEvent.title}`}
+              key={`${seen.character.title} - ${seen.seenInEvent.title}`}
             >
+              <div />
             </Styled.SeenIn>
             )
         }
