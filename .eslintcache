@@ -1,1 +1,90 @@
-[{"/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.js":"1","/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.styles.js":"2","/Users/david.lozzi/git/starwars-timeline/src/reportWebVitals.js":"3","/Users/david.lozzi/git/starwars-timeline/src/App.js":"4","/Users/david.lozzi/git/starwars-timeline/src/index.js":"5"},{"size":7881,"mtime":1631620700665,"results":"6","hashOfConfig":"7"},{"size":3779,"mtime":1631620750813,"results":"8","hashOfConfig":"7"},{"size":362,"mtime":1606602919745,"results":"9","hashOfConfig":"7"},{"size":103,"mtime":1606603627198,"results":"10","hashOfConfig":"7"},{"size":500,"mtime":1606602919745,"results":"11","hashOfConfig":"7"},{"filePath":"12","messages":"13","errorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"msp8x7",{"filePath":"14","messages":"15","errorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},{"filePath":"16","messages":"17","errorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},{"filePath":"18","messages":"19","errorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},{"filePath":"20","messages":"21","errorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.js",[],"/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.styles.js",[],"/Users/david.lozzi/git/starwars-timeline/src/reportWebVitals.js",[],"/Users/david.lozzi/git/starwars-timeline/src/App.js",[],"/Users/david.lozzi/git/starwars-timeline/src/index.js",[]]
+[
+  {
+    "/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.js": "1",
+    "/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.styles.js": "2",
+    "/Users/david.lozzi/git/starwars-timeline/src/reportWebVitals.js": "3",
+    "/Users/david.lozzi/git/starwars-timeline/src/App.js": "4",
+    "/Users/david.lozzi/git/starwars-timeline/src/index.js": "5"
+  },
+  {
+    "size": 7881,
+    "mtime": 1631620700665,
+    "results": "6",
+    "hashOfConfig": "7"
+  },
+  {
+    "size": 3779,
+    "mtime": 1631620750813,
+    "results": "8",
+    "hashOfConfig": "7"
+  },
+  {
+    "size": 362,
+    "mtime": 1606602919745,
+    "results": "9",
+    "hashOfConfig": "7"
+  },
+  {
+    "size": 103,
+    "mtime": 1606603627198,
+    "results": "10",
+    "hashOfConfig": "7"
+  },
+  {
+    "size": 500,
+    "mtime": 1606602919745,
+    "results": "11",
+    "hashOfConfig": "7"
+  },
+  {
+    "filePath": "12",
+    "messages": "13",
+    "errorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  "msp8x7",
+  {
+    "filePath": "14",
+    "messages": "15",
+    "errorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "16",
+    "messages": "17",
+    "errorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "18",
+    "messages": "19",
+    "errorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "20",
+    "messages": "21",
+    "errorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  "/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.js",
+  [],
+  "/Users/david.lozzi/git/starwars-timeline/src/pages/Home/index.styles.js",
+  [],
+  "/Users/david.lozzi/git/starwars-timeline/src/reportWebVitals.js",
+  [],
+  "/Users/david.lozzi/git/starwars-timeline/src/App.js",
+  [],
+  "/Users/david.lozzi/git/starwars-timeline/src/index.js",
+  []
+]
