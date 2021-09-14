@@ -233,7 +233,19 @@
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)"
-    ]
+    ],
+    "wookiepedia": "https://starwars.fandom.com/wiki/Mitth'raw'nuruodo",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Rentor"
+      },
+      {
+        "name": "Species",
+        "value": "Chiss"
+      }
+    ],
+    "description": "Mitth'raw'nuruodo, born as Kivu'raw'nuru with the core name Vurawn, recognized in his early military career as Mitth'raw'nuru, and better known by his core name Thrawn, was a Chiss male officer of the Chiss Ascendancy and Grand Admiral in the Imperial Navy during the age of the Galactic Empire. An alien Imperial officer with striking blue skin, red eyes, and an angular face, Thrawn was well known as a brilliant and ruthless strategist."
   },
   {
     "endYear": 0,

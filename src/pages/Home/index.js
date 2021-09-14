@@ -1,5 +1,7 @@
 import * as React from 'react';
 import ReactTooltip from 'react-tooltip';
+import Modal from '../../molecules/modal';
+import CharacterDetail from '../../organisms/CharacterDetail';
 import data from '../../data.json';
 
 import * as Styled from './index.styles';
@@ -15,6 +17,8 @@ const Home = () => {
   const [seenIn, setSeenIn] = React.useState([]);
   const [currentYearIndex, setCurrentYearIndex] = React.useState(0);
   const [currentYear, setCurrentYear] = React.useState(0);
+  const [showModal, setShowModal] = React.useState(false);
+  const [modalContents, setModalContents] = React.useState();
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -38,6 +42,12 @@ const Home = () => {
     if (aSorter > bSorter) return 1;
     if (aSorter < bSorter) return -1;
     return 0;
+  };
+
+  const showCharacterModal = (character) => {
+    console.log(character);
+    setModalContents(<CharacterDetail character={character} />);
+    setShowModal(true);
   };
 
   // create 1 array of events
@@ -201,6 +211,7 @@ const Home = () => {
             >
               <Styled.Sticky>
                 <Styled.CharacterDetail
+                  onClick={() => showCharacterModal(character)}
                   // data-tip={`${convertYear(character.startYear)} - ${convertYear(character.endYear)}`}
                 >
                   {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
@@ -225,6 +236,7 @@ const Home = () => {
         }
       </Styled.Wrapper>
       <ReactTooltip />
+      {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
     </>
   );
 };
