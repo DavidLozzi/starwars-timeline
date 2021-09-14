@@ -1,7 +1,7 @@
 [
   {
     "endYear": -19,
-    "startYear": -84,
+    "startYear": -85,
     "title": "Republic Era",
     "type": "era",
     "background": "linear-gradient(120deg, rgba(131,58,180,0.75) 0%, rgba(131,58,180,0.75) 10%, rgba(131,58,180,0.1) 100%)"
@@ -234,5 +234,26 @@
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)"
     ]
+  },
+  {
+    "endYear": 0,
+    "startYear": -57,
+    "title": "Obi-Wan Kenobi",
+    "altTitle": "",
+    "type": "character",
+    "imageUrl": "/images/obi.jpeg",
+    "seenIn": [
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode VI: Return of the Jedi"
+    ]
+  },
+  {
+    "startYear": 9,
+    "endYear": 9,
+    "title": "The Mandalorian",
+    "type": "tv"
   }
 ]

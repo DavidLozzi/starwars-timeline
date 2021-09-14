@@ -1,12 +1,20 @@
 import * as React from 'react';
+import ReactTooltip from 'react-tooltip';
 import data from '../../data.json';
 
 import * as Styled from './index.styles';
+
+window.scrolling = false;
+addEventListener('scroll', () => {
+  window.scrolling = true;
+});
 
 const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
   const [seenIn, setSeenIn] = React.useState([]);
+  const [currentYearIndex, setCurrentYearIndex] = React.useState(0);
+  const [currentYear, setCurrentYear] = React.useState(0);
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -88,7 +96,7 @@ const Home = () => {
           c.seenIn.forEach(seen => {
             const seenInYear = _newYears.find(y => y.events.some(e => e.title === seen));
             const seenInEvent = seenInYear.events.find(e => e.title === seen);
-            console.log(seenInEvent);
+            // console.log(seenInEvent);
             _seenIn.push({
               character: c,
               seenInEvent,
@@ -98,7 +106,22 @@ const Home = () => {
         }
       });
     setSeenIn(_seenIn);
+
+    setInterval(() => {
+      if (window.scrolling) {
+        window.scrolling = false;
+        const pxToRem = window.scrollY / 16;
+        // console.log(Math.round((pxToRem / 2)) - 6);
+        setCurrentYearIndex(Math.round(pxToRem / 2) - 2);
+      }
+    }, 300);
+
   }, [data]);
+
+  React.useEffect(() => {
+    // console.log(years.find(y => y.yearIndex === currentYearIndex));
+    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex));
+  }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
@@ -177,9 +200,12 @@ const Home = () => {
               key={character.title}
             >
               <Styled.Sticky>
-                <Styled.CharacterDetail>
+                <Styled.CharacterDetail
+                  // data-tip={`${convertYear(character.startYear)} - ${convertYear(character.endYear)}`}
+                >
                   {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
                   {character.title}
+                  {currentYear && currentYear.year >= character.startYear && currentYear.year + 4 <= character.endYear && <Styled.AltTitle>{currentYear.year - character.startYear} yo</Styled.AltTitle>}
                   {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
                 </Styled.CharacterDetail>
               </Styled.Sticky>
@@ -190,7 +216,7 @@ const Home = () => {
           seenIn
             .map(seen => <Styled.SeenIn
               seen={seen}
-              title={`${seen.character.title} - ${seen.seenInEvent.title}`}
+              data-tip={`${seen.character.title} - ${seen.seenInEvent.title}`}
               key={`${seen.character.title} - ${seen.seenInEvent.title}`}
             >
               <div />
@@ -198,6 +224,7 @@ const Home = () => {
             )
         }
       </Styled.Wrapper>
+      <ReactTooltip />
     </>
   );
 };

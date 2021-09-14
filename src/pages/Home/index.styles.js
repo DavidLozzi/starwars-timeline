@@ -5,7 +5,7 @@ const topMargin = 6;
 const gridHeight = 2; //rem
 const gridWidth = 2; //rem
 export const Wrapper = styled.div`
-  width: 100vh;
+  width: 100vw;
   display: flex;
   flex-flow: column wrap;
   margin: ${gridWidth}rem;
@@ -15,7 +15,7 @@ export const Era = styled(({ era, ...rest }) => <div {...rest} />)`
   position: absolute;
   top: ${({ era }) => gridHeight * era.yearIndex + topMargin}rem;
   left: ${gridWidth}rem;
-  width: 100vh;
+  width: 200vw; // TODO calculate from # chars
   height: ${({ era }) => gridHeight * era.years}rem;
   border-top: solid 2px #fff;
   background: ${({ era }) => era.background};
@@ -39,7 +39,7 @@ export const EraLabel = styled.div`
 `;
 
 export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
-  width: 100vh;
+  width: 200vw; // TODO calculate from # chars
   position: absolute;
   border-top: solid 1px #eee;
   left: ${gridWidth * 2}rem;
@@ -55,7 +55,7 @@ export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
   position: absolute;
   top: ${({ movie, index }) => gridHeight * movie.yearIndex + topMargin + index}rem;
   left: ${({ index }) => gridWidth * 4 + index}rem;
-  width: 100vh;
+  width: 200vw; // TODO calculate from # chars
   height: ${({ movie }) => gridHeight * (movie.years + 1)}rem;
   background-color: rgba(200,200,200,0.4);
   z-index: 3;
@@ -70,7 +70,7 @@ export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
   top: ${({ character }) => gridHeight * character.yearIndex + topMargin}rem;
   left: ${({ character }) => gridWidth * 8 + character.index * (gridWidth + .5) * 2}rem;
   width: ${gridWidth * 2}rem;
-  height: ${({ character }) => gridHeight * character.years}rem;
+  height: ${({ character }) => gridHeight * (character.years + 1)}rem;
   background: linear-gradient(rgba(200,200,0,0.5), rgba(200,200,0,0.7)) no-repeat center/8px 100%;
   z-index: 4;
   border-radius: 50%;
