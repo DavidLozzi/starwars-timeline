@@ -3,12 +3,10 @@ import styled from 'styled-components';
 
 export default {
   Wrapper: styled.div`
-    display: flex;
     width: 100%;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
+  `,
+  Close: styled.div`
+    color: #fff;
   `,
   Header: styled.div`
     width: 100%;
@@ -17,7 +15,11 @@ export default {
   Image: styled.img`
     width: 30vw;
     height: 30vw;
-    border-radius: 50%;
+    border-radius: 50% 0;
+
+    &:hover {
+      border-radius: 0;
+    }
   `,
   H1: styled.h1`
     margin: 0;
@@ -28,7 +30,6 @@ export default {
     font-size: 2vh;
   `,
   Body: styled.div`
-    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 2vh;
@@ -38,15 +39,15 @@ export default {
   `,
   Description: styled.div`
     font-size: 1.6vh;
-    padding: 2vh;
+    margin: 2vh 0;
   `,
   MetadataWrapper: styled.div`
     font-size: 1.6vh;
-    padding: 2vh;
     display: flex;
+    margin: 2vh 0;
   `,
   Metadata: styled.div`
-    min-width: 30%;
+    min-width: 33%;
   `,
   MetadataLabel: styled.div`
     font-weight: bold;
@@ -54,5 +55,7 @@ export default {
   MetadataValue: styled.div`
   `,
   Wookiepedia: styled.a`
+    font-size: 1.4vh;
+    display: inline-block;
   `
 };

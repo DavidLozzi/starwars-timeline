@@ -1,7 +1,8 @@
 import React from 'react';
 import Styled from './index.styles';
+import parse from 'html-react-parser';
 
-const CharacterDetail = ({ character }) => {
+const CharacterDetail = ({ character, onClose }) => {
   const convertYear = (year) => {
     if (year <= 0) return `${year * -1} BBY`;
     if (year > 0) return `${year} ABY`;
@@ -16,9 +17,10 @@ const CharacterDetail = ({ character }) => {
         <Styled.H2>{character.altTitle}</Styled.H2>
         <Styled.Note>Born {convertYear(character.startYear)}, Died {convertYear(character.endYear)} ({character.endYear - character.startYear} years old)</Styled.Note>
       </Styled.Body>
+      <Styled.Close onClick={onClose}>X</Styled.Close>
     </Styled.Header>
     <Styled.Body>
-      {character.description && <Styled.Description>{character.description}</Styled.Description>}
+      {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
       {character.metadata && character.metadata.length > 0 && 
         <Styled.MetadataWrapper>
           {character.metadata.map(m => <Styled.Metadata key={m.name}>

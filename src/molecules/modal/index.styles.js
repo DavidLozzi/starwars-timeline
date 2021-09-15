@@ -18,7 +18,9 @@ export default {
   Modal: styled.div`
     background-color: rgba(225,225,225,0.8);
     width: 80vw;
-    height: 60vh;
+    min-height: 50vh;
+    max-height: 80vh;
     border-radius: 15vw;
+    padding-bottom: 3vw;
   `
 };

@@ -46,7 +46,7 @@ const Home = () => {
 
   const showCharacterModal = (character) => {
     console.log(character);
-    setModalContents(<CharacterDetail character={character} />);
+    setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false) }/>);
     setShowModal(true);
   };
 
@@ -235,7 +235,6 @@ const Home = () => {
             )
         }
       </Styled.Wrapper>
-      <ReactTooltip />
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
     </>
   );
