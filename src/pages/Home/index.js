@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ReactTooltip from 'react-tooltip';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
 import data from '../../data.json';
