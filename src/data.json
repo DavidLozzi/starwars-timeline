@@ -24,6 +24,13 @@
     "altTitle": "Darth Vadar",
     "endYear": 4,
     "imageUrl": "/images/anakin.png",
+    "imageYears": [
+      {
+        "startYear": -19,
+        "endYear": 4,
+        "imageUrl": "/images/vadar.png"
+      }
+    ],
     "seenIn": [
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
@@ -36,7 +43,7 @@
   },
   {
     "endYear": 34,
-    "imageUrl": "/images/luke.png",
+    "imageUrl": "/images/skywalker-farmboy.jpg",
     "seenIn": [
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
@@ -44,6 +51,23 @@
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
+    ],
+    "imageYears": [
+      {
+        "startYear": -19,
+        "endYear": 3,
+        "imageUrl": "/images/skywalker-farmboy.jpg"
+      },
+      {
+        "startYear": 3,
+        "endYear": 25,
+        "imageUrl": "/images/skywalker-jedi.jpg"
+      },
+      {
+        "startYear": 26,
+        "endYear": 34,
+        "imageUrl": "/images/skywalker.jpg"
+      }
     ],
     "startYear": -19,
     "title": "Luke Skywalker",
@@ -59,7 +83,6 @@
   },
   {
     "endYear": 20,
-    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)"
@@ -214,6 +237,7 @@
   {
     "endYear": 4,
     "startYear": -85,
+    "birthYear": -896,
     "title": "Yoda",
     "altTitle": "",
     "type": "character",

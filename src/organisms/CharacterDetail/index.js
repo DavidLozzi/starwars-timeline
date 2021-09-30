@@ -2,7 +2,19 @@ import React from 'react';
 import Styled from './index.styles';
 import parse from 'html-react-parser';
 
-const CharacterDetail = ({ character, onClose }) => {
+const CharacterDetail = ({ character, onClose, currentYear }) => {
+  const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
+
+  React.useEffect(() => {
+    let _imageUrl = character.imageUrl;
+    if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {
+      _imageUrl = character.imageYears.filter(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)[0].imageUrl;
+    }
+    if (_imageUrl && _imageUrl !== imageUrl) {
+      setImageUrl(_imageUrl);
+    }
+  }, [currentYear]);
+
   const convertYear = (year) => {
     if (year <= 0) return `${year * -1} BBY`;
     if (year > 0) return `${year} ABY`;
@@ -11,7 +23,7 @@ const CharacterDetail = ({ character, onClose }) => {
 
   return <Styled.Wrapper>
     <Styled.Header>
-      {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
+      <Styled.Image src={imageUrl} alt={character.title} />
       <Styled.Body>
         <Styled.H1>{character.title}</Styled.H1>
         <Styled.H2>{character.altTitle}</Styled.H2>

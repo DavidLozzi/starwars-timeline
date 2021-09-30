@@ -11,11 +11,12 @@ export default {
   Header: styled.div`
     width: 100%;
     display: flex;
+    justify-content: space-between;
   `,
   Image: styled.img`
     width: 30vw;
     height: 30vw;
-    border-radius: 50% 0;
+    border-radius: 5vw 0;
 
     &:hover {
       border-radius: 0;

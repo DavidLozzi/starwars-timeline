@@ -45,7 +45,7 @@ const Home = () => {
 
   const showCharacterModal = (character) => {
     console.log(character);
-    setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false) }/>);
+    setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
   };
 
@@ -142,8 +142,12 @@ const Home = () => {
 
   return (
     <>
-      <h1>Interactive Star Wars Timeline</h1>
       <Styled.Wrapper>
+        <Styled.Sticky>
+          <Styled.Header>
+            <h1>Interactive Star Wars Timeline</h1>
+          </Styled.Header>
+        </Styled.Sticky>
         {
           years
             .filter(({year}) => year % zoomLevel === 0)
@@ -170,11 +174,13 @@ const Home = () => {
                       era={era}
                       key={era.title}
                     >
-                      <Styled.EraLabel>
-                        {era.imageUrl && <Styled.Image src={era.imageUrl} alt={era.title} />}
-                        {era.title} {era.startYearDisplay} - {era.endYearDisplay}
-                        {era.altTitle && <Styled.AltTitle>{era.altTitle}</Styled.AltTitle>}
-                      </Styled.EraLabel>
+                      <Styled.Sticky>
+                        <Styled.EraLabel>
+                          {era.imageUrl && <Styled.Image src={era.imageUrl} alt={era.title} />}
+                          {era.title} {era.startYearDisplay} - {era.endYearDisplay}
+                          {era.altTitle && <Styled.AltTitle>{era.altTitle}</Styled.AltTitle>}
+                        </Styled.EraLabel>
+                      </Styled.Sticky>
                     </Styled.Era>
                     )}
                   {year
@@ -204,22 +210,29 @@ const Home = () => {
         }
         {
           characters
-            .map(character => <Styled.Character
-              character={character}
-              key={character.title}
-            >
-              <Styled.Sticky>
-                <Styled.CharacterDetail
-                  onClick={() => showCharacterModal(character)}
+            .map(character => {
+              const startYear = character.birthYear || character.startYear;
+              let imageUrl = character.imageUrl || "/images/starwars.jpg";
+              if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {
+                imageUrl = character.imageYears.filter(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)[0].imageUrl;
+              }
+              return <Styled.Character
+                character={character}
+                key={character.title}
+              >
+                <Styled.Sticky>
+                  <Styled.CharacterDetail
+                    onClick={() => showCharacterModal(character)}
                   // data-tip={`${convertYear(character.startYear)} - ${convertYear(character.endYear)}`}
-                >
-                  {character.imageUrl && <Styled.Image src={character.imageUrl} alt={character.title} />}
-                  {character.title}
-                  {currentYear && currentYear.year >= character.startYear && currentYear.year + 4 <= character.endYear && <Styled.AltTitle>{currentYear.year - character.startYear} yo</Styled.AltTitle>}
-                  {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
-                </Styled.CharacterDetail>
-              </Styled.Sticky>
-            </Styled.Character>
+                  >
+                    <Styled.Image src={imageUrl} alt={character.title} />
+                    {character.title}
+                    {currentYear && currentYear.year >= startYear && currentYear.year + 4 <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo</Styled.AltTitle>}
+                    {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
+                  </Styled.CharacterDetail>
+                </Styled.Sticky>
+              </Styled.Character>;
+            }
             )
         }
         {
@@ -229,7 +242,9 @@ const Home = () => {
               data-tip={`${seen.character.title} - ${seen.seenInEvent.title}`}
               key={`${seen.character.title} - ${seen.seenInEvent.title}`}
             >
-              <div />
+              <Styled.Circle>
+                <Styled.ToolTip>{seen.character.title} in {seen.seenInEvent.title}</Styled.ToolTip>
+              </Styled.Circle>
             </Styled.SeenIn>
             )
         }

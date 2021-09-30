@@ -4,6 +4,11 @@ import styled from 'styled-components';
 const topMargin = 6;
 const gridHeight = 2; //rem
 const gridWidth = 2; //rem
+
+export const Header = styled.div`
+
+`;
+
 export const Wrapper = styled.div`
   width: 100vw;
   display: flex;
@@ -47,7 +52,7 @@ export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
   z-index: 2;
 
   ${Sticky} {
-    left: 1rem;
+    left: 3rem;
   }
 `;
 
@@ -61,7 +66,7 @@ export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
   z-index: 3;
 
   ${Sticky} {
-    left: 5rem;
+    left: 7rem;
   }
 `;
 
@@ -72,11 +77,10 @@ export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
   width: ${gridWidth * 2}rem;
   height: ${({ character }) => gridHeight * (character.years + 1)}rem;
   background: linear-gradient(rgba(200,200,0,0.5), rgba(200,200,0,0.7)) no-repeat center/8px 100%;
-  z-index: 4;
+  z-index: 6;
   border-radius: 50%;
 
   ${Sticky} {
-    z-index: 6;
     top: 1rem;
   }
 `;
@@ -94,29 +98,47 @@ export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
   position: absolute;
   top: ${({ seen }) => gridHeight * seen.seenInYear.yearIndex + topMargin + seen.seenInEvent.index}rem;
   left: ${({ seen }) => gridWidth * 8 + seen.character.index * (gridWidth + .5) * 2}rem;
-  z-index: 5;
+  z-index: 6;
   width: ${gridWidth * 2}rem;
   height: ${({ seen }) => gridWidth * seen.seenInEvent.years}rem;
   display: flex;
   justify-content: center;
   align-content: center;
+`;
 
-  div {
-    background-color: rgba(100,100,255,0.8);
-    border-radius: 50%;
-    border: 3px solid rgba(200,200,0,0.8);;
-    width: ${gridWidth * .75}rem;
-    height: ${gridWidth * .75}rem;
-    position: relative;
-    transition: all ease-in-out 200ms;
+export const ToolTip = styled.div`
+  display: none;
+  position: relative;
+  top: 1.5rem;
+  left: 1rem;
+  z-index: 7;
+  width: 12rem;
+  background-color: #fff;
+  font-size: .7rem;
+  border-radius: 1rem;
+  padding: .5rem;
+`;
 
-    &:hover {
-      width: ${gridWidth}rem;
-      height: ${gridWidth}rem;
-      background-color: rgba(100,100,255,1);
+export const Circle = styled.div`
+  background-color: rgba(100,100,255,0.8);
+  border-radius: 50%;
+  border: 3px solid rgba(200,200,0,0.8);;
+  width: ${gridWidth * .75}rem;
+  height: ${gridWidth * .75}rem;
+  position: relative;
+  transition: all ease-in-out 200ms;
+
+  &:hover {
+    width: ${gridWidth}rem;
+    height: ${gridWidth}rem;
+    background-color: rgba(100,100,255,1);
+
+    ${ToolTip} {
+      display: block;
     }
   }
 `;
+
 
 export const Image = styled.img`
   width: ${gridWidth * 2}rem;
@@ -127,12 +149,4 @@ export const Image = styled.img`
 export const AltTitle = styled.div`
   font-size: .7rem;
   font-style: italic;
-`;
-
-export const CrossEvent = styled.div`
-  margin-left: ${({ count }) => (count * 105) + 100}px;
-  background-color: rgba(100,255,255,0.3);
-  width: 100px;
-  position: absolute;
-  z-index: 30;
 `;
