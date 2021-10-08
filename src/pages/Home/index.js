@@ -4,6 +4,7 @@ import CharacterDetail from '../../organisms/CharacterDetail';
 import data from '../../data.json';
 
 import * as Styled from './index.styles';
+import MainMenu from '../../organisms/MainMenu';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -121,7 +122,7 @@ const Home = () => {
         window.scrolling = false;
         const pxToRem = window.scrollY / 16;
         // console.log(Math.round((pxToRem / 2)) - 6);
-        setCurrentYearIndex(Math.round(pxToRem / 2) - 2);
+        setCurrentYearIndex(Math.round(pxToRem / 2));
       }
     }, 300);
 
@@ -143,11 +144,10 @@ const Home = () => {
   return (
     <>
       <Styled.Wrapper>
-        <Styled.Sticky>
-          <Styled.Header>
-            <h1>Interactive Star Wars Timeline</h1>
-          </Styled.Header>
-        </Styled.Sticky>
+        <Styled.Header>
+          <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
+          <MainMenu />
+        </Styled.Header>
         {
           years
             .filter(({year}) => year % zoomLevel === 0)
@@ -176,7 +176,6 @@ const Home = () => {
                     >
                       <Styled.Sticky>
                         <Styled.EraLabel>
-                          {era.imageUrl && <Styled.Image src={era.imageUrl} alt={era.title} />}
                           {era.title} {era.startYearDisplay} - {era.endYearDisplay}
                           {era.altTitle && <Styled.AltTitle>{era.altTitle}</Styled.AltTitle>}
                         </Styled.EraLabel>
@@ -197,7 +196,6 @@ const Home = () => {
                       key={movie.title}
                     >
                       <Styled.Sticky>
-                        {movie.imageUrl && <Styled.Image src={movie.imageUrl} alt={movie.title} />}
                         {movie.title}
                         {movie.altTitle && <Styled.AltTitle>{movie.altTitle}</Styled.AltTitle>}
                       </Styled.Sticky>
@@ -225,7 +223,7 @@ const Home = () => {
                     onClick={() => showCharacterModal(character)}
                   // data-tip={`${convertYear(character.startYear)} - ${convertYear(character.endYear)}`}
                   >
-                    <Styled.Image src={imageUrl} alt={character.title} />
+                    <Styled.CharacterImage src={imageUrl} alt={character.title} />
                     {character.title}
                     {currentYear && currentYear.year >= startYear && currentYear.year + 4 <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo</Styled.AltTitle>}
                     {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
@@ -239,7 +237,6 @@ const Home = () => {
           seenIn
             .map(seen => <Styled.SeenIn
               seen={seen}
-              data-tip={`${seen.character.title} - ${seen.seenInEvent.title}`}
               key={`${seen.character.title} - ${seen.seenInEvent.title}`}
             >
               <Styled.Circle>

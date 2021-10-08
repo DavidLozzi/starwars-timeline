@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const topMargin = 6;
-const gridHeight = 2; //rem
-const gridWidth = 2; //rem
-
 export const Header = styled.div`
+  ${({ theme }) => theme.elements.header};
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
+export const H1 = styled.h1`
+  margin-left: 2rem;
 `;
 
 export const Wrapper = styled.div`
   width: 100vw;
   display: flex;
   flex-flow: column wrap;
-  margin: ${gridWidth}rem;
-`;
-
-export const Era = styled(({ era, ...rest }) => <div {...rest} />)`
-  position: absolute;
-  top: ${({ era }) => gridHeight * era.yearIndex + topMargin}rem;
-  left: ${gridWidth}rem;
-  width: 200vw; // TODO calculate from # chars
-  height: ${({ era }) => gridHeight * era.years}rem;
-  border-top: solid 2px #fff;
-  background: ${({ era }) => era.background};
-  z-index: 1;
+  margin: ${({ theme }) => theme.layout.gridWidth}rem;
 `;
 
 export const Sticky = styled.div`
@@ -32,6 +29,20 @@ export const Sticky = styled.div`
   top: 0;
   left: 0;
   display: inline-block;
+`;
+
+export const Era = styled(({ era, ...rest }) => <div {...rest} />)`
+  ${({ theme }) => theme.elements.era};
+  position: absolute;
+  top: ${({ era, theme }) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin}rem;
+  left: ${({ theme }) => theme.layout.gridWidth}rem;
+  width: 200vw; // TODO calculate from # chars
+  height: ${({ era, theme }) => theme.layout.gridHeight * era.years}rem;
+  z-index: 1;
+
+  ${Sticky} {
+    top: 6rem;
+  }
 `;
 
 export const EraLabel = styled.div`
@@ -44,11 +55,11 @@ export const EraLabel = styled.div`
 `;
 
 export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
+  ${({ theme }) => theme.elements.year};
   width: 200vw; // TODO calculate from # chars
   position: absolute;
-  border-top: solid 1px #eee;
-  left: ${gridWidth * 2}rem;
-  top: ${({ year }) => gridHeight * year.yearIndex + topMargin}rem;
+  left: ${({ theme }) => theme.layout.gridWidth * theme.layout.elements.year.leftMultiplier}rem;
+  top: ${({ year, theme }) => theme.layout.gridHeight * year.yearIndex + theme.layout.topMargin}rem;
   z-index: 2;
 
   ${Sticky} {
@@ -57,12 +68,12 @@ export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
 `;
 
 export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
+  ${({ theme }) => theme.elements.movie};
   position: absolute;
-  top: ${({ movie, index }) => gridHeight * movie.yearIndex + topMargin + index}rem;
-  left: ${({ index }) => gridWidth * 4 + index}rem;
+  top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
+  left: ${({ index, theme }) => theme.layout.gridWidth * theme.layout.elements.movie.leftMultiplier + index}rem;
   width: 200vw; // TODO calculate from # chars
-  height: ${({ movie }) => gridHeight * (movie.years + 1)}rem;
-  background-color: rgba(200,200,200,0.4);
+  height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 3;
 
   ${Sticky} {
@@ -71,82 +82,61 @@ export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
 `;
 
 export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
+  ${({ theme }) => theme.elements.character};
   position: absolute;
-  top: ${({ character }) => gridHeight * character.yearIndex + topMargin}rem;
-  left: ${({ character }) => gridWidth * 8 + character.index * (gridWidth + .5) * 2}rem;
-  width: ${gridWidth * 2}rem;
-  height: ${({ character }) => gridHeight * (character.years + 1)}rem;
-  background: linear-gradient(rgba(200,200,0,0.5), rgba(200,200,0,0.7)) no-repeat center/8px 100%;
+  top: ${({ character, theme }) => theme.layout.gridHeight * character.yearIndex + theme.layout.topMargin}rem;
+  left: ${({ character, theme }) => theme.layout.gridWidth * theme.layout.elements.character.leftMultiplier + character.index * (theme.layout.gridWidth + .5) * 2}rem;
+  width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
+  height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 1)}rem;
   z-index: 6;
-  border-radius: 50%;
 
   ${Sticky} {
-    top: 1rem;
+    top: 6rem;
   }
 `;
 
 export const CharacterDetail = styled(({ ...rest }) => <div {...rest} />)`
-  background-color: rgba(50,50,50,0.8);
-  border-radius: ${gridWidth}rem; //${gridWidth}rem ${gridWidth * 0.25}rem ${gridWidth * 0.25}rem;
-  font-size: .8rem;
-  color: #fff;
-  text-align: center;
+  ${({ theme }) => theme.elements.characterDetail};
   min-height: 9rem;
+`;
+
+export const CharacterImage = styled.img`
+  ${({ theme }) => theme.elements.characterImage};
 `;
 
 export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
   position: absolute;
-  top: ${({ seen }) => gridHeight * seen.seenInYear.yearIndex + topMargin + seen.seenInEvent.index}rem;
-  left: ${({ seen }) => gridWidth * 8 + seen.character.index * (gridWidth + .5) * 2}rem;
+  top: ${({ seen, theme }) => theme.layout.gridHeight * seen.seenInYear.yearIndex + theme.layout.topMargin + seen.seenInEvent.index}rem;
+  left: ${({ seen, theme }) => theme.layout.gridWidth * theme.layout.elements.seenIn.leftMultiplier + seen.character.index * (theme.layout.gridWidth + .5) * 2}rem;
   z-index: 6;
-  width: ${gridWidth * 2}rem;
-  height: ${({ seen }) => gridWidth * seen.seenInEvent.years}rem;
+  width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
+  height: ${({ seen, theme }) => theme.layout.gridWidth * seen.seenInEvent.years}rem;
   display: flex;
   justify-content: center;
   align-content: center;
 `;
 
 export const ToolTip = styled.div`
+  ${({ theme }) => theme.elements.toolTip};
   display: none;
   position: relative;
   top: 1.5rem;
   left: 1rem;
-  z-index: 7;
-  width: 12rem;
-  background-color: #fff;
-  font-size: .7rem;
-  border-radius: 1rem;
-  padding: .5rem;
+  z-index: 100;
 `;
 
 export const Circle = styled.div`
-  background-color: rgba(100,100,255,0.8);
-  border-radius: 50%;
-  border: 3px solid rgba(200,200,0,0.8);;
-  width: ${gridWidth * .75}rem;
-  height: ${gridWidth * .75}rem;
+  ${({ theme }) => theme.elements.seenInCircle};
   position: relative;
   transition: all ease-in-out 200ms;
 
   &:hover {
-    width: ${gridWidth}rem;
-    height: ${gridWidth}rem;
-    background-color: rgba(100,100,255,1);
-
     ${ToolTip} {
       display: block;
     }
   }
 `;
 
-
-export const Image = styled.img`
-  width: ${gridWidth * 2}rem;
-  height: ${gridWidth * 2}rem;
-  border-radius: 50%;
-`;
-
 export const AltTitle = styled.div`
-  font-size: .7rem;
-  font-style: italic;
+  ${({ theme }) => theme.elements.altTitle};
 `;

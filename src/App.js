@@ -1,8 +1,14 @@
+import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
+import theme from './themes/anewHope';
+import GlobalStyles from './globalStyles';
 
 function App() {
   return (
-    <Home />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Home />
+    </ThemeProvider>
   );
 }
 

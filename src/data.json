@@ -3,75 +3,114 @@
     "endYear": -19,
     "startYear": -85,
     "title": "Republic Era",
-    "type": "era",
-    "background": "linear-gradient(120deg, rgba(131,58,180,0.75) 0%, rgba(131,58,180,0.75) 10%, rgba(131,58,180,0.1) 100%)"
+    "type": "era"
   },
   {
     "endYear": 5,
     "startYear": -19,
     "title": "Imperial Era",
-    "type": "era",
-    "background": "linear-gradient(120deg, rgba(69,102,252,0.75) 0%, rgba(69,102,252,0.75) 10%, rgba(69,102,252,0.1) 100%)"
+    "type": "era"
   },
   {
     "endYear": 50,
     "startYear": 5,
     "title": "New Republic Era",
-    "type": "era",
-    "background": "linear-gradient(120deg, rgba(252,69,69,0.75) 0%, rgba(252,69,69,0.75) 10%, rgba(252,69,69,0.1) 100%)"
+    "type": "era"
   },
   {
     "altTitle": "Darth Vadar",
     "endYear": 4,
-    "imageUrl": "/images/anakin.png",
+    "imageUrl": "/images/vadar-kid.jpg",
     "imageYears": [
       {
-        "startYear": -19,
         "endYear": 4,
-        "imageUrl": "/images/vadar.png"
+        "imageUrl": "/images/vadar.png",
+        "startYear": -19
+      },
+      {
+        "endYear": -19,
+        "imageUrl": "/images/anakin.png",
+        "startYear": -28
+      },
+      {
+        "endYear": -28,
+        "imageUrl": "/images/vadar-kid.jpg",
+        "startYear": -41
       }
     ],
     "seenIn": [
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
+      "Episode III: Revenge of the Sith",
       "The Clone Wars (movie)",
-      "The Clone Wars (TV series)"
+      "The Clone Wars (TV series)",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi"
     ],
     "startYear": -41,
     "title": "Anakin Skywalker",
-    "type": "character"
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Tatooine"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ],
+    "description": "Anakin Skywalker was a legendary Force-sensitive human male who was a Jedi Knight of the Galactic Republic and the prophesied Chosen One of the Jedi Order, destined to bring balance to the Force. Also known as &quot;Ani&quot; during his childhood, Skywalker earned the moniker &quot;Hero With No Fear&quot; from his accomplishments in the Clone Wars. His alter ego, Darth Vader, the Dark Lord of the Sith, was created when Skywalker turned to the dark side of the Force, pledging his allegiance to the Sith Lord Darth Sidious at the end of the Republic Era.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Anakin_Skywalker"
   },
   {
     "endYear": 34,
     "imageUrl": "/images/skywalker-farmboy.jpg",
+    "imageYears": [
+      {
+        "endYear": 3,
+        "imageUrl": "/images/skywalker-farmboy.jpg",
+        "startYear": -19
+      },
+      {
+        "endYear": 25,
+        "imageUrl": "/images/skywalker-jedi.jpg",
+        "startYear": 3
+      },
+      {
+        "endYear": 34,
+        "imageUrl": "/images/skywalker.png",
+        "startYear": 26
+      }
+    ],
     "seenIn": [
+      "Episode III: Revenge of the Sith",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
+      "The Mandalorian",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
     ],
-    "imageYears": [
-      {
-        "startYear": -19,
-        "endYear": 3,
-        "imageUrl": "/images/skywalker-farmboy.jpg"
-      },
-      {
-        "startYear": 3,
-        "endYear": 25,
-        "imageUrl": "/images/skywalker-jedi.jpg"
-      },
-      {
-        "startYear": 26,
-        "endYear": 34,
-        "imageUrl": "/images/skywalker.jpg"
-      }
-    ],
     "startYear": -19,
     "title": "Luke Skywalker",
-    "type": "character"
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Tatooine"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ],
+    "description": "Luke Skywalker, a Force-sensitive human male, was a legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire. Along with his companions, Princess Leia Organa and General Han Solo, Skywalker served as a revolutionary on the side of the Alliance to Restore the Republic—an organization committed to the downfall of the Galactic Empire and the restoration of democracy. Following the war, Skywalker became a living legend, and was remembered as one of the greatest Jedi in galactic history.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Luke_Skywalker"
   },
   {
     "altTitle": "The Child",
@@ -92,20 +131,20 @@
     "type": "character"
   },
   {
-    "startYear": -32,
     "endYear": -32,
+    "startYear": -32,
     "title": "Episode I: The Phantom Menace",
     "type": "movie"
   },
   {
-    "startYear": -22,
     "endYear": -22,
+    "startYear": -22,
     "title": "Episode II: Attack of the Clones",
     "type": "movie"
   },
   {
-    "startYear": -22,
     "endYear": -22,
+    "startYear": -22,
     "title": "The Clone Wars (movie)",
     "type": "movie"
   },
@@ -116,115 +155,118 @@
     "type": "tv"
   },
   {
-    "startYear": -19,
+    "endYear": 0,
+    "startYear": -5,
+    "title": "Star Wars Rebels",
+    "type": "tv"
+  },
+  {
     "endYear": -19,
+    "startYear": -19,
     "title": "Episode III: Revenge of the Sith",
     "type": "movie"
   },
   {
-    "startYear": -10,
     "endYear": -10,
+    "startYear": -10,
     "title": "Solo: A Star Wars Story",
     "type": "movie"
   },
   {
-    "startYear": 0,
     "endYear": 0,
-    "title": "Rogue One",
+    "startYear": 0,
+    "title": "Rogue One: A Star Wars Story",
     "type": "movie"
   },
   {
-    "startYear": 0,
     "endYear": 0,
+    "startYear": 0,
     "title": "Episode IV: A New Hope",
     "type": "movie"
   },
   {
-    "startYear": 3,
     "endYear": 3,
+    "startYear": 3,
     "title": "Episode V: The Empire Strikes Back",
     "type": "movie"
   },
   {
-    "startYear": 4,
     "endYear": 4,
+    "startYear": 4,
     "title": "Episode VI: Return of the Jedi",
     "type": "movie"
   },
   {
-    "startYear": 34,
     "endYear": 34,
+    "startYear": 34,
     "title": "Episode VII: The Force Awakens",
     "type": "movie"
   },
   {
-    "startYear": 34,
     "endYear": 34,
+    "startYear": 34,
     "title": "Episode VIII: The Last Jedi",
     "type": "movie"
   },
   {
-    "startYear": 35,
     "endYear": 35,
+    "startYear": 35,
     "title": "Episode IX: The Rise of Skywalker",
     "type": "movie"
   },
   {
-    "endYear": 35,
-    "startYear": -84,
     "altTitle": "Darth Sidious",
-    "title": "Sheev Palpatine",
-    "type": "character",
+    "endYear": 35,
     "imageUrl": "/images/sheev.jpeg",
     "seenIn": [
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
       "Episode IX: The Rise of Skywalker"
-    ]
+    ],
+    "startYear": -84,
+    "title": "Sheev Palpatine",
+    "type": "character"
   },
   {
     "endYear": 50,
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
     "startYear": 15,
     "title": "Rey Skywalker",
-    "type": "character",
+    "type": "character"
+  },
+  {
+    "endYear": 50,
     "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
     "seenIn": [
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
-    ]
-  },
-  {
-    "endYear": 50,
+    ],
     "startYear": 2,
     "title": "Poe Dameron",
-    "type": "character",
+    "type": "character"
+  },
+  {
+    "altTitle": "FN-2187",
+    "endYear": 50,
     "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
     "seenIn": [
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
-    ]
-  },
-  {
-    "endYear": 50,
+    ],
     "startYear": 11,
     "title": "Finn",
-    "altTitle": "FN-2187",
-    "type": "character",
-    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/3/3e/AhsokaHS-TMCh13.png/revision/latest/scale-to-width-down/999?cb=20201129122252",
-    "seenIn": [
-      "Episode VII: The Force Awakens",
-      "Episode VIII: The Last Jedi",
-      "Episode IX: The Rise of Skywalker"
-    ]
+    "type": "character"
   },
   {
-    "endYear": 34,
-    "startYear": -32,
-    "title": "Han Solo",
     "altTitle": "Nerf Herder",
-    "type": "character",
+    "endYear": 34,
     "imageUrl": "https://static.wikia.nocookie.net/starwars/images/e/e2/TFAHanSolo.png/revision/latest/scale-to-width-down/1000?cb=20160208055002",
     "seenIn": [
       "Solo: A Star Wars Story",
@@ -232,33 +274,29 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
       "Episode VII: The Force Awakens"
-    ]
+    ],
+    "startYear": -32,
+    "title": "Han Solo",
+    "type": "character"
   },
   {
-    "endYear": 4,
-    "startYear": -85,
-    "birthYear": -896,
-    "title": "Yoda",
     "altTitle": "",
-    "type": "character",
+    "birthYear": -896,
+    "endYear": 4,
     "imageUrl": "/images/yoda.png",
     "seenIn": [
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back"
-    ]
+    ],
+    "startYear": -85,
+    "title": "Yoda",
+    "type": "character"
   },
   {
-    "endYear": 4,
-    "startYear": -50,
-    "title": "Thrawn",
     "altTitle": "Mitth'raw' nuruodo",
-    "type": "character",
+    "description": "<p><em>His actual birth and death dates are currently unknown!</em></p>Mitth'raw'nuruodo, born as Kivu'raw'nuru with the core name Vurawn, recognized in his early military career as Mitth'raw'nuru, and better known by his core name Thrawn, was a Chiss male officer of the Chiss Ascendancy and Grand Admiral in the Imperial Navy during the age of the Galactic Empire. An alien Imperial officer with striking blue skin, red eyes, and an angular face, Thrawn was well known as a brilliant and ruthless strategist.",
+    "endYear": 4,
     "imageUrl": "/images/thrawn.png",
-    "seenIn": [
-      "The Clone Wars (movie)",
-      "The Clone Wars (TV series)"
-    ],
-    "wookiepedia": "https://starwars.fandom.com/wiki/Mitth'raw'nuruodo",
     "metadata": [
       {
         "name": "Homeworld",
@@ -269,14 +307,18 @@
         "value": "Chiss"
       }
     ],
-    "description": "<p><em>His actual birth and death dates are currently unknown!</em></p>Mitth'raw'nuruodo, born as Kivu'raw'nuru with the core name Vurawn, recognized in his early military career as Mitth'raw'nuru, and better known by his core name Thrawn, was a Chiss male officer of the Chiss Ascendancy and Grand Admiral in the Imperial Navy during the age of the Galactic Empire. An alien Imperial officer with striking blue skin, red eyes, and an angular face, Thrawn was well known as a brilliant and ruthless strategist."
+    "seenIn": [
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)"
+    ],
+    "startYear": -50,
+    "title": "Thrawn",
+    "type": "character",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Mitth'raw'nuruodo"
   },
   {
-    "endYear": 0,
-    "startYear": -57,
-    "title": "Obi-Wan Kenobi",
     "altTitle": "",
-    "type": "character",
+    "endYear": 0,
     "imageUrl": "/images/obi.jpeg",
     "seenIn": [
       "Episode IV: A New Hope",
@@ -284,11 +326,14 @@
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
       "Episode VI: Return of the Jedi"
-    ]
+    ],
+    "startYear": -57,
+    "title": "Obi-Wan Kenobi",
+    "type": "character"
   },
   {
-    "startYear": 9,
     "endYear": 9,
+    "startYear": 9,
     "title": "The Mandalorian",
     "type": "tv"
   }
