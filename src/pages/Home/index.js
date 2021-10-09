@@ -130,7 +130,7 @@ const Home = () => {
 
   React.useEffect(() => {
     // console.log(years.find(y => y.yearIndex === currentYearIndex));
-    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 4));
+    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 6));
   }, [currentYearIndex]);
 
   React.useEffect(() => {
