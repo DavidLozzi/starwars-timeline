@@ -130,12 +130,12 @@ const Home = () => {
 
   React.useEffect(() => {
     // console.log(years.find(y => y.yearIndex === currentYearIndex));
-    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 2));
+    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 4));
   }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToY = (years.find(y => y.year === 0).yearIndex - 2) * 32;
+      const scrollToY = (years.find(y => y.year === 0).yearIndex - 4) * 32;
       const scrollToX = characters.find(c => c.title === "Luke Skywalker").index * 32 + 96;
       window.scrollTo(scrollToX, scrollToY);
     }
