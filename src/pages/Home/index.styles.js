@@ -112,7 +112,7 @@ export const CharacterImage = styled.img`
 
 export const SeenIn = styled(({ seen, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
   position: absolute;
-  top: ${({ seen, theme }) => (theme.layout.gridHeight * seen.seenInYear.yearIndex) - getCharacterTop(theme, seen.character) + theme.layout.topMargin}rem;
+  top: ${({ seen, theme }) => (theme.layout.gridHeight * seen.seenInYear.yearIndex) - getCharacterTop(theme, seen.character) + theme.layout.topMargin + seen.seenInEvent.index}rem;
   left: 0; // ${({ seen, theme }) => theme.layout.gridWidth * theme.layout.elements.seenIn.leftMultiplier + seen.character.index * 2}rem;
   z-index: 60;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
