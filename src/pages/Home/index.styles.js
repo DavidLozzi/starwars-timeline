@@ -17,7 +17,7 @@ export const Header = styled.div`
 
 export const H1 = styled.h1`
   margin-left: 2rem;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
 `;
 
 export const Wrapper = styled.div`
