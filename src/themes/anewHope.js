@@ -11,7 +11,8 @@ const layout = { // in rem
       leftMultiplier: 4
     },
     character: {
-      leftMultiplier: 8
+      leftMultiplier: 8,
+      width: 2
     },
     seenIn: {
       leftMultiplier: 8

@@ -45,7 +45,7 @@ const Home = () => {
   };
 
   const showCharacterModal = (character) => {
-    console.log(character);
+    // console.log(character);
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
   };
@@ -158,7 +158,9 @@ const Home = () => {
                 >
                   <Styled.Year 
                     year={year}
-                    isCurrentYear={currentYear?.year === year.year}>
+                    isCurrentYear={currentYear?.year === year.year}
+                    characterCount={characters.length}
+                  >
                     <Styled.Sticky>
                       {year.display}
                     </Styled.Sticky>
@@ -174,6 +176,7 @@ const Home = () => {
                     .map((era, index) => <Styled.Era
                       era={era}
                       key={era.title}
+                      characterCount={characters.length}
                     >
                       <Styled.Sticky>
                         <Styled.EraLabel>
@@ -195,6 +198,7 @@ const Home = () => {
                       movie={movie}
                       index={index}
                       key={movie.title}
+                      characterCount={characters.length}
                     >
                       <Styled.Sticky>
                         {movie.title}
