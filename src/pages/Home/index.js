@@ -124,7 +124,7 @@ const Home = () => {
         // console.log(Math.round((pxToRem / 2)) - 6);
         setCurrentYearIndex(Math.round(pxToRem / 2));
       }
-    }, 300);
+    }, 150);
 
   }, [data]);
 
@@ -135,7 +135,7 @@ const Home = () => {
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToY = (years.find(y => y.year === 0).yearIndex - 4) * 32;
+      const scrollToY = (years.find(y => y.year === 0).yearIndex - 8) * 32;
       const scrollToX = characters.find(c => c.title === "Luke Skywalker").index * 32 + 96;
       window.scrollTo(scrollToX, scrollToY);
     }
