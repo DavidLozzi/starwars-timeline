@@ -130,12 +130,12 @@ const Home = () => {
 
   React.useEffect(() => {
     // console.log(years.find(y => y.yearIndex === currentYearIndex));
-    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex));
+    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 2));
   }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToY = years.find(y => y.year === 0).yearIndex * 32;
+      const scrollToY = (years.find(y => y.year === 0).yearIndex - 2) * 32;
       const scrollToX = characters.find(c => c.title === "Luke Skywalker").index * 32 + 96;
       window.scrollTo(scrollToX, scrollToY);
     }
@@ -157,7 +157,8 @@ const Home = () => {
                   key={year.display}
                 >
                   <Styled.Year 
-                    year={year}>
+                    year={year}
+                    isCurrentYear={currentYear?.year === year.year}>
                     <Styled.Sticky>
                       {year.display}
                     </Styled.Sticky>
@@ -218,6 +219,19 @@ const Home = () => {
                 character={character}
                 key={character.title}
               >
+                {
+                  seenIn
+                    .filter(s => s.character.title === character.title)
+                    .map(seen => <Styled.SeenIn
+                      seen={seen}
+                      key={`${seen.character.title} - ${seen.seenInEvent.title}`}
+                    >
+                      <Styled.Circle>
+                        <Styled.ToolTip>{seen.character.title} in {seen.seenInEvent.title}</Styled.ToolTip>
+                      </Styled.Circle>
+                    </Styled.SeenIn>
+                    )
+                }
                 <Styled.Sticky>
                   <Styled.CharacterDetail
                     onClick={() => showCharacterModal(character)}
@@ -225,24 +239,13 @@ const Home = () => {
                   >
                     <Styled.CharacterImage src={imageUrl} alt={character.title} />
                     {character.title}
-                    {currentYear && currentYear.year >= startYear && currentYear.year + 4 <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo</Styled.AltTitle>}
                     {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
+                    {currentYear?.year >= startYear && currentYear.year <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo{character.startYearUnknown ? '?' : ''}</Styled.AltTitle>}
+                    {character.endYearUnknown && currentYear?.year + 10 > character.endYear && <Styled.AltTitle>Death?</Styled.AltTitle>}
                   </Styled.CharacterDetail>
                 </Styled.Sticky>
               </Styled.Character>;
             }
-            )
-        }
-        {
-          seenIn
-            .map(seen => <Styled.SeenIn
-              seen={seen}
-              key={`${seen.character.title} - ${seen.seenInEvent.title}`}
-            >
-              <Styled.Circle>
-                <Styled.ToolTip>{seen.character.title} in {seen.seenInEvent.title}</Styled.ToolTip>
-              </Styled.Circle>
-            </Styled.SeenIn>
             )
         }
       </Styled.Wrapper>

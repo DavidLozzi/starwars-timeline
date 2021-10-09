@@ -13,14 +13,16 @@ export default {
     justify-content: center;
     align-items: center;
     display: flex;
-    z-index: 20;
+    z-index: 100;
   `,
   Modal: styled.div`
     ${({ theme }) => theme.elements.modal};
     width: 80vw;
+    max-width: 60rem;
     min-height: 50vh;
-    max-height: 80vh;
+    max-height: 40rem;
     border-radius: 5vw;
     padding-bottom: 3vw;
+    overflow: scroll;
   `
 };

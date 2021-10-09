@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const getCharacterTop = (theme, character) => theme.layout.gridHeight * character.yearIndex + theme.layout.topMargin;
 export const Header = styled.div`
   ${({ theme }) => theme.elements.header};
   position: fixed;
@@ -15,6 +16,7 @@ export const Header = styled.div`
 
 export const H1 = styled.h1`
   margin-left: 2rem;
+  font-size: 1.7rem;
 `;
 
 export const Wrapper = styled.div`
@@ -54,7 +56,7 @@ export const EraLabel = styled.div`
   transform-origin: top left;
 `;
 
-export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
+export const Year = styled(({ year, isCurrentYear, ...rest }) => <div {...rest} data-testid="year" />)`
   ${({ theme }) => theme.elements.year};
   width: 200vw; // TODO calculate from # chars
   position: absolute;
@@ -65,9 +67,11 @@ export const Year = styled(({ year, ...rest }) => <div {...rest} />)`
   ${Sticky} {
     left: 3rem;
   }
+
+  ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentYear : ''};
 `;
 
-export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
+export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} data-testid="movie"/>)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
   top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
@@ -81,36 +85,36 @@ export const Movie = styled(({ movie, index, ...rest }) => <div {...rest} />)`
   }
 `;
 
-export const Character = styled(({ character, ...rest }) => <div {...rest} />)`
+export const Character = styled(({ character, ...rest }) => <div {...rest} data-testid="character"/>)`
   ${({ theme }) => theme.elements.character};
   position: absolute;
-  top: ${({ character, theme }) => theme.layout.gridHeight * character.yearIndex + theme.layout.topMargin}rem;
+  top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
   left: ${({ character, theme }) => theme.layout.gridWidth * theme.layout.elements.character.leftMultiplier + character.index * (theme.layout.gridWidth + .5) * 2}rem;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
   height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 1)}rem;
-  z-index: 6;
+  z-index: 50;
 
   ${Sticky} {
     top: 6rem;
+    z-index: 60;
   }
 `;
 
-export const CharacterDetail = styled(({ ...rest }) => <div {...rest} />)`
+export const CharacterDetail = styled(({ ...rest }) => <div {...rest}  data-testid="characterdetail"/>)`
   ${({ theme }) => theme.elements.characterDetail};
-  min-height: 9rem;
+  min-height: 9.5rem;
 `;
 
 export const CharacterImage = styled.img`
   ${({ theme }) => theme.elements.characterImage};
 `;
 
-export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
+export const SeenIn = styled(({ seen, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
   position: absolute;
-  top: ${({ seen, theme }) => theme.layout.gridHeight * seen.seenInYear.yearIndex + theme.layout.topMargin + seen.seenInEvent.index}rem;
-  left: ${({ seen, theme }) => theme.layout.gridWidth * theme.layout.elements.seenIn.leftMultiplier + seen.character.index * (theme.layout.gridWidth + .5) * 2}rem;
-  z-index: 6;
+  top: ${({ seen, theme }) => (theme.layout.gridHeight * seen.seenInYear.yearIndex) - getCharacterTop(theme, seen.character) + theme.layout.topMargin}rem;
+  left: 0; // ${({ seen, theme }) => theme.layout.gridWidth * theme.layout.elements.seenIn.leftMultiplier + seen.character.index * 2}rem;
+  z-index: 60;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
-  height: ${({ seen, theme }) => theme.layout.gridWidth * seen.seenInEvent.years}rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -119,16 +123,16 @@ export const SeenIn = styled(({ seen, ...rest }) => <div {...rest} />)`
 export const ToolTip = styled.div`
   ${({ theme }) => theme.elements.toolTip};
   display: none;
-  position: relative;
+  position: absolute;
+  z-index: 70;
   top: 1.5rem;
-  left: 1rem;
-  z-index: 100;
+  left: -2.5rem;
+  width: 6rem;
 `;
 
 export const Circle = styled.div`
   ${({ theme }) => theme.elements.seenInCircle};
   position: relative;
-  transition: all ease-in-out 200ms;
 
   &:hover {
     ${ToolTip} {

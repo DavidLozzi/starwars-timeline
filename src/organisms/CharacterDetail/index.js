@@ -27,7 +27,8 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
       <Styled.Body>
         <Styled.H1>{character.title}</Styled.H1>
         <Styled.H2>{character.altTitle}</Styled.H2>
-        <Styled.Note>Born {convertYear(character.startYear)}, Died {convertYear(character.endYear)} ({character.endYear - character.startYear} years old)</Styled.Note>
+        <Styled.Note>Born {convertYear(character.startYear)}{character.startYearUnknown ? '?' : ''}, Died {convertYear(character.endYear)}{character.endYearUnknown ? '?' : ''} ({character.endYear - character.startYear} years old)</Styled.Note>
+        {(character.startYearUnknown || character.endYearUnknown) && <Styled.Note>Actual birth and/or death dates are unknown.</Styled.Note>}
       </Styled.Body>
       <Styled.Close onClick={onClose}>X</Styled.Close>
     </Styled.Header>

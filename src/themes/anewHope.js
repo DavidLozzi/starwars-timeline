@@ -56,8 +56,13 @@ export default {
     year: {
       borderTop: `solid 1px rgb(${palette.lightGrey})`
     },
+    currentYear: {
+      backgroundColor: `rgba(${palette.white},0.8)`,
+      height: '2rem',
+      zIndex: '50'
+    },
     movie: {
-      backgroundColor: `rgba(${palette.tertiary},0.4)`,
+      backgroundColor: `rgba(${palette.tertiary},0.8)`,
       color: `rgb(${palette.white})`,
       borderRadius: '1rem',
       paddingLeft: '1rem',
@@ -69,10 +74,9 @@ export default {
       borderRadius: '50%'
     },
     characterDetail: {
-      backgroundColor: `rgba(${palette.highlight},0.8)`,
+      backgroundColor: `rgba(${palette.highlight},0.9)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
-      color: palette.white,
       textAlign: 'center'
     },
     characterImage: {
@@ -81,7 +85,6 @@ export default {
       borderRadius: '50%'
     },
     toolTip: {
-      width: '12rem',
       backgroundColor: `rgb(${palette.white})`,
       fontSize: '.7rem',
       borderRadius: '1rem',
@@ -92,15 +95,15 @@ export default {
       fontStyle: 'italic'
     },
     seenInCircle: {
-      backgroundColor: `rgba(${palette.tertiary},0.8)`,
+      backgroundColor: `rgba(${palette.tertiary},0.9)`,
       borderRadius: '50%',
-      border: `3px solid rgba(${palette.highlight},0.8)`,
+      border: `3px solid rgba(${palette.highlight},0.9)`,
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
-        backgroundColor: `rgba(${palette.tertiary},0.8)`
+        backgroundColor: `rgba(${palette.highlight},0.9)`
       }
     },
     modalWrapper: {

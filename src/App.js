@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
-import theme from './themes/anewHope';
+import theme from './themes/aNewHope';
 import GlobalStyles from './globalStyles';
 
 function App() {

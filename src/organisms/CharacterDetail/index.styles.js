@@ -15,7 +15,9 @@ export default {
   `,
   Image: styled.img`
     width: 30vw;
+    max-width: 20rem;
     height: 30vw;
+    max-height: 20rem;
     border-radius: 5vw 0;
 
     &:hover {
@@ -33,7 +35,7 @@ export default {
   Body: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 2vh;
+    padding: 3vh;
   `,
   Note: styled.div`
     font-size: 1.5vh;
