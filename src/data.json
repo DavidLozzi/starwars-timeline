@@ -493,6 +493,158 @@
     ]
   },
   {
+    "endYear": -32,
+    "imageUrl": "/images/quigon.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "The Clone Wars (TV series)"
+    ],
+    "startYear": -80,
+    "title": "Qui-Gon Jinn",
+    "type": "character",
+    "description": "Qui-Gon Jinn, a Force-sensitive human male, was a venerable if maverick Jedi Master who lived during the last years of the Republic Era. He was a wise and well-respected member of the Jedi Order, and was offered a seat on the Jedi Council, but chose to reject and follow his own path. Adhering to a philosophy centered around the Living Force, Jinn strove to follow the will of the Force even when his actions conflicted with the wishes of the High Council. After encountering Anakin Skywalker, Jinn brought him to the Jedi Temple on Coruscant, convinced he had found the Chosen One. His dying wish was for Skywalker to become a Jedi and ultimately restore balance to the Force.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Qui-Gon_Jinn",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Coruscant"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "endYear": -19,
+    "imageUrl": "/images/mace.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -80,
+    "title": "Mace Windu",
+    "type": "character",
+    "description": "Mace Windu was a revered human male Jedi Master and member of the Jedi High Council during the last years of the Galactic Republic. During his time in the Jedi Order, he once served as elected leader of the Jedi and, during the Clone Wars, as a Jedi General in the Grand Army of the Republic. He was the greatest champion of the Jedi Order and promoted its ancient traditions amidst the growing influence of the dark side of the Force in the corrupt, declining days of the Republic.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Mace_Windu",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Haruun Kal"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "endYear": -8,
+    "endYearUnknown": true,
+    "imageUrl": "/images/jarjar.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -60,
+    "startYearUnknown": true,
+    "title": "Jar Jar Binks",
+    "type": "character",
+    "description": "Jar Jar Binks was a Gungan male military commander and politician who played a key role during the Invasion of Naboo and the Clone Wars that culminated in the fall of the Galactic Republic and the rise of the Galactic Empire. Once an outcast from Gungan society due to his clumsy behavior, he regained favor with his people by helping secure an alliance between the Gungan boss Rugor Nass and Queen Padmé Amidala of Naboo, an alliance vital in ending the Trade Federation's invasion of their shared homeworld. In the years that followed, Binks became a Junior Representative for his people in the Galactic Senate, serving alongside Amidala once she became the planet's senator.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Jar_Jar_Binks",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Naboo"
+      },
+      {
+        "name": "Species",
+        "value": "Gungan"
+      }
+    ]
+  },
+  {
+    "endYear": -2,
+    "imageUrl": "/images/maul.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "The Clone Wars (TV series)",
+      "Star Wars Rebels"
+    ],
+    "startYear": -54,
+    "title": "Darth Maul",
+    "type": "character",
+    "description": "Maul, once known as Darth Maul, was a Force-sensitive Dathomirian Zabrak male who established himself as a crime lord during the reign of the Galactic Empire. However, he was once the Sith apprentice of Darth Sidious, and therefore, a Dark Lord of the Sith. Having trained in the ways of the Force, Maul was a formidable warrior strong with the dark side and deadly skilled in lightsaber combat. In addition, he was a scheming mastermind who plotted his return to power despite losing his place in the ranks of the Sith.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Maul",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Dathomir"
+      },
+      {
+        "name": "Species",
+        "value": "Zabrak"
+      }
+    ]
+  },
+  {
+    "altTitle": "Darth Tyranus",
+    "endYear": -2,
+    "imageUrl": "/images/dooku.png",
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -54,
+    "title": "Count Dooku",
+    "type": "character",
+    "description": "Dooku, a Force-sensitive human male, was a Jedi Master that fell to the dark side of the Force and became the Dark Lord of the Sith Darth Tyranus during the final years of the Galactic Republic. After leaving the Jedi Order, he claimed the title Count of Serenno and, during the Clone Wars, served as Head of State of the Confederacy of Independent Systems. He was the second apprentice of Darth Sidious, the Dark Lord of the Sith whose plan to conquer the galaxy relied on Dooku leading a pan-galactic secessionist movement against the Republic. As such, Dooku immersed himself in the dark side and worked tirelessly to advance his and his master's plans, but ultimately forgot that treachery was the way of the Sith.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Dooku",
+    "databank": "https://www.starwars.com/databank/count-dooku",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Serenno"
+      },
+      {
+        "name": "Species",
+        "value": "Zabrak"
+      }
+    ]
+  },
+  {
+    "altTitle": "Qymaen jai Sheelal",
+    "endYear": -19,
+    "imageUrl": "/images/grievous.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -65,
+    "startYearUnknown": true,
+    "title": "General Grievous",
+    "type": "character",
+    "description": "Grievous, born as Qymaen jai Sheelal, was a Kaleesh male warlord who served as a commanding officer within the military forces of the Confederacy of Independent Systems during the final years of the Galactic Republic. Despite his position as a general, Grievous held the title of Supreme Martial Commander of the Separatist Droid Army that engaged the Grand Army of the Republic in the pan-galactic Clone Wars. Noted for being ruthless and his extensive cybernetic enhancements, Grievous instilled fear throughout the entire galaxy as he traveled, invading planets and engaging the Jedi Knights of the Republic.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Grievous",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Kalee"
+      },
+      {
+        "name": "Species",
+        "value": "Kaleesh"
+      }
+    ]
+  },
+  {
     "altTitle": "",
     "endYear": 20,
     "endYearUnknown": true,

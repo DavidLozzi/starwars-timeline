@@ -70,6 +70,11 @@ export default {
       lineHeight: '1.8rem',
       fontSize: '.9rem'
     },
+    currentMovie: {
+      color: `rgb(${palette.black})`,
+      fontWeight: 'bold',
+      backgroundColor: `rgb(${palette.white})`
+    },
     character: {
       background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
       borderRadius: '50%'

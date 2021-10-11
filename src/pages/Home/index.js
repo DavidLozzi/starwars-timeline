@@ -199,6 +199,7 @@ const Home = () => {
                       index={index}
                       key={movie.title}
                       characterCount={characters.length}
+                      isCurrentYear={currentYear?.yearIndex === movie.yearIndex}
                     >
                       <Styled.Sticky>
                         {movie.title}

@@ -38,7 +38,7 @@ export const Era = styled(({ era, characterCount, ...rest }) => <div {...rest} /
   ${({ theme }) => theme.elements.era};
   position: absolute;
   top: ${({ era, theme }) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin}rem;
-  left: ${({ theme }) => theme.layout.gridWidth}rem;
+  left: 0;
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount)}rem`};
   height: ${({ era, theme }) => theme.layout.gridHeight * era.years}rem;
   z-index: 1;
@@ -72,7 +72,7 @@ export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) =>
   ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentYear : ''};
 `;
 
-export const Movie = styled(({ movie, index, characterCount, ...rest }) => <div {...rest} data-testid="movie"/>)`
+export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie"/>)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
   top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
@@ -80,6 +80,8 @@ export const Movie = styled(({ movie, index, characterCount, ...rest }) => <div 
   width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.gridWidth * theme.layout.elements.movie.leftMultiplier + index)}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 3;
+
+  ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentMovie : ''};
 
   ${Sticky} {
     left: 7rem;
