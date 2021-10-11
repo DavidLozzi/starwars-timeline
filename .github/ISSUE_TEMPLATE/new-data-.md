@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-## Share more data below
+**Share more data below**
 Alternatively, you can edit the data.json file directly and submit a pull request to submit data as well.
 
-## Title
+**Title**
 What's the name of the character, movie, or TV show you'd like to add. Sorry, not including books yet, there are too many of those.
 
-## Link
+**Link**
 Provide a link to the content on Wookiepedia.
 
-## Thank you!
+**Thank you!**
