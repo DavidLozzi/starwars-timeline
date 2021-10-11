@@ -58,7 +58,7 @@ const Home = () => {
   React.useEffect(() => {
     const _newYears = [...years];
     const _startYear = data.sort((a, b) => a.startYear > b.startYear ? 1 : -1)[0].startYear;
-    const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear;
+    const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear + 20;
 
     let yearIndex = 0;
     for(let i = _startYear - zoomLevel; i <= _endYear + zoomLevel; i++) {
