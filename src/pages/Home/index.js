@@ -116,7 +116,6 @@ const Home = () => {
       if (window.scrolling) {
         window.scrolling = false;
         const pxToRem = window.scrollY / 16;
-        // console.log(Math.round((pxToRem / 2)) - 6);
         setCurrentYearIndex(Math.round(pxToRem / 2));
       }
     }, 150);
@@ -124,14 +123,14 @@ const Home = () => {
   }, [data]);
 
   React.useEffect(() => {
-    // console.log(years.find(y => y.yearIndex === currentYearIndex));
     setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 5));
   }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToY = (years.find(y => y.year === 0).yearIndex - 8) * 32;
-      const scrollToX = characters.find(c => c.title === "Luke Skywalker").index * 32 + 96;
+      const scrollToYear = Number(window.location.hash.substr(6));
+      const scrollToY = (years.find(y => y.year === scrollToYear).yearIndex - 5) * 32;
+      const scrollToX = characters.find(c => c.title === "Chewbacca").index * 32 + 96;
       window.scrollTo(scrollToX, scrollToY);
     }
   }, [seenIn]);
