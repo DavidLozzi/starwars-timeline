@@ -12,7 +12,7 @@
     "type": "era"
   },
   {
-    "endYear": 50,
+    "endYear": 60,
     "startYear": 5,
     "title": "New Republic Era",
     "type": "era"
@@ -242,12 +242,12 @@
   {
     "endYear": 50,
     "endYearUnknown": true,
-    "imageUrl": "/images/poe.png",
+    "imageUrl": "/images/dameron.png",
     "seenIn": [
+      "Star Wars Resistance",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
-      "Episode IX: The Rise of Skywalker",
-      "Star Wars Resistance"
+      "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 2,
     "title": "Poe Dameron",
@@ -719,7 +719,7 @@
   },
   {
     "altTitle": "Chewie",
-    "endYear": 40,
+    "endYear": 50,
     "endYearUnknown": true,
     "imageUrl": "/images/chewie.png",
     "seenIn": [
@@ -802,6 +802,347 @@
       {
         "name": "Clone",
         "value": "Yes"
+      }
+    ]
+  },
+  {
+    "altTitle": "Skywalker Solo",
+    "endYear": 35,
+    "imageUrl": "/images/leia.png",
+    "imageYears": [
+      {
+        "endYear": 34,
+        "imageUrl": "/images/leia-old.png",
+        "startYear": 26
+      }
+    ],
+    "seenIn": [
+      "Episode III: Revenge of the Sith",
+      "Rogue One: A Star Wars Story",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "Star Wars Rebels",
+      "Star Wars Resistance",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -19,
+    "title": "Leia Organa",
+    "type": "character",
+    "description": "Leia Skywalker Organa Solo was a Force-sensitive human female political and military leader who served in the Alliance to Restore the Republic during the Imperial Era and the New Republic and Resistance in the subsequent New Republic Era. Adopted into the House of Organa, the Alderaanian royal family, she was Princess Leia Organa of Alderaan, a planet in the Core Worlds known for its dedication to pacifism. The princess was raised as the daughter of Senator Bail Prestor Organa and his wife, Queen Breha Organa, making her the heir to the Alderaanian monarchy. Instilled with the values of her adopted homeworld, Organa devoted her life to the restoration of democracy by opposing authoritarian regimes such as the Galactic Empire and the First Order.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Leia_Skywalker_Organa_Solo",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Alderaan"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/lando-young.png",
+    "imageYears": [
+      {
+        "endYear": 26,
+        "imageUrl": "/images/lando-og.png",
+        "startYear": -5
+      },
+      {
+        "endYear": 40,
+        "imageUrl": "/images/lando-old.png",
+        "startYear": 26
+      }
+    ],
+    "seenIn": [
+      "Solo: A Star Wars Story",
+      "Star Wars Rebels",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -43,
+    "title": "Lando Calrissian",
+    "type": "character",
+    "description": "Landonis Balthazar &quot;Lando&quot; Calrissian, was a human male smuggler, gambler, entrepreneur, and card player who became Baron Administrator of Cloud City and, later, a general in the Rebel Alliance. Born on Socorro, he was the owner of the Millennium Falcon before losing it to Han Solo in a game of sabacc on Numidian Prime. After losing the Falcon, Calrissian put an end to his days as a smuggler and became an entrepreneur, setting up a small mining operation on the planet Lothal before eventually becoming the leader of Cloud City in the skies of the planet Bespin.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Landonis_Balthazar_Calrissian",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Socorro"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/c3po.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -35,
+    "startYearUnknown": true,
+    "title": "C-3PO",
+    "type": "character",
+    "description": "C-3PO, sometimes spelled See-Threepio, often referred to as Threepio and by some as 3-So, was a 3PO-series protocol droid designed to interact with organics, programmed primarily for etiquette and protocol. He was fluent in over six million forms of communication, and developed a fussy and worry-prone personality throughout his many decades of operation. Along with his counterpart, the astromech droid R2-D2, C-3PO constantly found himself directly involved in pivotal moments of galactic history, and aided in saving the galaxy on many occasions.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/C-3PO",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Tatooine"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      },
+      {
+        "name": "Creator",
+        "value": "Anakin Skywalker"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/r2d2.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi",
+      "The Mandalorian",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -35,
+    "startYearUnknown": true,
+    "title": "R2-D2",
+    "type": "character",
+    "description": "R2-D2, pronounced Artoo-Detoo and often referred to as R2 (Artoo), was an R2-series astromech droid manufactured by Industrial Automaton with masculine programming. A smart, spunky droid who would serve a multitude of masters over his lifetime, R2-D2 was never given a full memory wipe (apart from a partial wipe of select information by Cad Bane during the senate hostage crisis) nor did he ever receive new programming, with these factors resulting in an adventurous and independent attitude. Often finding himself in pivotal moments in galactic history, his bravery and ingenuity saved the galaxy on numerous occasions.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/R2-D2",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Naboo"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 15,
+    "endYearUnknown": true,
+    "imageUrl": "/images/mothma.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story",
+      "Episode VI: Return of the Jedi"
+    ],
+    "startYear": -46,
+    "title": "Mon Mothma",
+    "type": "character",
+    "description": "Mon Mothma was a human female politician and revolutionary leader who served in the Galactic Senate and Imperial Senate as the representative of Chandrila, the leader of the Alliance to Restore the Republic, and the first Chancellor of the New Republic. Mothma came to political prominence during the Separatist Crisis and the Clone Wars when, along with such allies as Senators Bail Prestor Organa and Padmé Amidala, she became an outspoken proponent of peace between the Galactic Republic and the Confederacy of Independent Systems. She also spoke out against the increase in executive power given to Supreme Chancellor Palpatine, who transformed the Republic into the Empire at the war's end.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Mon_Mothma",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Chandrila"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "Kylo Ren",
+    "endYear": 35,
+    "imageUrl": "/images/bensolo.png",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": 5,
+    "title": "Ben Solo",
+    "type": "character",
+    "description": "Ben Solo was a human male Force-sensitive who fell to the dark side of the Force as Kylo Ren, master of the Knights of Ren and eventual Supreme Leader of the First Order, but returned to the light side shortly before his death. He was born at the end of the Galactic Civil War in 5 ABY, when the Galactic Empire surrendered to the New Republic. His parents, General Han Solo and Princess Leia Organa, were considered great heroes of the Alliance to Restore the Republic, as was his maternal uncle, Jedi Master Luke Skywalker. The heir to the Skywalker bloodline, Ben Solo possessed raw strength in the Force and had the potential for limitless power. During the New Republic Era, Solo was part of a new generation of Jedi apprentices trained by his uncle. He was seduced by the dark side through the machinations of the phantom Dark Lord of the Sith, Darth Sidious, and his creation, Supreme Leader Snoke. Sidious's son had a daughter, Rey, who was born to her mother in 15 ABY. Unknown to any at the time, Solo and Rey were counterparts as a dyad in the Force.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Ben_Solo",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Chandrila"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 35,
+    "imageUrl": "/images/hux.png",
+    "seenIn": [
+      "Star Wars Resistance",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": 0,
+    "title": "Armitage Hux",
+    "type": "character",
+    "description": "Armitage Hux was a human male who served as a general in the military forces of the First Order during the New Republic Era. With the support of Supreme Leader Snoke, Hux took command of Starkiller Base and promoted the development of new technology that allowed the First Order fleet to track targets through hyperspace. However, Snoke's death ruined the young general's career trajectory, as did the years that Hux spent jockeying for power against his rival Kylo Ren, who seized control of the First Order as the new Supreme Leader.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Armitage_Hux",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Arkanis"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 34,
+    "imageUrl": "/images/phasma.png",
+    "seenIn": [
+      "Star Wars Resistance",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi"
+    ],
+    "startYear": 0,
+    "startYearUnknown": true,
+    "title": "Phasma",
+    "type": "character",
+    "description": "Phasma, a human female stormtrooper captain of the First Order, grew up as a member of the Scyre clan on the nuclear-ravaged world of Parnassos, where she became a formidable warrior, eventually becoming the clan's military leader. Seeking passage offworld, Phasma helped the First Order General Brendol Hux find his ship, in the process betraying her own brother, Keldo, and the rest of her clan. After being rescued, Phasma joined the First Order, abandoning her former life.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Phasma",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Parnassos"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/tico.png",
+    "seenIn": [
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": 11,
+    "title": "Rose Tico",
+    "type": "character",
+    "description": "Rose Tico was a female human who served in the Resistance as a maintenance worker during their conflict with the First Order, whom Tico had hated since she was a child. Tico's older sister, Paige, was a gunner in the Resistance. Following the Battle of D'Qar, in which her sister was killed, and during the First Order's attack on the Resistance fleet, Tico, former Stormtrooper Finn, and astromech unit BB-8 arrived on the city of Canto Bight to recruit the &quot;Master Codebreaker,&quot; hoping he could disable the First Order's hyperspace tracker. Instead allying with criminal DJ, the four were captured before they could disable the tracker and betrayed by DJ. In the ensuing Battle of Crait, Tico saved Finn's life and, although unconscious, was among the members of the Resistance who escaped aboard the Millennium Falcon.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Rose_Tico",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Hays Minor"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bb8.png",
+    "seenIn": [
+      "Star Wars Resistance",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": 29,
+    "title": "BB-8",
+    "type": "character",
+    "description": "BB-8, sometimes spelled and pronounced Beebee-Ate and nicknamed BB, was a BB-series astromech droid who operated approximately thirty years after the Battle of Endor. He had a dome head, similar to that of R2 series astromech droids, with the bulk of his body made up of a ball on which the droid's head rolled. BB-8 was mostly white, with some silver and orange on his body, as well as a black photoreceptor. The droid belonged to Resistance pilot Poe Dameron, whom he accompanied during his flights on his T-70 X-wing starfighter.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/BB-8",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Hosian Prime"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/kanata.png",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -85,
+    "birthYear": -973,
+    "title": "Maz Kanata",
+    "type": "character",
+    "description": "Maz Kanata was a Force-sensitive humanoid female who was born over a millennium before the brewing war between the First Order and the Resistance. Living in an ancient castle on the planet Takodana, Kanata gained a reputation as a &quot;pirate queen&quot; by allowing traveling smugglers to reside in her home—as long as they honored her prohibitions against politics and war. Kanata spent centuries traveling the galaxy, collecting antiques and trinkets, which she kept inside the storehouses and vaults of her castle. One notable item was the lightsaber crafted by Jedi Knight Anakin Skywalker during the Clone Wars, and later wielded by Skywalker's son, Luke, who was instrumental in toppling the Galactic Empire.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Maz_Kanata",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Takodana"
+      },
+      {
+        "name": "Species",
+        "value": "Unknown"
       }
     ]
   },

@@ -60,7 +60,10 @@ export default {
     currentYear: {
       backgroundColor: `rgba(${palette.white},0.8)`,
       height: '2rem',
-      zIndex: '50'
+      zIndex: '25'
+    },
+    currentYearText: {
+      zIndex: '60'
     },
     movie: {
       backgroundColor: `rgba(${palette.tertiary},0.8)`,
@@ -68,12 +71,9 @@ export default {
       borderRadius: '1rem',
       paddingLeft: '1rem',
       lineHeight: '1.8rem',
-      fontSize: '.9rem'
+      fontSize: '.9rem',
     },
     currentMovie: {
-      color: `rgb(${palette.black})`,
-      fontWeight: 'bold',
-      backgroundColor: `rgb(${palette.white})`
     },
     character: {
       background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,

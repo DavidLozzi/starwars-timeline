@@ -45,20 +45,15 @@ const Home = () => {
   };
 
   const showCharacterModal = (character) => {
-    // console.log(character);
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
   };
 
-  // create 1 array of events
-  // set isSpanning, isStarting, isEnding (just in case)
-  // add index to have consistent column counts
-  // sort by era, movie, tv, book, event, character
   // TODO create node script to generate this output so it's not realtime
   React.useEffect(() => {
     const _newYears = [...years];
     const _startYear = data.sort((a, b) => a.startYear > b.startYear ? 1 : -1)[0].startYear;
-    const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear + 20;
+    const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear;
 
     let yearIndex = 0;
     for(let i = _startYear - zoomLevel; i <= _endYear + zoomLevel; i++) {
