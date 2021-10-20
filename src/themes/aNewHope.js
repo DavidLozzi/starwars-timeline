@@ -73,7 +73,7 @@ export default {
       zIndex: '20'
     },
     currentYearText: {
-      zIndex: '60'
+      zIndex: '40'
     },
     movie: {
       backgroundColor: `rgba(${palette.tertiary},0.8)`,
