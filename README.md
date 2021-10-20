@@ -5,3 +5,4 @@
 See it in action at https://timeline.starwars.guide/.
 
 Report an issue to share new data and updates, issues, or requests.
+
