@@ -70,7 +70,7 @@ export default {
     currentYear: {
       backgroundColor: `rgba(${palette.white},0.8)`,
       height: '2rem',
-      zIndex: '25'
+      zIndex: '20'
     },
     currentYearText: {
       zIndex: '60'
