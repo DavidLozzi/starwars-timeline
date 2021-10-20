@@ -1,21 +1,21 @@
 
 const layout = { // in rem
+  pxInRem: 16, // pixels in a rem
   topMargin: 6,
   gridHeight: 2,
   gridWidth: 2,
   elements: {
     year: {
-      leftMultiplier: 2
+      height: 2,
+      leftPageMargin: 2
     },
     movie: {
-      leftMultiplier: 4
+      leftPageMargin: 8
     },
     character: {
-      leftMultiplier: 8,
-      width: 2
-    },
-    seenIn: {
-      leftMultiplier: 8
+      width: 4,
+      spacer: 1,
+      leftPageMargin: 10
     }
   }
 };
@@ -56,6 +56,16 @@ export default {
     },
     year: {
       borderTop: `solid 1px rgb(${palette.lightGrey})`
+    },
+    yearPill: {
+      backgroundColor: `rgb(${palette.lightGrey})`,
+      borderRadius: '1rem',
+      padding: `.4rem`,
+      width: '3rem',
+      fontSize: '.8rem'
+    },
+    yearPillCurrent: {
+      backgroundColor: `rgba(${palette.white},0.8)`
     },
     currentYear: {
       backgroundColor: `rgba(${palette.white},0.8)`,

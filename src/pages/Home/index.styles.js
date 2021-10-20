@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const getCharacterTop = (theme, character) => theme.layout.gridHeight * character.yearIndex + theme.layout.topMargin;
-const getFullWidth = (theme, characterCount) => theme.layout.gridWidth * theme.layout.elements.character.leftMultiplier + characterCount * theme.layout.elements.character.width * (theme.layout.gridWidth + .5);
+const getFullWidth = (theme, characterCount) =>
+  theme.layout.elements.character.leftPageMargin +
+  characterCount *
+  (theme.layout.elements.character.width + theme.layout.elements.character.spacer);
+
 export const Header = styled.div`
   ${({ theme }) => theme.elements.header};
   position: fixed;
@@ -59,10 +63,10 @@ export const EraLabel = styled.div`
 
 export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) => <div {...rest} data-testid="year" />)`
   ${({ theme }) => theme.elements.year};
-  width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.gridWidth * theme.layout.elements.year.leftMultiplier)}rem`};
+  width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.year.leftPageMargin)}rem`};
   position: absolute;
-  left: ${({ theme }) => theme.layout.gridWidth * theme.layout.elements.year.leftMultiplier}rem;
-  top: ${({ year, theme }) => theme.layout.gridHeight * year.yearIndex + theme.layout.topMargin}rem;
+  left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
+  top: ${({ year, theme }) => theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem;
   z-index: 20;
 
   ${Sticky} {
@@ -73,12 +77,25 @@ export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) =>
   ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentYear : ''};
 `;
 
+export const YearPill = styled(Year)`
+    left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
+    top: ${({ year, theme }) => (theme.layout.elements.year.height) * year.yearIndex + theme.layout.topMargin}rem;
+    z-index: 60;
+    border-top: 0;
+    margin-top: .1rem;
+
+    ${Sticky} {
+      ${({ theme }) => theme.elements.yearPill};
+      ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.yearPillCurrent : ''};
+    }
+`;
+
 export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie"/>)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
   top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
-  left: ${({ index, theme }) => theme.layout.gridWidth * theme.layout.elements.movie.leftMultiplier + index}rem;
-  width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.gridWidth * theme.layout.elements.movie.leftMultiplier + index + 1)}rem`};
+  left: ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + index}rem;
+  width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (index + 2 + theme.layout.elements.movie.leftPageMargin)}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 30;
 
@@ -93,8 +110,8 @@ export const Character = styled(({ character, ...rest }) => <div {...rest} data-
   ${({ theme }) => theme.elements.character};
   position: absolute;
   top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
-  left: ${({ character, theme }) => theme.layout.gridWidth * theme.layout.elements.character.leftMultiplier + character.index * (theme.layout.gridWidth + .5) * theme.layout.elements.character.width}rem;
-  width: ${({ theme }) => theme.layout.gridWidth * theme.layout.elements.character.width}rem;
+  left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;
+  width: ${({ theme }) => theme.layout.elements.character.width}rem;
   height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 1)}rem;
   z-index: 50;
 
@@ -116,7 +133,7 @@ export const CharacterImage = styled.img`
 export const SeenIn = styled(({ seen, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
   position: absolute;
   top: ${({ seen, theme }) => (theme.layout.gridHeight * seen.seenInYear.yearIndex) - getCharacterTop(theme, seen.character) + theme.layout.topMargin + seen.seenInEvent.index}rem;
-  left: 0; // ${({ seen, theme }) => theme.layout.gridWidth * theme.layout.elements.seenIn.leftMultiplier + seen.character.index * 2}rem;
+  left: 0; 
   z-index: 60;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
   display: flex;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ThemeContext } from 'styled-components';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
 import data from '../../data.json';
@@ -19,6 +20,7 @@ const Home = () => {
   const [currentYear, setCurrentYear] = React.useState(0);
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
+  const theme = React.useContext(ThemeContext);
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -122,16 +124,32 @@ const Home = () => {
 
   }, [data]);
 
+  /* scroll to
+    _year: the year object
+    _character: the character object
+  */
+  const scrollTo = (_year, _character) => {
+    let scrollToY = window.scrollY;
+    if (_year) {
+      scrollToY = (_year.yearIndex - 5) * theme.layout.elements.year.height * theme.layout.pxInRem + theme.layout.topMargin;
+    }
+    let scrollToX = window.scrollX;
+    if (_character) {
+      scrollToX = _character.index * 32 + 96;
+    }
+    window.scrollTo(scrollToX, scrollToY);
+  };
+
   React.useEffect(() => {
     setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 5));
   }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToYear = Number(window.location.hash.substr(6));
-      const scrollToY = (years.find(y => y.year === scrollToYear).yearIndex - 5) * 32;
-      const scrollToX = characters.find(c => c.title === "Chewbacca").index * 32 + 96;
-      window.scrollTo(scrollToX, scrollToY);
+      const scrollToYearNumber = Number(window.location.hash.substr(6));
+      const scrollToYear = years.find(y => y.year === scrollToYearNumber);
+      const scrollToChar = characters.find(c => c.title === "Chewbacca");
+      scrollTo(scrollToYear, scrollToChar);
     }
   }, [seenIn]);
 
@@ -150,7 +168,13 @@ const Home = () => {
                 <React.Fragment
                   key={year.display}
                 >
+
                   <Styled.Year 
+                    year={year}
+                    isCurrentYear={currentYear?.year === year.year}
+                    characterCount={characters.length}
+                  />
+                  <Styled.YearPill 
                     year={year}
                     isCurrentYear={currentYear?.year === year.year}
                     characterCount={characters.length}
@@ -158,7 +182,7 @@ const Home = () => {
                     <Styled.Sticky>
                       {year.display}
                     </Styled.Sticky>
-                  </Styled.Year>
+                  </Styled.YearPill>
                   {year
                     .events
                     .filter(y => y.type === "era")
