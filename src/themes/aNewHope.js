@@ -10,12 +10,14 @@ const layout = { // in rem
       leftPageMargin: 2
     },
     movie: {
-      leftPageMargin: 8
+      leftPageMargin: 8,
+      nextMoviePad: 8
     },
     character: {
       width: 4,
       spacer: 1,
-      leftPageMargin: 10
+      leftPageMargin: 10,
+      topOffset: 9
     }
   }
 };
@@ -26,9 +28,9 @@ const palette = {
   tertiary: '52,61,155',
   highlight: '215,192,120',
   black: '34,34,34',
-  darkGrey: '78,78,78',
-  grey: '113,113,113',
-  lightGrey: '141,141,141',
+  darkgray: '78,78,78',
+  gray: '113,113,113',
+  lightgray: '141,141,141',
   white: '255,255,255',
 };
   
@@ -51,14 +53,20 @@ export default {
       }
     },
     era: {
-      background: `linear-gradient(120deg, rgba(${palette.lightGrey},0.75) 0%, rgba(${palette.lightGrey},0.75) 10%, rgba(${palette.black},0.1) 100%)`,
-      borderTop: `solid 2px rgb(${palette.grey})`
+      background: `linear-gradient(120deg, rgba(${palette.lightgray},0.75) 0%, rgba(${palette.lightgray},0.75) 10%, rgba(${palette.black},0.1) 100%)`,
+    },
+    eraPill: {
+      backgroundColor: `rgb(${palette.gray})`,
+      borderRadius: '1rem',
+      padding: `.4rem`,
+      fontSize: '.8rem'
     },
     year: {
-      borderTop: `solid 1px rgb(${palette.lightGrey})`
+      borderTop: `solid 1px rgb(${palette.lightgray})`,
+      borderRadius: '1rem',
     },
     yearPill: {
-      backgroundColor: `rgb(${palette.lightGrey})`,
+      backgroundColor: `rgb(${palette.lightgray})`,
       borderRadius: '1rem',
       padding: `.4rem`,
       width: '3rem',
@@ -81,24 +89,35 @@ export default {
       borderRadius: '1rem',
       paddingLeft: '1rem',
       lineHeight: '1.8rem',
-      fontSize: '.9rem',
+      fontSize: '.8rem',
     },
     currentMovie: {
     },
     character: {
       background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
-      borderRadius: '50%'
+      backgroundPositionY: '9rem',
+      borderRadius: '50%',
+      transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
       backgroundColor: `rgba(${palette.highlight},0.9)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
-      textAlign: 'center'
+      textAlign: 'center',
+      filter: 'grayscale(75%)'
+    },
+    characterDetailActive: {
+      filter: 'grayscale(0)'
     },
     characterImage: {
       width: `${layout.gridWidth * 2}rem`,
       height: `${layout.gridWidth * 2}rem`,
-      borderRadius: '50%'
+      borderRadius: '50%',
+      filter: 'grayscale(75%)',
+      transition: 'all 300ms ease-in-out'
+    },
+    characterImageActive: {
+      filter: 'grayscale(0)'
     },
     toolTip: {
       backgroundColor: `rgb(${palette.white})`,
@@ -123,7 +142,7 @@ export default {
       }
     },
     modalWrapper: {
-      backgroundColor: `rgba(${palette.grey},0.8)`
+      backgroundColor: `rgba(${palette.gray},0.8)`
     },
     modal: {
       backgroundColor: `rgba(${palette.white},0.8)`

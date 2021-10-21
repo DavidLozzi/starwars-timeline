@@ -191,18 +191,24 @@ const Home = () => {
                       if (a.index < b.index) return -1;
                       return 0;
                     })
-                    .map((era, index) => <Styled.Era
-                      era={era}
-                      key={era.title}
-                      characterCount={characters.length}
-                    >
-                      <Styled.Sticky>
-                        <Styled.EraLabel>
-                          {era.title} {era.startYearDisplay} - {era.endYearDisplay}
-                          {era.altTitle && <Styled.AltTitle>{era.altTitle}</Styled.AltTitle>}
-                        </Styled.EraLabel>
-                      </Styled.Sticky>
-                    </Styled.Era>
+                    .map((era, index) => <>
+                      <Styled.Era
+                        era={era}
+                        key={`${era.title}1`}
+                        characterCount={characters.length}
+                      />
+                      <Styled.EraPill
+                        era={era}
+                        key={era.title}
+                        characterCount={characters.length}
+                      >
+                        <Styled.Sticky>
+                          <Styled.EraLabel>
+                            {era.title}
+                          </Styled.EraLabel>
+                        </Styled.Sticky>
+                      </Styled.EraPill>
+                    </>
                     )}
                   {year
                     .events
@@ -258,9 +264,9 @@ const Home = () => {
                 <Styled.Sticky>
                   <Styled.CharacterDetail
                     onClick={() => showCharacterModal(character)}
-                  // data-tip={`${convertYear(character.startYear)} - ${convertYear(character.endYear)}`}
+                    isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear}
                   >
-                    <Styled.CharacterImage src={imageUrl} alt={character.title} />
+                    <Styled.CharacterImage src={imageUrl} alt={character.title} isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear} />
                     {character.title}
                     {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
                     {currentYear?.year >= startYear && currentYear.year <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo{character.startYearUnknown ? '?' : ''}</Styled.AltTitle>}

@@ -35,7 +35,7 @@ export default {
   Body: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 3vh;
+    padding: 2vh 3vh;
   `,
   Note: styled.div`
     font-size: 1.5vh;

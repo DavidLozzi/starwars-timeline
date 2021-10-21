@@ -806,6 +806,57 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/frik.png",
+    "seenIn": [
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -50,
+    "title": "Babu Frik",
+    "type": "character",
+    "description": "Babu Frik was an Anzellan male who lived during the time of the New Republic Era and the war between the First Order and the Resistance. He maintained a workshop where he worked as a droidsmith among the Spice Runners of Kijimi. He could reprogram or modify almost any droid, regardless of its security measures. He spoke a fractured, heavily accented form of Basic known as Anzellan.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Babu_Frik",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Kijimi"
+      },
+      {
+        "name": "Species",
+        "value": "Anzellan"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/shand.png",
+    "seenIn": [
+      "The Mandalorian",
+      "The Book of Boba Fett",
+      "Star Wars: The Bad Batch"
+    ],
+    "startYear": -25,
+    "startYearUnknown": true,
+    "title": "Fennec Shand",
+    "type": "character",
+    "description": "Fennec Shand was a human female assassin, mercenary, and bounty hunter, who worked for many of the top crime syndicates. During the early days of the Galactic Empire, when Clone Force 99 landed on Pantora, Shand took it upon herself to capture the clone girl Omega who had a bounty placed on her. She managed to gain Omega's trust, but betrayed Omega and her friends when clone commando sergeant Hunter came to rescue her. She fought off Wrecker, another member of Clone Force 99, and chased Omega to the top of a tower. Shand dropped Omega onto a hovertruck and followed her. Omega was able to escape her grasp and return to Hunter, but Shand vowed to continue her hunt for the girl.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Fennec_Shand",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Unknown"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
     "altTitle": "Skywalker Solo",
     "endYear": 35,
     "imageUrl": "/images/leia.png",
