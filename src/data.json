@@ -1406,6 +1406,33 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/saw.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Star Wars: The Bad Batch",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story"
+    ],
+    "startYear": -65,
+    "startYearUnknown": true,
+    "title": "Saw Gerrera",
+    "type": "character",
+    "description": "Saw Gerrera was a human male Onderonian resistance fighter who, as a leading member of the Onderon rebels, fought against the Confederacy of Independent Systems on Onderon during the Clone Wars. He and his younger sister, Steela Gerrera, were instrumental in the rebel liberation of their homeworld during the Onderonian Civil War. He later became a key member in the fight against the Galactic Empire and the formation of the Alliance to Restore the Republic. His tactics against the Empire led him to be seen as an extremist, one whose notoriety was recognized by the Empire and, many years later, the New Republic.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Saw_Gerrera",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Onderon"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
     "endYear": -32,
     "startYear": -32,
     "title": "Episode I: The Phantom Menace",

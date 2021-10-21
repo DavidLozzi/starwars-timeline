@@ -47,7 +47,7 @@ export default {
     },
     menu: {
       ul: {
-        backgroundColor: `rgba(${palette.white}, 0.9)`
+        backgroundColor: `rgba(${palette.white}, 0.95)`
       },
       li: {
         

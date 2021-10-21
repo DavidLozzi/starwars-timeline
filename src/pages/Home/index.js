@@ -3,6 +3,7 @@ import { ThemeContext } from 'styled-components';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
 import data from '../../data.json';
+import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
 import MainMenu from '../../organisms/MainMenu';
@@ -50,6 +51,7 @@ const Home = () => {
   const showCharacterModal = (character) => {
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
+    analytics.event(ACTIONS.OPEN_CHARACTER, "character", character.title);
   };
 
   // TODO create node script to generate this output so it's not realtime

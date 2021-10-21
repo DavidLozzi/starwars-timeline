@@ -112,7 +112,7 @@ export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...r
   position: absolute;
   top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
   left: ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad)}rem;
-  width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (index + 2 + theme.layout.elements.movie.leftPageMargin)}rem`};
+  width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad) + 1)}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 30;
 
@@ -144,12 +144,13 @@ const wiggle = (theme) => keyframes`
 `;
 
 export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest}  data-testid="characterdetail"/>)`
-  ${({ theme }) => theme.elements.characterDetail};
   min-height: 9.5rem;
+  cursor: pointer;
+  ${({ theme }) => theme.elements.characterDetail};
   ${({ theme, isActive }) => isActive && theme.elements.characterDetailActive};
   ${({ theme, isCurrent }) => isCurrent && css`
     ${theme.elements.characterDetailCurrent};
-    animation: ${wiggle(theme)} 1s 2s linear 2;
+    animation: ${wiggle(theme)} 1s 1500ms linear 2;
   `
 };
 `;
