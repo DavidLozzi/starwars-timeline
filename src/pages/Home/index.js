@@ -85,7 +85,19 @@ const Home = () => {
 
     const _characters = data
       .filter(e => (e.type === 'character'))
-      .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
+      .sort((a, b) => {
+        let retVal = -1;
+        if (a.startYear > b.startYear) {
+          retVal = 1;
+        }
+        if (retVal === -1 && a.birthYear && b.birthYear && a.startYear === b.startYear) {
+          console.log('sorting birth');
+          if (a.birthYear > b.birthYear) {
+            retVal = 1;
+          }
+        }
+        return retVal;
+      })
       .map((e, index) => ({
         ...e,
         index,

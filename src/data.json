@@ -857,6 +857,162 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/qira.png",
+    "seenIn": [
+      "Solo: A Star Wars Story"
+    ],
+    "startYear": -31,
+    "title": "Qi'ra",
+    "type": "character",
+    "description": "Qi'ra was a human female from the planet Corellia who lived during the reign of the Galactic Empire. She grew up on the streets along with Han as part of the White Worms. Though they were at first rivals, the two scrumrats eventually became lovers. Sometime after Qi'ra was made Head Girl by Lady Proxima, Han and Qi'ra attempted to escape with a vial of coaxium, but were separated at the Coronet Spaceport, with Han getting away, though he promised to return for her.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Qi%27ra",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Corellia"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "the Hutt",
+    "endYear": 4,
+    "imageUrl": "/images/jabba.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode IV: A New Hope",
+      "Episode V: The Empire Strikes Back",
+      "Episode VI: Return of the Jedi"
+    ],
+    "startYear": -85,
+    "birthYear": -600,
+    "title": "Jabba Desilijic Tiure",
+    "type": "character",
+    "description": "Jabba Desilijic Tiure, more commonly referred to as Jabba the Hutt or simply Jabba, and formally styled as His Excellency Jabba Desilijic Tiure of Nal Hutta, Eminence of Tatooine, was a Hutt gangster and crime lord, as well as a member of the Grand Hutt Council, who operated and led a criminal empire from his palace on the Outer Rim world of Tatooine. Jabba was a major figure on Tatooine, where he controlled the bulk of the piracy, slavery, and trafficking in illegal goods that generated most of the planet's wealth. He was also highly influential in the entire Outer Rim as one of its most powerful crime lords.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Jabba_Desilijic_Tiure",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Nal Hutta"
+      },
+      {
+        "name": "Species",
+        "value": "Hutt"
+      }
+    ]
+  },
+  {
+    "altTitle": "Viceroy",
+    "endYear": -19,
+    "imageUrl": "/images/gunray.png",
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -69,
+    "startYearUnknown": true,
+    "title": "Nute Gunray",
+    "type": "character",
+    "description": "Nute Gunray was a Neimoidian male who served as the Viceroy of the Trade Federation and a high-ranking member of the Separatist Confederacy of Independent Systems and chairman of the Separatist Council. Gunray led the Trade Federation through its invasion of the planet Naboo, at the behest of the Sith Lord Darth Sidious—who was secretly Sheev Palpatine, the Senator of Naboo, and who had engineered the conflict to be elected Supreme Chancellor. The Federation invasion was repelled and Gunray was arrested, but he avoided punishment after four trials in the Supreme Court.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Nute_Gunray",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Neimoidia"
+      },
+      {
+        "name": "Species",
+        "value": "Neimoidian"
+      }
+    ]
+  },
+  {
+    "altTitle": "Uncle",
+    "endYear": 0,
+    "imageUrl": "/images/owenlars.png",
+    "imageYears": [
+      {
+        "startYear": -10,
+        "endYear": -1,
+        "imageUrl": "/images/owenlars-old.png"
+      },
+      {
+        "startYear": 0,
+        "endYear": 80,
+        "imageUrl": "/images/lars-dead.png"
+      }
+    ],
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "Episode III: Revenge of the Sith",
+      "Episode IV: A New Hope"
+    ],
+    "startYear": -52,
+    "title": "Owen Lars",
+    "type": "character",
+    "description": "Owen Lars was a human male moisture farmer from the desert planet Tatooine. He was the son of Aika and Cliegg Lars, and he became the stepbrother of Jedi Knight Anakin Skywalker when Cliegg married Anakin's mother, Shmi Skywalker. In 22 BBY, Shmi was killed by Tusken Raiders, and Cliegg passed away soon after. Lars married his girlfriend, Beru Whitesun, and they toiled to maintain the homestead.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Owen_Lars",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Ator"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/berulars.png",
+    "imageYears": [
+      {
+        "startYear": -6,
+        "endYear": -1,
+        "imageUrl": "/images/berulars-old.png"
+      },
+      {
+        "startYear": 0,
+        "endYear": 80,
+        "imageUrl": "/images/lars-dead.png"
+      }
+    ],
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "Episode III: Revenge of the Sith",
+      "Episode IV: A New Hope"
+    ],
+    "startYear": -48,
+    "startYearUnknown": true,
+    "title": "Beru Lars",
+    "type": "character",
+    "description": "Beru Lars, born Beru Whitesun, was a human female from the planet Tatooine. She was married to Owen Lars, the stepbrother of Jedi Knight Anakin Skywalker, whose son, Luke Skywalker, they raised during the reign of the Galactic Empire. Lars was killed along with her husband by Imperial stormtroopers, who also burned down the Lars moisture farm. With their deaths, Skywalker left his homeworld and joined the Alliance to Restore the Republic.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Beru_Whitesun_Lars",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Tatooine"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
     "altTitle": "Skywalker Solo",
     "endYear": 35,
     "imageUrl": "/images/leia.png",
