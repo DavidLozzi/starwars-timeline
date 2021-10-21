@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const getCharacterTop = (theme, character) => theme.layout.gridHeight *
   character.yearIndex +
@@ -139,10 +139,19 @@ export const Character = styled(({ character, ...rest }) => <div {...rest} data-
   }
 `;
 
-export const CharacterDetail = styled(({ isActive, ...rest }) => <div {...rest}  data-testid="characterdetail"/>)`
+const wiggle = (theme) => keyframes`
+  ${theme.elements.characterDetailCurrentAnimation}
+`;
+
+export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest}  data-testid="characterdetail"/>)`
   ${({ theme }) => theme.elements.characterDetail};
   min-height: 9.5rem;
   ${({ theme, isActive }) => isActive && theme.elements.characterDetailActive};
+  ${({ theme, isCurrent }) => isCurrent && css`
+    ${theme.elements.characterDetailCurrent};
+    animation: ${wiggle(theme)} 1s 2s linear 2;
+  `
+};
 `;
 
 export const CharacterImage = styled(({ isActive, src, ...rest }) => <div {...rest} />)`

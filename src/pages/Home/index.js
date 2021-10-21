@@ -18,6 +18,7 @@ const Home = () => {
   const [seenIn, setSeenIn] = React.useState([]);
   const [currentYearIndex, setCurrentYearIndex] = React.useState(0);
   const [currentYear, setCurrentYear] = React.useState(0);
+  const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const theme = React.useContext(ThemeContext);
@@ -91,7 +92,6 @@ const Home = () => {
           retVal = 1;
         }
         if (retVal === -1 && a.birthYear && b.birthYear && a.startYear === b.startYear) {
-          console.log('sorting birth');
           if (a.birthYear > b.birthYear) {
             retVal = 1;
           }
@@ -115,7 +115,6 @@ const Home = () => {
           c.seenIn.forEach(seen => {
             const seenInYear = _newYears.find(y => y.events.some(e => e.title === seen));
             const seenInEvent = seenInYear.events.find(e => e.title === seen);
-            // console.log(seenInEvent);
             _seenIn.push({
               character: c,
               seenInEvent,
@@ -147,7 +146,7 @@ const Home = () => {
     }
     let scrollToX = window.scrollX;
     if (_character) {
-      scrollToX = _character.index * 32 + 96;
+      scrollToX = _character.index * 80;
     }
     window.scrollTo(scrollToX, scrollToY);
   };
@@ -158,10 +157,18 @@ const Home = () => {
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
-      const scrollToYearNumber = Number(window.location.hash.substr(6));
-      const scrollToYear = years.find(y => y.year === scrollToYearNumber);
-      const scrollToChar = characters.find(c => c.title === "Chewbacca");
+      let scrollToYear = null;
+      let scrollToChar = null;
+      if (window.location.hash.length > 0) {
+        const searchParams = new URLSearchParams(window.location.hash.substr(1));
+        scrollToYear = years.find(y => y.year === Number(searchParams.get("year")));
+        scrollToChar = characters.find(c => c.title.toLowerCase() === (searchParams.get("character")?.toLowerCase() || "luke skywalker"));
+      } else {
+        scrollToYear = years.find(y => y.year === 0);
+        scrollToChar = characters.find(c => c.title === "Luke Skywalker");
+      }
       scrollTo(scrollToYear, scrollToChar);
+      setCurrentCharacter(scrollToChar.title);
     }
   }, [seenIn]);
 
@@ -277,6 +284,7 @@ const Home = () => {
                   <Styled.CharacterDetail
                     onClick={() => showCharacterModal(character)}
                     isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear}
+                    isCurrent={currentCharacter === character.title}
                   >
                     <Styled.CharacterImage src={imageUrl} alt={character.title} isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear} />
                     {character.title}

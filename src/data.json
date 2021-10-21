@@ -1354,6 +1354,58 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": -22,
+    "imageUrl": "/images/jango.png",
+    "seenIn": [
+      "Episode II: Attack of the Clones"
+    ],
+    "startYear": -82,
+    "startYearUnknown": true,
+    "title": "Jango Fett",
+    "type": "character",
+    "description": "Jango Fett was a Mandalorian human male bounty hunter and the clone template of the Grand Army of the Republic. Known as the best bounty hunter in the galaxy during the final years of the Galactic Republic, Fett was proficient in marksmanship as well as unarmed combat. The Mandalorian armor that he wore featured various weapons and gadgets, including a flamethrower, dual WESTAR-34 blaster pistols, and a jetpack. His personal starship was the Firespray-31-class patrol and attack craft Slave I.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Jango_Fett",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Concord Dawn"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/bailorgana.png",
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story"
+    ],
+    "startYear": -60,
+    "startYearUnknown": true,
+    "title": "Bail Organa",
+    "type": "character",
+    "description": "Bail Prestor Organa was a human male Alderaanian politician and revolutionary leader, an influential voice for peace in the Galactic Senate during the last days of the Galactic Republic, and a founding member of the Alliance to Restore the Republic. Organa, the senator of Alderaan, was an outspoken member of the Senate's Loyalist Committee that pushed to maintain the ideals of the Republic during the Clone Wars. He became an architect of the early rebellion against the Galactic Empire and believed that a full-scale Galactic Civil War was inevitable if the Empire was to be toppled and replaced by a New Republic.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Bail_Prestor_Organa",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Alderaan"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
     "endYear": -32,
     "startYear": -32,
     "title": "Episode I: The Phantom Menace",

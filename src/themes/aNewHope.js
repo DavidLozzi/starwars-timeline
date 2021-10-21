@@ -1,3 +1,4 @@
+import { css, keyframes } from "styled-components";
 
 const layout = { // in rem
   pxInRem: 16, // pixels in a rem
@@ -33,7 +34,8 @@ const palette = {
   lightgray: '141,141,141',
   white: '255,255,255',
 };
-  
+
+
 export default {
   palette,
   elements: {
@@ -42,7 +44,6 @@ export default {
     },
     header: {
       backgroundColor: `rgb(${palette.white})`,
-      // paddingLeft: '2rem'
     },
     menu: {
       ul: {
@@ -108,6 +109,35 @@ export default {
     },
     characterDetailActive: {
       filter: 'grayscale(0)'
+    },
+    characterDetailCurrent: {
+      transition: 'all 150ms eaase-in-out'
+    },
+    characterDetailCurrentAnimation: {
+      '0%': {
+        transform: 'rotate(3deg)',
+        filter: 'brightness(1.3)'
+      },
+      '20%': {
+        transform: 'rotate(-3deg)',
+        filter: 'brightness(1)'
+      },
+      '40%': {
+        transform: 'rotate(3deg)',
+        filter: 'brightness(1.5)'
+      },
+      '60%': {
+        transform: 'rotate(-5deg)',
+        filter: 'brightness(1)'
+      },
+      '80%': {
+        transform: 'rotate(4deg)',
+        filter: 'brightness(1.3)'
+      },
+      '100%': {
+        transform: 'rotate(0deg)',
+        filter: 'brightness(1)'
+      }
     },
     characterImage: {
       width: `${layout.gridWidth * 2}rem`,
