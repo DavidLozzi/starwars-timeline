@@ -32,6 +32,7 @@ const Home = () => {
   const showCharacterModal = (character) => {
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
+    window.location.hash = `year=${currentYear.year}&character=${character.title}`;
     analytics.event(ACTIONS.OPEN_CHARACTER, "character", character.title);
   };
 
@@ -52,7 +53,9 @@ const Home = () => {
   };
 
   React.useEffect(() => {
-    setCurrentYear(years.find(y => y.yearIndex === currentYearIndex + 5));
+    const _currentYear = years.find(y => y.yearIndex === currentYearIndex + 5);
+    setCurrentYear(_currentYear);
+    window.location.hash = `year=${_currentYear.year}`;
   }, [currentYearIndex]);
 
   React.useEffect(() => {
