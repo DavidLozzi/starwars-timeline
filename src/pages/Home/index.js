@@ -25,6 +25,7 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const theme = React.useContext(ThemeContext);
+  const appliedFilter = { param: 'title', value: 'Luke Skywalker' };
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -54,8 +55,10 @@ const Home = () => {
 
   React.useEffect(() => {
     const _currentYear = years.find(y => y.yearIndex === currentYearIndex + 5);
-    setCurrentYear(_currentYear);
-    window.location.hash = `year=${_currentYear.year}`;
+    if (_currentYear) {
+      setCurrentYear(_currentYear);
+      window.location.hash = `year=${_currentYear.year}`;
+    }
   }, [currentYearIndex]);
 
   React.useEffect(() => {
@@ -75,6 +78,15 @@ const Home = () => {
     }
   }, [seenIn]);
 
+  React.useEffect(() => {
+    if (appliedFilter) {
+      const filteredCharacters = characters.filter(c => c[appliedFilter.param] === appliedFilter.value);
+      console.log(filteredCharacters);
+      // setCharacters(filteredCharacters);
+    } else {
+      setCharacters(charactersData);
+    }
+  }, [appliedFilter]);
 
   React.useEffect(() => {
     setYears(yearsData);
