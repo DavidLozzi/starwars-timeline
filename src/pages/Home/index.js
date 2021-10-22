@@ -2,7 +2,9 @@ import * as React from 'react';
 import { ThemeContext } from 'styled-components';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
-import data from '../../data.json';
+import yearsData from '../../data/years.json';
+import charactersData from '../../data/characters.json';
+import seenInData from '../../data/seenIn.json';
 import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
@@ -27,115 +29,11 @@ const Home = () => {
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
 
-  const sortOrder = [
-    { type: 'era', sort: 1},
-    { type: 'movie', sort: 2},
-    { type: 'tv', sort: 3 },
-    { type: 'character', sort: 4}
-  ];
-
-  const convertYear = (year) => {
-    if(year <= 0) return `${year * -1} BBY`;
-    if(year > 0) return `${year} ABY`;
-    return 'none';
-  };
-
-  const sortByYear = (a, b) => {
-    const aSorter = sortOrder.find(s => s.type === a.type).sort;
-    const bSorter = sortOrder.find(s => s.type === b.type).sort;
-    if (aSorter > bSorter) return 1;
-    if (aSorter < bSorter) return -1;
-    return 0;
-  };
-
   const showCharacterModal = (character) => {
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
     analytics.event(ACTIONS.OPEN_CHARACTER, "character", character.title);
   };
-
-  // TODO create node script to generate this output so it's not realtime
-  React.useEffect(() => {
-    const _newYears = [...years];
-    const _startYear = data.sort((a, b) => a.startYear > b.startYear ? 1 : -1)[0].startYear;
-    const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear;
-
-    let yearIndex = 0;
-    for(let i = _startYear - zoomLevel; i <= _endYear + zoomLevel; i++) {
-      const year = { year: i, display: convertYear(i) };
-      const events = data
-        .filter(e => (e.startYear === i && e.type !== 'character'))
-        .sort(sortByYear)
-        .map((e, i) => ({
-          ...e,
-          index: i,
-          yearIndex,
-          years: e.endYear - e.startYear,
-          startYearDisplay: convertYear(e.startYear),
-          endYearDisplay: convertYear(e.endYear)
-        }));
-      
-      _newYears.push({
-        ...year,
-        yearIndex,
-        events,
-        eventCount: events.length
-      });
-
-      yearIndex++;
-    }
-    setYears(_newYears);
-
-    const _characters = data
-      .filter(e => (e.type === 'character'))
-      .sort((a, b) => {
-        let retVal = -1;
-        if (a.startYear > b.startYear) {
-          retVal = 1;
-        }
-        if (retVal === -1 && a.birthYear && b.birthYear && a.startYear === b.startYear) {
-          if (a.birthYear > b.birthYear) {
-            retVal = 1;
-          }
-        }
-        return retVal;
-      })
-      .map((e, index) => ({
-        ...e,
-        index,
-        yearIndex: _newYears.filter(y => y.year === e.startYear)[0].yearIndex,
-        years: e.endYear - e.startYear,
-        startYearDisplay: convertYear(e.startYear),
-        endYearDisplay: convertYear(e.endYear)
-      }));
-    setCharacters(_characters);
-    
-    const _seenIn = [];
-    _characters
-      .forEach(c => {
-        if (c.seenIn && c.seenIn.length > 0) {
-          c.seenIn.forEach(seen => {
-            const seenInYear = _newYears.find(y => y.events.some(e => e.title === seen));
-            const seenInEvent = seenInYear.events.find(e => e.title === seen);
-            _seenIn.push({
-              character: c,
-              seenInEvent,
-              seenInYear
-            });
-          });
-        }
-      });
-    setSeenIn(_seenIn);
-
-    setInterval(() => {
-      if (window.scrolling) {
-        window.scrolling = false;
-        const pxToRem = window.scrollY / 16;
-        setCurrentYearIndex(Math.round(pxToRem / 2));
-      }
-    }, 150);
-
-  }, [data]);
 
   /* scroll to
     _year: the year object
@@ -173,6 +71,22 @@ const Home = () => {
       setCurrentCharacter(scrollToChar.title);
     }
   }, [seenIn]);
+
+
+  React.useEffect(() => {
+    setYears(yearsData);
+    setCharacters(charactersData);
+    setSeenIn(seenInData);
+
+    setInterval(() => {
+      if (window.scrolling) {
+        window.scrolling = false;
+        const pxToRem = window.scrollY / 16;
+        setCurrentYearIndex(Math.round(pxToRem / 2));
+      }
+    }, 150);
+
+  }, []);
 
   return (
     <>
