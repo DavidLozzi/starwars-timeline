@@ -104,7 +104,7 @@ _characters
   });
 seenIn = _seenIn;
 
-fs.writeFile("../src/data/years.json", JSON.stringify(years), (err) => {
+fs.writeFile("./src/data/years.json", JSON.stringify(years), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
   } else {
@@ -112,7 +112,7 @@ fs.writeFile("../src/data/years.json", JSON.stringify(years), (err) => {
   }
 });
 
-fs.writeFile("../src/data/characters.json", JSON.stringify(characters), (err) => {
+fs.writeFile("./src/data/characters.json", JSON.stringify(characters), (err) => {
   if (err) {
     console.error(`characters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -120,7 +120,7 @@ fs.writeFile("../src/data/characters.json", JSON.stringify(characters), (err) =>
   }
 });
 
-fs.writeFile("../src/data/seenIn.json", JSON.stringify(seenIn), (err) => {
+fs.writeFile("./src/data/seenIn.json", JSON.stringify(seenIn), (err) => {
   if (err) {
     console.error(`seenIn writeFile ${JSON.stringify(err)}`);
   } else {
