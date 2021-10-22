@@ -96,6 +96,59 @@
     "wookiepedia": "https://starwars.fandom.com/wiki/Plo_Koon"
   },
   {
+    "altTitle": "",
+    "endYear": -19,
+    "imageUrl": "/images/fisto.png",
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -45,
+    "startYearUnknown": true,
+    "title": "Kit Fisto",
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Glee Anselm"
+      },
+      {
+        "name": "Species",
+        "value": "Nautolan"
+      }
+    ],
+    "description": "Kit Fisto was a Force-sensitive Jedi Master during the final years of the Galactic Republic. Fisto was known as an expert swordsman, having some of the finest dueling skills in the Jedi Order. A celebrated fighter, Fisto served as a Jedi General of the Grand Army of the Republic during the Clone Wars, a galaxy-wide conflict between the Republic and Confederacy of Independent Systems. He fought in various campaigns and over the course of the war was accepted as a member of the Jedi High Council.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Kit_Fisto"
+  },
+  {
+    "altTitle": "",
+    "endYear": 32,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bokatan.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "The Mandalorian"
+    ],
+    "startYear": -20,
+    "startYearUnknown": true,
+    "title": "Bo-Katan Kryze",
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Mandalore"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ],
+    "description": "Bo-Katan Kryze was the leader of the Nite Owls and a lieutenant in Death Watch, a terrorist group, and later during the Imperial Era, became Mand'alor. During the Clone Wars, Kryze's sister, Satine, ruled as the Duchess of Mandalore, and Kryze sought to undo her pacifistic teachings, believing that Mandalore should take pride in its martial history. After Governor Pre Vizsla of Concordia was publicly exposed as the leader of Death Watch, the splinter group was exiled from the Mandalore system. In 19 BBY, Kryze and Vizsla discovered the Sith Lords Maul and Savage Opress. With the Sith, they plotted to reclaim Mandalore, and through Maul's planning, united several criminal syndicates to form the Shadow Collective. Launching a takeover of Mandalore, Satine's rule was overthrown, and Vizsla took control of the planet.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Bo-Katan_Kryze"
+  },
+  {
     "endYear": 34,
     "imageUrl": "/images/skywalker-farmboy.jpg",
     "imageYears": [
