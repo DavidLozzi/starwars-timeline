@@ -67,7 +67,7 @@ export const EraLabel = styled.div`
 
 export const EraPill = styled((props) => <Era data-testid="era-pill" {...props} />)`
   background: none;
-  z-index:100;
+  z-index: 70;
   pointer-events: none;
 
   ${EraLabel} {
@@ -120,6 +120,17 @@ export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...r
 
   ${Sticky} {
     left: 7rem;
+  }
+`;
+
+export const MovieTitle = styled.div`
+  display: inline-block;
+  margin-right: .2rem;
+  ::after {
+    content: ' & ';
+  }
+  :last-child::after {
+    content: '';
   }
 `;
 

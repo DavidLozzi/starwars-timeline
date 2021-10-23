@@ -45,6 +45,7 @@
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
       "Star Wars Rebels",
+      "Star Wars: Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
@@ -223,6 +224,7 @@
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
+      "Star Wars: Ahsoka",
       "The Mandalorian"
     ],
     "imageYears": [
@@ -497,6 +499,7 @@
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
+      "Star Wars: Obi-Wan Kenobi",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
       "The Clone Wars (movie)",
@@ -1075,6 +1078,7 @@
     "seenIn": [
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
+      "Star Wars: Obi-Wan Kenobi",
       "Episode IV: A New Hope"
     ],
     "startYear": -48,
@@ -1563,6 +1567,12 @@
     "type": "movie"
   },
   {
+    "endYear": -9,
+    "startYear": -9,
+    "title": "Star Wars: Obi-Wan Kenobi",
+    "type": "tv"
+  },
+  {
     "endYear": 0,
     "startYear": 0,
     "title": "Rogue One: A Star Wars Story",
@@ -1596,6 +1606,12 @@
     "endYear": 9,
     "startYear": 9,
     "title": "The Book of Boba Fett",
+    "type": "movie"
+  },
+  {
+    "endYear": 9,
+    "startYear": 9,
+    "title": "Star Wars: Ahsoka",
     "type": "movie"
   },
   {

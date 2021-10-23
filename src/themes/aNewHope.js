@@ -1,4 +1,4 @@
-import { css, keyframes } from "styled-components";
+import { css } from 'styled-components';
 
 const layout = { // in rem
   pxInRem: 16, // pixels in a rem
@@ -32,6 +32,7 @@ const palette = {
   darkgray: '78,78,78',
   gray: '113,113,113',
   lightgray: '141,141,141',
+  lightergray: '200,200,200',
   white: '255,255,255',
 };
 
@@ -53,13 +54,43 @@ export default {
         
       }
     },
+    form: {
+      button: (theme, invert) => css`
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 1rem;
+          height: 2rem;
+          font-size: .75rem;
+          border: solid 2px rgb(${theme.palette.primary});
+          background-color: rgb(${theme.palette.primary});
+          color: rgb(${theme.palette.white});
+          padding: .5rem;
+          min-width: 5rem;
+          font-weight: bold;
+          margin-left: 1rem;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(${theme.palette.primary}, 0.8);
+          }
+
+          ${invert && css`
+            background-color: rgb(${theme.palette.white});
+            color: rgb(${theme.palette.primary});
+          &:hover {
+            background-color: rgba(${theme.palette.lightgray}, 0.2);
+          }
+          `}
+        `
+    },
     era: {
       background: `linear-gradient(120deg, rgba(${palette.lightgray},0.75) 0%, rgba(${palette.lightgray},0.75) 10%, rgba(${palette.black},0.1) 100%)`,
     },
     eraPill: {
       backgroundColor: `rgb(${palette.gray})`,
       borderRadius: '1rem',
-      padding: `.4rem`,
+      padding: '.4rem',
       fontSize: '.8rem'
     },
     year: {
@@ -69,7 +100,7 @@ export default {
     yearPill: {
       backgroundColor: `rgb(${palette.lightgray})`,
       borderRadius: '1rem',
-      padding: `.4rem`,
+      padding: '.4rem',
       width: '3rem',
       fontSize: '.8rem'
     },

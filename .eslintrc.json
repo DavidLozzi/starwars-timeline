@@ -1,12 +1,14 @@
 {
   "extends": [
-    "plugin:json/recommended"
+    "plugin:json/recommended",
+    "plugin:react/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "impliedStrict": true
     }
   },
   "rules": {
@@ -17,6 +19,11 @@
       "error",
       2
     ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "react/prop-types": "off",
     "semi": "error"
   }
 }

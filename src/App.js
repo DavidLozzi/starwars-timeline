@@ -1,14 +1,14 @@
-import { ThemeProvider } from 'styled-components';
+import React from 'react';
 import Home from './pages/Home';
-import theme from './themes/aNewHope';
 import GlobalStyles from './globalStyles';
+import AppProvider from './AppContext';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <AppProvider>
       <GlobalStyles />
       <Home />
-    </ThemeProvider>
+    </AppProvider>
   );
 }
 

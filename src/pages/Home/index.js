@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ThemeContext } from 'styled-components';
+import { useTheme } from 'styled-components';
+import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
 import yearsData from '../../data/years.json';
@@ -24,8 +25,9 @@ const Home = () => {
   const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
-  const theme = React.useContext(ThemeContext);
-  const appliedFilter = { param: 'title', value: 'Luke Skywalker' };
+  const theme = useTheme();
+  const { filters } = useAppContext();
+
 
   // zoom level, incremements of years to show
   const [zoomLevel, setZoomLevel] = React.useState(1); 
@@ -34,7 +36,7 @@ const Home = () => {
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
     window.location.hash = `year=${currentYear.year}&character=${character.title}`;
-    analytics.event(ACTIONS.OPEN_CHARACTER, "character", character.title);
+    analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
   };
 
   /* scroll to
@@ -67,11 +69,11 @@ const Home = () => {
       let scrollToChar = null;
       if (window.location.hash.length > 0) {
         const searchParams = new URLSearchParams(window.location.hash.substr(1));
-        scrollToYear = years.find(y => y.year === Number(searchParams.get("year")));
-        scrollToChar = characters.find(c => c.title.toLowerCase() === (searchParams.get("character")?.toLowerCase() || "luke skywalker"));
+        scrollToYear = years.find(y => y.year === Number(searchParams.get('year')));
+        scrollToChar = characters.find(c => c.title.toLowerCase() === (searchParams.get('character')?.toLowerCase() || 'luke skywalker'));
       } else {
         scrollToYear = years.find(y => y.year === 0);
-        scrollToChar = characters.find(c => c.title === "Luke Skywalker");
+        scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
       }
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
@@ -79,14 +81,19 @@ const Home = () => {
   }, [seenIn]);
 
   React.useEffect(() => {
-    if (appliedFilter) {
-      const filteredCharacters = characters.filter(c => c[appliedFilter.param] === appliedFilter.value);
-      console.log(filteredCharacters);
-      // setCharacters(filteredCharacters);
-    } else {
-      setCharacters(charactersData);
+    if (filters?.character) {
+      const scrollToChar = characters.find(c => c.title === filters.character);
+      let scrollToYear = currentYear;
+      if (scrollToYear.year > scrollToChar.endYear || scrollToYear.year < scrollToChar.startYear) {
+        const targetYear = scrollToChar.endYear - Math.round((scrollToChar.endYear - scrollToChar.startYear) / 2);
+        scrollToYear = years.find(y => y.year === targetYear);
+      }
+      window.location.hash = `year=${scrollToYear.year}&character=${scrollToChar.title}`;
+      scrollTo(scrollToYear, scrollToChar);
+      setCurrentCharacter(scrollToChar.title);
+      setCurrentYear(scrollToYear);
     }
-  }, [appliedFilter]);
+  }, [filters]);
 
   React.useEffect(() => {
     setYears(yearsData);
@@ -99,7 +106,7 @@ const Home = () => {
         const pxToRem = window.scrollY / 16;
         setCurrentYearIndex(Math.round(pxToRem / 2));
       }
-    }, 150);
+    }, 100);
 
   }, []);
 
@@ -114,6 +121,12 @@ const Home = () => {
           years
             .filter(({year}) => year % zoomLevel === 0)
             .map(year => {
+              const movies = year
+                .events
+                .filter(y => (y.type === 'movie' || y.type === 'tv') && y.endYear === year.year);
+              const spanningMovies = year
+                .events
+                .filter(y => (y.type === 'movie' || y.type === 'tv') && y.endYear !== year.year);
               return (
                 <React.Fragment
                   key={year.display}
@@ -135,7 +148,7 @@ const Home = () => {
                   </Styled.YearPill>
                   {year
                     .events
-                    .filter(y => y.type === "era")
+                    .filter(y => y.type === 'era')
                     .sort((a, b) => {
                       if (a.index > b.index) return 1;
                       if (a.index < b.index) return -1;
@@ -160,27 +173,32 @@ const Home = () => {
                       </Styled.EraPill>
                     </>
                     )}
-                  {year
-                    .events
-                    .filter(y => y.type === "movie" || y.type === "tv")
-                    .sort((a, b) => {
-                      if (a.index > b.index) return 1;
-                      if (a.index < b.index) return -1;
-                      return 0;
-                    })
-                    .map((movie, index) => <Styled.Movie
-                      movie={movie}
-                      index={index}
-                      key={movie.title}
-                      characterCount={characters.length}
-                      isCurrentYear={currentYear?.yearIndex === movie.yearIndex}
-                    >
-                      <Styled.Sticky>
-                        {movie.title}
-                        {movie.altTitle && <Styled.AltTitle>{movie.altTitle}</Styled.AltTitle>}
-                      </Styled.Sticky>
-                    </Styled.Movie>
-                    )}
+                  {spanningMovies.length > 0 && spanningMovies.map((movie, index) => <Styled.Movie
+                    movie={movie}
+                    index={index}
+                    key={movie.title}
+                    characterCount={characters.length}
+                    isCurrentYear={currentYear?.yearIndex === year.year}
+                  >
+                    <Styled.Sticky>
+                      <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>
+                    </Styled.Sticky>
+                  </Styled.Movie>
+                  )}
+                  {movies.length > 0 && <Styled.Movie
+                    movie={movies[0]}
+                    index={spanningMovies.length}
+                    characterCount={characters.length}
+                    isCurrentYear={currentYear?.yearIndex === year.year}
+                  >
+                    <Styled.Sticky>
+                      {movies
+                        .sort((a, b) => a.title > b.title ? 1 : -1)
+                        .map((movie) => <Styled.MovieTitle key={movie.title}>{movie.title}</Styled.MovieTitle>
+                        )}
+                    </Styled.Sticky>
+                  </Styled.Movie>
+                  }
                 </React.Fragment>
               );
             }
@@ -190,7 +208,7 @@ const Home = () => {
           characters
             .map(character => {
               const startYear = character.birthYear || character.startYear;
-              let imageUrl = character.imageUrl || "/images/starwars.jpg";
+              let imageUrl = character.imageUrl || '/images/starwars.jpg';
               if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {
                 imageUrl = character.imageYears.filter(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)[0].imageUrl;
               }
