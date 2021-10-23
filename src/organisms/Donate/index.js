@@ -19,9 +19,9 @@ const Donate = ({ onClose }) => {
           <Styled.Description>
             <Styled.H2>No Ads</Styled.H2>
             <p>
-              As you'll notice, there are <strong>no ads</strong> on this site! I really hope and
+              As you&apos;ll notice, there are <strong>no ads</strong> on this site! I really hope and
               intend to keep it that way. I do have plans to continue building on this, which may require
-              more costly hosting. Your donation will go a long way in saying "Thank You" and helping
+              more costly hosting. Your donation will go a long way in saying &quot;Thank You&quot; and helping
               support the timeline!
             </p>
             <Styled.H2>Like what you see?</Styled.H2>
