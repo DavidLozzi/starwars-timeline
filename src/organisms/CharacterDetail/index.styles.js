@@ -47,7 +47,7 @@ export default {
   MetadataWrapper: styled.div`
     font-size: 1.6vh;
     display: flex;
-    margin: 2vh 0;
+    margin: 0 0 2vh 0;
   `,
   Metadata: styled.div`
     min-width: 33%;

@@ -75,45 +75,36 @@ const _characters = data
     }
     return retVal;
   })
-  .map((e, index) => ({
-    ...e,
-    index,
-    yearIndex: _newYears.filter(y => y.year === e.startYear)[0].yearIndex,
-    years: e.endYear - e.startYear,
-    startYearDisplay: convertYear(e.startYear),
-    endYearDisplay: convertYear(e.endYear)
-  }));
+  .map((e, index) => {
+    const seenInYears = [];
+    e.seenIn.forEach(s => {
+      const event = data.find(d => d.title === s);
+      const year = {..._newYears.find(y => y.year === event.startYear)};
+      delete year.events; // will replace with this characters events
+
+      let charYear = seenInYears.find(y => y.year === year.year);
+      if (charYear) {
+        charYear.events.push(event);
+      } else {
+        charYear = {
+          ...year,
+          events: [event]
+        };
+        seenInYears.push(charYear);
+      }
+    });
+    return ({
+      ...e,
+      index,
+      seenIn: seenInYears,
+      yearIndex: _newYears.filter(y => y.year === e.startYear)[0].yearIndex,
+      years: e.endYear - e.startYear,
+      startYearDisplay: convertYear(e.startYear),
+      endYearDisplay: convertYear(e.endYear)
+    });
+  });
 characters = _characters;
  
-
-// build seen in
-const _seenIn = [];
-_characters
-  .forEach(c => {
-    if (c.seenIn && c.seenIn.length > 0) {
-      c.seenIn.forEach(seen => {
-        const seenInYear = _newYears.find(y => y.events.some(e => e.title === seen));
-        const seenInEvent = seenInYear.events.find(e => e.title === seen);
-        _seenIn.push({
-          character: c,
-          seenInEvent,
-          seenInYear
-        });
-      });
-    }
-  });
-seenIn = _seenIn;
-
-
-// get filters
-// const FILTER_PARAMS = ['title'];
-// const _filters = [];
-// FILTER_PARAMS.forEach(f => _filters.set(f,new Map())
-// _characters
-//   .forEach(c => {
-  
-// })
-
 fs.writeFile('./src/data/years.json', JSON.stringify(years), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
@@ -127,13 +118,5 @@ fs.writeFile('./src/data/characters.json', JSON.stringify(characters), (err) => 
     console.error(`characters writeFile ${JSON.stringify(err)}`);
   } else {
     console.log('characters.json file created');
-  }
-});
-
-fs.writeFile('./src/data/seenIn.json', JSON.stringify(seenIn), (err) => {
-  if (err) {
-    console.error(`seenIn writeFile ${JSON.stringify(err)}`);
-  } else {
-    console.log('seenIn.json file created');
   }
 });

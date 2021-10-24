@@ -25,7 +25,7 @@ export const Header = styled.div`
 
 export const H1 = styled.h1`
   margin-left: 2rem;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
 `;
 
 export const Wrapper = styled.div`
@@ -134,15 +134,21 @@ export const MovieTitle = styled.div`
   }
 `;
 
-export const Character = styled(({ character, ...rest }) => <div {...rest} data-testid="character"/>)`
+export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest} data-testid="character"/>)`
   ${({ theme }) => theme.elements.character};
   position: absolute;
   top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
   left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;
   width: ${({ theme }) => theme.layout.elements.character.width}rem;
   height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 5)}rem;
-  z-index: 50;
+  z-index: 30;
   pointer-events: auto;
+`;
+
+export const CharacterPill = styled(({ ...rest }) => <CharacterColumn {...rest} data-testid="characterpill"/>)`
+  background: none;
+  z-index: 50;
+  pointer-events: none; 
 
   ${Sticky} {
     top: 6rem;
@@ -154,9 +160,10 @@ const wiggle = (theme) => keyframes`
   ${theme.elements.characterDetailCurrentAnimation}
 `;
 
-export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest}  data-testid="characterdetail"/>)`
+export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest} data-testid="characterdetail" />)`
   min-height: 9.5rem;
   cursor: pointer;
+  pointer-events: auto; 
   ${({ theme }) => theme.elements.characterDetail};
   ${({ theme, isActive }) => isActive && theme.elements.characterDetailActive};
   ${({ theme, isCurrent }) => isCurrent && css`
@@ -166,33 +173,43 @@ export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div
 };
 `;
 
-export const CharacterImage = styled(({ isActive, src, ...rest }) => <div {...rest} />)`
-  background-image: url(${({ src }) => src});
-  background-size: contain;
-  transition: all 300ms ease-in-out;
+export const CharacterImage = styled(({ isActive, ...rest }) => <img {...rest} />)`
   ${({ theme }) => theme.elements.characterImage};
   ${({ theme, isActive }) => isActive && theme.elements.characterImageActive};
 `;
 
-export const SeenIn = styled(({ seen, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
+export const SeenIn = styled(({ seen, character, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
   position: absolute;
-  top: ${({ seen, theme }) => (theme.layout.gridHeight * seen.seenInYear.yearIndex) - getCharacterTop(theme, seen.character) + theme.layout.topMargin + seen.seenInEvent.index}rem;
-  left: 0; 
-  z-index: 60;
+  top: ${({ seen, theme }) => (theme.layout.elements.year.height) * seen.yearIndex + theme.layout.topMargin}rem;
+  left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;; 
+  z-index: 40;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
   display: flex;
   justify-content: center;
   align-content: center;
 `;
 
+export const SeenInEvent = styled.div`
+  display: inline-block;
+  margin-right: .2rem;
+  font-style: italic;
+  
+  ::after {
+    content: ' & ';
+  }
+  :last-child::after {
+    content: '';
+  }
+`;
+
 export const ToolTip = styled.div`
   ${({ theme }) => theme.elements.toolTip};
   display: none;
   position: absolute;
-  z-index: 70;
+  z-index: 80;
   top: 1.5rem;
-  left: -2.5rem;
-  width: 6rem;
+  left: -3rem;
+  width: 7rem;
 `;
 
 export const Circle = styled.div`

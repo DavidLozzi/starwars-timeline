@@ -4,6 +4,13 @@ import parse from 'html-react-parser';
 
 const CharacterDetail = ({ character, onClose, currentYear }) => {
   const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
+  const [birthYear, setBirthYear] = React.useState(0);
+
+  const convertYear = (year) => {
+    if (year <= 0) return `${year * -1} BBY`;
+    if (year > 0) return `${year} ABY`;
+    return 'none';
+  };
 
   React.useEffect(() => {
     let _imageUrl = character.imageUrl;
@@ -15,11 +22,14 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
     }
   }, [currentYear]);
 
-  const convertYear = (year) => {
-    if (year <= 0) return `${year * -1} BBY`;
-    if (year > 0) return `${year} ABY`;
-    return 'none';
-  };
+
+  React.useEffect(() => {
+    if (character.birthYear) {
+      setBirthYear(character.birthYear);
+    } else {
+      setBirthYear(character.startYear);
+    }
+  }, []);
 
   return <Styled.Wrapper>
     <Styled.Header>
@@ -27,13 +37,12 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
       <Styled.Body>
         <Styled.H1>{character.title}</Styled.H1>
         <Styled.H2>{character.altTitle}</Styled.H2>
-        <Styled.Note>Born {convertYear(character.startYear)}{character.startYearUnknown ? '?' : ''}, Died {convertYear(character.endYear)}{character.endYearUnknown ? '?' : ''} ({character.endYear - character.startYear} years old)</Styled.Note>
+        <Styled.Note>Born {convertYear(birthYear)}{character.startYearUnknown ? '?' : ''}, Died {convertYear(character.endYear)}{character.endYearUnknown ? '?' : ''} ({character.endYear - birthYear} years old)</Styled.Note>
         {(character.startYearUnknown || character.endYearUnknown) && <Styled.Note>Actual birth and/or death dates are unknown.</Styled.Note>}
       </Styled.Body>
       <Styled.Close onClick={onClose}>X</Styled.Close>
     </Styled.Header>
     <Styled.Body>
-      {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
       {character.metadata && character.metadata.length > 0 && 
         <Styled.MetadataWrapper>
           {character.metadata.map(m => <Styled.Metadata key={m.name}>
@@ -42,6 +51,7 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
           </Styled.Metadata>)}
         </Styled.MetadataWrapper>
       }
+      {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
       {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank">Learn more on Wookiepedia.com</Styled.Wookiepedia>}
     </Styled.Body>
   </Styled.Wrapper>;

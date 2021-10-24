@@ -5,7 +5,6 @@ import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
 import yearsData from '../../data/years.json';
 import charactersData from '../../data/characters.json';
-import seenInData from '../../data/seenIn.json';
 import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
@@ -19,7 +18,6 @@ addEventListener('scroll', () => {
 const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
-  const [seenIn, setSeenIn] = React.useState([]);
   const [currentYearIndex, setCurrentYearIndex] = React.useState(0);
   const [currentYear, setCurrentYear] = React.useState(0);
   const [currentCharacter, setCurrentCharacter] = React.useState('');
@@ -78,7 +76,7 @@ const Home = () => {
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
     }
-  }, [seenIn]);
+  }, [years, characters]);
 
   React.useEffect(() => {
     if (filters?.character) {
@@ -98,7 +96,6 @@ const Home = () => {
   React.useEffect(() => {
     setYears(yearsData);
     setCharacters(charactersData);
-    setSeenIn(seenInData);
 
     setInterval(() => {
       if (window.scrolling) {
@@ -212,37 +209,49 @@ const Home = () => {
               if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {
                 imageUrl = character.imageYears.filter(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)[0].imageUrl;
               }
-              return <Styled.Character
-                character={character}
-                key={character.title}
-              >
+              return <React.Fragment
+                key={character.title}>
+                <Styled.CharacterColumn
+                  character={character}
+                >
+                </Styled.CharacterColumn>
+                <Styled.CharacterPill
+                  character={character}
+                >
+                  <Styled.Sticky>
+                    <Styled.CharacterDetail
+                      onClick={() => showCharacterModal(character)}
+                      isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear}
+                      isCurrent={currentCharacter === character.title}
+                    >
+                      <Styled.CharacterImage src={imageUrl} alt={character.title} isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear} />
+                      {character.title}
+                      {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
+                      {currentYear?.year >= startYear && currentYear.year <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo{character.startYearUnknown ? '?' : ''}</Styled.AltTitle>}
+                      {character.endYearUnknown && currentYear?.year + 10 > character.endYear && <Styled.AltTitle>Death?</Styled.AltTitle>}
+                    </Styled.CharacterDetail>
+                  </Styled.Sticky>
+                </Styled.CharacterPill>
                 {
-                  seenIn
-                    .filter(s => s.character.title === character.title)
-                    .map(seen => <Styled.SeenIn
+                  character.seenIn
+                    .sort((a,b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
+                    .map((seen) => <Styled.SeenIn
                       seen={seen}
-                      key={`${seen.character.title} - ${seen.seenInEvent.title}`}
+                      character={character}
+                      key={`seen${seen.year}${character.title}`}
                     >
                       <Styled.Circle>
-                        <Styled.ToolTip>{seen.character.title} in {seen.seenInEvent.title}</Styled.ToolTip>
+                        <Styled.ToolTip>
+                          {character.title} is in&nbsp;
+                          {seen.events.map(e => 
+                            <Styled.SeenInEvent key={`${character.title}${e.title}`}>{e.title}</Styled.SeenInEvent>
+                          )}
+                        </Styled.ToolTip>
                       </Styled.Circle>
                     </Styled.SeenIn>
                     )
                 }
-                <Styled.Sticky>
-                  <Styled.CharacterDetail
-                    onClick={() => showCharacterModal(character)}
-                    isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear}
-                    isCurrent={currentCharacter === character.title}
-                  >
-                    <Styled.CharacterImage src={imageUrl} alt={character.title} isActive={currentYear?.year >= startYear && currentYear.year <= character.endYear} />
-                    {character.title}
-                    {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
-                    {currentYear?.year >= startYear && currentYear.year <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo{character.startYearUnknown ? '?' : ''}</Styled.AltTitle>}
-                    {character.endYearUnknown && currentYear?.year + 10 > character.endYear && <Styled.AltTitle>Death?</Styled.AltTitle>}
-                  </Styled.CharacterDetail>
-                </Styled.Sticky>
-              </Styled.Character>;
+              </React.Fragment>;
             }
             )
         }

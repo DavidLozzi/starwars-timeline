@@ -30,7 +30,7 @@ const Donate = ({ onClose }) => {
               buy me a Bantha milk below!
             </p>
             <p>
-              <a href="https://www.buymeacoffee.com/davidlozzi" target="_blank">
+              <a href="https://www.buymeacoffee.com/davidlozzi" target="_blank" rel="noreferrer">
                 <Styled.Coffee src="https://img.buymeacoffee.com/button-api/?text=Buy me a bantha milk&emoji=&slug=davidlozzi&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=337CBA" alt="Buy Me A Coffee" />
               </a>
             </p>
