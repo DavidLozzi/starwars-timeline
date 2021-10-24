@@ -17,7 +17,7 @@ addEventListener('scroll', () => {
 const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
-  const [currentYearIndex, setCurrentYearIndex] = React.useState(0);
+  const [currentYearIndex, setCurrentYearIndex] = React.useState(null);
   const [currentYear, setCurrentYear] = React.useState(0);
   const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
@@ -36,10 +36,13 @@ const Home = () => {
   };
 
   React.useEffect(() => {
-    const _currentYear = years.find(y => y.yearIndex === currentYearIndex + 5);
-    if (_currentYear) {
-      setCurrentYear(_currentYear);
-      window.location.hash = `year=${_currentYear.year}`;
+    if (currentYearIndex) {
+      const _currentYear = years.find(y => y.yearIndex === currentYearIndex + 5);
+      if (_currentYear) {
+        setCurrentYear(_currentYear);
+        const searchParams = new URLSearchParams(decodeURI(window.location.hash.substr(1)));
+        window.location.hash = `year=${_currentYear.year}${searchParams.get('character') ? `&character=${searchParams.get('character')}` : ''}`;
+      }
     }
   }, [currentYearIndex]);
 
@@ -48,7 +51,7 @@ const Home = () => {
       let scrollToYear = null;
       let scrollToChar = null;
       if (window.location.hash.length > 0) {
-        const searchParams = new URLSearchParams(window.location.hash.substr(1));
+        const searchParams = new URLSearchParams(window.location.hash.substr(1).replace('&amp;', '&'));
         scrollToYear = years.find(y => y.year === Number(searchParams.get('year')));
         scrollToChar = characters.find(c => c.title.toLowerCase() === (searchParams.get('character')?.toLowerCase() || 'luke skywalker'));
       } else {
@@ -57,6 +60,7 @@ const Home = () => {
       }
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
+      setCurrentYearIndex(scrollToYear.yearIndex);
     }
   }, [years, characters]);
 

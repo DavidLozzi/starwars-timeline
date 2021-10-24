@@ -1,6 +1,7 @@
 // preps data.json for the web consumption
 const data = require('../src/data/data.json'),
-  fs = require('fs');
+  fs = require('fs'),
+  { create } = require('xmlbuilder2');
  
 
 const convertYear = (year) => {
@@ -120,3 +121,53 @@ fs.writeFile('./src/data/characters.json', JSON.stringify(characters), (err) => 
     console.log('characters.json file created');
   }
 });
+
+// update index.html to include some content
+let html = '';
+
+html += '<h2>Star Wars Movies</h2>\n';
+html += '<p>Click on any of the Star Wars movies below to see it in the timline!</p>\n';
+html += '<ul>\n';
+data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
+  html += `<li><a href="https://timeline.starwars.guide/#year=${movie.startYear}">${movie.title}</a></li>\n`;
+});
+html += '</ul>\n\n';
+
+html += '<h2>Star Wars TV Shows</h2>\n';
+html += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
+html += '<ul>\n';
+data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
+  html += `<li><a href="https://timeline.starwars.guide/#year=${tv.startYear}">${tv.title}</a></li>\n`;
+});
+html += '</ul>\n';
+
+html += '<h2>Star Wars Characters</h2>\n';
+html += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
+html += '<ul>\n';
+data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'character').forEach(character => {
+  html += `<li><a href="https://timeline.starwars.guide/#year=${character.startYear}&character=${character.title}">${character.title}</a>\n
+  ${character.description}
+  </li>\n`;
+});
+html += '</ul>\n';
+var file = fs.readFileSync('./public/index.html', 'utf-8');
+
+html = `<div id="content">${html}</div>`;
+var newValue = file.replace(/<div id="content">[\s<>\/!=":#-éa-z0-9]*<\/ul>\n<\/div>/mig, html);
+
+fs.writeFileSync('./public/index.html', newValue, 'utf-8');
+
+
+const root = create({ version: '1.0' })
+  .ele('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' });
+
+data.forEach(d => {
+  root
+    .ele('url')
+    .ele('loc').txt(`https://timeline.starwars.guide/#${d.type}=${d.title}&year=${d.startYear}`).up()
+    .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
+});
+
+// convert the XML tree to string
+const xml = root.end({ prettyPrint: true });
+fs.writeFileSync('./public/sitemap.xml', xml, 'utf-8');
