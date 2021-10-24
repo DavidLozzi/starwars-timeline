@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useTheme } from 'styled-components';
 import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetail from '../../organisms/CharacterDetail';
@@ -23,34 +22,17 @@ const Home = () => {
   const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
-  const theme = useTheme();
-  const { filters } = useAppContext();
+  const { filters, scrollTo } = useAppContext();
 
 
   // zoom level, incremements of years to show
-  const [zoomLevel, setZoomLevel] = React.useState(1); 
+  const [zoomLevel] = React.useState(1); 
 
   const showCharacterModal = (character) => {
     setModalContents(<CharacterDetail character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
     window.location.hash = `year=${currentYear.year}&character=${character.title}`;
     analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
-  };
-
-  /* scroll to
-    _year: the year object
-    _character: the character object
-  */
-  const scrollTo = (_year, _character) => {
-    let scrollToY = window.scrollY;
-    if (_year) {
-      scrollToY = (_year.yearIndex - 5) * theme.layout.elements.year.height * theme.layout.pxInRem + theme.layout.topMargin;
-    }
-    let scrollToX = window.scrollX;
-    if (_character) {
-      scrollToX = _character.index * 80;
-    }
-    window.scrollTo(scrollToX, scrollToY);
   };
 
   React.useEffect(() => {
@@ -151,7 +133,7 @@ const Home = () => {
                       if (a.index < b.index) return -1;
                       return 0;
                     })
-                    .map((era, index) => <>
+                    .map((era) => <>
                       <Styled.Era
                         era={era}
                         key={`${era.title}1`}

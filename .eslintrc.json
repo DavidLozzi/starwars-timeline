@@ -1,14 +1,20 @@
 {
+  "env": {
+    "browser": true
+  },
   "extends": [
     "plugin:json/recommended",
+    "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "globals": {
+    "gtag": true
+  },
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true,
-      "impliedStrict": true
+      "jsx": true
     }
   },
   "rules": {
@@ -19,11 +25,14 @@
       "error",
       2
     ],
+    "no-unused-vars": 1,
     "quotes": [
       "error",
       "single"
     ],
     "react/prop-types": "off",
+    "react/jsx-uses-vars": 1,
+    "react/react-in-jsx-scope": 1,
     "semi": "error"
   }
 }

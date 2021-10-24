@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export default {
@@ -60,5 +59,12 @@ export default {
   Wookiepedia: styled.a`
     font-size: 1.4vh;
     display: inline-block;
+  `,
+  ListViewWrapper: styled.div`
+    padding: 1rem 0;
+  `,
+  ListViewTitle: styled.h3`
+    font-size: 1.6vh;
+    font-weight: bold;
   `
 };

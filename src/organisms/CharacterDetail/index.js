@@ -1,15 +1,26 @@
 import React from 'react';
-import Styled from './index.styles';
 import parse from 'html-react-parser';
+import ListView from '../../molecules/listview';
+import Styled from './index.styles';
+import { useAppContext } from '../../AppContext';
+import analytics, { ACTIONS } from '../../analytics';
 
 const CharacterDetail = ({ character, onClose, currentYear }) => {
   const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
   const [birthYear, setBirthYear] = React.useState(0);
+  const [seenInListData, setSeenInListData] = React.useState([]);
+  const { scrollTo } = useAppContext();
 
   const convertYear = (year) => {
     if (year <= 0) return `${year * -1} BBY`;
     if (year > 0) return `${year} ABY`;
     return 'none';
+  };
+
+  const goToSeenIn = (seenIn) => {
+    scrollTo(seenIn.year, character);
+    onClose();
+    analytics.event(ACTIONS.GO_TO_EVENT, 'character', seenIn.event.title);
   };
 
   React.useEffect(() => {
@@ -24,11 +35,14 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
 
 
   React.useEffect(() => {
+    let _birthYear = character.startYear;
     if (character.birthYear) {
-      setBirthYear(character.birthYear);
-    } else {
-      setBirthYear(character.startYear);
+      _birthYear = character.birthYear;
     }
+    setBirthYear(_birthYear);
+    const seenInData = [];
+    character.seenIn.sort((a,b)=>a.year > b.year ? 1 : -1).forEach(y => y.events.forEach(e => { seenInData.push({ text: `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)`, year: y, event: e }); }));
+    setSeenInListData(seenInData);
   }, []);
 
   return <Styled.Wrapper>
@@ -52,6 +66,10 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
         </Styled.MetadataWrapper>
       }
       {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
+      <Styled.ListViewWrapper>
+        <Styled.ListViewTitle>{character.title} has been in:</Styled.ListViewTitle>
+        <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />
+      </Styled.ListViewWrapper>
       {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank">Learn more on Wookiepedia.com</Styled.Wookiepedia>}
     </Styled.Body>
   </Styled.Wrapper>;
