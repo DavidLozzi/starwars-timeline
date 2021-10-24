@@ -26,8 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: node build_scripts/prepJson.js
     - run: npm ci
+    - run: node build_scripts/prepJson.js
     - run: npm run build --if-present
     - run: cp -r ./build/* ./docs
     - uses: EndBug/add-and-commit@v7.3.0
