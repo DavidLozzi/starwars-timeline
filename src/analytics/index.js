@@ -6,7 +6,8 @@ export const ACTIONS = {
   OPEN_FILTER: 'open filter',
   APPLY_FILTER: 'apply filter',
   CLEAR_FILTER: 'clear filter',
-  MENU_ITEM: 'menu item'
+  MENU_ITEM: 'menu item',
+  THEME: 'switch theme'
 };
 
 export default {

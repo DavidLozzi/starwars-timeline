@@ -11,6 +11,10 @@ export const MenuButton = styled.button`
   cursor: pointer;
   border: 0;
   background: none;
+
+  img {
+    color: ${({ theme }) => `rgb(${theme.palette.primary})`};
+  }
 `;
 
 export const MenuWrapper = styled.div`
@@ -28,8 +32,9 @@ export const Menu = styled.ul`
   padding: 0;
 `;
 
-export const MenuItem = styled(({ note, ...rest }) => <li {...rest} />)`
+export const MenuItem = styled(({ note, hr, ...rest }) => <li {...rest} />)`
   ${({ theme }) => theme.elements.menu.li};
   ${({ note }) => note && 'font-size: .8rem;'}
   padding: .5rem;
+  ${({ hr, theme }) => hr && `border-bottom: rgb(${theme.palette.lightergray}) solid 1px;`}
 `;

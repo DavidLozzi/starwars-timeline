@@ -1,11 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import theme from './themes/aNewHope';
+import analytics, { ACTIONS } from './analytics';
+import defaultTheme from './themes/aNewHope';
+import sithTheme from './themes/sith';
 
 const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => {}});
 
 const AppProvider = ({ children }) => {
   const [filters, setFilters] = React.useState({});
+  const [selectedTheme, setSelectedTheme] = React.useState(defaultTheme);
 
   const addFilter = (filterName, value) => setFilters(f => ({ ...f, [filterName]: value }));
   const removeFilter = (filterName) => setFilters(f => delete f[filterName]);
@@ -17,7 +20,7 @@ const AppProvider = ({ children }) => {
   const scrollTo = (_year, _character) => {
     let scrollToY = window.scrollY;
     if (_year) {
-      scrollToY = (_year.yearIndex - 5) * theme.layout.elements.year.height * theme.layout.pxInRem + theme.layout.topMargin;
+      scrollToY = (_year.yearIndex - 5) * selectedTheme.layout.elements.year.height * selectedTheme.layout.pxInRem + selectedTheme.layout.topMargin;
     }
     let scrollToX = window.scrollX;
     if (_character) {
@@ -26,9 +29,20 @@ const AppProvider = ({ children }) => {
     window.scrollTo(scrollToX, scrollToY);
   };
   
+  const setTheme = (themeName) => {
+    switch (themeName) {
+    case 'sith':
+      setSelectedTheme(sithTheme);
+      break;
+    default:
+      setSelectedTheme(defaultTheme);
+      break;
+    }
+    analytics.event(ACTIONS.THEME, '', themeName);
+  };
   return (
-    <appContext.Provider value={{ filters, addFilter, removeFilter, scrollTo }}>
-      <ThemeProvider theme={theme}>
+    <appContext.Provider value={{ filters, addFilter, removeFilter, scrollTo, setTheme }}>
+      <ThemeProvider theme={selectedTheme}>
         {children}
       </ThemeProvider>
     </appContext.Provider>

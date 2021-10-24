@@ -15,9 +15,10 @@ export const ListItem = styled.button`
   text-align: left;
   cursor: pointer;
   text-decoration: underline;
+  color: rgb(${({ theme }) => theme.palette.primary});
 
   :hover {
-    color: rgb(${({ theme }) => theme.palette.primary});
+    color: rgb(${({ theme }) => theme.palette.highlight});
 
   }
 `;

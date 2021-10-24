@@ -4,6 +4,7 @@ import menuSvg from '../../assets/menu.svg';
 import searchSvg from '../../assets/search.svg';
 import Donate from '../Donate';
 import Filter from '../Filter';
+import ThemeSwitcher from '../ThemeSwitcher';
 
 import * as Styled from './index.styles';
 
@@ -53,6 +54,7 @@ const MainMenu = () => {
       {openedMenu === MENUS.MAIN &&
         <Styled.MenuWrapper>
           <Styled.Menu>
+            <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem>
             <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
             <Styled.MenuItem><a href="#" onClick={openDonate}>No Ads - Donate</a></Styled.MenuItem>
             <Styled.MenuItem><a href="https://twitter.com/UltStarWarsTime" target="_blank" rel="noreferrer">@UltStarWarsTime</a></Styled.MenuItem>

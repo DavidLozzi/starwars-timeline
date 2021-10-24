@@ -15,6 +15,7 @@ export const Select = styled.button`
   display: flex;
   width: 100%;
   cursor: pointer;
+  color: rgb(${({ theme }) => theme.palette.primary});
 `;
 
 export const SelectButtons = styled.div`

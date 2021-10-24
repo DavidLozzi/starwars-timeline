@@ -24,10 +24,10 @@ const layout = { // in rem
 };
   
 const palette = {
-  primary: '13,90,160',
+  primary: '143,6,8',
   secondary: '175,99,158',
-  tertiary: '52,61,155',
-  highlight: '215,192,120',
+  tertiary: '143,6,8',
+  highlight: '245,15,20',
   black: '34,34,34',
   darkgray: '78,78,78',
   gray: '113,113,113',
@@ -38,28 +38,25 @@ const palette = {
 
 
 export default {
-  name: 'default',
+  name: 'sith',
   palette,
   elements: {
     body: {
       backgroundColor: `rgb(${palette.black})`
     },
     header: {
-      backgroundColor: `rgb(${palette.white})`,
+      backgroundColor: `rgb(${palette.black})`,
+      h1: {
+        color: `rgb(${palette.highlight})`
+      }
     },
     menu: {
       ul: {
         backgroundColor: `rgba(${palette.white}, 0.95)`
       },
-      li: css`
-        a {
-          color: rgb(${palette.black});
-
-          :hover {
-            color: rgb(${palette.primary});
-          }
-        }
-      `
+      li: {
+        
+      }
     },
     form: {
       button: (theme, invert) => css`
@@ -198,7 +195,7 @@ export default {
       fontStyle: 'italic'
     },
     seenInCircle: {
-      backgroundColor: `rgba(${palette.primary},0.9)`,
+      backgroundColor: `rgba(${palette.tertiary},0.9)`,
       borderRadius: '50%',
       border: `3px solid rgba(${palette.highlight},0.9)`,
       width: `${layout.gridWidth * .75}rem`,
