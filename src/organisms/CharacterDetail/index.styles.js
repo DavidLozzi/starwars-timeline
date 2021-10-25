@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default {
   Wrapper: styled.div`
+    ${({ theme }) => theme.elements.characterDetailModal};
     width: 100%;
   `,
   Close: styled.div`
@@ -59,6 +60,7 @@ export default {
   Wookiepedia: styled.a`
     font-size: 1.4vh;
     display: inline-block;
+    color: rgb(${({ theme }) => theme.palette.primary});
   `,
   ListViewWrapper: styled.div`
     padding: 1rem 0;

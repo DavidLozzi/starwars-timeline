@@ -51,12 +51,18 @@ export default {
       }
     },
     menu: {
-      ul: {
-        backgroundColor: `rgba(${palette.white}, 0.95)`
-      },
-      li: {
-        
-      }
+      ul: css`
+        background-color: rgba(${palette.black}, 0.95);
+      `,
+      li: css`
+        color: rgb(${palette.white});
+        a {
+          color: rgb(${palette.highlight});
+          :hover {
+            color: rgb(${palette.primary});
+          }
+        }
+      `,
     },
     form: {
       button: (theme, invert) => css`
@@ -88,21 +94,22 @@ export default {
           `}
         `
     },
-    era: {
-      background: `linear-gradient(120deg, rgba(${palette.lightgray},0.75) 0%, rgba(${palette.lightgray},0.75) 10%, rgba(${palette.black},0.1) 100%)`,
-    },
-    eraPill: {
-      backgroundColor: `rgb(${palette.gray})`,
-      borderRadius: '1rem',
-      padding: '.4rem',
-      fontSize: '.8rem'
-    },
+    era: css`
+      background: linear-gradient(120deg, rgba(${palette.darkgray},0.75) 0%, rgba(${palette.darkgray},0.75) 10%, rgba(${palette.black},0.1) 100%);
+    `,
+    eraPill: css`
+      background-color: rgb(${palette.darkgray});
+      color: rgb(${palette.lightergray});
+      border-radius: 1rem;
+      padding: .4rem;
+      font-size: .8rem;
+      `,
     year: {
-      borderTop: `solid 1px rgb(${palette.lightgray})`,
+      borderTop: `solid 1px rgb(${palette.gray})`,
       borderRadius: '1rem',
     },
     yearPill: {
-      backgroundColor: `rgb(${palette.lightgray})`,
+      backgroundColor: `rgb(${palette.gray})`,
       borderRadius: '1rem',
       padding: '.4rem',
       width: '3rem',
@@ -148,6 +155,9 @@ export default {
     characterDetailCurrent: {
       transition: 'all 150ms eaase-in-out'
     },
+    characterDetailModal: css`
+      color: rgb(${palette.white});
+    `,
     characterDetailCurrentAnimation: {
       '0%': {
         transform: 'rotate(3deg)',
@@ -197,7 +207,7 @@ export default {
     seenInCircle: {
       backgroundColor: `rgba(${palette.tertiary},0.9)`,
       borderRadius: '50%',
-      border: `3px solid rgba(${palette.highlight},0.9)`,
+      border: `3px solid rgba(${palette.highlight},0.8)`,
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
@@ -209,9 +219,27 @@ export default {
     modalWrapper: {
       backgroundColor: `rgba(${palette.gray},0.8)`
     },
-    modal: {
-      backgroundColor: `rgba(${palette.white},0.8)`
-    }
+    modal: css`
+      background-color: rgba(${palette.black},0.8);
+      color: ${palette.white};
+    `,
+    listItem: css`
+      border: 0;
+      background: transparent;
+      width: 100%;
+      height: 1.6rem;
+      font-size: .8rem;
+      display: block;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      text-decoration: underline;
+      color: rgb(${({ theme }) => theme.palette.highlight});
+
+      :hover {
+        color: rgb(${({ theme }) => theme.palette.primary});
+      }
+    `
   },
   layout
 };

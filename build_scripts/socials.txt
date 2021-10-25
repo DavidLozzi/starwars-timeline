@@ -76,6 +76,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-57&characte
 
 ***************
 
+📆  During the Republic Era, in the year of 55 BBY
+
+🎂  Gial Ackbar (maybe?) was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-55&character=Gial%20Ackbar
+#StarWars 
+
+***************
+
 📆  During the Republic Era, in the year of 54 BBY
 
 🎂  Count Dooku, Darth Maul was born
@@ -126,6 +135,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-46&characte
 🎂  Bo-Katan Kryze (maybe?), Kit Fisto (maybe?) was born
 
 Explore this date and more at https://timeline.starwars.guide/#year=-45&character=Bo-Katan%20Kryze
+#StarWars 
+
+***************
+
+📆  During the Republic Era, in the year of 44 BBY
+
+🎂  Greedo was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-44&character=Greedo
 #StarWars 
 
 ***************
@@ -199,16 +217,16 @@ Explore this date and more at https://timeline.starwars.guide/#year=-30&characte
 
 📆  During the Republic Era, in the year of 29 BBY
 
-🎂  Hunter (maybe?) was born
+🎂  Hera Syndulla, Hunter (maybe?) was born
 
-Explore this date and more at https://timeline.starwars.guide/#year=-29&character=Hunter
+Explore this date and more at https://timeline.starwars.guide/#year=-29&character=Hera%20Syndulla
 #StarWars 
 
 ***************
 
 📆  During the Republic Era, in the year of 25 BBY
 
-🎂  Fennec Shand (maybe?) was born
+🎂  Fennec Shand (maybe?), R5-D4 (maybe?) was born
 
 Explore this date and more at https://timeline.starwars.guide/#year=-25&character=Fennec%20Shand
 #StarWars 
@@ -298,7 +316,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-2&character
 
 🎂  Armitage Hux, Phasma (maybe?) was born
 
-🪦  Bail Organa, Beru Lars, Obi-Wan Kenobi, Owen Lars, Saw Gerrera, Wilhuff Tarkin died
+🪦  Bail Organa, Beru Lars, Greedo, Obi-Wan Kenobi, Owen Lars, Saw Gerrera, Wilhuff Tarkin died
 
 Explore this date and more at https://timeline.starwars.guide/#year=0&character=Armitage%20Hux
 #StarWars 
@@ -374,6 +392,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=11&character
 
 ***************
 
+📆  During the New Republic Era, in the year of 13 ABY
+
+🎂  Kaydel Ko Connix was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=13&character=Kaydel%20Ko%20Connix
+#StarWars 
+
+***************
+
 📆  During the New Republic Era, in the year of 15 ABY
 
 🎂  Rey Skywalker was born
@@ -418,9 +445,9 @@ Explore this date and more at https://timeline.starwars.guide/#year=32&character
 🍿  "Episode VIII: The Last Jedi" movie occurred
 🍿  "Star Wars Resistance" movie occurred
 
-🪦  Han Solo, Luke Skywalker, Phasma, Snoke died
+🪦  Gial Ackbar, Han Solo, Luke Skywalker, Phasma, Snoke died
 
-Explore this date and more at https://timeline.starwars.guide/#year=34&character=Han%20Solo
+Explore this date and more at https://timeline.starwars.guide/#year=34&character=Gial%20Ackbar
 #StarWars 
 
 ***************
@@ -439,7 +466,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=35&character
 
 📆  During the New Republic Era, in the year of 50 ABY
 
-🪦  BB-8 (maybe?), Babu Frik (maybe?), C-3PO (maybe?), Chewbacca (maybe?), Fennec Shand (maybe?), Finn (maybe?), Grogu (maybe?), Lando Calrissian (maybe?), Maz Kanata (maybe?), Poe Dameron (maybe?), Qi'ra (maybe?), R2-D2 (maybe?), Rey Skywalker (maybe?), Rose Tico (maybe?) died
+🪦  BB-8 (maybe?), Babu Frik (maybe?), C-3PO (maybe?), Chewbacca (maybe?), Fennec Shand (maybe?), Finn (maybe?), Grogu (maybe?), Hera Syndulla (maybe?), Kaydel Ko Connix (maybe?), Lando Calrissian (maybe?), Maz Kanata (maybe?), Poe Dameron (maybe?), Qi'ra (maybe?), R2-D2 (maybe?), R5-D4 (maybe?), Rey Skywalker (maybe?), Rose Tico (maybe?) died
 
 Explore this date and more at https://timeline.starwars.guide/#year=50&character=BB-8
 #StarWars 

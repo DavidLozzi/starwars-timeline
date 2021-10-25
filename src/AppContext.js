@@ -1,14 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import analytics, { ACTIONS } from './analytics';
-import defaultTheme from './themes/aNewHope';
+import jediTheme from './themes/jedi';
 import sithTheme from './themes/sith';
 
 const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => {}});
 
 const AppProvider = ({ children }) => {
   const [filters, setFilters] = React.useState({});
-  const [selectedTheme, setSelectedTheme] = React.useState(defaultTheme);
+  const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
 
   const addFilter = (filterName, value) => setFilters(f => ({ ...f, [filterName]: value }));
   const removeFilter = (filterName) => setFilters(f => delete f[filterName]);
@@ -35,7 +35,7 @@ const AppProvider = ({ children }) => {
       setSelectedTheme(sithTheme);
       break;
     default:
-      setSelectedTheme(defaultTheme);
+      setSelectedTheme(jediTheme);
       break;
     }
     analytics.event(ACTIONS.THEME, '', themeName);

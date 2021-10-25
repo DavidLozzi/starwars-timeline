@@ -1519,6 +1519,135 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 34,
+    "imageUrl": "/images/ackbar.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Episode VI: Return of the Jedi",
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi"
+    ],
+    "startYear": -55,
+    "startYearUnknown": true,
+    "title": "Gial Ackbar",
+    "type": "character",
+    "description": "Gial Ackbar was a veteran soldier and strong revolutionary leader during the Clone Wars, the Galactic Civil War, the Cold War, and the war between the Resistance and the First Order. Throughout his sixty years of service, Ackbar was regarded as a brilliant tactician.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Gial_Ackbar",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Mon Cala"
+      },
+      {
+        "name": "Species",
+        "value": "Mon Calamari"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/greedo.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Episode IV: A New Hope"
+    ],
+    "startYear": -44,
+    "title": "Greedo",
+    "type": "character",
+    "description": "Greedo was a bounty hunter who grew up on Tatooine in Mos Espa. During the Clone Wars, he was hired by the Trade Federation to kidnap Chi Eekway Papanoida and Che Amanwe Papanoida, the daughters of Chairman Papanoida, but was forced by the chairman to lead him and his son Ion to them. He was occasionally hired by crime lord Jabba the Hutt for various mercenary jobs, including the capture of Han Solo, who killed the luckless Rodian.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Greedo",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Rodia"
+      },
+      {
+        "name": "Species",
+        "value": "Rodian"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/hera.png",
+    "seenIn": [
+      "Star Wars: The Bad Batch",
+      "Star Wars Rebels"
+    ],
+    "startYear": -29,
+    "title": "Hera Syndulla",
+    "type": "character",
+    "description": "Hera Syndulla was a revolutionary leader who became a central figure in the early rebellion against the Galactic Empire and the formation of the Alliance to Restore the Republic. Born the daughter of General Cham Syndulla and Eleni Syndulla on Ryloth with a brother who died young, she saw firsthand the devastation of the Clone Wars and the reign of the Empire on her homeworld. Syndulla became an expert pilot and left her homeworld and her father's planetary resistance behind, setting off across the galaxy to build her own resistance movement against the Empire aboard her starship, the Ghost. Kanan Jarrus, a Jedi who survived Order 66, joined her during the Gorse conflict and eventually became her lover and father of her son. Her crew, the Spectres, mounted an insurgency on Lothal and was eventually comprised of Mandalorian warrior Sabine Wren, Lasat survivor Garazeb Orrelios, Syndulla's life-long astromech droid Chopper, and Padawan Ezra Bridger.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Hera_Syndulla",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Ryloth"
+      },
+      {
+        "name": "Species",
+        "value": "Twi'lek"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/connix.png",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode VIII: The Last Jedi",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": 13,
+    "title": "Kaydel Ko Connix",
+    "type": "character",
+    "description": "Kaydel Ko Connix lived during the era of the New Republic and the subsequent war between the First Order and the Resistance. Born on Dulathia, Connix ultimately joined the Resistance; and was stationed at their D'Qar headquarters. Serving under General Leia Organa, a veteran of the Rebel Alliance and leader of the Resistance, she worked as an operations controller in Fleet Command.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Kaydel_Ko_Connix",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Dulathia"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      }
+    ]
+  },
+  {
+    "altTitle": "Red",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/r5d4.png",
+    "seenIn": [
+      "Episode II: Attack of the Clones",
+      "Episode IV: A New Hope",
+      "The Mandalorian"
+    ],
+    "startYear": -25,
+    "startYearUnknown": true,
+    "title": "R5-D4",
+    "type": "character",
+    "description": "R5-D4, also called &quot;Red&quot; by Luke Skywalker, was a red and white-striped R5 astromech droid owned by a group of Jawas on Tatooine in the early days of the Galactic Civil War. Shortly before the Battle of Yavin, the Jawas attempted to sell him to Owen Lars, but the droid purposely malfunctioned his motivator at the advice of R2-D2, so that Lars could purchase R2-D2 in R5-D4's place. The droid survived an Imperial attack on the sandcrawler soon after, and went out to find the Rebellion. R5 was still active by the time of the New Republic Era, and eventually came into the service of Mos Eisley hangar manager Peli Motto. He projected a map of Tatooine in order to assist the Mandalorian Din Djarin.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/R5-D4",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Unknown"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      }
+    ]
+  },
+  {
     "endYear": -32,
     "startYear": -32,
     "title": "Episode I: The Phantom Menace",

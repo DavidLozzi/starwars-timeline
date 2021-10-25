@@ -12,7 +12,7 @@ const ThemeSwitcher = () => {
   return (
     <Styled.Wrapper>
       <Styled.Title>Theme:</Styled.Title>
-      <Styled.ImageButton src={jediSvg} alt="Switch to Jedi Theme" onClick={() => setTheme('jedi')} isActive={theme.name === 'default'} />
+      <Styled.ImageButton src={jediSvg} alt="Switch to Jedi Theme" onClick={() => setTheme('jedi')} isActive={theme.name === 'jedi'} />
       <Styled.ImageButton src={sithSvg} alt="Switch to Sith Theme" onClick={() => setTheme('sith')} isActive={theme.name === 'sith'} />
       <Styled.Note>(beta)</Styled.Note>
     </Styled.Wrapper>
