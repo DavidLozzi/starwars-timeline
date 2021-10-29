@@ -1,5 +1,14 @@
-📆  The Republic Era has begun, in the year of 85 BBY
-Explore this date and more at https://timeline.starwars.guide/#year=-85
+📆  The Republic Era has begun, in the year of 120 BBY
+Explore this date and more at https://timeline.starwars.guide/#year=-120
+#StarWars 
+
+***************
+
+📆  During the Republic Era, in the year of 102 BBY
+
+🎂  Count Dooku was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-102&character=Count%20Dooku
 #StarWars 
 
 ***************
@@ -87,9 +96,9 @@ Explore this date and more at https://timeline.starwars.guide/#year=-55&characte
 
 📆  During the Republic Era, in the year of 54 BBY
 
-🎂  Count Dooku, Darth Maul was born
+🎂  Darth Maul was born
 
-Explore this date and more at https://timeline.starwars.guide/#year=-54&character=Count%20Dooku
+Explore this date and more at https://timeline.starwars.guide/#year=-54&character=Darth%20Maul
 #StarWars 
 
 ***************
@@ -254,7 +263,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-22&characte
 
 🎂  Leia Organa, Luke Skywalker was born
 
-🪦  General Grievous, Kit Fisto, Mace Windu, Nute Gunray, Padmé Amidala Naberrie, Plo Koon died
+🪦  Count Dooku, General Grievous, Kit Fisto, Mace Windu, Nute Gunray, Padmé Amidala Naberrie, Plo Koon died
 
 Explore this date and more at https://timeline.starwars.guide/#year=-19&character=Leia%20Organa
 #StarWars 
@@ -301,9 +310,9 @@ Explore this date and more at https://timeline.starwars.guide/#year=-5
 
 📆  During the Imperial Era, in the year of 2 BBY
 
-🪦  Count Dooku, Darth Maul died
+🪦  Darth Maul died
 
-Explore this date and more at https://timeline.starwars.guide/#year=-2&character=Count%20Dooku
+Explore this date and more at https://timeline.starwars.guide/#year=-2&character=Darth%20Maul
 #StarWars 
 
 ***************

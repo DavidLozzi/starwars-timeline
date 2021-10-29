@@ -105,6 +105,7 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
     pointer-events: none; 
 
     ${Sticky} {
+      width: 4rem;
       left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
       ${({ theme }) => theme.elements.yearPill};
       ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.yearPillCurrent : ''};

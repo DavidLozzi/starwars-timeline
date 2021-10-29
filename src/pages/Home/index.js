@@ -112,7 +112,7 @@ const Home = () => {
     <>
       <Styled.Wrapper>
         <Styled.Header>
-          <Styled.H1>Ultimate Star Wars Timeline {filteredCharacters.length}</Styled.H1>
+          <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
           <MainMenu />
         </Styled.Header>
         {

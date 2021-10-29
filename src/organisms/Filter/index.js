@@ -89,11 +89,13 @@ const Filter = ({ onClose }) => {
           />
         </Styled.FormValue>
       </Styled.FormRow>
-      <Styled.FormRow>
-        <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
-      </Styled.FormRow>
+      {false &&
+        <Styled.FormRow>
+          <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
+        </Styled.FormRow>
+      }
       {
-        filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
+        false && filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
           <Styled.FormLabel>{filter.name}</Styled.FormLabel>
           <Styled.FormValue>
             <Dropdown
@@ -107,9 +109,11 @@ const Filter = ({ onClose }) => {
 
         </Styled.FormRow>)
       }
-      <Styled.FormRow justifyFlexEnd>
-        <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
-      </Styled.FormRow>
+      {false &&
+        <Styled.FormRow justifyFlexEnd>
+          <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
+        </Styled.FormRow>
+      }
       <Styled.FormRow justifyFlexEnd>
         <Styled.FormButton onClick={applyFilter}>Apply</Styled.FormButton>
         <Styled.FormButton onClick={clearFilters} invert>Clear</Styled.FormButton>

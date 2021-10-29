@@ -112,7 +112,6 @@ export default {
       backgroundColor: `rgb(${palette.gray})`,
       borderRadius: '1rem',
       padding: '.4rem',
-      width: '3rem',
       fontSize: '.8rem'
     },
     yearPillCurrent: {
