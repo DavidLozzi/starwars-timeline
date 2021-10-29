@@ -1,5 +1,5 @@
 // preps data.json for the web consumption
-const data = require('../src/data/data.json'),
+const data = require('./data.json'),
   fs = require('fs'),
   { create } = require('xmlbuilder2');
  
@@ -25,9 +25,6 @@ const sortByYear = (a, b) => {
   return 0;
 };
 
-let years = [];
-let characters = [];
-let seenIn = [];
 
 // build years
 const _newYears = [];
@@ -58,10 +55,10 @@ for (let i = _startYear; i <= _endYear; i++) {
 
   yearIndex++;
 }
-years = _newYears;
 
 
 // build characters
+const _filters = [];
 const _characters = data
   .filter(e => (e.type === 'character'))
   .sort((a, b) => {
@@ -94,6 +91,21 @@ const _characters = data
         seenInYears.push(charYear);
       }
     });
+
+    // get the filters
+    e.metadata.forEach(m => {
+      if (_filters.some(f => f.name === m.name)) {
+        const _filter = _filters.find(f => f.name === m.name);
+        if (_filter.values.some(v => v.name === m.value)) {
+          _filter.values.find(v => v.name === m.value).count += 1;
+        } else {
+          _filter.values.push({ name: m.value, count: 1 });
+        }
+      } else {
+        _filters.push({ name: m.name, values: [{ name: m.value, count: 1 }] });
+      }
+    });
+
     return ({
       ...e,
       index,
@@ -104,9 +116,21 @@ const _characters = data
       endYearDisplay: convertYear(e.endYear)
     });
   });
-characters = _characters;
+
+_filters.forEach(filter => {
+  filter.values.sort((a, b) => {
+    if (a.count < b.count) {
+      return 1;
+    } else if (a.count === b.count) {
+      if (a.name > b.name) {
+        return 1;
+      }
+    }
+    return -1;
+  });
+});
  
-fs.writeFile('./src/data/years.json', JSON.stringify(years), (err) => {
+fs.writeFile('./src/data/years.json', JSON.stringify(_newYears), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
   } else {
@@ -114,7 +138,7 @@ fs.writeFile('./src/data/years.json', JSON.stringify(years), (err) => {
   }
 });
 
-fs.writeFile('./src/data/characters.json', JSON.stringify(characters), (err) => {
+fs.writeFile('./src/data/characters.json', JSON.stringify(_characters), (err) => {
   if (err) {
     console.error(`characters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -122,7 +146,15 @@ fs.writeFile('./src/data/characters.json', JSON.stringify(characters), (err) => 
   }
 });
 
-// update index.html to include some content
+fs.writeFile('./src/data/filters.json', JSON.stringify(_filters), (err) => {
+  if (err) {
+    console.error(`characters writeFile ${JSON.stringify(err)}`);
+  } else {
+    console.log('characters.json file created');
+  }
+});
+
+// update index.html to include some content for some SEO
 let html = '';
 
 html += '<h2>Star Wars Movies</h2>\n';

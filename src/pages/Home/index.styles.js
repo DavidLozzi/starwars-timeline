@@ -47,9 +47,11 @@ export const Era = styled(({ era, characterCount, ...rest }) => <div data-testid
   position: absolute;
   top: ${({ era, theme }) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin}rem;
   left: 0;
+  min-width: 100vw;
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount)}rem`};
   height: ${({ era, theme }) => theme.layout.gridHeight * era.years}rem;
   z-index: 1;
+  transition: all 500ms ease-in-out;
 
   ${Sticky} {
     top: 6rem;
@@ -77,12 +79,14 @@ export const EraPill = styled((props) => <Era data-testid="era-pill" {...props} 
 
 export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) => <div data-testid="year" {...rest}/>)`
   ${({ theme }) => theme.elements.year};
+  min-width: calc(100vw - ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem);
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.year.leftPageMargin)}rem`};
   position: absolute;
   left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
   top: ${({ year, theme }) => theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem;
   z-index: 20;
   border-radius: 1rem;
+  transition: all 500ms ease-in-out;
 
   ${Sticky} {
     left: 3rem;
@@ -112,9 +116,11 @@ export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...r
   position: absolute;
   top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
   left: ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad)}rem;
+  min-width: calc(100vw - ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
   width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad) + 1)}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 30;
+  transition: all 500ms ease-in-out;
 
   ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentMovie : ''};
 

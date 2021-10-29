@@ -1,5 +1,5 @@
 // preps data.json for the web consumption
-const data = require('../src/data/data.json'),
+const data = require('./data.json'),
   fs = require('fs');
  
 

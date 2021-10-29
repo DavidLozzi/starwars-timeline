@@ -17,6 +17,7 @@ addEventListener('scroll', () => {
 const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
+  const [filteredCharacters, setFilteredCharacters] = React.useState([]);
   const [currentYearIndex, setCurrentYearIndex] = React.useState(null);
   const [currentYear, setCurrentYear] = React.useState(0);
   const [currentCharacter, setCurrentCharacter] = React.useState('');
@@ -77,11 +78,25 @@ const Home = () => {
       setCurrentCharacter(scrollToChar.title);
       setCurrentYear(scrollToYear);
     }
+    if (filters?.metadata && Object.keys(filters?.metadata).length > 0) {
+      let filtChars = charactersData;
+      Object.keys(filters.metadata).forEach(key => {
+        const filterValue = filters.metadata[key];
+        filtChars = filtChars.filter(c =>
+          c.metadata.some(m => m.name === key && m.value === filterValue)
+        );
+      });
+      filtChars = filtChars.map((c, index) => ({ ...c, index}));
+      setFilteredCharacters(filtChars);
+    } else {
+      setFilteredCharacters(charactersData);
+    }
   }, [filters]);
 
   React.useEffect(() => {
     setYears(yearsData);
     setCharacters(charactersData);
+    setFilteredCharacters(charactersData);
 
     setInterval(() => {
       if (window.scrolling) {
@@ -97,7 +112,7 @@ const Home = () => {
     <>
       <Styled.Wrapper>
         <Styled.Header>
-          <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
+          <Styled.H1>Ultimate Star Wars Timeline {filteredCharacters.length}</Styled.H1>
           <MainMenu />
         </Styled.Header>
         {
@@ -118,12 +133,12 @@ const Home = () => {
                   <Styled.Year 
                     year={year}
                     isCurrentYear={currentYear?.year === year.year}
-                    characterCount={characters.length}
+                    characterCount={filteredCharacters.length}
                   />
                   <Styled.YearPill 
                     year={year}
                     isCurrentYear={currentYear?.year === year.year}
-                    characterCount={characters.length}
+                    characterCount={filteredCharacters.length}
                   >
                     <Styled.Sticky>
                       {year.display}
@@ -141,12 +156,12 @@ const Home = () => {
                       <Styled.Era
                         era={era}
                         key={`${era.title}1`}
-                        characterCount={characters.length}
+                        characterCount={filteredCharacters.length}
                       />
                       <Styled.EraPill
                         era={era}
                         key={era.title}
-                        characterCount={characters.length}
+                        characterCount={filteredCharacters.length}
                       >
                         <Styled.Sticky>
                           <Styled.EraLabel>
@@ -160,7 +175,7 @@ const Home = () => {
                     movie={movie}
                     index={index}
                     key={movie.title}
-                    characterCount={characters.length}
+                    characterCount={filteredCharacters.length}
                     isCurrentYear={currentYear?.yearIndex === year.year}
                   >
                     <Styled.Sticky>
@@ -171,7 +186,7 @@ const Home = () => {
                   {movies.length > 0 && <Styled.Movie
                     movie={movies[0]}
                     index={spanningMovies.length}
-                    characterCount={characters.length}
+                    characterCount={filteredCharacters.length}
                     isCurrentYear={currentYear?.yearIndex === year.year}
                   >
                     <Styled.Sticky>
@@ -189,7 +204,9 @@ const Home = () => {
         }
         {
           characters
-            .map(character => {
+            .filter(c => filteredCharacters.some(f => f.title === c.title))
+            .map(c => {
+              const character = filteredCharacters.find(f => f.title === c.title);
               const startYear = character.birthYear || character.startYear;
               let imageUrl = character.imageUrl || '/images/starwars.jpg';
               if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {

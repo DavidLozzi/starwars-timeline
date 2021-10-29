@@ -19,7 +19,7 @@ export const MenuButton = styled.button`
 
 export const MenuWrapper = styled.div`
   position: fixed;
-  top: 3.5rem;
+  top: 2.5rem;
   right: 0rem;
   width: 50vw;
   max-width: 20rem;

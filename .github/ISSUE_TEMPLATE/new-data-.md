@@ -59,6 +59,6 @@ Provide a link to the content on Wookiepedia.
 
 # Edit the data directly
 
-The data for everything is in `/src/data.json`. You may edit that and submit a pull request.
+The data for everything is in `/build/data.json`. You may edit that and submit a pull request.
 
 **Thank you!**

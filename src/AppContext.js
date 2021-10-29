@@ -11,7 +11,10 @@ const AppProvider = ({ children }) => {
   const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
 
   const addFilter = (filterName, value) => setFilters(f => ({ ...f, [filterName]: value }));
-  const removeFilter = (filterName) => setFilters(f => delete f[filterName]);
+  const removeFilter = (filterName) => {
+    delete filters[filterName];
+    setFilters(filters);
+  };
 
   /* scroll to
     _year: the year object

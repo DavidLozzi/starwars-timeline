@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  position: relative;
+`;
+
+export const Input = styled.div`
   display: flex;
   border: 1px solid rgb(${({ theme }) => theme.palette.gray});
   border-radius: .2rem;
   width: 12rem;
-  justify-content: space-between;
 `;
 export const Select = styled.button`
   border: 0;
@@ -34,12 +37,13 @@ export const OptionWrapper = styled.ul`
   background-color: rgb(${({ theme }) => theme.palette.white});
   padding: 0;
   width: 12rem;
-  max-height: 20rem;
+  max-height: 19.5rem;
   overflow-y: scroll;
   overflow-x: hidden;
-  top: 3.4rem;
+  top: .5rem; 
   border: 1px solid rgb(${({ theme }) => theme.palette.lightgray});
   border-radius: .2rem;
+  z-index: 10;
 `;
 
 export const Option = styled.li`
