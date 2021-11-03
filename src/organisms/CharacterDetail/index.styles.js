@@ -48,9 +48,10 @@ export default {
     font-size: 1.6vh;
     display: flex;
     margin: 0 0 2vh 0;
+    justify-content: space-between;
   `,
   Metadata: styled.div`
-    min-width: 33%;
+    
   `,
   MetadataLabel: styled.div`
     font-weight: bold;
