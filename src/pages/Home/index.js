@@ -23,7 +23,7 @@ const Home = () => {
   const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
-  const { filters, scrollTo } = useAppContext();
+  const { filters, scrollTo, filterCount } = useAppContext();
 
 
   // zoom level, incremements of years to show
@@ -86,12 +86,14 @@ const Home = () => {
           c.metadata.some(m => m.name === key && m.value === filterValue)
         );
       });
-      filtChars = filtChars.map((c, index) => ({ ...c, index}));
+      filtChars = filtChars
+        .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
+        .map((c, index) => ({ ...c, index }));
       setFilteredCharacters(filtChars);
     } else {
       setFilteredCharacters(charactersData);
     }
-  }, [filters]);
+  }, [filters, filterCount]);
 
   React.useEffect(() => {
     setYears(yearsData);

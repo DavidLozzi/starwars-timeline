@@ -3,17 +3,24 @@ import { ThemeProvider } from 'styled-components';
 import analytics, { ACTIONS } from './analytics';
 import jediTheme from './themes/jedi';
 import sithTheme from './themes/sith';
+import { getKeyCount } from './utils';
 
 const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => {}});
 
 const AppProvider = ({ children }) => {
   const [filters, setFilters] = React.useState({});
+  const [filterCount, setFilterCount] = React.useState(0);
   const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
 
-  const addFilter = (filterName, value) => setFilters(f => ({ ...f, [filterName]: value }));
+  const addFilter = (filterName, value) => {
+    const _filters = { ...filters, [filterName]: value };
+    setFilters(_filters);
+    setFilterCount(getKeyCount(_filters));
+  };
   const removeFilter = (filterName) => {
     delete filters[filterName];
     setFilters(filters);
+    setFilterCount(getKeyCount(filters));
   };
 
   /* scroll to
@@ -44,7 +51,7 @@ const AppProvider = ({ children }) => {
     analytics.event(ACTIONS.THEME, '', themeName);
   };
   return (
-    <appContext.Provider value={{ filters, addFilter, removeFilter, scrollTo, setTheme }}>
+    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme }}>
       <ThemeProvider theme={selectedTheme}>
         {children}
       </ThemeProvider>

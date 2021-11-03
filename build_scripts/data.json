@@ -62,9 +62,13 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ],
-    "description": "Anakin Skywalker was a legendary Force-sensitive person who was a Jedi Knight of the Galactic Republic and the prophesied Chosen One of the Jedi Order, destined to bring balance to the Force. Also known as &quot;Ani&quot; during his childhood, Skywalker earned the moniker &amp; quot;Hero With No Fear&quot; from his accomplishments in the Clone Wars. His alter ego, Darth Vader, the Dark Lord of the Sith, was created when Skywalker turned to the dark side of the Force, during Episode III: Revenge of the Sith, pledging his allegiance to the Sith Lord Darth Sidious at the end of the Republic Era.",
+    "description": "Anakin Skywalker was a legendary character who was a Jedi Knight of the Galactic Republic and the prophesied Chosen One of the Jedi Order, destined to bring balance to the Force. Also known as &quot;Ani&quot; during his childhood, Skywalker earned the moniker &amp; quot;Hero With No Fear&quot; from his accomplishments in the Clone Wars. His alter ego, Darth Vader, the Dark Lord of the Sith, was created when Skywalker turned to the dark side of the Force, during Episode III: Revenge of the Sith, pledging his allegiance to the Sith Lord Darth Sidious at the end of the Republic Era.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Anakin_Skywalker"
   },
   {
@@ -91,9 +95,13 @@
       {
         "name": "Species",
         "value": "Kel Dor"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ],
-    "description": "Plo Koon was a Force-sensitive Jedi Master who served as a member of the Jedi High Council during the last years of the Galactic Republic. He served as a respected Jedi General during the Clone Wars, a pan-galactic conflict between the Republic and its splinter state, the Confederacy of Independent Systems. During the war he frequently undertook dangerous missions with the soldiers under his command, the 104th Battalion.",
+    "description": "Plo Koon was a Jedi Master who served as a member of the Jedi High Council during the last years of the Galactic Republic. He served as a respected Jedi General during the Clone Wars, a pan-galactic conflict between the Republic and its splinter state, the Confederacy of Independent Systems. During the war he frequently undertook dangerous missions with the soldiers under his command, the 104th Battalion.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Plo_Koon"
   },
   {
@@ -118,9 +126,13 @@
       {
         "name": "Species",
         "value": "Nautolan"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ],
-    "description": "Kit Fisto was a Force-sensitive Jedi Master during the final years of the Galactic Republic. Fisto was known as an expert swordsman, having some of the finest dueling skills in the Jedi Order. A celebrated fighter, Fisto served as a Jedi General of the Grand Army of the Republic during the Clone Wars, a galaxy-wide conflict between the Republic and Confederacy of Independent Systems. He fought in various campaigns and over the course of the war was accepted as a member of the Jedi High Council.",
+    "description": "Kit Fisto was a Jedi Master during the final years of the Galactic Republic. Fisto was known as an expert swordsman, having some of the finest dueling skills in the Jedi Order. A celebrated fighter, Fisto served as a Jedi General of the Grand Army of the Republic during the Clone Wars, a galaxy-wide conflict between the Republic and Confederacy of Independent Systems. He fought in various campaigns and over the course of the war was accepted as a member of the Jedi High Council.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Kit_Fisto"
   },
   {
@@ -144,6 +156,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ],
     "description": "Bo-Katan Kryze was the leader of the Nite Owls and a lieutenant in Death Watch, a terrorist group, and later during the Imperial Era, became Mand'alor. During the Clone Wars, Kryze's sister, Satine, ruled as the Duchess of Mandalore, and Kryze sought to undo her pacifistic teachings, believing that Mandalore should take pride in its martial history. After Governor Pre Vizsla of Concordia was publicly exposed as the leader of Death Watch, the splinter group was exiled from the Mandalore system. In 19 BBY, Kryze and Vizsla discovered the Sith Lords Maul and Savage Opress. With the Sith, they plotted to reclaim Mandalore, and through Maul's planning, united several criminal syndicates to form the Shadow Collective. Launching a takeover of Mandalore, Satine's rule was overthrown, and Vizsla took control of the planet.",
@@ -190,9 +206,13 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ],
-    "description": "Luke Skywalker, was Force-sensitive legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire. Along with his companions, Princess Leia Organa and General Han Solo, Skywalker served as a revolutionary on the side of the Alliance to Restore the Republic—an organization committed to the downfall of the Galactic Empire and the restoration of democracy. Following the war, Skywalker became a living legend, and was remembered as one of the greatest Jedi in galactic history. SPOILER ALERT: Luke is the son of Anakin.",
+    "description": "Luke Skywalker, was a legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire. Along with his companions, Princess Leia Organa and General Han Solo, Skywalker served as a revolutionary on the side of the Alliance to Restore the Republic—an organization committed to the downfall of the Galactic Empire and the restoration of democracy. Following the war, Skywalker became a living legend, and was remembered as one of the greatest Jedi in galactic history. SPOILER ALERT: Luke is the son of Anakin.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Luke_Skywalker"
   },
   {
@@ -203,7 +223,7 @@
     "startYear": -41,
     "title": "Grogu",
     "type": "character",
-    "description": "Grogu, known to many simply as &quot;the Child,&quot; or &quot;Baby Yoda&quot; (although not Yoda's child) was a Force-sensitive Jedi and Mandalorian foundling who belonged to the same species as Jedi Grand Master Yoda and Jedi Master Yaddle.",
+    "description": "Grogu, known to many simply as &quot;the Child,&quot; or &quot;Baby Yoda&quot; (although not Yoda's child) was a Jedi and Mandalorian foundling who belonged to the same species as Jedi Grand Master Yoda and Jedi Master Yaddle.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Grogu",
     "metadata": [
       {
@@ -213,6 +233,10 @@
       {
         "name": "Species",
         "value": "Yoda's Species"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ],
     "seenIn": [
@@ -238,7 +262,7 @@
     "title": "Ahsoka Tano",
     "imageUrl": "/images/ahsoka-young.png",
     "type": "character",
-    "description": "Ahsoka Tano was a Force-sensitive Togruta, former Jedi Padawan who, after the Clone Wars, helped establish a network of various rebel cells against the Galactic Empire. Tano was discovered on her homeworld of Shili by Jedi Master Plo Koon, who brought her to the Jedi Temple on Coruscant to receive Jedi training. Following the outbreak of the Clone Wars, Jedi Grand Master Yoda assigned the young Tano to be the Padawan learner of Jedi Knight Anakin Skywalker, who nicknamed her &quot;Snips&quot; when she joined him at the Battle of Christophsis. Whereas Tano was eager to prove herself, Skywalker had a reputation for recklessness, and they had a rather difficult start as master and apprentice. Yet they worked together to rescue Rotta, the son of crime lord Jabba Desilijic Tiure, and returned Rotta to his father, thus facilitating a crucial alliance between the Hutt Clan and the Galactic Republic.",
+    "description": "Ahsoka Tano was a former Jedi Padawan who, after the Clone Wars, helped establish a network of various rebel cells against the Galactic Empire. Tano was discovered on her homeworld of Shili by Jedi Master Plo Koon, who brought her to the Jedi Temple on Coruscant to receive Jedi training. Following the outbreak of the Clone Wars, Jedi Grand Master Yoda assigned the young Tano to be the Padawan learner of Jedi Knight Anakin Skywalker, who nicknamed her &quot;Snips&quot; when she joined him at the Battle of Christophsis. Whereas Tano was eager to prove herself, Skywalker had a reputation for recklessness, and they had a rather difficult start as master and apprentice. Yet they worked together to rescue Rotta, the son of crime lord Jabba Desilijic Tiure, and returned Rotta to his father, thus facilitating a crucial alliance between the Hutt Clan and the Galactic Republic.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Ahsoka_Tano",
     "metadata": [
       {
@@ -248,6 +272,10 @@
       {
         "name": "Species",
         "value": "Togruta"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -295,6 +323,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -320,6 +352,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -346,6 +382,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -362,7 +402,7 @@
     "startYear": 11,
     "title": "Finn",
     "type": "character",
-    "description": "Finn, formerly designated FN-2187 (&quot;Eight-Seven&quot;), was a Force-sensitive person, and stormtrooper who served the First Order until his desertion and subsequent defection to the Resistance during the First Order/Resistance War. Though trained since birth to be a loyal and obedient soldier, FN-2187's conscience conflicted with the methods of the First Order. For a time he was unwilling to support the Resistance, hoping to escape the galactic conflict instead of fighting for a cause he believed was doomed to fail. As the galaxy became consumed by war, the renegade trooper was ultimately forced to decide where his true loyalties lay.",
+    "description": "Finn, formerly designated FN-2187 (&quot;Eight-Seven&quot;), was a  stormtrooper who served the First Order until his desertion and subsequent defection to the Resistance during the First Order/Resistance War. Though trained since birth to be a loyal and obedient soldier, FN-2187's conscience conflicted with the methods of the First Order. For a time he was unwilling to support the Resistance, hoping to escape the galactic conflict instead of fighting for a cause he believed was doomed to fail. As the galaxy became consumed by war, the renegade trooper was ultimately forced to decide where his true loyalties lay.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Finn",
     "metadata": [
       {
@@ -372,6 +412,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -412,6 +456,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -442,7 +490,7 @@
     "startYear": -120,
     "title": "Yoda",
     "type": "character",
-    "description": "Yoda, a Force-sensitive being belonging to a mysterious species, was a legendary Jedi Master who witnessed the rise and fall of the Galactic Republic, followed by the rise of the Galactic Empire. Small in stature but revered for his wisdom and power, Yoda trained generations of Jedi, ultimately serving as the Grand Master of the Jedi Order. Having lived through nine centuries of galactic history, he played integral roles in the Clone Wars, the rebirth of the Jedi through Luke Skywalker, and unlocking the path to immortality.",
+    "description": "Yoda, a being belonging to a mysterious species, was a legendary Jedi Master who witnessed the rise and fall of the Galactic Republic, followed by the rise of the Galactic Empire. Small in stature but revered for his wisdom and power, Yoda trained generations of Jedi, ultimately serving as the Grand Master of the Jedi Order. Having lived through nine centuries of galactic history, he played integral roles in the Clone Wars, the rebirth of the Jedi through Luke Skywalker, and unlocking the path to immortality.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Yoda",
     "metadata": [
       {
@@ -452,6 +500,10 @@
       {
         "name": "Species",
         "value": "Yoda's Species"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -469,6 +521,10 @@
       {
         "name": "Species",
         "value": "Chiss"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ],
     "seenIn": [
@@ -519,6 +575,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -549,6 +609,10 @@
       {
         "name": "Clone",
         "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -574,6 +638,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -587,7 +655,7 @@
     "startYear": -80,
     "title": "Qui-Gon Jinn",
     "type": "character",
-    "description": "Qui-Gon Jinn, was Force-sensitive, venerable if maverick Jedi Master who lived during the last years of the Republic Era. He was a wise and well-respected member of the Jedi Order, and was offered a seat on the Jedi Council, but chose to reject and follow his own path. Adhering to a philosophy centered around the Living Force, Jinn strove to follow the will of the Force even when his actions conflicted with the wishes of the High Council. After encountering Anakin Skywalker, Jinn brought him to the Jedi Temple on Coruscant, convinced he had found the Chosen One. His dying wish was for Skywalker to become a Jedi and ultimately restore balance to the Force.",
+    "description": "Qui-Gon Jinn, was a Jedi Master who lived during the last years of the Republic Era. He was a wise and well-respected member of the Jedi Order, and was offered a seat on the Jedi Council, but chose to reject and follow his own path. Adhering to a philosophy centered around the Living Force, Jinn strove to follow the will of the Force even when his actions conflicted with the wishes of the High Council. After encountering Anakin Skywalker, Jinn brought him to the Jedi Temple on Coruscant, convinced he had found the Chosen One. His dying wish was for Skywalker to become a Jedi and ultimately restore balance to the Force.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Qui-Gon_Jinn",
     "metadata": [
       {
@@ -597,6 +665,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -623,6 +695,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -650,6 +726,10 @@
       {
         "name": "Species",
         "value": "Gungan"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -664,7 +744,7 @@
     "startYear": -54,
     "title": "Darth Maul",
     "type": "character",
-    "description": "Maul, once known as Darth Maul, was Force-sensitive who established himself as a crime lord during the reign of the Galactic Empire. However, he was once the Sith apprentice of Darth Sidious, and therefore, a Dark Lord of the Sith. Having trained in the ways of the Force, Maul was a formidable warrior strong with the dark side and deadly skilled in lightsaber combat. In addition, he was a scheming mastermind who plotted his return to power despite losing his place in the ranks of the Sith.",
+    "description": "Maul, once known as Darth Maul, established himself as a crime lord during the reign of the Galactic Empire. However, he was once the Sith apprentice of Darth Sidious, and therefore, a Dark Lord of the Sith. Having trained in the ways of the Force, Maul was a formidable warrior strong with the dark side and deadly skilled in lightsaber combat. In addition, he was a scheming mastermind who plotted his return to power despite losing his place in the ranks of the Sith.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Maul",
     "metadata": [
       {
@@ -674,6 +754,10 @@
       {
         "name": "Species",
         "value": "Zabrak"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -690,7 +774,7 @@
     "startYear": -102,
     "title": "Count Dooku",
     "type": "character",
-    "description": "Dooku, Force-sensitive, was a Jedi Master that fell to the dark side of the Force and became the Dark Lord of the Sith Darth Tyranus during the final years of the Galactic Republic. After leaving the Jedi Order, he claimed the title Count of Serenno and, during the Clone Wars, served as Head of State of the Confederacy of Independent Systems. He was the second apprentice of Darth Sidious, the Dark Lord of the Sith whose plan to conquer the galaxy relied on Dooku leading a pan-galactic secessionist movement against the Republic. As such, Dooku immersed himself in the dark side and worked tirelessly to advance his and his master's plans, but ultimately forgot that treachery was the way of the Sith.",
+    "description": "Dooku was a Jedi Master that fell to the dark side of the Force and became the Dark Lord of the Sith Darth Tyranus during the final years of the Galactic Republic. After leaving the Jedi Order, he claimed the title Count of Serenno and, during the Clone Wars, served as Head of State of the Confederacy of Independent Systems. He was the second apprentice of Darth Sidious, the Dark Lord of the Sith whose plan to conquer the galaxy relied on Dooku leading a pan-galactic secessionist movement against the Republic. As such, Dooku immersed himself in the dark side and worked tirelessly to advance his and his master's plans, but ultimately forgot that treachery was the way of the Sith.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Dooku",
     "databank": "https://www.starwars.com/databank/count-dooku",
     "metadata": [
@@ -701,6 +785,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -726,6 +814,10 @@
       {
         "name": "Species",
         "value": "Kaleesh"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -772,6 +864,10 @@
       {
         "name": "Clone",
         "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -799,6 +895,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -831,6 +931,10 @@
       {
         "name": "Species",
         "value": "Wookie"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -859,6 +963,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -873,7 +981,7 @@
     "startYear": 4,
     "title": "Snoke",
     "type": "character",
-    "description": "Snoke was a Force-sensitive humanoid strandcast who ruled the First Order as Supreme Leader during the New Republic Era. Possibly unaware of his true nature, Snoke was an artificial genetic construct created on the planet Exegol by the resurrected Dark Lord of the Sith and former Galactic Emperor Darth Sidious. Cloned from Sidious with various genetic sciences, Snoke was designed to be a proxy that the Sith Lord could manipulate, though he possessed an independent mind and free will.",
+    "description": "Snoke ruled the First Order as Supreme Leader during the New Republic Era. Possibly unaware of his true nature, Snoke was an artificial genetic construct created on the planet Exegol by the resurrected Dark Lord of the Sith and former Galactic Emperor Darth Sidious. Cloned from Sidious with various genetic sciences, Snoke was designed to be a proxy that the Sith Lord could manipulate, though he possessed an independent mind and free will.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Snoke",
     "metadata": [
       {
@@ -886,6 +994,10 @@
       },
       {
         "name": "Clone",
+        "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
         "value": "Yes"
       }
     ]
@@ -911,6 +1023,10 @@
       {
         "name": "Species",
         "value": "Anzellan"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -938,6 +1054,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -962,6 +1082,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -991,6 +1115,10 @@
       {
         "name": "Species",
         "value": "Hutt"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1019,6 +1147,10 @@
       {
         "name": "Species",
         "value": "Neimoidian"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1056,6 +1188,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1095,6 +1231,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1124,7 +1264,7 @@
     "startYear": -19,
     "title": "Leia Organa",
     "type": "character",
-    "description": "Leia Skywalker Organa Solo was a Force-sensitive political and military leader who served in the Alliance to Restore the Republic during the Imperial Era and the New Republic and Resistance in the subsequent New Republic Era. Adopted into the House of Organa, the Alderaanian royal family, she was Princess Leia Organa of Alderaan, a planet in the Core Worlds known for its dedication to pacifism. The princess was raised as the daughter of Senator Bail Prestor Organa and his wife, Queen Breha Organa, making her the heir to the Alderaanian monarchy. Instilled with the values of her adopted homeworld, Organa devoted her life to the restoration of democracy by opposing authoritarian regimes such as the Galactic Empire and the First Order.",
+    "description": "Leia Skywalker Organa Solo was a political and military leader who served in the Alliance to Restore the Republic during the Imperial Era and the New Republic and Resistance in the subsequent New Republic Era. Adopted into the House of Organa, the Alderaanian royal family, she was Princess Leia Organa of Alderaan, a planet in the Core Worlds known for its dedication to pacifism. The princess was raised as the daughter of Senator Bail Prestor Organa and his wife, Queen Breha Organa, making her the heir to the Alderaanian monarchy. Instilled with the values of her adopted homeworld, Organa devoted her life to the restoration of democracy by opposing authoritarian regimes such as the Galactic Empire and the First Order.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Leia_Skywalker_Organa_Solo",
     "metadata": [
       {
@@ -1134,6 +1274,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -1174,6 +1318,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1215,6 +1363,10 @@
       {
         "name": "Creator",
         "value": "Anakin Skywalker"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1253,6 +1405,10 @@
       {
         "name": "Species",
         "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1281,6 +1437,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1296,7 +1456,7 @@
     "startYear": 5,
     "title": "Ben Solo",
     "type": "character",
-    "description": "Ben Solo, Force-sensitive, fell to the dark side of the Force as Kylo Ren, master of the Knights of Ren and eventual Supreme Leader of the First Order, but returned to the light side shortly before his death. He was born at the end of the Galactic Civil War in 5 ABY, when the Galactic Empire surrendered to the New Republic. His parents, General Han Solo and Princess Leia Organa, were considered great heroes of the Alliance to Restore the Republic, as was his maternal uncle, Jedi Master Luke Skywalker. The heir to the Skywalker bloodline, Ben Solo possessed raw strength in the Force and had the potential for limitless power. During the New Republic Era, Solo was part of a new generation of Jedi apprentices trained by his uncle. He was seduced by the dark side through the machinations of the phantom Dark Lord of the Sith, Darth Sidious, and his creation, Supreme Leader Snoke. Sidious's son had a daughter, Rey, who was born to her mother in 15 ABY. Unknown to any at the time, Solo and Rey were counterparts as a dyad in the Force.",
+    "description": "Ben Solo fell to the dark side of the Force as Kylo Ren, master of the Knights of Ren and eventual Supreme Leader of the First Order, but returned to the light side shortly before his death. He was born at the end of the Galactic Civil War in 5 ABY, when the Galactic Empire surrendered to the New Republic. His parents, General Han Solo and Princess Leia Organa, were considered great heroes of the Alliance to Restore the Republic, as was his maternal uncle, Jedi Master Luke Skywalker. The heir to the Skywalker bloodline, Ben Solo possessed raw strength in the Force and had the potential for limitless power. During the New Republic Era, Solo was part of a new generation of Jedi apprentices trained by his uncle. He was seduced by the dark side through the machinations of the phantom Dark Lord of the Sith, Darth Sidious, and his creation, Supreme Leader Snoke. Sidious's son had a daughter, Rey, who was born to her mother in 15 ABY. Unknown to any at the time, Solo and Rey were counterparts as a dyad in the Force.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Ben_Solo",
     "metadata": [
       {
@@ -1306,6 +1466,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -1332,6 +1496,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1358,6 +1526,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1383,6 +1555,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1410,6 +1586,10 @@
       {
         "name": "Species",
         "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1426,7 +1606,7 @@
     "birthYear": -973,
     "title": "Maz Kanata",
     "type": "character",
-    "description": "Maz Kanata, Force-sensitive, was born over a millennium before the brewing war between the First Order and the Resistance. Living in an ancient castle on the planet Takodana, Kanata gained a reputation as a &quot;pirate queen&quot; by allowing traveling smugglers to reside in her home—as long as they honored her prohibitions against politics and war. Kanata spent centuries traveling the galaxy, collecting antiques and trinkets, which she kept inside the storehouses and vaults of her castle. One notable item was the lightsaber crafted by Jedi Knight Anakin Skywalker during the Clone Wars, and later wielded by Skywalker's son, Luke, who was instrumental in toppling the Galactic Empire.",
+    "description": "Maz Kanata was born over a millennium before the brewing war between the First Order and the Resistance. Living in an ancient castle on the planet Takodana, Kanata gained a reputation as a &quot;pirate queen&quot; by allowing traveling smugglers to reside in her home—as long as they honored her prohibitions against politics and war. Kanata spent centuries traveling the galaxy, collecting antiques and trinkets, which she kept inside the storehouses and vaults of her castle. One notable item was the lightsaber crafted by Jedi Knight Anakin Skywalker during the Clone Wars, and later wielded by Skywalker's son, Luke, who was instrumental in toppling the Galactic Empire.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Maz_Kanata",
     "metadata": [
       {
@@ -1436,6 +1616,10 @@
       {
         "name": "Species",
         "value": "Unknown"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
       }
     ]
   },
@@ -1460,6 +1644,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1488,6 +1676,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1515,6 +1707,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1542,6 +1738,10 @@
       {
         "name": "Species",
         "value": "Mon Calamari"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1566,6 +1766,10 @@
       {
         "name": "Species",
         "value": "Rodian"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1591,6 +1795,10 @@
       {
         "name": "Species",
         "value": "Twi'lek"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1617,6 +1825,10 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1644,6 +1856,10 @@
       {
         "name": "Species",
         "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },

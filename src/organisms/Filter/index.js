@@ -1,6 +1,7 @@
 import React from 'react';
-import filterData from '../../data/filters.json';
 import analytics, { ACTIONS } from '../../analytics';
+import { getKeyCount } from '../../utils';
+import filterData from '../../data/filters.json';
 import { useAppContext } from '../../AppContext';
 import charactersData from '../../data/characters.json';
 import Dropdown from '../../molecules/dropdown';
@@ -12,8 +13,8 @@ import * as Styled from './index.styles';
 const Filter = ({ onClose }) => {
   const { addFilter, removeFilter, filters } = useAppContext();
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
-  const [selectedFilter, setSelectedFilter] = React.useState(filters?.metadata || {});
-  const [selectedFilterCount, setselectedFilterCount] = React.useState(0);
+  const [selectedFilter, setSelectedFilter] = React.useState({});
+  const [selectedFilterCount, setSelectedFilterCount] = React.useState(0);
   const [characterOptions, setCharacterOptions] = React.useState([]);
   const [characterCount, setCharacterCount] = React.useState(0);
 
@@ -42,15 +43,13 @@ const Filter = ({ onClose }) => {
   const selectFilter = (filter, value) => {
     const selFilter = { ...selectedFilter, [filter.name]: value.value };
     setSelectedFilter(selFilter);
-    setselectedFilterCount(getKeyCount(selFilter));
+    setSelectedFilterCount(getKeyCount(selFilter));
   };
-
-  const getKeyCount = (o) => Object.keys(o).length;
 
   const clearSelectedFilter = (filter) => {
     delete selectedFilter[filter.name];
     setSelectedFilter(selectedFilter);
-    setselectedFilterCount(getKeyCount(selectFilter));
+    setSelectedFilterCount(getKeyCount(selectedFilter));
   };
 
   React.useEffect(() => {
@@ -72,6 +71,11 @@ const Filter = ({ onClose }) => {
     setCharacterOptions(charactersData
       .sort((a, b) => a.title > b.title ? 1 : -1)
       .map(c => ({ text: c.title, value: c.title })));
+    
+    if (filters?.metadata) {
+      setSelectedFilter(filters.metadata);
+      setSelectedFilterCount(getKeyCount(filters.metadata));
+    } 
   }, []);
   
   return (
@@ -89,13 +93,11 @@ const Filter = ({ onClose }) => {
           />
         </Styled.FormValue>
       </Styled.FormRow>
-      {false &&
-        <Styled.FormRow>
-          <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
-        </Styled.FormRow>
-      }
+      <Styled.FormRow>
+        <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
+      </Styled.FormRow>
       {
-        false && filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
+        filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
           <Styled.FormLabel>{filter.name}</Styled.FormLabel>
           <Styled.FormValue>
             <Dropdown
@@ -109,11 +111,10 @@ const Filter = ({ onClose }) => {
 
         </Styled.FormRow>)
       }
-      {false &&
-        <Styled.FormRow justifyFlexEnd>
-          <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
-        </Styled.FormRow>
-      }
+      <Styled.FormRow justifyFlexEnd>
+        <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
+      </Styled.FormRow>
+
       <Styled.FormRow justifyFlexEnd>
         <Styled.FormButton onClick={applyFilter}>Apply</Styled.FormButton>
         <Styled.FormButton onClick={clearFilters} invert>Clear</Styled.FormButton>
