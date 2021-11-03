@@ -196,7 +196,7 @@ const root = create({ version: '1.0' })
 data.forEach(d => {
   root
     .ele('url')
-    .ele('loc').txt(`https://timeline.starwars.guide/#${d.type}=${d.title}&year=${d.startYear}`).up()
+    .ele('loc').txt(`https://timeline.starwars.guide/${d.type}/${d.title}/#${d.type}=${d.title}&year=${d.startYear}`).up()
     .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
 });
 
