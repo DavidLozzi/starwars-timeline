@@ -8196,6 +8196,11 @@
   "resolved" "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
   "version" "2.2.0"
 
+"pagemap@^1.4.0":
+  "integrity" "sha512-coh+zgVPA/bPBGTe4vN3WaeWATp8YD4Ga7Hu3raRIIKyLAyEslepA4ZTrth9L+wja4Zmq2242VqiArutLH9Bmg=="
+  "resolved" "https://registry.npmjs.org/pagemap/-/pagemap-1.4.0.tgz"
+  "version" "1.4.0"
+
 "pako@~1.0.5":
   "integrity" "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
   "resolved" "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz"
