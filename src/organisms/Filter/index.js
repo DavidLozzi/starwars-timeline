@@ -4,6 +4,7 @@ import { getKeyCount } from '../../utils';
 import filterData from '../../data/filters.json';
 import { useAppContext } from '../../AppContext';
 import charactersData from '../../data/characters.json';
+import seenInData from '../../data/seenIn.json';
 import Dropdown from '../../molecules/dropdown';
 import searchSvg from '../../assets/search.svg';
 import filtersSvg from '../../assets/filters.svg';
@@ -15,6 +16,7 @@ const Filter = ({ onClose }) => {
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
   const [selectedFilter, setSelectedFilter] = React.useState({});
   const [selectedFilterCount, setSelectedFilterCount] = React.useState(0);
+  const [selectedMovie, setSelectedMovie] = React.useState('');
   const [characterOptions, setCharacterOptions] = React.useState([]);
   const [characterCount, setCharacterCount] = React.useState(0);
 
@@ -27,6 +29,10 @@ const Filter = ({ onClose }) => {
       addFilter('metadata', selectedFilter);
       const selectedFilterString = Object.keys(selectedFilter).map(k => `${k}=${selectedFilter[k]}`).join(';');
       analytics.event(ACTIONS.APPLY_FILTER, 'filter', selectedFilterString);
+    }
+    if (selectedMovie) {
+      addFilter('movie', selectedMovie);
+      analytics.event(ACTIONS.APPLY_FILTER, 'filter', selectedMovie);
     }
     onClose();
   };
@@ -96,6 +102,18 @@ const Filter = ({ onClose }) => {
       <Styled.FormRow>
         <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
       </Styled.FormRow>
+      <Styled.FormRow>
+        <Styled.FormLabel>Seen in Movie or TV Show:</Styled.FormLabel>
+        <Styled.FormValue>
+          <Dropdown
+            values={seenInData.map(s => ({ text: `${s.name} (${s.count})`, value: s.name}))}
+            defaultText="Filter by Movie/TV Show"
+            selectedText={selectedMovie}
+            onSelect={(v) => setSelectedMovie(v.value)}
+            onClear={() => setSelectedMovie('')}
+          /> 
+        </Styled.FormValue>
+      </Styled.FormRow>
       {
         filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
           <Styled.FormLabel>{filter.name}</Styled.FormLabel>
@@ -114,7 +132,6 @@ const Filter = ({ onClose }) => {
       <Styled.FormRow justifyFlexEnd>
         <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
       </Styled.FormRow>
-
       <Styled.FormRow justifyFlexEnd>
         <Styled.FormButton onClick={applyFilter}>Apply</Styled.FormButton>
         <Styled.FormButton onClick={clearFilters} invert>Clear</Styled.FormButton>

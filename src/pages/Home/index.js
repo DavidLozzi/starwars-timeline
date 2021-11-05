@@ -8,6 +8,7 @@ import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
 import MainMenu from '../../organisms/MainMenu';
+import Minimap from '../../organisms/Minimap/Minimap';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -24,7 +25,6 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const { filters, scrollTo, filterCount } = useAppContext();
-
 
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1); 
@@ -111,7 +111,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <Minimap>
       <Styled.Wrapper>
         <Styled.Header>
           <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
@@ -262,7 +262,7 @@ const Home = () => {
         }
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
-    </>
+    </Minimap>
   );
 };
 

@@ -8,7 +8,7 @@ export const Input = styled.div`
   display: flex;
   border: 1px solid rgb(${({ theme }) => theme.palette.gray});
   border-radius: .2rem;
-  width: 12rem;
+  width: 13rem;
 `;
 export const Select = styled.button`
   border: 0;
@@ -19,6 +19,7 @@ export const Select = styled.button`
   width: 100%;
   cursor: pointer;
   color: rgb(${({ theme }) => theme.palette.primary});
+  overflow: hidden;
 `;
 
 export const SelectButtons = styled.div`

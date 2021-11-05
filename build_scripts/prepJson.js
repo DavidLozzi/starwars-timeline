@@ -59,6 +59,7 @@ for (let i = _startYear; i <= _endYear; i++) {
 
 // build characters
 const _filters = [];
+const _seenInFilter = [];
 const _characters = data
   .filter(e => (e.type === 'character'))
   .sort((a, b) => {
@@ -106,6 +107,18 @@ const _characters = data
       }
     });
 
+    //get the seen ins
+    e.seenIn.forEach(s => {
+      const movie = data.find(d => d.title === s);
+      if (_seenInFilter.some(f => f.name === s)) {
+        const _seenIn = _seenInFilter.find(f => f.name === s);
+        _seenIn.count += 1;
+      } else {
+        _seenInFilter.push({ name: s, startYear: movie.startYear, count: 1});
+      }
+    });
+    _seenInFilter.sort((a,b) => a.startYear > b.startYear ? 1 : -1);
+
     return ({
       ...e,
       index,
@@ -148,9 +161,17 @@ fs.writeFile('./src/data/characters.json', JSON.stringify(_characters), (err) =>
 
 fs.writeFile('./src/data/filters.json', JSON.stringify(_filters), (err) => {
   if (err) {
-    console.error(`characters writeFile ${JSON.stringify(err)}`);
+    console.error(`filters writeFile ${JSON.stringify(err)}`);
   } else {
-    console.log('characters.json file created');
+    console.log('filters.json file created');
+  }
+});
+
+fs.writeFile('./src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
+  if (err) {
+    console.error(`seenIn writeFile ${JSON.stringify(err)}`);
+  } else {
+    console.log('seenIn.json file created');
   }
 });
 
