@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import pagemap from 'pagemap';
 import * as Styled from './Minimap.styles';
+import { useTheme } from 'styled-components';
 
-const PageMapWrapper = ({ children }) => {
-  const [mapShowing, setMapShowing] = useState(false);
-  const showMap = React.useRef(window.location.href.indexOf('minimap') > 0);
+const PageMapWrapper = () => {
+  const theme = useTheme();
+  const mapRef = React.useRef(null);
+  const [showMap, setShowMap] = React.useState(false);
 
   useEffect(() => {
-    if (!mapShowing && showMap.current) {
-      pagemap(document.querySelector('#pagemap'), {
+    if (showMap) {
+      pagemap(mapRef.current, {
         viewport: null,
         styles: {
-          'header,footer,section,article': 'rgba(0, 0, 0, 0.08)',
-          'h1,a': 'rgba(0, 0, 0, 0.10)',
-          'h2,h3,h4': 'rgba(0, 0, 0, 0.08)'
+          'div[data-testid=\'character\']': theme.elements.character.background,
+          'div[data-testid=\'movie\']': theme.elements.movie.backgroundColor
         },
         back: 'rgba(0, 0, 0, 0.1)',
-        view: 'rgba(0, 0, 0, 0.2)',
+        view: `rgba(${theme.palette.tertiary}, 0.2)`,
         drag: 'rgba(0, 0, 0, 0.3)',
         interval: null
       });
-      setMapShowing(true);
     }
-  });
+  }, [showMap]);
 
   return (
     <Styled.Wrapper>
-      {showMap.current && <canvas id="pagemap" />}
-      {children}
+      {showMap && <canvas ref={mapRef}></canvas>}
+      <Styled.ShowButton onClick={() => setShowMap(!showMap)}>{!showMap ? 'show' : 'hide'} map</Styled.ShowButton>
     </Styled.Wrapper>
   );
 };

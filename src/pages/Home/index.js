@@ -111,7 +111,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Minimap>
+    <>
       <Styled.Wrapper>
         <Styled.Header>
           <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
@@ -262,7 +262,8 @@ const Home = () => {
         }
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
-    </Minimap>
+      <Minimap />
+    </>
   );
 };
 
