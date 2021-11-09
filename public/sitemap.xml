@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://timeline.starwars.guide/era/Republic Era/#era=Republic Era&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/era/High Republic Era/#era=High Republic Era&amp;year=-120</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Jabba Desilijic Tiure/#character=Jabba Desilijic Tiure&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/character/Chewbacca/#character=Chewbacca&amp;year=-120</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -13,11 +13,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Maz Kanata/#character=Maz Kanata&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/character/Jabba Desilijic Tiure/#character=Jabba Desilijic Tiure&amp;year=-120</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Chewbacca/#character=Chewbacca&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/character/Maz Kanata/#character=Maz Kanata&amp;year=-120</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -37,11 +37,15 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Qui-Gon Jinn/#character=Qui-Gon Jinn&amp;year=-80</loc>
+    <loc>https://timeline.starwars.guide/era/Republic Era/#era=Republic Era&amp;year=-82</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Mace Windu/#character=Mace Windu&amp;year=-80</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Qui-Gon Jinn/#character=Qui-Gon Jinn&amp;year=-80</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -61,11 +65,15 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
+    <loc>https://timeline.starwars.guide/character/Bail Organa/#character=Bail Organa&amp;year=-60</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
     <loc>https://timeline.starwars.guide/character/Jar Jar Binks/#character=Jar Jar Binks&amp;year=-60</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Bail Organa/#character=Bail Organa&amp;year=-60</loc>
+    <loc>https://timeline.starwars.guide/character/Bib Fortuna/#character=Bib Fortuna&amp;year=-57</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -97,11 +105,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Padmé Amidala Naberrie/#character=Padmé Amidala Naberrie&amp;year=-46</loc>
+    <loc>https://timeline.starwars.guide/character/Mon Mothma/#character=Mon Mothma&amp;year=-46</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Mon Mothma/#character=Mon Mothma&amp;year=-46</loc>
+    <loc>https://timeline.starwars.guide/character/Padmé Amidala Naberrie/#character=Padmé Amidala Naberrie&amp;year=-46</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -141,11 +149,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode I: The Phantom Menace/#movie=Episode I: The Phantom Menace&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/character/Hunter/#character=Hunter&amp;year=-32</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Boba Fett/#character=Boba Fett&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/character/Rex/#character=Rex&amp;year=-32</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -153,11 +161,15 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Qi'ra/#character=Qi'ra&amp;year=-31</loc>
+    <loc>https://timeline.starwars.guide/character/Boba Fett/#character=Boba Fett&amp;year=-32</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Chopper/#character=Chopper&amp;year=-30</loc>
+    <loc>https://timeline.starwars.guide/movie/Episode I: The Phantom Menace/#movie=Episode I: The Phantom Menace&amp;year=-32</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Qi'ra/#character=Qi'ra&amp;year=-31</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -165,11 +177,15 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Hunter/#character=Hunter&amp;year=-29</loc>
+    <loc>https://timeline.starwars.guide/character/Chopper/#character=Chopper&amp;year=-30</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Hera Syndulla/#character=Hera Syndulla&amp;year=-29</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Omega/#character=Omega&amp;year=-29</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -193,11 +209,7 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Star Wars: The Bad Batch/#movie=Star Wars: The Bad Batch&amp;year=-19</loc>
-    <lastmod>2021-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://timeline.starwars.guide/movie/Episode III: Revenge of the Sith/#movie=Episode III: Revenge of the Sith&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/character/Leia Organa/#character=Leia Organa&amp;year=-19</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -205,11 +217,15 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
+    <loc>https://timeline.starwars.guide/movie/Star Wars: The Bad Batch/#movie=Star Wars: The Bad Batch&amp;year=-19</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
     <loc>https://timeline.starwars.guide/character/Luke Skywalker/#character=Luke Skywalker&amp;year=-19</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Leia Organa/#character=Leia Organa&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/movie/Episode III: Revenge of the Sith/#movie=Episode III: Revenge of the Sith&amp;year=-19</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -225,11 +241,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode IV: A New Hope/#movie=Episode IV: A New Hope&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/character/Armitage Hux/#character=Armitage Hux&amp;year=0</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Rogue One: A Star Wars Story/#movie=Rogue One: A Star Wars Story&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/movie/Episode IV: A New Hope/#movie=Episode IV: A New Hope&amp;year=0</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -237,7 +253,7 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Armitage Hux/#character=Armitage Hux&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/movie/Rogue One: A Star Wars Story/#movie=Rogue One: A Star Wars Story&amp;year=0</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -249,11 +265,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode VI: Return of the Jedi/#movie=Episode VI: Return of the Jedi&amp;year=4</loc>
+    <loc>https://timeline.starwars.guide/character/Snoke/#character=Snoke&amp;year=4</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Snoke/#character=Snoke&amp;year=4</loc>
+    <loc>https://timeline.starwars.guide/movie/Episode VI: Return of the Jedi/#movie=Episode VI: Return of the Jedi&amp;year=4</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -265,6 +281,10 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
+    <loc>https://timeline.starwars.guide/tv/The Mandalorian/#tv=The Mandalorian&amp;year=9</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
     <loc>https://timeline.starwars.guide/movie/Star Wars: Ahsoka/#movie=Star Wars: Ahsoka&amp;year=9</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
@@ -273,15 +293,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/tv/The Mandalorian/#tv=The Mandalorian&amp;year=9</loc>
+    <loc>https://timeline.starwars.guide/character/Finn/#character=Finn&amp;year=11</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Rose Tico/#character=Rose Tico&amp;year=11</loc>
-    <lastmod>2021-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://timeline.starwars.guide/character/Finn/#character=Finn&amp;year=11</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -301,11 +317,11 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode VII: The Force Awakens/#movie=Episode VII: The Force Awakens&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/movie/Star Wars Resistance/#movie=Star Wars Resistance&amp;year=34</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Star Wars Resistance/#movie=Star Wars Resistance&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/movie/Episode VII: The Force Awakens/#movie=Episode VII: The Force Awakens&amp;year=34</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>

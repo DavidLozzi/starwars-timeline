@@ -1,7 +1,13 @@
 [
   {
-    "endYear": -19,
+    "endYear": -82,
     "startYear": -120,
+    "title": "High Republic Era",
+    "type": "era"
+  },
+  {
+    "endYear": -19,
+    "startYear": -82,
     "title": "Republic Era",
     "type": "era"
   },
@@ -615,14 +621,14 @@
   },
   {
     "altTitle": "",
-    "endYear": -9,
+    "endYear": 10,
     "endYearUnknown": true,
     "imageUrl": "/images/hunter.png",
     "seenIn": [
       "The Clone Wars (TV series)",
       "Star Wars: The Bad Batch"
     ],
-    "startYear": -29,
+    "startYear": -32,
     "startYearUnknown": true,
     "title": "Hunter",
     "type": "character",
@@ -640,6 +646,112 @@
       {
         "name": "Clone",
         "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 10,
+    "endYearUnknown": true,
+    "imageUrl": "/images/omega.png",
+    "seenIn": [
+      "Star Wars: The Bad Batch"
+    ],
+    "startYear": -29,
+    "startYearUnknown": true,
+    "title": "Omega",
+    "type": "character",
+    "description": "Omega was an unaltered, yet enhanced clone created from the genetic template of the Mandalorian bounty hunter Jango Fett who lived in the years following the Clone Wars. Originally created as a pure genetic replication of Fett, she was a medical assistant to Nala Se and spent her days working in Tipoca City on the clone homeworld of Kamino. When the war ended, she took an interest in Clone Force 99, who had returned from a battle on Kaller. Later, when Wilhuff Tarkin arrived on Kamino to assess the clone troopers, she joined Clone Force 99 and escaped Kamino.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Omega",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Kamino"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Clone",
+        "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "CT-7567",
+    "endYear": 10,
+    "endYearUnknown": true,
+    "imageUrl": "/images/rex.png",
+    "seenIn": [
+      "The Clone Wars (movie)",
+      "The Clone Wars (TV series)",
+      "Star Wars: The Bad Batch",
+      "Star Wars Rebels"
+    ],
+    "startYear": -32,
+    "title": "Rex",
+    "type": "character",
+    "description": "Rex, formerly designated CT-7567, was a veteran Clone Captain, Clone Commander, and Advanced Recon Commando who commanded the Grand Army of the Republic's famed 501st Legion of clone troopers during the Clone Wars. Rex later served as a captain and commander within the Alliance to Restore the Republic during the Galactic Civil War. Rex participated in many battles over the course of the Clone Wars. As the captain of the 501st, Rex served as second-in-command to Jedi General Anakin Skywalker, whose bravery and unconventionality in battle he came to share. In addition to being a close friend of Skywalker, he also became friends with Skywalker's apprentice, Ahsoka Tano. He was close with Marshal Commander Cody, with their relationship mirroring that of their respective Jedi Generals, Skywalker and Obi-Wan Kenobi, whom Rex was also well acquainted with. Rex and his companions often worked together during the front-line campaigns against the Confederacy of Independent Systems.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Rex",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Kamino"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Clone",
+        "value": "Yes"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 9,
+    "imageUrl": "/images/fortuna-young.png",
+    "imageYears": [
+      {
+        "endYear": 9,
+        "imageUrl": "/images/fortuna-old.png",
+        "startYear": 6
+      }
+    ],
+    "seenIn": [
+      "Episode I: The Phantom Menace",
+      "Star Wars: The Bad Batch",
+      "Episode VI: Return of the Jedi",
+      "The Mandalorian"
+    ],
+    "startYear": -57,
+    "startYearUnknown": true,
+    "title": "Bib Fortuna",
+    "type": "character",
+    "description": "Bib Fortuna lived on the desert planet Tatooine. He served as Jabba the Hutt's majordomo and chief of staff for decades, handling all of the day-to-day operations at Jabba's Palace. Following Jabba's death, Fortuna assumed control of his palace as a crime lord before being killed by the bounty hunter Boba Fett.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Bib_Fortuna",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Ryloth"
+      },
+      {
+        "name": "Species",
+        "value": "Twi'lek"
       },
       {
         "name": "Force Sensitive",
@@ -680,8 +792,7 @@
     "endYear": -32,
     "imageUrl": "/images/quigon.png",
     "seenIn": [
-      "Episode I: The Phantom Menace",
-      "The Clone Wars (TV series)"
+      "Episode I: The Phantom Menace"
     ],
     "startYear": -80,
     "title": "Qui-Gon Jinn",

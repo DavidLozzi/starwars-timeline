@@ -1,10 +1,10 @@
-📆  The Republic Era has begun, in the year of 120 BBY
+📆  The High Republic Era has begun, in the year of 120 BBY
 Explore this date and more at https://timeline.starwars.guide/#year=-120
 #StarWars 
 
 ***************
 
-📆  During the Republic Era, in the year of 102 BBY
+📆  During the High Republic Era, in the year of 102 BBY
 
 🎂  Count Dooku was born
 
@@ -13,7 +13,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-102&charact
 
 ***************
 
-📆  During the Republic Era, in the year of 84 BBY
+📆  During the High Republic Era, in the year of 84 BBY
 
 🎂  Sheev Palpatine was born
 
@@ -22,8 +22,8 @@ Explore this date and more at https://timeline.starwars.guide/#year=-84&characte
 
 ***************
 
-📆  During the Republic Era, in the year of 82 BBY
-
+🍾  Long live the High Republic Era!
+📆  The Republic Era has begun, in the year of 82 BBY
 🎂  Jango Fett (maybe?) was born
 
 Explore this date and more at https://timeline.starwars.guide/#year=-82&character=Jango%20Fett
@@ -78,9 +78,9 @@ Explore this date and more at https://timeline.starwars.guide/#year=-60&characte
 
 📆  During the Republic Era, in the year of 57 BBY
 
-🎂  Obi-Wan Kenobi was born
+🎂  Bib Fortuna (maybe?), Obi-Wan Kenobi was born
 
-Explore this date and more at https://timeline.starwars.guide/#year=-57&character=Obi-Wan%20Kenobi
+Explore this date and more at https://timeline.starwars.guide/#year=-57&character=Bib%20Fortuna
 #StarWars 
 
 ***************
@@ -197,7 +197,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-35&characte
 
 🍿  "Episode I: The Phantom Menace" movie occurred
 
-🎂  Boba Fett, Han Solo was born
+🎂  Boba Fett, Han Solo, Hunter (maybe?), Rex was born
 
 🪦  Qui-Gon Jinn died
 
@@ -217,16 +217,16 @@ Explore this date and more at https://timeline.starwars.guide/#year=-31&characte
 
 📆  During the Republic Era, in the year of 30 BBY
 
-🎂  Mando (maybe?) was born
+🎂  Chopper (maybe?), Mando (maybe?) was born
 
-Explore this date and more at https://timeline.starwars.guide/#year=-30&character=Mando
+Explore this date and more at https://timeline.starwars.guide/#year=-30&character=Chopper
 #StarWars 
 
 ***************
 
 📆  During the Republic Era, in the year of 29 BBY
 
-🎂  Hera Syndulla, Hunter (maybe?) was born
+🎂  Hera Syndulla, Omega (maybe?) was born
 
 Explore this date and more at https://timeline.starwars.guide/#year=-29&character=Hera%20Syndulla
 #StarWars 
@@ -283,9 +283,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-10
 
 📺  "Star Wars: Obi-Wan Kenobi" TV show occurred
 
-🪦  Hunter (maybe?) died
-
-Explore this date and more at https://timeline.starwars.guide/#year=-9&character=Hunter
+Explore this date and more at https://timeline.starwars.guide/#year=-9
 #StarWars 
 
 ***************
@@ -387,7 +385,18 @@ Explore this date and more at https://timeline.starwars.guide/#year=6&character=
 🍿  "The Book of Boba Fett" movie occurred
 📺  "The Mandalorian" TV show occurred
 
-Explore this date and more at https://timeline.starwars.guide/#year=9
+🪦  Bib Fortuna died
+
+Explore this date and more at https://timeline.starwars.guide/#year=9&character=Bib%20Fortuna
+#StarWars 
+
+***************
+
+📆  During the New Republic Era, in the year of 10 ABY
+
+🪦  Hunter (maybe?), Omega (maybe?), Rex (maybe?) died
+
+Explore this date and more at https://timeline.starwars.guide/#year=10&character=Hunter
 #StarWars 
 
 ***************
@@ -414,7 +423,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=13&character
 
 🎂  Rey Skywalker was born
 
-🪦  Mon Mothma (maybe?) died
+🪦  Chopper (maybe?), Mon Mothma (maybe?) died
 
 Explore this date and more at https://timeline.starwars.guide/#year=15&character=Rey%20Skywalker
 #StarWars 

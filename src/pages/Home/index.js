@@ -242,7 +242,7 @@ const Home = () => {
                       {character.title}
                       {character.altTitle && <Styled.AltTitle>{character.altTitle}</Styled.AltTitle>}
                       {currentYear?.year >= startYear && currentYear.year <= character.endYear && <Styled.AltTitle>{currentYear.year - startYear} yo{character.startYearUnknown ? '?' : ''}</Styled.AltTitle>}
-                      {character.endYearUnknown && currentYear?.year + 10 > character.endYear && <Styled.AltTitle>Death?</Styled.AltTitle>}
+                      {character.endYearUnknown && currentYear?.year + 10 > character.endYear && <Styled.AltTitle>End?</Styled.AltTitle>}
                     </Styled.CharacterDetail>
                   </Styled.Sticky>
                 </Styled.CharacterPill>
