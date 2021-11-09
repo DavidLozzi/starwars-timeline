@@ -40,8 +40,10 @@ const Filter = ({ onClose }) => {
   const clearFilters = () => {
     setSelectedCharacter(null);
     setSelectedFilter({});
+    setSelectedMovie('');
     removeFilter('character');
     removeFilter('metadata');
+    removeFilter('movie');
     analytics.event(ACTIONS.CLEAR_FILTER);
     onClose();
   };
@@ -81,7 +83,11 @@ const Filter = ({ onClose }) => {
     if (filters?.metadata) {
       setSelectedFilter(filters.metadata);
       setSelectedFilterCount(getKeyCount(filters.metadata));
-    } 
+    }
+    if (filters?.movie) {
+      setSelectedMovie(filters.movie);
+      setSelectedFilterCount(s => s + 1);
+    }
   }, []);
   
   return (

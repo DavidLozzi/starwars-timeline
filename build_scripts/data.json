@@ -583,6 +583,37 @@
     ]
   },
   {
+    "altTitle": "C1-10P",
+    "endYear": 15,
+    "endYearUnknown": true,
+    "imageUrl": "/images/chopper.png",
+    "seenIn": [
+      "Star Wars: The Bad Batch",
+      "Star Wars Rebels",
+      "Rogue One: A Star Wars Story"
+    ],
+    "startYear": -30,
+    "startYearUnknown": true,
+    "title": "Chopper",
+    "type": "character",
+    "description": "Chopper, also known simply &quot;Chop&quot;, was a masculine C1-series astromech droid manufactured by Industrial Automaton that was active during the Clone Wars and the early years of the Galactic Empire. He was a member of the Spectres, a rebel cell led by the Twi'lek captain Hera Syndulla and the Jedi Kanan Jarrus that fought against the Empire. He was responsible for maintaining the Ghost, a modified VCX-100 light freighter which served as the rebel cell's main base of operations.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/C1-10P",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Lasan"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
     "altTitle": "",
     "endYear": -9,
     "endYearUnknown": true,

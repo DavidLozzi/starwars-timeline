@@ -78,21 +78,30 @@ const Home = () => {
       setCurrentCharacter(scrollToChar.title);
       setCurrentYear(scrollToYear);
     }
+
+    let filtChars = [...charactersData];
     if (filters?.metadata && Object.keys(filters?.metadata).length > 0) {
-      let filtChars = charactersData;
+      filtChars = charactersData;
       Object.keys(filters.metadata).forEach(key => {
         const filterValue = filters.metadata[key];
         filtChars = filtChars.filter(c =>
           c.metadata.some(m => m.name === key && m.value === filterValue)
         );
       });
-      filtChars = filtChars
-        .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
-        .map((c, index) => ({ ...c, index }));
-      setFilteredCharacters(filtChars);
-    } else {
-      setFilteredCharacters(charactersData);
     }
+    if (filters?.movie) {
+      filtChars = filtChars
+        .filter(f => f.seenIn.some(s => s.events.some(e => e.title === filters.movie)))
+        .sort((a, b) => a.startYear > b.startYear ? 1 : -1);
+      
+      const filteredMovieYear = years.find(y => y.events.some(e => e.title === filters.movie));
+      scrollTo(filteredMovieYear);
+    }
+
+    filtChars = filtChars
+      .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
+      .map((c, index) => ({ ...c, index }));
+    setFilteredCharacters(filtChars);
   }, [filters, filterCount]);
 
   React.useEffect(() => {

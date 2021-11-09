@@ -126,7 +126,7 @@ export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...r
   ${({ isCurrentYear, theme }) => isCurrentYear ? theme.elements.currentMovie : ''};
 
   ${Sticky} {
-    left: 7rem;
+    left: 8rem;
   }
 `;
 
