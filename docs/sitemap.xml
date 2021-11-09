@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://timeline.starwars.guide/era/Republic Era/#era=Republic Era&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/era/High Republic Era/#era=High Republic Era&amp;year=-120</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -34,6 +34,10 @@
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Jango Fett/#character=Jango Fett&amp;year=-82</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/era/Republic Era/#era=Republic Era&amp;year=-82</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -70,6 +74,10 @@
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Obi-Wan Kenobi/#character=Obi-Wan Kenobi&amp;year=-57</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Bib Fortuna/#character=Bib Fortuna&amp;year=-57</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
@@ -145,6 +153,14 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
+    <loc>https://timeline.starwars.guide/character/Rex/#character=Rex&amp;year=-32</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Hunter/#character=Hunter&amp;year=-32</loc>
+    <lastmod>2021-11-09</lastmod>
+  </url>
+  <url>
     <loc>https://timeline.starwars.guide/character/Boba Fett/#character=Boba Fett&amp;year=-32</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
@@ -165,7 +181,7 @@
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Hunter/#character=Hunter&amp;year=-29</loc>
+    <loc>https://timeline.starwars.guide/character/Omega/#character=Omega&amp;year=-29</loc>
     <lastmod>2021-11-09</lastmod>
   </url>
   <url>
