@@ -1948,6 +1948,62 @@
     "altTitle": "",
     "endYear": 50,
     "endYearUnknown": true,
+    "imageUrl": "/images/ezra.png",
+    "seenIn": [
+      "Star Wars Rebels"
+    ],
+    "startYear": -19,
+    "title": "Ezra Bridger",
+    "type": "character",
+    "description": "Ezra was a Jedi Padawan, a freedom fighter, and a revolutionary leader in the early rebellion against the Galactic Empire. He was born on Empire Day in 19 BBY to Ephraim and Mira Bridger. His parents' public criticism of the Empire led to their imprisonment, leaving Bridger an orphan on the planet Lothal as a child. He joined the rebel crew of the Ghost in 5 BBY and was trained in the ways of the Force by Kanan Jarrus. Bridger's abilities grew quickly, and a message of hope he broadcast in the Lothal sector inspired a number of rebel cells to begin working together to fight the Empire.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Ezra_Bridger",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Lothal"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/kanan.png",
+    "seenIn": [
+      "Star Wars Rebels",
+      "Star Wars: The Bad Batch"
+    ],
+    "startYear": -33,
+    "title": "Kanan Jarrus",
+    "type": "character",
+    "description": "Kanan Jarrus, born Caleb Dume, was a Jedi Knight who survived Order 66 during the Clone Wars. Living on thanks to the sacrifice of his Master, Depa Billaba, on Kaller, he met the smuggler Janus Kasmir, who taught him how to survive as a fugitive. Going into hiding, he forsook the Jedi ways for some time, swapping his blue-bladed lightsaber for a blaster. After working with the Twi'lek rebel operative Hera Syndulla during the Gorse conflict, Jarrus decided to join her nascent rebel cell.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Kanan_Jarrus",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Coruscant"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
     "imageUrl": "/images/connix.png",
     "seenIn": [
       "Episode VII: The Force Awakens",

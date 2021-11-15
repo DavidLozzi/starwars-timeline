@@ -193,6 +193,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-35&characte
 
 ***************
 
+📆  During the Republic Era, in the year of 33 BBY
+
+🎂  Kanan Jarrus was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-33&character=Kanan%20Jarrus
+#StarWars 
+
+***************
+
 📆  During the Republic Era, in the year of 32 BBY
 
 🍿  "Episode I: The Phantom Menace" movie occurred
@@ -261,11 +270,11 @@ Explore this date and more at https://timeline.starwars.guide/#year=-22&characte
 🍿  "Star Wars: The Bad Batch" movie occurred
 📺  "The Clone Wars (TV series)" TV show occurred
 
-🎂  Leia Organa, Luke Skywalker was born
+🎂  Ezra Bridger, Leia Organa, Luke Skywalker was born
 
 🪦  Count Dooku, General Grievous, Kit Fisto, Mace Windu, Nute Gunray, Padmé Amidala Naberrie, Plo Koon died
 
-Explore this date and more at https://timeline.starwars.guide/#year=-19&character=Leia%20Organa
+Explore this date and more at https://timeline.starwars.guide/#year=-19&character=Ezra%20Bridger
 #StarWars 
 
 ***************
@@ -323,7 +332,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=-2&character
 
 🎂  Armitage Hux, Phasma (maybe?) was born
 
-🪦  Bail Organa, Beru Lars, Greedo, Obi-Wan Kenobi, Owen Lars, Saw Gerrera, Wilhuff Tarkin died
+🪦  Bail Organa, Beru Lars, Greedo, Kanan Jarrus, Obi-Wan Kenobi, Owen Lars, Saw Gerrera, Wilhuff Tarkin died
 
 Explore this date and more at https://timeline.starwars.guide/#year=0&character=Armitage%20Hux
 #StarWars 
@@ -484,7 +493,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=35&character
 
 📆  During the New Republic Era, in the year of 50 ABY
 
-🪦  BB-8 (maybe?), Babu Frik (maybe?), C-3PO (maybe?), Chewbacca (maybe?), Fennec Shand (maybe?), Finn (maybe?), Grogu (maybe?), Hera Syndulla (maybe?), Kaydel Ko Connix (maybe?), Lando Calrissian (maybe?), Maz Kanata (maybe?), Poe Dameron (maybe?), Qi'ra (maybe?), R2-D2 (maybe?), R5-D4 (maybe?), Rey Skywalker (maybe?), Rose Tico (maybe?) died
+🪦  BB-8 (maybe?), Babu Frik (maybe?), C-3PO (maybe?), Chewbacca (maybe?), Ezra Bridger (maybe?), Fennec Shand (maybe?), Finn (maybe?), Grogu (maybe?), Hera Syndulla (maybe?), Kaydel Ko Connix (maybe?), Lando Calrissian (maybe?), Maz Kanata (maybe?), Poe Dameron (maybe?), Qi'ra (maybe?), R2-D2 (maybe?), R5-D4 (maybe?), Rey Skywalker (maybe?), Rose Tico (maybe?) died
 
 Explore this date and more at https://timeline.starwars.guide/#year=50&character=BB-8
 #StarWars 
