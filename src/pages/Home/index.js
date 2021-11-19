@@ -14,7 +14,7 @@ window.scrolling = false;
 addEventListener('scroll', () => {
   window.scrolling = true;
 });
-
+// testing web editor on ipad
 const Home = () => {
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
