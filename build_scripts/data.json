@@ -1315,7 +1315,8 @@
     "seenIn": [
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
-      "Episode IV: A New Hope"
+      "Episode IV: A New Hope",
+      "Star Wars: Obi-Wan Kenobi"
     ],
     "startYear": -52,
     "title": "Owen Lars",
@@ -1579,6 +1580,36 @@
       {
         "name": "Species",
         "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 15,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bane.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Star Wars: The Bad Batch",
+      "Star Wars Rebels"
+    ],
+    "startYear": -62,
+    "title": "Cad Bane",
+    "type": "character",
+    "description": "Cad Bane was a bounty hunter in the galaxy during the Clone Wars. He was considered the best and one of the most experienced bounty hunters in the galaxy during the Clone Wars due to the death of Jango Fett at the First Battle of Geonosis in 22 BBY. Although his infamy grew during the Clone Wars in particular, Bane had a high standing amongst other bounty hunters, working with the likes of Aurra Sing years before the onset of the war. He even had a temporary alliance with the Sith Lord Darth Maul. He specialized in fighting Jedi and dueled with some of the most skilled Jedi during the Clone Wars, including Obi-Wan Kenobi and Anakin Skywalker. His reputation led him to be repeatedly hired by the Sith Lord, Darth Sidious, working for him on numerous projects, including infiltrating the Jedi Temple to steal a kyber memory crystal containing a list of Force-sensitive children throughout the galaxy.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Cad_Bane",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Duro"
+      },
+      {
+        "name": "Species",
+        "value": "Duros"
       },
       {
         "name": "Force Sensitive",
@@ -1969,6 +2000,34 @@
       {
         "name": "Force Sensitive",
         "value": "Yes"
+      }
+    ]
+  },
+  {
+    "altTitle": "Snap",
+    "endYear": 35,
+    "imageUrl": "/images/wexley.png",
+    "seenIn": [
+      "Episode VII: The Force Awakens",
+      "Episode IX: The Rise of Skywalker"
+    ],
+    "startYear": -11,
+    "title": "Temmin Wexley",
+    "type": "character",
+    "description": "Temmin &quot;Snap&quot; Wexley lived during the Age of the Empire and the time of the New Republic. At a young age, Temmin was separated from his parents after his father Brentin was taken away by the Galactic Empire and his mother Norra Wexley joined the Rebel Alliance. He became an independent businessman who specialized in junk dealing and rebuilt a B1-series battle droid named Mister Bones to keep him company. Following the Battle of Endor, the teenage Wexley reconciled with his mother Norra and joined forces with her to disrupt a secret Imperial meeting on the planet Akiva.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Temmin_Wexley",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Akiva"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },

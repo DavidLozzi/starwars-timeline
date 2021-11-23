@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const getCharacterTop = (theme, character) => theme.layout.gridHeight *
   character.yearIndex +
@@ -150,84 +150,6 @@ export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest}
   height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 5)}rem;
   z-index: 30;
   pointer-events: auto;
-`;
-
-export const CharacterPill = styled(({ ...rest }) => <CharacterColumn {...rest} data-testid="characterpill"/>)`
-  background: none;
-  z-index: 50;
-  pointer-events: none; 
-
-  ${Sticky} {
-    top: 6rem;
-    z-index: 60;
-  }
-`;
-
-const wiggle = (theme) => keyframes`
-  ${theme.elements.characterDetailCurrentAnimation}
-`;
-
-export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest} data-testid="characterdetail" />)`
-  min-height: 9.5rem;
-  cursor: pointer;
-  pointer-events: auto; 
-  ${({ theme }) => theme.elements.characterDetail};
-  ${({ theme, isActive }) => isActive && theme.elements.characterDetailActive};
-  ${({ theme, isCurrent }) => isCurrent && css`
-    ${theme.elements.characterDetailCurrent};
-    animation: ${wiggle(theme)} 1s 1500ms linear 2;
-  `
-};
-`;
-
-export const CharacterImage = styled(({ isActive, ...rest }) => <img {...rest} />)`
-  ${({ theme }) => theme.elements.characterImage};
-  ${({ theme, isActive }) => isActive && theme.elements.characterImageActive};
-`;
-
-export const SeenIn = styled(({ seen, character, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
-  position: absolute;
-  top: ${({ seen, theme }) => (theme.layout.elements.year.height) * seen.yearIndex + theme.layout.topMargin}rem;
-  left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;; 
-  z-index: 40;
-  width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-`;
-
-export const SeenInEvent = styled.div`
-  display: inline-block;
-  margin-right: .2rem;
-  font-style: italic;
-  
-  ::after {
-    content: ' & ';
-  }
-  :last-child::after {
-    content: '';
-  }
-`;
-
-export const ToolTip = styled.div`
-  ${({ theme }) => theme.elements.toolTip};
-  display: none;
-  position: absolute;
-  z-index: 80;
-  top: 1.5rem;
-  left: -3rem;
-  width: 7rem;
-`;
-
-export const Circle = styled.div`
-  ${({ theme }) => theme.elements.seenInCircle};
-  position: relative;
-
-  &:hover {
-    ${ToolTip} {
-      display: block;
-    }
-  }
 `;
 
 export const AltTitle = styled.div`

@@ -5,7 +5,7 @@ import Styled from './index.styles';
 import { useAppContext } from '../../AppContext';
 import analytics, { ACTIONS } from '../../analytics';
 
-const CharacterDetail = ({ character, onClose, currentYear }) => {
+const CharacterDetailModal = ({ character, onClose, currentYear }) => {
   const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
   const [birthYear, setBirthYear] = React.useState(0);
   const [seenInListData, setSeenInListData] = React.useState([]);
@@ -76,4 +76,4 @@ const CharacterDetail = ({ character, onClose, currentYear }) => {
 }
 ;
 
-export default CharacterDetail;
+export default CharacterDetailModal;
