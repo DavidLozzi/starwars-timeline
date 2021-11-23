@@ -67,6 +67,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-64&characte
 
 ***************
 
+📆  During the Republic Era, in the year of 62 BBY
+
+🎂  Cad Bane was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-62&character=Cad%20Bane
+#StarWars 
+
+***************
+
 📆  During the Republic Era, in the year of 60 BBY
 
 🎂  Bail Organa (maybe?), Jar Jar Binks (maybe?) was born
@@ -279,6 +288,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-19&characte
 
 ***************
 
+📆  During the Imperial Era, in the year of 11 BBY
+
+🎂  Temmin Wexley was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-11&character=Temmin%20Wexley
+#StarWars 
+
+***************
+
 📆  During the Imperial Era, in the year of 10 BBY
 
 🍿  "Solo: A Star Wars Story" movie occurred
@@ -432,7 +450,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=13&character
 
 🎂  Rey Skywalker was born
 
-🪦  Chopper (maybe?), Mon Mothma (maybe?) died
+🪦  Cad Bane (maybe?), Chopper (maybe?), Mon Mothma (maybe?) died
 
 Explore this date and more at https://timeline.starwars.guide/#year=15&character=Rey%20Skywalker
 #StarWars 
@@ -484,7 +502,7 @@ Explore this date and more at https://timeline.starwars.guide/#year=34&character
 🍿  "Episode IX: The Rise of Skywalker" movie occurred
 🍿  "Star Wars Resistance" movie occurred
 
-🪦  Armitage Hux, Ben Solo, Leia Organa, Sheev Palpatine died
+🪦  Armitage Hux, Ben Solo, Leia Organa, Sheev Palpatine, Temmin Wexley died
 
 Explore this date and more at https://timeline.starwars.guide/#year=35&character=Armitage%20Hux
 #StarWars 
