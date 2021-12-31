@@ -819,6 +819,36 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/8d8.png",
+    "seenIn": [
+      "Episode VI: Return of the Jedi",
+      "The Book of Boba Fett"
+    ],
+    "startYear": -16,
+    "startYearUnknown": true,
+    "title": "8D8",
+    "type": "character",
+    "description": "8D8 was a masculine Roche Hive 8D-series smelter droid who was lobotomized and reprogrammed to assist EV-9D9, Jabba Desilijic Tiure's chief of Cyborg Operations, in terrorizing the droid pool of the Hutt crime lord's palace on the planet Tatooine. He was temporarily deactivated after his master's demise and later worked for Boba Fett.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/8D8",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Roche"
+      },
+      {
+        "name": "Species",
+        "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
     "endYear": -32,
     "imageUrl": "/images/quigon.png",
     "seenIn": [

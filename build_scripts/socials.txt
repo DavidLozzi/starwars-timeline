@@ -273,6 +273,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=-22&characte
 
 ***************
 
+📆  During the Republic Era, in the year of 20 BBY
+
+🎂  Max Rebo (maybe?) was born
+
+Explore this date and more at https://timeline.starwars.guide/#year=-20&character=Max%20Rebo
+#StarWars 
+
+***************
+
 🍾  Long live the Republic Era!
 📆  The Imperial Era has begun, in the year of 19 BBY
 🍿  "Episode III: Revenge of the Sith" movie occurred
@@ -419,15 +428,6 @@ Explore this date and more at https://timeline.starwars.guide/#year=9&character=
 
 ***************
 
-📆  During the New Republic Era, in the year of 10 ABY
-
-🪦  Hunter (maybe?), Omega (maybe?), Rex (maybe?) died
-
-Explore this date and more at https://timeline.starwars.guide/#year=10&character=Hunter
-#StarWars 
-
-***************
-
 📆  During the New Republic Era, in the year of 11 ABY
 
 🎂  Finn, Rose Tico was born
@@ -475,6 +475,15 @@ Explore this date and more at https://timeline.starwars.guide/#year=29&character
 
 ***************
 
+📆  During the New Republic Era, in the year of 30 ABY
+
+🪦  Hunter (maybe?), Rex (maybe?) died
+
+Explore this date and more at https://timeline.starwars.guide/#year=30&character=Hunter
+#StarWars 
+
+***************
+
 📆  During the New Republic Era, in the year of 32 ABY
 
 🪦  Bo-Katan Kryze (maybe?) died
@@ -502,9 +511,18 @@ Explore this date and more at https://timeline.starwars.guide/#year=34&character
 🍿  "Episode IX: The Rise of Skywalker" movie occurred
 🍿  "Star Wars Resistance" movie occurred
 
-🪦  Armitage Hux, Ben Solo, Leia Organa, Sheev Palpatine, Temmin Wexley died
+🪦  Armitage Hux, Ben Solo, Leia Organa, Omega (maybe?), Sheev Palpatine, Temmin Wexley died
 
 Explore this date and more at https://timeline.starwars.guide/#year=35&character=Armitage%20Hux
+#StarWars 
+
+***************
+
+📆  During the New Republic Era, in the year of 45 ABY
+
+🪦  Max Rebo (maybe?) died
+
+Explore this date and more at https://timeline.starwars.guide/#year=45&character=Max%20Rebo
 #StarWars 
 
 ***************
