@@ -789,6 +789,36 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 45,
+    "endYearUnknown": true,
+    "imageUrl": "/images/maxrebo.png",
+    "seenIn": [
+      "Episode VI: Return of the Jedi",
+      "The Book of Boba Fett"
+    ],
+    "startYear": -20,
+    "startYearUnknown": true,
+    "title": "Max Rebo",
+    "type": "character",
+    "description": "Max Rebo was a popular Jizz-wailer musician who led the Max Rebo Band. He mainly played the red ball jett organ, which he played with his feet; he and his band often performed for criminals and gangsters.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Max_Rebo",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Orto"
+      },
+      {
+        "name": "Species",
+        "value": "Ortolan"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
     "endYear": -32,
     "imageUrl": "/images/quigon.png",
     "seenIn": [
