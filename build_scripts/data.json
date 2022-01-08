@@ -343,6 +343,7 @@
     "seenIn": [
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 15,
@@ -373,6 +374,7 @@
       "Star Wars Resistance",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 2,
@@ -403,6 +405,7 @@
     "seenIn": [
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 11,
@@ -1117,6 +1120,7 @@
       "Episode VI: Return of the Jedi",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": -120,
@@ -1592,6 +1596,7 @@
       "The Mandalorian",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": -35,
@@ -1684,6 +1689,7 @@
     "seenIn": [
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 5,
@@ -1804,6 +1810,7 @@
       "Star Wars Resistance",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
+      "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": 29,
@@ -2292,6 +2299,12 @@
     "endYear": 34,
     "startYear": 34,
     "title": "Episode VIII: The Last Jedi",
+    "type": "movie"
+  },
+  {
+    "endYear": 34,
+    "startYear": 34,
+    "title": "Galaxy's Edge",
     "type": "movie"
   },
   {
