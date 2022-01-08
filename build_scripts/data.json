@@ -79,6 +79,37 @@
   },
   {
     "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/hondo.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Star Wars Rebels",
+      "Galaxy's Edge"
+    ],
+    "startYear": -52,
+    "startYearUnkown": true,
+    "title": "Hondo Ohnaka",
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Sriluur"
+      },
+      {
+        "name": "Species",
+        "value": "Weequay"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ],
+    "description": "Hondo Ohnaka was an infamous pirate and outlaw who operated throughout the galaxy. With a career spanning several decades, Ohnaka gained notoriety and often found himself involved in the tumultuous conflicts of his time. Although his exploits were primarily self-serving, he provided crucial aid and assistance during pivotal moments in the Clone Wars, Galactic Civil War, and First Order-Resistance War.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Hondo_Ohnaka"
+  },
+  {
+    "altTitle": "",
     "endYear": -19,
     "imageUrl": "/images/plo.png",
     "seenIn": [
