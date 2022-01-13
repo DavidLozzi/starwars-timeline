@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const getCharacterTop = (theme, character) => theme.layout.gridHeight *
+const getCharacterTop = (theme, character) => theme.layout.elements.year.height *
   character.yearIndex +
-  theme.layout.topMargin -
-  theme.layout.elements.character.topOffset;
+  theme.layout.topMargin;
 
 const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +
@@ -42,14 +41,14 @@ export const Sticky = styled.div`
   display: inline-block;
 `;
 
-export const Era = styled(({ era, characterCount, ...rest }) => <div data-testid="era" {...rest} />)`
+export const Era = styled(({ era, characterCount, endYear, ...rest }) => <div data-testid="era" {...rest} />)`
   ${({ theme }) => theme.elements.era};
   position: absolute;
   top: ${({ era, theme }) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin}rem;
   left: 0;
   min-width: 100vw;
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount)}rem`};
-  height: ${({ era, theme }) => theme.layout.gridHeight * era.years}rem;
+  height: ${({ era, endYear, theme }) => theme.layout.gridHeight * (endYear?.yearIndex - era.yearIndex)}rem;
   z-index: 1;
   transition: all 500ms ease-in-out;
 
@@ -112,13 +111,13 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
     }
 `;
 
-export const Movie = styled(({ movie, index, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie"/>)`
+export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie"/>)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
-  top: ${({ movie, index, theme }) => theme.layout.gridHeight * movie.yearIndex + theme.layout.topMargin + index}rem;
-  left: ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad)}rem;
-  min-width: calc(100vw - ${({ index, theme }) => theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
-  width: ${({ theme, index, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.movie.leftPageMargin + (index * theme.layout.elements.movie.nextMoviePad) + 1)}rem`};
+  top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
+  left: ${({ theme }) => theme.layout.elements.movie.leftPageMargin}rem;
+  min-width: calc(100vw - ${({ movie, theme }) => theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
+  width: ${({ theme, movie, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1)}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 30;
   transition: all 500ms ease-in-out;
@@ -147,7 +146,7 @@ export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest}
   top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
   left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;
   width: ${({ theme }) => theme.layout.elements.character.width}rem;
-  height: ${({ character, theme }) => theme.layout.gridHeight * (character.years + 5)}rem;
+  height: ${({ character, theme }) => theme.layout.elements.year.height * (character.endYearIndex - character.yearIndex)}rem;
   z-index: 30;
   pointer-events: auto;
 `;

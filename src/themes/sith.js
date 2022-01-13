@@ -17,8 +17,7 @@ const layout = { // in rem
     character: {
       width: 4,
       spacer: 1,
-      leftPageMargin: 10,
-      topOffset: 9
+      leftPageMargin: 10
     }
   }
 };
@@ -126,7 +125,8 @@ export default {
       zIndex: '40'
     },
     movie: {
-      backgroundColor: `rgba(${palette.primary},0.8)`,
+      backgroundColor: `rgba(${palette.primary},1)`,
+      border: `1px solid rgba(${palette.lightergray},0.3)`,
       color: `rgb(${palette.white})`,
       borderRadius: '1rem',
       paddingLeft: '1rem',
@@ -137,7 +137,6 @@ export default {
     },
     character: {
       background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
-      backgroundPositionY: '9rem',
       borderRadius: '50%',
       transition: 'all 300ms ease-in-out'
     },

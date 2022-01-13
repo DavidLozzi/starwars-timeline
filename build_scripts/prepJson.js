@@ -10,19 +10,11 @@ const convertYear = (year) => {
   return 'none';
 };
 
-const sortOrder = [
-  { type: 'era', sort: 1},
-  { type: 'movie', sort: 2},
-  { type: 'tv', sort: 3 },
-  { type: 'character', sort: 4}
-];
-
-const sortByYear = (a, b) => {
-  const aSorter = sortOrder.find(s => s.type === a.type).sort;
-  const bSorter = sortOrder.find(s => s.type === b.type).sort;
-  if (aSorter > bSorter) return 1;
-  if (aSorter < bSorter) return -1;
-  return 0;
+const sortByOrderOrTitle = (a, b) => {
+  if (!!a.order && !!b.order) {
+    return a.order > b.order ? 1 : -1;
+  }
+  return a.title > b.title ? 1 : -1;
 };
 
 
@@ -34,26 +26,44 @@ const _endYear = data.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0].endYear;
 let yearIndex = 0;
 for (let i = _startYear; i <= _endYear; i++) {
   const year = { year: i, display: convertYear(i) };
+  const eventsEnding = data // get what ends this year to pad the beginning of the year
+    .filter(e => (e.startYear !== i && e.endYear === i && e.type !== 'character' && e.type !== 'era'));
+  
   const events = data
-    .filter(e => (e.startYear === i && e.type !== 'character'))
-    .sort(sortByYear)
+    .filter(e => (e.startYear === i && e.type !== 'character' && e.type !== 'era'))
+    .sort(sortByOrderOrTitle)
     .map((e, i) => ({
       ...e,
-      index: i,
+      index: i + eventsEnding.length,
       yearIndex,
       years: e.endYear - e.startYear,
       startYearDisplay: convertYear(e.startYear),
       endYearDisplay: convertYear(e.endYear)
     }));
+  
+  data
+    .filter(e => (e.startYear === i && e.type === 'era'))
+    .sort(sortByOrderOrTitle)
+    .forEach((e, i) => {
+      events.push({
+        ...e,
+        index: i + events.length, // shouldn't be needed but want it higher than the movies in it
+        yearIndex,
+        years: e.endYear - e.startYear,
+        startYearDisplay: convertYear(e.startYear),
+        endYearDisplay: convertYear(e.endYear)
+      });
+    });
       
   _newYears.push({
     ...year,
-    yearIndex,
+    yearIndex: yearIndex,
     events,
     eventCount: events.length
   });
 
-  yearIndex++;
+  yearIndex += (events.length > 1 ? events.filter(e => e.type !== 'era').length : 1) + eventsEnding.length;
+  // yearIndex++;
 }
 
 
@@ -76,9 +86,10 @@ const _characters = data
   })
   .map((e, index) => {
     const seenInYears = [];
-    e.seenIn.forEach(s => {
-      const event = data.find(d => d.title === s);
-      const year = {..._newYears.find(y => y.year === event.startYear)};
+    e.seenIn.forEach((s, index) => {
+      const eventStart = data.find(d => d.title === s).startYear; // get the start year for the event
+      const year = { ..._newYears.find(y => y.year === eventStart) }; // get the new year object created above
+      const event = year.events.find(e => e.title === s); // get the new event with the right indexes created above
       delete year.events; // will replace with this characters events
 
       let charYear = seenInYears.find(y => y.year === year.year);
@@ -87,6 +98,7 @@ const _characters = data
       } else {
         charYear = {
           ...year,
+          index,
           events: [event]
         };
         seenInYears.push(charYear);
@@ -107,7 +119,7 @@ const _characters = data
       }
     });
 
-    //get the seen ins
+    //get the seen in filters
     e.seenIn.forEach(s => {
       const movie = data.find(d => d.title === s);
       if (_seenInFilter.some(f => f.name === s)) {
@@ -119,11 +131,21 @@ const _characters = data
     });
     _seenInFilter.sort((a,b) => a.startYear > b.startYear ? 1 : -1);
 
+    // find the last year's index, including seen in index
+    let endYearIndex = _newYears.find(y => y.year === e.endYear).yearIndex;
+    // get the last seen in index
+    const lastSeenIn = seenInYears.sort((a, b) => a.year > b.year ? 1 : -1).slice(-1)[0];
+    const lastEvent = lastSeenIn?.events?.sort((a, b) => a.index > b.index ? 1 : -1).slice(-1)[0];
+    if (lastEvent && endYearIndex < lastEvent.yearIndex + lastEvent.index) {
+      endYearIndex = lastEvent.yearIndex + lastEvent.index;
+    }
+
     return ({
       ...e,
       index,
       seenIn: seenInYears,
-      yearIndex: _newYears.filter(y => y.year === e.startYear)[0].yearIndex,
+      yearIndex: _newYears.find(y => y.year === e.startYear).yearIndex,
+      endYearIndex,
       years: e.endYear - e.startYear,
       startYearDisplay: convertYear(e.startYear),
       endYearDisplay: convertYear(e.endYear)

@@ -134,10 +134,7 @@ const Home = () => {
             .map(year => {
               const movies = year
                 .events
-                .filter(y => (y.type === 'movie' || y.type === 'tv') && y.endYear === year.year);
-              const spanningMovies = year
-                .events
-                .filter(y => (y.type === 'movie' || y.type === 'tv') && y.endYear !== year.year);
+                .filter(y => (y.type === 'movie' || y.type === 'tv')); // && y.endYear === year.year)
               return (
                 <React.Fragment
                   key={year.display}
@@ -165,50 +162,41 @@ const Home = () => {
                       if (a.index < b.index) return -1;
                       return 0;
                     })
-                    .map((era) => <>
-                      <Styled.Era
-                        era={era}
-                        key={`${era.title}1`}
-                        characterCount={filteredCharacters.length}
-                      />
-                      <Styled.EraPill
-                        era={era}
-                        key={era.title}
-                        characterCount={filteredCharacters.length}
-                      >
-                        <Styled.Sticky>
-                          <Styled.EraLabel>
-                            {era.title}
-                          </Styled.EraLabel>
-                        </Styled.Sticky>
-                      </Styled.EraPill>
-                    </>
+                    .map((era) => {
+                      const endYear = years.find(y => y.year === era.endYear);
+                      return <>
+                        <Styled.Era
+                          era={era}
+                          key={`${era.title}1`}
+                          characterCount={filteredCharacters.length}
+                          endYear={endYear}
+                        />
+                        <Styled.EraPill
+                          era={era}
+                          key={era.title}
+                          characterCount={filteredCharacters.length}
+                        >
+                          <Styled.Sticky>
+                            <Styled.EraLabel>
+                              {era.title}
+                            </Styled.EraLabel>
+                          </Styled.Sticky>
+                        </Styled.EraPill>
+                      </>;}
                     )}
-                  {spanningMovies.length > 0 && spanningMovies.map((movie, index) => <Styled.Movie
-                    movie={movie}
-                    index={index}
-                    key={movie.title}
-                    characterCount={filteredCharacters.length}
-                    isCurrentYear={currentYear?.yearIndex === year.year}
-                  >
-                    <Styled.Sticky>
-                      <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>
-                    </Styled.Sticky>
-                  </Styled.Movie>
-                  )}
-                  {movies.length > 0 && <Styled.Movie
-                    movie={movies[0]}
-                    index={spanningMovies.length}
-                    characterCount={filteredCharacters.length}
-                    isCurrentYear={currentYear?.yearIndex === year.year}
-                  >
-                    <Styled.Sticky>
-                      {movies
-                        .sort((a, b) => a.title > b.title ? 1 : -1)
-                        .map((movie) => <Styled.MovieTitle key={movie.title}>{movie.title}</Styled.MovieTitle>
-                        )}
-                    </Styled.Sticky>
-                  </Styled.Movie>
+
+                  {movies
+                    .map((movie) => <Styled.Movie
+                      movie={movie}
+                      characterCount={filteredCharacters.length}
+                      isCurrentYear={currentYear?.yearIndex === year.year}
+                      key={movie.title}
+                    >
+                      <Styled.Sticky>
+                        <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>
+                      </Styled.Sticky>
+                    </Styled.Movie>
+                    )
                   }
                 </React.Fragment>
               );
@@ -236,7 +224,11 @@ const Home = () => {
                 {
                   character.seenIn
                     .sort((a,b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
-                    .map((seen) => <SeenIn seen={seen} character={character} key={`seen${seen.year}${character.title}`} />
+                    .map((seen) => <SeenIn
+                      seen={seen}
+                      character={character}
+                      key={`seen${seen.year}${character.title}`}
+                    />
                     )
                 }
               </React.Fragment>;

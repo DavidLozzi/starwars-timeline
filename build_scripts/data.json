@@ -480,8 +480,7 @@
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
-      "Episode VII: The Force Awakens",
-      "Episode IX: The Rise of Skywalker"
+      "Episode VII: The Force Awakens"
     ],
     "startYear": -32,
     "title": "Han Solo",
@@ -524,8 +523,7 @@
       "Star Wars Rebels",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
-      "Episode VI: Return of the Jedi",
-      "Episode VIII: The Last Jedi"
+      "Episode VI: Return of the Jedi"
     ],
     "startYear": -120,
     "title": "Yoda",
@@ -695,7 +693,7 @@
     "seenIn": [
       "Star Wars: The Bad Batch"
     ],
-    "startYear": -29,
+    "startYear": -26,
     "startYearUnknown": true,
     "title": "Omega",
     "type": "character",
@@ -2228,37 +2226,36 @@
     "endYear": -22,
     "startYear": -22,
     "title": "Episode II: Attack of the Clones",
-    "type": "movie"
+    "type": "movie",
+    "order": 1
   },
   {
     "endYear": -22,
     "startYear": -22,
     "title": "The Clone Wars (movie)",
-    "type": "movie"
+    "type": "movie",
+    "order": 2
   },
   {
     "endYear": -19,
     "startYear": -22,
     "title": "The Clone Wars (TV series)",
-    "type": "tv"
-  },
-  {
-    "endYear": 0,
-    "startYear": -5,
-    "title": "Star Wars Rebels",
-    "type": "tv"
+    "type": "tv",
+    "order": 3
   },
   {
     "endYear": -19,
     "startYear": -19,
     "title": "Episode III: Revenge of the Sith",
-    "type": "movie"
+    "type": "movie",
+    "order": 1
   },
   {
     "endYear": -19,
     "startYear": -19,
     "title": "Star Wars: The Bad Batch",
-    "type": "movie"
+    "type": "movie",
+    "order": 2
   },
   {
     "endYear": -10,
@@ -2274,15 +2271,23 @@
   },
   {
     "endYear": 0,
+    "startYear": -5,
+    "title": "Star Wars Rebels",
+    "type": "tv"
+  },
+  {
+    "endYear": 0,
     "startYear": 0,
     "title": "Rogue One: A Star Wars Story",
-    "type": "movie"
+    "type": "movie",
+    "order": 1
   },
   {
     "endYear": 0,
     "startYear": 0,
     "title": "Episode IV: A New Hope",
-    "type": "movie"
+    "type": "movie",
+    "order": 2
   },
   {
     "endYear": 3,
@@ -2300,43 +2305,50 @@
     "endYear": 9,
     "startYear": 9,
     "title": "The Mandalorian",
-    "type": "tv"
+    "type": "tv",
+    "order": 1
   },
   {
     "endYear": 9,
     "startYear": 9,
     "title": "The Book of Boba Fett",
-    "type": "movie"
+    "type": "movie",
+    "order": 2
   },
   {
     "endYear": 9,
     "startYear": 9,
     "title": "Star Wars: Ahsoka",
-    "type": "movie"
+    "type": "movie",
+    "order": 3
   },
   {
     "endYear": 35,
     "startYear": 34,
     "title": "Star Wars Resistance",
-    "type": "movie"
+    "type": "movie",
+    "order": 4
   },
   {
     "endYear": 34,
     "startYear": 34,
     "title": "Episode VII: The Force Awakens",
-    "type": "movie"
+    "type": "movie",
+    "order": 1
   },
   {
     "endYear": 34,
     "startYear": 34,
     "title": "Episode VIII: The Last Jedi",
-    "type": "movie"
+    "type": "movie",
+    "order": 2
   },
   {
     "endYear": 34,
     "startYear": 34,
     "title": "Galaxy's Edge",
-    "type": "movie"
+    "type": "movie",
+    "order": 3
   },
   {
     "endYear": 35,
