@@ -233,13 +233,19 @@ var newValue = file.replace(/<div id="content">[\s<>\/!=":#-éa-z0-9]*<\/ul>\n<\
 fs.writeFileSync('./public/index.html', newValue, 'utf-8');
 
 
-const root = create({ version: '1.0' })
+// generate sitemap.xml
+const root = create({ version: '1.0', encoding: 'UTF-8', ignoreConverters: true })
   .ele('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' });
 
+root
+  .ele('url')
+  .ele('loc').txt('https://timeline.starwars.guide/').up()
+  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+    
 data.forEach(d => {
   root
     .ele('url')
-    .ele('loc').txt(`https://timeline.starwars.guide/${d.type}/${d.title}/#${d.type}=${d.title}&year=${d.startYear}`).up()
+    .ele('loc').txt(`https://timeline.starwars.guide/#year=${d.startYear}&character=${d.title}`).up()
     .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
 });
 
