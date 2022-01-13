@@ -1,363 +1,367 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://timeline.starwars.guide/era/High Republic Era/#era=High Republic Era&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Jabba Desilijic Tiure/#character=Jabba Desilijic Tiure&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/#year=-120&amp;character=High Republic Era</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Yoda/#character=Yoda&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/#year=-120&amp;character=Jabba Desilijic Tiure</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Maz Kanata/#character=Maz Kanata&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/#year=-120&amp;character=Yoda</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Chewbacca/#character=Chewbacca&amp;year=-120</loc>
+    <loc>https://timeline.starwars.guide/#year=-120&amp;character=Maz Kanata</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Count Dooku/#character=Count Dooku&amp;year=-102</loc>
+    <loc>https://timeline.starwars.guide/#year=-120&amp;character=Chewbacca</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Plo Koon/#character=Plo Koon&amp;year=-85</loc>
+    <loc>https://timeline.starwars.guide/#year=-102&amp;character=Count Dooku</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Sheev Palpatine/#character=Sheev Palpatine&amp;year=-84</loc>
+    <loc>https://timeline.starwars.guide/#year=-85&amp;character=Plo Koon</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Jango Fett/#character=Jango Fett&amp;year=-82</loc>
+    <loc>https://timeline.starwars.guide/#year=-84&amp;character=Sheev Palpatine</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/era/Republic Era/#era=Republic Era&amp;year=-82</loc>
+    <loc>https://timeline.starwars.guide/#year=-82&amp;character=Jango Fett</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Qui-Gon Jinn/#character=Qui-Gon Jinn&amp;year=-80</loc>
+    <loc>https://timeline.starwars.guide/#year=-82&amp;character=Republic Era</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Mace Windu/#character=Mace Windu&amp;year=-80</loc>
+    <loc>https://timeline.starwars.guide/#year=-80&amp;character=Qui-Gon Jinn</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Nute Gunray/#character=Nute Gunray&amp;year=-69</loc>
+    <loc>https://timeline.starwars.guide/#year=-80&amp;character=Mace Windu</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/General Grievous/#character=General Grievous&amp;year=-65</loc>
+    <loc>https://timeline.starwars.guide/#year=-69&amp;character=Nute Gunray</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Saw Gerrera/#character=Saw Gerrera&amp;year=-65</loc>
+    <loc>https://timeline.starwars.guide/#year=-65&amp;character=General Grievous</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Wilhuff Tarkin/#character=Wilhuff Tarkin&amp;year=-64</loc>
+    <loc>https://timeline.starwars.guide/#year=-65&amp;character=Saw Gerrera</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Cad Bane/#character=Cad Bane&amp;year=-62</loc>
+    <loc>https://timeline.starwars.guide/#year=-64&amp;character=Wilhuff Tarkin</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Jar Jar Binks/#character=Jar Jar Binks&amp;year=-60</loc>
+    <loc>https://timeline.starwars.guide/#year=-62&amp;character=Cad Bane</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Bail Organa/#character=Bail Organa&amp;year=-60</loc>
+    <loc>https://timeline.starwars.guide/#year=-60&amp;character=Jar Jar Binks</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Obi-Wan Kenobi/#character=Obi-Wan Kenobi&amp;year=-57</loc>
+    <loc>https://timeline.starwars.guide/#year=-60&amp;character=Bail Organa</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Bib Fortuna/#character=Bib Fortuna&amp;year=-57</loc>
+    <loc>https://timeline.starwars.guide/#year=-57&amp;character=Obi-Wan Kenobi</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Gial Ackbar/#character=Gial Ackbar&amp;year=-55</loc>
+    <loc>https://timeline.starwars.guide/#year=-57&amp;character=Bib Fortuna</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Darth Maul/#character=Darth Maul&amp;year=-54</loc>
+    <loc>https://timeline.starwars.guide/#year=-55&amp;character=Gial Ackbar</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Owen Lars/#character=Owen Lars&amp;year=-52</loc>
+    <loc>https://timeline.starwars.guide/#year=-54&amp;character=Darth Maul</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Hondo Ohnaka/#character=Hondo Ohnaka&amp;year=-52</loc>
+    <loc>https://timeline.starwars.guide/#year=-52&amp;character=Owen Lars</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Thrawn/#character=Thrawn&amp;year=-50</loc>
+    <loc>https://timeline.starwars.guide/#year=-52&amp;character=Hondo Ohnaka</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Babu Frik/#character=Babu Frik&amp;year=-50</loc>
+    <loc>https://timeline.starwars.guide/#year=-50&amp;character=Thrawn</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Beru Lars/#character=Beru Lars&amp;year=-48</loc>
+    <loc>https://timeline.starwars.guide/#year=-50&amp;character=Babu Frik</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Padmé Amidala Naberrie/#character=Padmé Amidala Naberrie&amp;year=-46</loc>
+    <loc>https://timeline.starwars.guide/#year=-48&amp;character=Beru Lars</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Mon Mothma/#character=Mon Mothma&amp;year=-46</loc>
+    <loc>https://timeline.starwars.guide/#year=-46&amp;character=Padmé Amidala Naberrie</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Kit Fisto/#character=Kit Fisto&amp;year=-45</loc>
+    <loc>https://timeline.starwars.guide/#year=-46&amp;character=Mon Mothma</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Bo-Katan Kryze/#character=Bo-Katan Kryze&amp;year=-45</loc>
+    <loc>https://timeline.starwars.guide/#year=-45&amp;character=Kit Fisto</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Greedo/#character=Greedo&amp;year=-44</loc>
+    <loc>https://timeline.starwars.guide/#year=-45&amp;character=Bo-Katan Kryze</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Lando Calrissian/#character=Lando Calrissian&amp;year=-43</loc>
+    <loc>https://timeline.starwars.guide/#year=-44&amp;character=Greedo</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Anakin Skywalker/#character=Anakin Skywalker&amp;year=-41</loc>
+    <loc>https://timeline.starwars.guide/#year=-43&amp;character=Lando Calrissian</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Grogu/#character=Grogu&amp;year=-41</loc>
+    <loc>https://timeline.starwars.guide/#year=-41&amp;character=Anakin Skywalker</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Ahsoka Tano/#character=Ahsoka Tano&amp;year=-36</loc>
+    <loc>https://timeline.starwars.guide/#year=-41&amp;character=Grogu</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/R2-D2/#character=R2-D2&amp;year=-35</loc>
+    <loc>https://timeline.starwars.guide/#year=-36&amp;character=Ahsoka Tano</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/C-3PO/#character=C-3PO&amp;year=-35</loc>
+    <loc>https://timeline.starwars.guide/#year=-35&amp;character=R2-D2</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Kanan Jarrus/#character=Kanan Jarrus&amp;year=-33</loc>
+    <loc>https://timeline.starwars.guide/#year=-35&amp;character=C-3PO</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode I: The Phantom Menace/#movie=Episode I: The Phantom Menace&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/#year=-33&amp;character=Kanan Jarrus</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Boba Fett/#character=Boba Fett&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/#year=-32&amp;character=Episode I: The Phantom Menace</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Rex/#character=Rex&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/#year=-32&amp;character=Boba Fett</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Hunter/#character=Hunter&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/#year=-32&amp;character=Rex</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Han Solo/#character=Han Solo&amp;year=-32</loc>
+    <loc>https://timeline.starwars.guide/#year=-32&amp;character=Hunter</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Qi'ra/#character=Qi'ra&amp;year=-31</loc>
+    <loc>https://timeline.starwars.guide/#year=-32&amp;character=Han Solo</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Chopper/#character=Chopper&amp;year=-30</loc>
+    <loc>https://timeline.starwars.guide/#year=-31&amp;character=Qi'ra</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Mando/#character=Mando&amp;year=-30</loc>
+    <loc>https://timeline.starwars.guide/#year=-30&amp;character=Chopper</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Hera Syndulla/#character=Hera Syndulla&amp;year=-29</loc>
+    <loc>https://timeline.starwars.guide/#year=-30&amp;character=Mando</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Omega/#character=Omega&amp;year=-26</loc>
+    <loc>https://timeline.starwars.guide/#year=-29&amp;character=Hera Syndulla</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/R5-D4/#character=R5-D4&amp;year=-25</loc>
+    <loc>https://timeline.starwars.guide/#year=-26&amp;character=Omega</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Fennec Shand/#character=Fennec Shand&amp;year=-25</loc>
+    <loc>https://timeline.starwars.guide/#year=-25&amp;character=R5-D4</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/The Clone Wars (movie)/#movie=The Clone Wars (movie)&amp;year=-22</loc>
+    <loc>https://timeline.starwars.guide/#year=-25&amp;character=Fennec Shand</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode II: Attack of the Clones/#movie=Episode II: Attack of the Clones&amp;year=-22</loc>
+    <loc>https://timeline.starwars.guide/#year=-22&amp;character=The Clone Wars (movie)</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/tv/The Clone Wars (TV series)/#tv=The Clone Wars (TV series)&amp;year=-22</loc>
+    <loc>https://timeline.starwars.guide/#year=-22&amp;character=Episode II: Attack of the Clones</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Max Rebo/#character=Max Rebo&amp;year=-20</loc>
+    <loc>https://timeline.starwars.guide/#year=-22&amp;character=The Clone Wars (TV series)</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Star Wars: The Bad Batch/#movie=Star Wars: The Bad Batch&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-20&amp;character=Max Rebo</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode III: Revenge of the Sith/#movie=Episode III: Revenge of the Sith&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Star Wars: The Bad Batch</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/era/Imperial Era/#era=Imperial Era&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Episode III: Revenge of the Sith</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Luke Skywalker/#character=Luke Skywalker&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Imperial Era</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Leia Organa/#character=Leia Organa&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Luke Skywalker</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Ezra Bridger/#character=Ezra Bridger&amp;year=-19</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Leia Organa</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/8D8/#character=8D8&amp;year=-16</loc>
+    <loc>https://timeline.starwars.guide/#year=-19&amp;character=Ezra Bridger</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Temmin Wexley/#character=Temmin Wexley&amp;year=-11</loc>
+    <loc>https://timeline.starwars.guide/#year=-16&amp;character=8D8</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Solo: A Star Wars Story/#movie=Solo: A Star Wars Story&amp;year=-10</loc>
+    <loc>https://timeline.starwars.guide/#year=-11&amp;character=Temmin Wexley</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/tv/Star Wars: Obi-Wan Kenobi/#tv=Star Wars: Obi-Wan Kenobi&amp;year=-9</loc>
+    <loc>https://timeline.starwars.guide/#year=-10&amp;character=Solo: A Star Wars Story</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/tv/Star Wars Rebels/#tv=Star Wars Rebels&amp;year=-5</loc>
+    <loc>https://timeline.starwars.guide/#year=-9&amp;character=Star Wars: Obi-Wan Kenobi</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode IV: A New Hope/#movie=Episode IV: A New Hope&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/#year=-5&amp;character=Star Wars Rebels</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Rogue One: A Star Wars Story/#movie=Rogue One: A Star Wars Story&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/#year=0&amp;character=Episode IV: A New Hope</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Phasma/#character=Phasma&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/#year=0&amp;character=Rogue One: A Star Wars Story</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Armitage Hux/#character=Armitage Hux&amp;year=0</loc>
+    <loc>https://timeline.starwars.guide/#year=0&amp;character=Phasma</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Poe Dameron/#character=Poe Dameron&amp;year=2</loc>
+    <loc>https://timeline.starwars.guide/#year=0&amp;character=Armitage Hux</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode V: The Empire Strikes Back/#movie=Episode V: The Empire Strikes Back&amp;year=3</loc>
+    <loc>https://timeline.starwars.guide/#year=2&amp;character=Poe Dameron</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode VI: Return of the Jedi/#movie=Episode VI: Return of the Jedi&amp;year=4</loc>
+    <loc>https://timeline.starwars.guide/#year=3&amp;character=Episode V: The Empire Strikes Back</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Snoke/#character=Snoke&amp;year=4</loc>
+    <loc>https://timeline.starwars.guide/#year=4&amp;character=Episode VI: Return of the Jedi</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Ben Solo/#character=Ben Solo&amp;year=5</loc>
+    <loc>https://timeline.starwars.guide/#year=4&amp;character=Snoke</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/era/New Republic Era/#era=New Republic Era&amp;year=5</loc>
+    <loc>https://timeline.starwars.guide/#year=5&amp;character=Ben Solo</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Star Wars: Ahsoka/#movie=Star Wars: Ahsoka&amp;year=9</loc>
+    <loc>https://timeline.starwars.guide/#year=5&amp;character=New Republic Era</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/The Book of Boba Fett/#movie=The Book of Boba Fett&amp;year=9</loc>
+    <loc>https://timeline.starwars.guide/#year=9&amp;character=Star Wars: Ahsoka</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/tv/The Mandalorian/#tv=The Mandalorian&amp;year=9</loc>
+    <loc>https://timeline.starwars.guide/#year=9&amp;character=The Book of Boba Fett</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Rose Tico/#character=Rose Tico&amp;year=11</loc>
+    <loc>https://timeline.starwars.guide/#year=9&amp;character=The Mandalorian</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Finn/#character=Finn&amp;year=11</loc>
+    <loc>https://timeline.starwars.guide/#year=11&amp;character=Rose Tico</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Kaydel Ko Connix/#character=Kaydel Ko Connix&amp;year=13</loc>
+    <loc>https://timeline.starwars.guide/#year=11&amp;character=Finn</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/Rey Skywalker/#character=Rey Skywalker&amp;year=15</loc>
+    <loc>https://timeline.starwars.guide/#year=13&amp;character=Kaydel Ko Connix</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/character/BB-8/#character=BB-8&amp;year=29</loc>
+    <loc>https://timeline.starwars.guide/#year=15&amp;character=Rey Skywalker</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Galaxy's Edge/#movie=Galaxy's Edge&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/#year=29&amp;character=BB-8</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode VIII: The Last Jedi/#movie=Episode VIII: The Last Jedi&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/#year=34&amp;character=Galaxy's Edge</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode VII: The Force Awakens/#movie=Episode VII: The Force Awakens&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/#year=34&amp;character=Episode VIII: The Last Jedi</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Star Wars Resistance/#movie=Star Wars Resistance&amp;year=34</loc>
+    <loc>https://timeline.starwars.guide/#year=34&amp;character=Episode VII: The Force Awakens</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://timeline.starwars.guide/movie/Episode IX: The Rise of Skywalker/#movie=Episode IX: The Rise of Skywalker&amp;year=35</loc>
+    <loc>https://timeline.starwars.guide/#year=34&amp;character=Star Wars Resistance</loc>
+    <lastmod>2022-01-13</lastmod>
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/#year=35&amp;character=Episode IX: The Rise of Skywalker</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
 </urlset>
