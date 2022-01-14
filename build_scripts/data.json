@@ -2254,7 +2254,7 @@
     "endYear": -19,
     "startYear": -19,
     "title": "Star Wars: The Bad Batch",
-    "type": "movie",
+    "type": "tv",
     "order": 2
   },
   {
@@ -2312,21 +2312,21 @@
     "endYear": 9,
     "startYear": 9,
     "title": "The Book of Boba Fett",
-    "type": "movie",
+    "type": "tv",
     "order": 2
   },
   {
     "endYear": 9,
     "startYear": 9,
     "title": "Star Wars: Ahsoka",
-    "type": "movie",
+    "type": "tv",
     "order": 3
   },
   {
     "endYear": 35,
     "startYear": 34,
     "title": "Star Wars Resistance",
-    "type": "movie",
+    "type": "tv",
     "order": 4
   },
   {
@@ -2347,7 +2347,7 @@
     "endYear": 34,
     "startYear": 34,
     "title": "Galaxy's Edge",
-    "type": "movie",
+    "type": "tv",
     "order": 3
   },
   {

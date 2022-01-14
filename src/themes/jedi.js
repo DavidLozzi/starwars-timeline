@@ -41,7 +41,6 @@ export default {
   palette,
   elements: {
     body: {
-      backgroundColor: `rgb(${palette.black})`
     },
     header: {
       backgroundColor: `rgb(${palette.white})`,

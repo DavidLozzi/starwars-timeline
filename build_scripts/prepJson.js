@@ -197,40 +197,65 @@ fs.writeFile('./src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
   }
 });
 
+
+const createFileFromTemplate = (fileName, content, title) => {
+  const file = fs.readFileSync('./public/contentTemplate.html', 'utf-8');
+  let newValue = file.replace(/{{CONTENT}}/ig, content);
+  newValue = newValue.replace(/{{PAGE_TITLE}}/ig, title);
+  fs.writeFileSync(`./public/${fileName}.html`, newValue, 'utf-8');
+  console.log(`updated ${fileName}.html`);
+};
 // update index.html to include some content for some SEO
-let html = '';
+let moviesHtml = '';
+let tvHtml = '';
+let characterHtml = '';
 
-html += '<h2>Star Wars Movies Timeline</h2>\n';
-html += '<p>Click on any of the Star Wars movies below to see it in the timline!</p>\n';
-html += '<ul>\n';
+moviesHtml += '<h2>Star Wars Movies Timeline</h2>\n';
+moviesHtml += '<p>A long time ago in a galaxy far, far away...</p>\n';
+moviesHtml += '<ul>\n';
 data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
-  html += `<li><a href="https://timeline.starwars.guide/#year=${movie.startYear}">${movie.title}</a></li>\n`;
+  moviesHtml += `<li><h3><a href="/?year=${movie.startYear}">${movie.title}</a></h3></li>\n`;
 });
-html += '</ul>\n\n';
+moviesHtml += '</ul>\n\n';
 
-html += '<h2>Star Wars TV Shows Timeline</h2>\n';
-html += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
-html += '<ul>\n';
+createFileFromTemplate('starwars_movies', moviesHtml, 'Star Wars Movies Timeline');
+
+tvHtml += '<h2>Star Wars TV Shows Timeline</h2>\n';
+tvHtml += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
+tvHtml += '<ul>\n';
 data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
-  html += `<li><a href="https://timeline.starwars.guide/#year=${tv.startYear}">${tv.title}</a></li>\n`;
+  tvHtml += `<li><a href="/?year=${tv.startYear}">${tv.title}</a></li>\n`;
 });
-html += '</ul>\n';
+tvHtml += '</ul>\n';
 
-html += '<h2>Star Wars Characters Timeline</h2>\n';
-html += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
-html += '<ul>\n';
-data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'character').forEach(character => {
-  html += `<li><a href="https://timeline.starwars.guide/character/character=${character.title}?year=${character.startYear}">${character.title}</a>\n
-  ${character.description}
-  </li>\n`;
+createFileFromTemplate('starwars_tvshows', tvHtml, 'Star Wars TV Show Timeline');
+
+characterHtml += '<h2>Star Wars Characters Timeline</h2>\n';
+characterHtml += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
+_characters.forEach(character => {
+  characterHtml += `<h3><a href="/character/${character.title}?year=${character.startYear}&show=true">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
+  <p>${character.description}</p>
+  <h4>${character.title}'s Timeline</h4>\n
+  <ul>\n`;
+
+  character
+    .seenIn
+    .sort((a, b) => a.year > b.year ? 1 : -1)
+    .forEach(y => y.events.forEach(e => {
+      characterHtml += `<li><a href="/character/${character.title}?year=${e.startYear}">${e.title}, ${convertYear(e.startYear)} (${y.year - character.birthYear} years old)</a></li>\n`;
+    }));
+  characterHtml += '\n</ul>';
 });
-html += '</ul>\n';
+
+
+createFileFromTemplate('starwars_characters', characterHtml, 'Star Wars Characters Timeline');
+
+// add all to index file
+const html = `<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
 var file = fs.readFileSync('./public/index.html', 'utf-8');
-
-html = `<div id="content">${html}</div>`;
-var newValue = file.replace(/<div id="content">[\s<>\/!=":#-éa-z0-9]*<\/ul>\n<\/div>/mig, html);
-
+var newValue = file.replace(/<div id="content">[\s\S]*<\/ul>\n[\s]*<\/div>/mig, html);
 fs.writeFileSync('./public/index.html', newValue, 'utf-8');
+console.log('updated index.html');
 
 
 // generate sitemap.xml
@@ -241,14 +266,30 @@ root
   .ele('url')
   .ele('loc').txt('https://timeline.starwars.guide/').up()
   .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+
+root
+  .ele('url')
+  .ele('loc').txt('https://timeline.starwars.guide/starwars_movies.html').up()
+  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+
+root
+  .ele('url')
+  .ele('loc').txt('https://timeline.starwars.guide/starwars_tvshows.html').up()
+  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+  
+root
+  .ele('url')
+  .ele('loc').txt('https://timeline.starwars.guide/starwars_characters.html').up()
+  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
     
-data.forEach(d => {
+_characters.forEach(d => {
   root
     .ele('url')
-    .ele('loc').txt(`https://timeline.starwars.guide/character/${d.title}?year=${d.startYear}`).up()
+    .ele('loc').txt(`https://timeline.starwars.guide/character/${d.title}?year=${d.startYear}&show=true`).up()
     .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
 });
 
 // convert the XML tree to string
 const xml = root.end({ prettyPrint: true });
 fs.writeFileSync('./public/sitemap.xml', xml, 'utf-8');
+console.log('updated sitemap.xml');

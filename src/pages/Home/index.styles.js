@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const getCharacterTop = (theme, character) => theme.layout.elements.year.height *
   character.yearIndex +
@@ -9,6 +9,18 @@ const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +
   characterCount *
   (theme.layout.elements.character.width + theme.layout.elements.character.spacer);
+
+const fadeIn = () => keyframes`
+  0% {
+    opacity: 0;
+  }  
+	30% { 
+    opacity: 1; 
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const Header = styled.div`
   ${({ theme }) => theme.elements.header};
@@ -32,6 +44,32 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
   margin: ${({ theme }) => theme.layout.gridWidth}rem;
+`;
+
+export const Crawl = styled.div`
+  display: flex;
+  justify-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding-top: 10rem;
+  margin: -3rem;
+  color: rgb(75, 213, 238);
+  font: 700 8vw "News Cycle", sans-serif;
+  background-color: ${({ theme }) => `rgb(${theme.palette.black})`};
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const Long = styled.div`
+  opacity: 0;
+  padding: 3rem;
+  animation: ${fadeIn} 6s linear forwards;
+`;
+
+export const Note = styled.div`
+  opacity: 0;
+  font-size: 1rem;
+  animation: ${fadeIn} 6s linear 2s forwards;
 `;
 
 export const Sticky = styled.div`
