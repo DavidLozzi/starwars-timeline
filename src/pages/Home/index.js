@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetailModal from '../../organisms/CharacterDetailModal';
@@ -18,6 +19,8 @@ addEventListener('scroll', () => {
 });
 // testing web editor on ipad
 const Home = () => {
+  const routeParams = useParams();
+  const history = useHistory();
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
   const [filteredCharacters, setFilteredCharacters] = React.useState([]);
@@ -31,35 +34,54 @@ const Home = () => {
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1); 
 
+  const showCharacter = (character) => {
+    history.push(`/character/${character.title}?year=${currentYear.year}&show=true`);
+    showCharacterModal(character);
+  };
+
   const showCharacterModal = (character) => {
     setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
-    window.location.hash = `year=${currentYear.year}&character=${character.title}`;
     analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
   };
 
   React.useEffect(() => {
     if (currentYearIndex) {
       const _currentYear = years.find(y => y.yearIndex === currentYearIndex + 5);
+      const searchParams = new URLSearchParams(window.location.search);
       if (_currentYear) {
         setCurrentYear(_currentYear);
-        const searchParams = new URLSearchParams(decodeURI(window.location.hash.substr(1)));
-        window.location.hash = `year=${_currentYear.year}${searchParams.get('character') ? `&character=${searchParams.get('character')}` : ''}`;
+        if (Number(searchParams.get('year')) !== _currentYear.year) {
+          history.push({
+            pathname: window.location.pathname,
+            search: `year=${_currentYear.year}`
+          });
+        }
       }
     }
   }, [currentYearIndex]);
 
   React.useEffect(() => {
     if (years.length > 0 && characters.length > 0) {
+      const searchParams = new URLSearchParams(window.location.search);
+      let scrollToChar;
+      if (routeParams?.character) {
+        scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeParams.character.toLowerCase());
+        if (!scrollToChar) {
+          scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
+          history.push(`/character/${scrollToChar.title}?year=${currentYear.year}&show=true`);
+        }
+        setCurrentCharacter(scrollToChar.title);
+        if (Boolean(searchParams.get('show')) == true) {
+          showCharacter(scrollToChar);
+        }
+      }
+
       let scrollToYear = null;
-      let scrollToChar = null;
-      if (window.location.hash.length > 0) {
-        const searchParams = new URLSearchParams(window.location.hash.substr(1).replace('&amp;', '&'));
+      if (searchParams.get('year')) {
         scrollToYear = years.find(y => y.year === Number(searchParams.get('year')));
-        scrollToChar = characters.find(c => c.title.toLowerCase() === (searchParams.get('character')?.toLowerCase() || 'luke skywalker'));
       } else {
         scrollToYear = years.find(y => y.year === 0);
-        scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
       }
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
@@ -75,7 +97,7 @@ const Home = () => {
         const targetYear = scrollToChar.endYear - Math.round((scrollToChar.endYear - scrollToChar.startYear) / 2);
         scrollToYear = years.find(y => y.year === targetYear);
       }
-      window.location.hash = `year=${scrollToYear.year}&character=${scrollToChar.title}`;
+      window.location.search = `year=${scrollToYear.year}`;
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYear(scrollToYear);
@@ -125,7 +147,7 @@ const Home = () => {
     <>
       <Styled.Wrapper>
         <Styled.Header>
-          <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
+          <Styled.H1><Link to='/'>Ultimate Star Wars Timeline</Link></Styled.H1>
           <MainMenu />
         </Styled.Header>
         {
@@ -189,7 +211,7 @@ const Home = () => {
                     .map((movie) => <Styled.Movie
                       movie={movie}
                       characterCount={filteredCharacters.length}
-                      isCurrentYear={currentYear?.yearIndex === year.year}
+                      isCurrentYear={currentYear?.year === year.year}
                       key={movie.title}
                     >
                       <Styled.Sticky>
@@ -219,7 +241,7 @@ const Home = () => {
                   character={character}
                   currentYear={currentYear}
                   currentCharacter={currentCharacter}
-                  onPillPress={showCharacterModal}
+                  onPillPress={showCharacter}
                 />
                 {
                   character.seenIn

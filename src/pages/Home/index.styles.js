@@ -117,7 +117,7 @@ export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) 
   top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
   left: ${({ theme }) => theme.layout.elements.movie.leftPageMargin}rem;
   min-width: calc(100vw - ${({ movie, theme }) => theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
-  width: ${({ theme, movie, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1)}rem`};
+  width: ${({ theme, movie, characterCount }) => `${getFullWidth(theme, characterCount) - theme.layout.elements.movie.leftPageMargin}rem`};
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
   z-index: 30;
   transition: all 500ms ease-in-out;

@@ -135,6 +135,7 @@ export default {
       fontSize: '.8rem',
     },
     currentMovie: {
+      backgroundColor: `rgba(${palette.primary},0.8)`,
     },
     character: {
       background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
