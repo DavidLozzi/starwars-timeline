@@ -67,14 +67,16 @@ const Home = () => {
       let scrollToChar;
       if (routeParams?.character) {
         scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeParams.character.toLowerCase());
-        if (!scrollToChar) {
-          scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
-          history.push(`/character/${scrollToChar.title}?year=${currentYear.year}&show=true`);
+        if (scrollToChar) {
+          setCurrentCharacter(scrollToChar.title);
+          if (Boolean(searchParams.get('show')) == true) {
+            showCharacter(scrollToChar);
+          }
         }
-        setCurrentCharacter(scrollToChar.title);
-        if (Boolean(searchParams.get('show')) == true) {
-          showCharacter(scrollToChar);
-        }
+      }
+      if (!scrollToChar) {
+        scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
+        history.push(`/character/${scrollToChar.title}?year=${currentYear.year}&show=true`);
       }
 
       let scrollToYear = null;

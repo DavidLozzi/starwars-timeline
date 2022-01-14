@@ -200,7 +200,7 @@ fs.writeFile('./src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
 // update index.html to include some content for some SEO
 let html = '';
 
-html += '<h2>Star Wars Movies</h2>\n';
+html += '<h2>Star Wars Movies Timeline</h2>\n';
 html += '<p>Click on any of the Star Wars movies below to see it in the timline!</p>\n';
 html += '<ul>\n';
 data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
@@ -208,7 +208,7 @@ data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'm
 });
 html += '</ul>\n\n';
 
-html += '<h2>Star Wars TV Shows</h2>\n';
+html += '<h2>Star Wars TV Shows Timeline</h2>\n';
 html += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
 html += '<ul>\n';
 data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
@@ -216,11 +216,11 @@ data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 't
 });
 html += '</ul>\n';
 
-html += '<h2>Star Wars Characters</h2>\n';
+html += '<h2>Star Wars Characters Timeline</h2>\n';
 html += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
 html += '<ul>\n';
 data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'character').forEach(character => {
-  html += `<li><a href="https://timeline.starwars.guide/#year=${character.startYear}&character=${character.title}">${character.title}</a>\n
+  html += `<li><a href="https://timeline.starwars.guide/character/character=${character.title}?year=${character.startYear}">${character.title}</a>\n
   ${character.description}
   </li>\n`;
 });
@@ -245,7 +245,7 @@ root
 data.forEach(d => {
   root
     .ele('url')
-    .ele('loc').txt(`https://timeline.starwars.guide/#year=${d.startYear}&character=${d.title}`).up()
+    .ele('loc').txt(`https://timeline.starwars.guide/character/${d.title}?year=${d.startYear}`).up()
     .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
 });
 
