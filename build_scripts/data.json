@@ -797,7 +797,8 @@
     "endYearUnknown": true,
     "imageUrl": "/images/mando.png",
     "seenIn": [
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Book of Boba Fett"
     ],
     "startYear": -30,
     "startYearUnknown": true,
@@ -2193,7 +2194,8 @@
     "seenIn": [
       "Episode II: Attack of the Clones",
       "Episode IV: A New Hope",
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Book of Boba Fett"
     ],
     "startYear": -25,
     "startYearUnknown": true,
