@@ -57,7 +57,7 @@ const MainMenu = () => {
             <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem>
             <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
             <Styled.MenuItem><a href="#" onClick={openDonate}>No Ads - Donate</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://wordlw.starwars.guide" target="_blank" rel="noreferrer">Play SWordle - Wordle for Star Wars</a></Styled.MenuItem>
+            <Styled.MenuItem><a href="https://wordle.starwars.guide" target="_blank" rel="noreferrer">Play SWordle - Wordle for Star Wars</a></Styled.MenuItem>
             <Styled.MenuItem><a href="https://twitter.com/UltStarWarsTime" target="_blank" rel="noreferrer">@UltStarWarsTime</a></Styled.MenuItem>
             <Styled.MenuItem note>
             Created By: <a href="https://twitter.com/aurebeshfiles" target="_blank" rel="noreferrer">@AurebeshFiles</a></Styled.MenuItem>
