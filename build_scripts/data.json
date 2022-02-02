@@ -228,6 +228,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
       "The Mandalorian",
+      "The Book of Boba Fett",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
@@ -277,7 +278,8 @@
       }
     ],
     "seenIn": [
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Book of Boba Fett"
     ]
   },
   {
@@ -286,7 +288,8 @@
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
       "Star Wars: Ahsoka",
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Book of Boba Fett"
     ],
     "imageYears": [
       {
@@ -1624,6 +1627,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
       "The Mandalorian",
+      "The Book of Boba Fett",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Galaxy's Edge",
@@ -1690,7 +1694,8 @@
     "seenIn": [
       "The Clone Wars (TV series)",
       "Star Wars: The Bad Batch",
-      "Star Wars Rebels"
+      "Star Wars Rebels",
+      "The Book of Boba Fett"
     ],
     "startYear": -62,
     "title": "Cad Bane",
