@@ -110,10 +110,33 @@ _newYears
       output += ' died\n';
       output += '\n';
     }
-    output += `Explore this date and more at https://timeline.starwars.guide/#year=${y.year}${linkToCharacter ? `&character=${encodeURI(linkToCharacter)}` : ''}\n`;
+    output += `Explore more https://timeline.starwars.guide/${linkToCharacter ? `character/${encodeURI(linkToCharacter)}` : ''}\n`;
     output += '#StarWars ';
     output += '\n\n***************\n\n';
   });
+
+const characters = JSON.parse(fs.readFileSync('./src/data/characters.json'));
+
+characters.forEach(c => {
+  const _birthYear = c.birthYear || c.startYear;
+
+  output += `${c.title}\n`;
+  output += `${convertYear(c.startYear)} - ${convertYear(c.endYear)}${c.startYearUnknown || c.endYearUnknown ? '(maybe?)' : ''}\n\n`;
+  output += c.seenIn.length > 6 ? 'Has been busy in a lot\n' : 'Has been in\n';
+
+  c.seenIn
+    .sort((a, b) => a.year > b.year ? 1 : -1)
+    .forEach(y =>
+      y.events
+        .forEach(e => {
+          output += `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)\n`;
+        }));
+
+  output += `\nExplore more https://timeline.starwars.guide/character/${c.title}?year=${c.startYear}`;
+  output += `\n#${c.title.replace(/\s/ig,'')} #starwars`;
+  output += '\n\n***************\n\n';
+});
+
 
 fs.writeFile('./build_scripts/socials.txt', output, (err) => {
   if (err) {
