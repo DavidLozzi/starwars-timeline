@@ -34,11 +34,6 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const H1 = styled.h1`
-  margin-left: 2rem;
-  font-size: 1.3rem;
-`;
-
 export const Wrapper = styled.div`
   width: 100vw;
   display: flex;

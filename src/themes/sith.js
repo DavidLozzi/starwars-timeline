@@ -42,16 +42,20 @@ export default {
     body: css`
       background-color: rgb(${palette.black});
       margin: 0;
-      font-family: '\'Segoe UI\', Roboto, Oxygen, sans-serif';
+      font-family: 'Segoe UI', Roboto, sans-serif;
       -webkit-font-smoothing: 'antialiased';
       -moz-osx-font-smoothing: 'grayscale';
     `,
-    header: {
-      backgroundColor: `rgb(${palette.black})`,
-      h1: {
-        color: `rgb(${palette.secondary})`
-      }
-    },
+    header: css`
+    background-color: rgb(${palette.black});
+    h1 {
+      color: rgb(224,196,56);
+      margin-left: 2rem;
+      font-size: 1.3rem;
+      font-family: Arial Black;
+      text-transform: uppercase;
+    }
+  `,
     menu: {
       ul: css`
         background-color: rgba(${palette.black}, 0.95);

@@ -46,12 +46,16 @@ export default {
       -webkit-font-smoothing: 'antialiased';
       -moz-osx-font-smoothing: 'grayscale';
     `,
-    header: {
-      backgroundColor: `rgb(${palette.white})`,
-      h1: {
-        color: `rgb(${palette.primary})`
+    header: css`
+      background-color: rgb(${palette.black});
+      h1 {
+        color: rgb(224,196,56);
+        margin-left: 2rem;
+        font-size: 1.3rem;
+        font-family: Arial Black;
+        text-transform: uppercase;
       }
-    },
+    `,
     menu: {
       ul: {
         backgroundColor: `rgba(${palette.white}, 0.95)`

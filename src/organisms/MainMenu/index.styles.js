@@ -11,10 +11,7 @@ export const MenuButton = styled.button`
   cursor: pointer;
   border: 0;
   background: none;
-
-  img {
-    color: ${({ theme }) => `rgb(${theme.palette.primary})`};
-  }
+  color: ${({ theme }) => `rgb(${theme.palette.white})`};
 `;
 
 export const MenuWrapper = styled.div`

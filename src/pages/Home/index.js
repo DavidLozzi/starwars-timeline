@@ -149,7 +149,7 @@ const Home = () => {
     <>
       <Styled.Wrapper>
         <Styled.Header>
-          <Styled.H1>Ultimate Star Wars Timeline</Styled.H1>
+          <h1>Ultimate Star Wars Timeline</h1>
           <MainMenu />
         </Styled.Header>
         {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
