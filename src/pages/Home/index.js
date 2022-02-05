@@ -99,7 +99,7 @@ const Home = () => {
         const targetYear = scrollToChar.endYear - Math.round((scrollToChar.endYear - scrollToChar.startYear) / 2);
         scrollToYear = years.find(y => y.year === targetYear);
       }
-      window.location.search = `year=${scrollToYear.year}`;
+      history.push(`/character/${scrollToChar.title}?year=${scrollToYear.year}`);
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYear(scrollToYear);
@@ -141,7 +141,7 @@ const Home = () => {
         const pxToRem = window.scrollY / 16;
         setCurrentYearIndex(Math.round(pxToRem / 2));
       }
-    }, 100);
+    }, 75);
 
   }, []);
 

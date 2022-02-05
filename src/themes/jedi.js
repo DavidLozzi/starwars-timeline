@@ -23,13 +23,12 @@ const layout = { // in rem
 };
   
 const palette = {
-  primary: '13,90,160',
-  secondary: '175,99,158',
+  primary: '54,116,172',
+  secondary: '224,196,56',
   tertiary: '52,61,155',
-  highlight: '215,192,120',
-  black: '34,34,34',
-  darkgray: '78,78,78',
-  gray: '113,113,113',
+  black: '30,30,30',
+  darkgray: '70,70,70',
+  gray: '100,100,100',
   lightgray: '141,141,141',
   lightergray: '200,200,200',
   white: '255,255,255',
@@ -40,8 +39,13 @@ export default {
   name: 'jedi',
   palette,
   elements: {
-    body: {
-    },
+    body: css`
+      background-color: rgb(${palette.black});
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: 'antialiased';
+      -moz-osx-font-smoothing: 'grayscale';
+    `,
     header: {
       backgroundColor: `rgb(${palette.white})`,
       h1: {
@@ -94,7 +98,7 @@ export default {
         `
     },
     era: css`
-          background: linear-gradient(120deg, rgba(${ palette.lightgray }, 0.75) 0%, rgba(${ palette.lightgray }, 0.75) 10%, rgba(${ palette.black }, 0.1) 100%);
+          background: linear-gradient(120deg, rgba(${ palette.black }, 1) 0%, rgba(${ palette.black }, 1) 10%, rgba(${ palette.black }, 0.75) 100%);
     `,
     eraPill: css`
       background-color: rgb(${palette.gray});
@@ -104,7 +108,7 @@ export default {
       font-size: .8rem;
     `,
     year: {
-      borderTop: `solid 1px rgb(${palette.lightgray})`,
+      borderTop: `solid 1px rgb(${palette.darkgray})`,
       borderRadius: '1rem',
     },
     yearPill: {
@@ -137,12 +141,12 @@ export default {
       backgroundColor: `rgba(${palette.primary},0.8)`,
     },
     character: {
-      background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
+      background: `linear-gradient(rgba(${palette.secondary},1), rgba(${palette.secondary},1)) no-repeat center/8px 100%`,
       borderRadius: '50%',
       transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
-      backgroundColor: `rgba(${palette.highlight},0.9)`,
+      backgroundColor: `rgba(${palette.secondary},1)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
       textAlign: 'center',
@@ -204,22 +208,22 @@ export default {
       fontStyle: 'italic'
     },
     seenInCircle: {
-      backgroundColor: `rgba(${palette.primary},0.9)`,
+      backgroundColor: `rgba(${palette.primary},1)`,
       borderRadius: '50%',
-      border: `3px solid rgba(${palette.highlight},0.9)`,
+      border: `3px solid rgba(${palette.secondary},1)`,
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
-        backgroundColor: `rgba(${palette.highlight},0.9)`
+        backgroundColor: `rgba(${palette.secondary},1)`
       }
     },
     modalWrapper: {
-      backgroundColor: `rgba(${palette.gray},0.8)`
+      backgroundColor: `rgba(${palette.gray},1)`
     },
     modal: css`
-      background-color: rgba(${palette.white},0.8);
+      background-color: rgba(${palette.white},1);
       color: ${palette.white};
     `,
     listItem: css`

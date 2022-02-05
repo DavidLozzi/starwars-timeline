@@ -123,7 +123,7 @@ export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) =>
   top: ${({ year, theme }) => theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem;
   z-index: 20;
   border-radius: 1rem;
-  transition: all 500ms ease-in-out;
+  transition: all 300ms ease-in-out;
 
   ${Sticky} {
     left: 3rem;

@@ -26,7 +26,6 @@ const palette = {
   primary: '143,6,8',
   secondary: '175,99,158',
   tertiary: '143,6,8',
-  highlight: '245,15,20',
   black: '34,34,34',
   darkgray: '78,78,78',
   gray: '113,113,113',
@@ -40,13 +39,17 @@ export default {
   name: 'sith',
   palette,
   elements: {
-    body: {
-      backgroundColor: `rgb(${palette.black})`
-    },
+    body: css`
+      background-color: rgb(${palette.black});
+      margin: 0;
+      font-family: '\'Segoe UI\', Roboto, Oxygen, sans-serif';
+      -webkit-font-smoothing: 'antialiased';
+      -moz-osx-font-smoothing: 'grayscale';
+    `,
     header: {
       backgroundColor: `rgb(${palette.black})`,
       h1: {
-        color: `rgb(${palette.highlight})`
+        color: `rgb(${palette.secondary})`
       }
     },
     menu: {
@@ -56,7 +59,7 @@ export default {
       li: css`
         color: rgb(${palette.white});
         a {
-          color: rgb(${palette.highlight});
+          color: rgb(${palette.secondary});
           :hover {
             color: rgb(${palette.primary});
           }
@@ -136,12 +139,12 @@ export default {
     currentMovie: {
     },
     character: {
-      background: `linear-gradient(rgba(${palette.highlight},0.5), rgba(${palette.highlight},0.7)) no-repeat center/8px 100%`,
+      background: `linear-gradient(rgba(${palette.secondary},0.5), rgba(${palette.secondary},0.7)) no-repeat center/8px 100%`,
       borderRadius: '50%',
       transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
-      backgroundColor: `rgba(${palette.highlight},0.9)`,
+      backgroundColor: `rgba(${palette.secondary},0.9)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
       textAlign: 'center',
@@ -205,13 +208,13 @@ export default {
     seenInCircle: {
       backgroundColor: `rgba(${palette.tertiary},0.9)`,
       borderRadius: '50%',
-      border: `3px solid rgba(${palette.highlight},0.8)`,
+      border: `3px solid rgba(${palette.secondary},0.8)`,
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
-        backgroundColor: `rgba(${palette.highlight},0.9)`
+        backgroundColor: `rgba(${palette.secondary},0.9)`
       }
     },
     modalWrapper: {
@@ -232,7 +235,7 @@ export default {
       text-align: left;
       cursor: pointer;
       text-decoration: underline;
-      color: rgb(${({ theme }) => theme.palette.highlight});
+      color: rgb(${({ theme }) => theme.palette.secondary});
 
       :hover {
         color: rgb(${({ theme }) => theme.palette.primary});
