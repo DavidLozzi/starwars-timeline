@@ -52,7 +52,7 @@ export default {
         color: rgb(224,196,56);
         margin-left: 2rem;
         font-size: 1.3rem;
-        font-family: Arial Black;
+        font-family: 'Arial Black', Arial, sans-serif;
         text-transform: uppercase;
       }
     `,
