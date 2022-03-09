@@ -582,14 +582,14 @@
     "imageUrl": "/images/obi-young.png",
     "imageYears": [
       {
-        "endYear": -10,
+        "endYear": -5,
         "imageUrl": "/images/obi.png",
         "startYear": -20
       },
       {
         "endYear": 0,
         "imageUrl": "/images/obi-og.png",
-        "startYear": -10
+        "startYear": -5
       }
     ],
     "seenIn": [
