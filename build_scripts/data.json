@@ -229,6 +229,7 @@
       "Episode VI: Return of the Jedi",
       "The Mandalorian",
       "The Book of Boba Fett",
+      "Star Wars: Obi-Wan Kenobi",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
@@ -1481,8 +1482,13 @@
   {
     "altTitle": "Skywalker Solo",
     "endYear": 35,
-    "imageUrl": "/images/leia.png",
+    "imageUrl": "/images/leiayoung.png",
     "imageYears": [
+      {
+        "endYear": 25,
+        "imageUrl": "/images/leia.png",
+        "startYear": -6
+      },
       {
         "endYear": 34,
         "imageUrl": "/images/leia-old.png",
@@ -1497,12 +1503,13 @@
       "Episode VI: Return of the Jedi",
       "Star Wars Rebels",
       "Star Wars Resistance",
+      "Star Wars: Obi-Wan Kenobi",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
     ],
     "startYear": -19,
-    "title": "Leia Organa",
+    "title": "Leia Organa Solo",
     "type": "character",
     "description": "Leia Skywalker Organa Solo was a political and military leader who served in the Alliance to Restore the Republic during the Imperial Era and the New Republic and Resistance in the subsequent New Republic Era. Adopted into the House of Organa, the Alderaanian royal family, she was Princess Leia Organa of Alderaan, a planet in the Core Worlds known for its dedication to pacifism. The princess was raised as the daughter of Senator Bail Prestor Organa and his wife, Queen Breha Organa, making her the heir to the Alderaanian monarchy. Instilled with the values of her adopted homeworld, Organa devoted her life to the restoration of democracy by opposing authoritarian regimes such as the Galactic Empire and the First Order.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Leia_Skywalker_Organa_Solo",
@@ -1934,6 +1941,7 @@
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
       "Star Wars Rebels",
+      "Star Wars: Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story"
     ],
     "startYear": -60,
@@ -1942,6 +1950,35 @@
     "type": "character",
     "description": "Bail Prestor Organa was an Alderaanian politician and revolutionary leader, an influential voice for peace in the Galactic Senate during the last days of the Galactic Republic, and a founding member of the Alliance to Restore the Republic. Organa, the senator of Alderaan, was an outspoken member of the Senate's Loyalist Committee that pushed to maintain the ideals of the Republic during the Clone Wars. He became an architect of the early rebellion against the Galactic Empire and believed that a full-scale Galactic Civil War was inevitable if the Empire was to be toppled and replaced by a New Republic.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Bail_Prestor_Organa",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Alderaan"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/brehaorgana.png",
+    "seenIn": [
+      "Episode III: Revenge of the Sith",
+      "Star Wars: Obi-Wan Kenobi"
+    ],
+    "startYear": -45,
+    "startYearUnknown": true,
+    "title": "Breha Organa",
+    "type": "character",
+    "description": "Breha Organa served as Queen of the planet Alderaan during the Clone Wars and the early days of the Galactic Civil War. At the end of the Clone Wars, she and her husband, Senator Bail Prestor Organa, adopted the newborn Leia. The girl, the biological daughter of the late Senator Padmé Amidala of Naboo and fallen Jedi Knight Anakin Skywalker, became Princess Leia Organa of Alderaan.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Breha_Organa",
     "metadata": [
       {
         "name": "Homeworld",
