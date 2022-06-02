@@ -1669,6 +1669,7 @@
     "seenIn": [
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
+      "Star Wars: Andor",
       "Star Wars Rebels",
       "Rogue One: A Star Wars Story",
       "Episode VI: Return of the Jedi"
@@ -1682,6 +1683,34 @@
       {
         "name": "Homeworld",
         "value": "Chandrila"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "altTitle": "",
+    "endYear": 0,
+    "imageUrl": "/images/andor.png",
+    "seenIn": [
+      "Star Wars: Andor",
+      "Rogue One: A Star Wars Story"
+    ],
+    "startYear": -26,
+    "title": "Cassian Andor",
+    "type": "character",
+    "description": "Cassian Jeron Andor, also known by the aliases Willix, Aach, Joreth Sward, and the codename Fulcrum, was a soldier, pilot, and intelligence officer who served in the Confederacy of Independent Systems during the Clone Wars, and, later, with the Alliance to Restore the Republic during the Galactic Civil War. Andor was a skilled operative, working as a spy and an assassin, performing many missions for the Alliance.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Cassian_Jeron_Andor",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Fest"
       },
       {
         "name": "Species",
@@ -2310,6 +2339,12 @@
     "endYear": -9,
     "startYear": -9,
     "title": "Star Wars: Obi-Wan Kenobi",
+    "type": "tv"
+  },
+  {
+    "endYear": -5,
+    "startYear": -5,
+    "title": "Star Wars: Andor",
     "type": "tv"
   },
   {
