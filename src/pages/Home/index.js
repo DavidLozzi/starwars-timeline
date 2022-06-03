@@ -13,6 +13,33 @@ import MainMenu from '../../organisms/MainMenu';
 import Minimap from '../../organisms/Minimap/Minimap';
 import SeenIn from '../../organisms/SeenIn';
 
+const addHead = ({ type, name, property, content }) => {
+  let nameAttrib = 'name';
+  let nameValue = name;
+  if (name === null && property) {
+    nameAttrib = 'property';
+    nameValue = property;
+  }
+
+  const headElement = document.head || document.querySelector('head');
+  let newElement;
+  switch (type) {
+  case 'title':
+    newElement = document.createElement('title');
+    newElement.appendChild(document.createTextNode(`${content} - Ultimate Star Wars Timeline`));
+    headElement.removeChild(headElement.querySelector('title'));
+    break;
+  case 'meta':
+    newElement = document.createElement('meta');
+    newElement.setAttribute(nameAttrib, nameValue);
+    newElement.setAttribute('content', content);
+    headElement.removeChild(headElement.querySelector(`meta[name="${nameValue}"]`));
+    break;
+  }
+
+  headElement.appendChild(newElement);
+};
+
 window.scrolling = false;
 addEventListener('scroll', () => {
   window.scrolling = true;
@@ -73,6 +100,8 @@ const Home = () => {
             showCharacter(scrollToChar);
           }
         }
+        addHead({ type: 'title', content: scrollToChar.title });
+        addHead({ type: 'meta', name: 'description', content: `Star Wars Timeline for ${scrollToChar.title}` });
       }
       if (!scrollToChar) {
         scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
