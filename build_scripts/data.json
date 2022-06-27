@@ -245,12 +245,12 @@
   },
   {
     "endYear": 34,
-    "imageUrl": "/images/skywalker-farmboy.jpg",
+    "imageUrl": "/images/skywalker-young.png",
     "imageYears": [
       {
         "endYear": 3,
         "imageUrl": "/images/skywalker-farmboy.jpg",
-        "startYear": -19
+        "startYear": -3
       },
       {
         "endYear": 25,
@@ -1528,7 +1528,7 @@
       {
         "endYear": 25,
         "imageUrl": "/images/leia.png",
-        "startYear": -6
+        "startYear": -3
       },
       {
         "endYear": 34,
