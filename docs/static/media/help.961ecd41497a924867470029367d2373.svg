@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="help" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <text id="?" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="20" font-weight="normal" fill="currentColor">
+            <tspan x="6.26757812" y="19">?</tspan>
+        </text>
+        <ellipse id="Oval" stroke="currentColor" stroke-width="2" cx="12.0566038" cy="12" rx="11.0566038" ry="11"></ellipse>
+    </g>
+</svg>
