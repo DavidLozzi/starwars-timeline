@@ -46,15 +46,12 @@ const MainMenu = () => {
 
   const toggleHowTo = React.useCallback(() => {
     setShowHowTo(!showHowTo);
+    analytics.event(ACTIONS.OPEN_HOWTO);
   });
 
   const closeMenus = () => {
     setOpenedMenu('');
   };
-
-  React.useEffect(() => {
-    setTimeout(() => toggleHowTo(), 1500);
-  }, []);
 
   return (
     <Styled.Wrapper>
@@ -78,7 +75,7 @@ const MainMenu = () => {
       }
       {openedMenu === MENUS.DONATE &&
         <Donate onClose={closeMenus} />}
-      <Styled.MenuButton onClick={() => setShowHowTo(true)}><HelpImg alt="show the how to window" style={{width: '22px'}} /></Styled.MenuButton>
+      <Styled.MenuButton onClick={toggleHowTo}><HelpImg alt="show the how to window" style={{width: '22px'}} /></Styled.MenuButton>
       {showHowTo && <Modal onClickBg={() => setShowHowTo(false)}><HowTo /></Modal>}
     </Styled.Wrapper>
   );

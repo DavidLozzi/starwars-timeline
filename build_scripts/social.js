@@ -40,10 +40,11 @@ for (let i = _startYear; i <= _endYear; i++) {
   yearIndex++;
 }
 
-let output = '';
+let allOutput = '';
 _newYears
   .filter(y => y.eventCount > 0)
   .forEach(y => {
+    let output = '';
     let linkToCharacter = '';
     if (y.events.some(e => e.type === 'era')) {
       output += y.events.filter(e => e.type === 'era').sort((a,b) => a.startYear > b.startYear ? -1 : 1).map(e => {
@@ -63,6 +64,9 @@ _newYears
     //movies/tv
     if (y.events.some(e => e.type === 'movie' || e.type === 'tv')) {
       output += y.events.map(e => {
+        if (!linkToCharacter) {
+          linkToCharacter = `?year=${e.startYear}`;
+        }
         if (e.type === 'movie') {
           return `🍿  "${e.title}" movie occurred`;
         }
@@ -82,7 +86,7 @@ _newYears
         if (e.type === 'character') {
           if (e.startYear === y.year) {
             if (!linkToCharacter) {
-              linkToCharacter = e.title;
+              linkToCharacter = `character/${encodeURI(e.title)}?year=${e.startYear}`;
             }
             return `${e.title}${e.startYearUnknown ? ' (maybe?)' : ''}`;
           }
@@ -99,7 +103,7 @@ _newYears
       output += y.events.sort(sortByTitle).map(e => {
         if (e.type === 'character') {
           if (!linkToCharacter) {
-            linkToCharacter = e.title;
+            linkToCharacter = `character/${encodeURI(e.title)}?year=${e.startYear}`;
           }
           if (e.endYear === y.year) {
             return `${e.title}${e.endYearUnknown ? ' (maybe?)' : ''}`;
@@ -110,18 +114,41 @@ _newYears
       output += ' died\n';
       output += '\n';
     }
-    output += `Explore more https://timeline.starwars.guide/${linkToCharacter ? `character/${encodeURI(linkToCharacter)}` : ''}\n`;
+    output += `Explore more https://timeline.starwars.guide/${linkToCharacter ? linkToCharacter : ''}\n`;
     output += '#StarWars ';
-    output += '\n\n***************\n\n';
+    output += `\n\n${output.length} characters`;
+    output += '\n***************\n\n';
+    allOutput += output;
   });
 
 const characters = JSON.parse(fs.readFileSync('./src/data/characters.json'));
 
+const getEventIcon = (e) => {
+  if (e.type === 'movie') {
+    return '🍿';
+  }
+  if (e.type === 'tv') {
+    return '📺';
+  }
+};
 characters.forEach(c => {
   const _birthYear = c.birthYear || c.startYear;
-
+  let output = '';
   output += `${c.title}\n`;
-  output += `${convertYear(c.startYear)} - ${convertYear(c.endYear)}${c.startYearUnknown || c.endYearUnknown ? '(maybe?)' : ''}\n\n`;
+  if (!c.startYearUnknown) {
+    output += `${convertYear(c.startYear)} `;
+  } else {
+    output += 'birth date? ';
+  }
+  if (!c.endYearUnknown) {
+    output += `- ${convertYear(c.endYear)} `;
+  } else {
+    output += '- death date? ';
+  }
+  if (!c.startYearUnknown && !c.endYearUnknown) {
+    output += `(${c.endYear - c.startYear} years old)`;
+  }
+  output += '\n\n';
   output += c.seenIn.length > 6 ? 'Has been busy in a lot\n' : 'Has been in\n';
 
   c.seenIn
@@ -129,16 +156,18 @@ characters.forEach(c => {
     .forEach(y =>
       y.events
         .forEach(e => {
-          output += `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)\n`;
+          output += `${getEventIcon(e)} ${e.title}, ${convertYear(e.startYear)} (${c.startYearUnknown ? 'abt ' : ''}${y.year - _birthYear}yo)\n`;
         }));
 
-  output += `\nExplore more https://timeline.starwars.guide/character/${c.title}?year=${c.startYear}`;
-  output += `\n#${c.title.replace(/\s/ig,'')} #starwars`;
-  output += '\n\n***************\n\n';
+  output += `\nExplore more https://timeline.starwars.guide/character/${encodeURI(c.title)}?year=${c.startYear}`;
+  output += `\n#${c.title.replace(/\s/ig,'')}${c.altTitle ? ` #${c.altTitle.replace(/\s/ig,'')}` : ''} #StarWars`;
+  output += `\n\n${output.length} characters`;
+  output += '\n***************\n\n';
+  allOutput += output;
 });
 
 
-fs.writeFile('./build_scripts/socials.txt', output, (err) => {
+fs.writeFile('./build_scripts/socials.txt', allOutput, (err) => {
   if (err) {
     console.error(`socials writeFile ${JSON.stringify(err)}`);
   } else {

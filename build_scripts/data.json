@@ -2366,7 +2366,7 @@
     "endYear": -132,
     "startYear": -132,
     "title": "The Acolyte",
-    "type": "movie"
+    "type": "tv"
   },
   {
     "endYear": -32,
@@ -2512,7 +2512,7 @@
     "endYear": 34,
     "startYear": 34,
     "title": "Galaxy's Edge",
-    "type": "tv",
+    "type": "movie",
     "order": 3
   },
   {
