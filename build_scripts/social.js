@@ -210,7 +210,7 @@ _newYears
 
 
 
-fs.writeFile('./build_scripts/socials.json', JSON.stringify(allOutput), (err) => {
+fs.writeFile('./public/socials.json', JSON.stringify(allOutput), (err) => {
   if (err) {
     console.error(`socials writeFile ${JSON.stringify(err)}`);
   } else {
