@@ -1,3 +1,4 @@
+import React from 'react';
 import Styled from './index.styles';
 
 const HowTo = () => {
