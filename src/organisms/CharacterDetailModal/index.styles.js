@@ -5,9 +5,6 @@ export default {
     ${({ theme }) => theme.elements.characterDetailModal};
     width: 100%;
   `,
-  Close: styled.div`
-    color: #fff;
-  `,
   Header: styled.div`
     width: 100%;
     display: flex;
@@ -18,7 +15,7 @@ export default {
     max-width: 20rem;
     height: 30vw;
     max-height: 20rem;
-    border-radius: 5vw 0;
+    border-radius: 5vh 0;
 
     &:hover {
       border-radius: 0;

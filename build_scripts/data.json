@@ -1,7 +1,7 @@
 [
   {
     "endYear": -82,
-    "startYear": -120,
+    "startYear": -150,
     "title": "High Republic Era",
     "type": "era"
   },
@@ -51,7 +51,7 @@
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
       "Star Wars Rebels",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
@@ -95,7 +95,7 @@
       }
     ],
     "seenIn": [
-      "Star Wars: Obi-Wan Kenobi"
+      "Obi-Wan Kenobi"
     ],
     "startYear": -29,
     "startYearUnknown": true,
@@ -270,7 +270,7 @@
       "Episode VI: Return of the Jedi",
       "The Mandalorian",
       "The Book of Boba Fett",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
@@ -329,7 +329,7 @@
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
-      "Star Wars: Ahsoka",
+      "Ahsoka",
       "The Mandalorian",
       "The Book of Boba Fett"
     ],
@@ -366,7 +366,7 @@
     "endYearUnknown": true,
     "seenIn": [
       "Star Wars Rebels",
-      "Star Wars: Ahsoka"
+      "Ahsoka"
     ],
     "startYear": -21,
     "title": "Sabine Wren",
@@ -598,7 +598,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi"
     ],
-    "startYear": -120,
+    "startYear": -150,
     "title": "Yoda",
     "type": "character",
     "description": "Yoda, a being belonging to a mysterious species, was a legendary Jedi Master who witnessed the rise and fall of the Galactic Republic, followed by the rise of the Galactic Empire. Small in stature but revered for his wisdom and power, Yoda trained generations of Jedi, ultimately serving as the Grand Master of the Jedi Order. Having lived through nine centuries of galactic history, he played integral roles in the Clone Wars, the rebirth of the Jedi through Luke Skywalker, and unlocking the path to immortality.",
@@ -666,7 +666,7 @@
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
       "The Clone Wars (movie)",
@@ -699,10 +699,10 @@
     "endYearUnknown": true,
     "imageUrl": "/images/chopper.png",
     "seenIn": [
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Star Wars Rebels",
       "Rogue One: A Star Wars Story",
-      "Star Wars: Ahsoka"
+      "Ahsoka"
     ],
     "startYear": -30,
     "startYearUnknown": true,
@@ -732,7 +732,7 @@
     "imageUrl": "/images/hunter.png",
     "seenIn": [
       "The Clone Wars (TV series)",
-      "Star Wars: The Bad Batch"
+      "The Bad Batch"
     ],
     "startYear": -32,
     "startYearUnknown": true,
@@ -765,7 +765,7 @@
     "endYearUnknown": true,
     "imageUrl": "/images/omega.png",
     "seenIn": [
-      "Star Wars: The Bad Batch"
+      "The Bad Batch"
     ],
     "startYear": -32,
     "startYearUnknown": true,
@@ -800,7 +800,7 @@
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Star Wars Rebels"
     ],
     "startYear": -32,
@@ -840,7 +840,7 @@
     ],
     "seenIn": [
       "Episode I: The Phantom Menace",
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Episode VI: Return of the Jedi",
       "The Mandalorian"
     ],
@@ -1227,7 +1227,7 @@
       "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
-    "startYear": -120,
+    "startYear": -150,
     "birthYear": -200,
     "title": "Chewbacca",
     "type": "character",
@@ -1256,7 +1256,7 @@
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
       "Star Wars Rebels",
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Rogue One: A Star Wars Story",
       "Episode IV: A New Hope"
     ],
@@ -1348,7 +1348,7 @@
     "seenIn": [
       "The Mandalorian",
       "The Book of Boba Fett",
-      "Star Wars: The Bad Batch"
+      "The Bad Batch"
     ],
     "startYear": -39,
     "startYearUnknown": true,
@@ -1411,7 +1411,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi"
     ],
-    "startYear": -120,
+    "startYear": -150,
     "birthYear": -600,
     "title": "Jabba Desilijic Tiure",
     "type": "character",
@@ -1484,7 +1484,7 @@
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
       "Episode IV: A New Hope",
-      "Star Wars: Obi-Wan Kenobi"
+      "Obi-Wan Kenobi"
     ],
     "startYear": -52,
     "title": "Owen Lars",
@@ -1525,7 +1525,7 @@
     "seenIn": [
       "Episode II: Attack of the Clones",
       "Episode III: Revenge of the Sith",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Episode IV: A New Hope"
     ],
     "startYear": -48,
@@ -1573,7 +1573,7 @@
       "Episode VI: Return of the Jedi",
       "Star Wars Rebels",
       "Star Wars Resistance",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
@@ -1654,7 +1654,7 @@
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
       "Star Wars Rebels",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
@@ -1740,7 +1740,7 @@
     "seenIn": [
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
-      "Star Wars: Andor",
+      "Andor",
       "Star Wars Rebels",
       "Rogue One: A Star Wars Story",
       "Episode VI: Return of the Jedi"
@@ -1770,7 +1770,7 @@
     "endYear": 0,
     "imageUrl": "/images/andor.png",
     "seenIn": [
-      "Star Wars: Andor",
+      "Andor",
       "Rogue One: A Star Wars Story"
     ],
     "startYear": -33,
@@ -1799,7 +1799,7 @@
     "imageUrl": "/images/bane.png",
     "seenIn": [
       "The Clone Wars (TV series)",
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Star Wars Rebels",
       "The Book of Boba Fett"
     ],
@@ -1983,7 +1983,7 @@
       "Episode VII: The Force Awakens",
       "Episode IX: The Rise of Skywalker"
     ],
-    "startYear": -120,
+    "startYear": -150,
     "birthYear": -973,
     "title": "Maz Kanata",
     "type": "character",
@@ -2041,7 +2041,7 @@
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
       "Star Wars Rebels",
-      "Star Wars: Obi-Wan Kenobi",
+      "Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story"
     ],
     "startYear": -60,
@@ -2071,7 +2071,7 @@
     "imageUrl": "/images/brehaorgana.png",
     "seenIn": [
       "Episode III: Revenge of the Sith",
-      "Star Wars: Obi-Wan Kenobi"
+      "Obi-Wan Kenobi"
     ],
     "startYear": -45,
     "startYearUnknown": true,
@@ -2100,9 +2100,9 @@
     "imageUrl": "/images/saw.png",
     "seenIn": [
       "The Clone Wars (TV series)",
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Star Wars Rebels",
-      "Star Wars: Andor",
+      "Andor",
       "Rogue One: A Star Wars Story"
     ],
     "startYear": -42,
@@ -2191,9 +2191,9 @@
     "endYearUnknown": true,
     "imageUrl": "/images/hera.png",
     "seenIn": [
-      "Star Wars: The Bad Batch",
+      "The Bad Batch",
       "Star Wars Rebels",
-      "Star Wars: Ahsoka"
+      "Ahsoka"
     ],
     "startYear": -29,
     "title": "Hera Syndulla",
@@ -2222,7 +2222,7 @@
     "imageUrl": "/images/ezra.png",
     "seenIn": [
       "Star Wars Rebels",
-      "Star Wars: Ahsoka"
+      "Ahsoka"
     ],
     "startYear": -19,
     "title": "Ezra Bridger",
@@ -2278,8 +2278,7 @@
     "imageUrl": "/images/kanan.png",
     "seenIn": [
       "Star Wars Rebels",
-      "Star Wars: The Bad Batch",
-      "Star Wars: Ahsoka"
+      "The Bad Batch"
     ],
     "startYear": -33,
     "title": "Kanan Jarrus",
@@ -2364,6 +2363,12 @@
     ]
   },
   {
+    "endYear": -132,
+    "startYear": -132,
+    "title": "The Acolyte",
+    "type": "movie"
+  },
+  {
     "endYear": -32,
     "startYear": -32,
     "title": "Episode I: The Phantom Menace",
@@ -2400,7 +2405,7 @@
   {
     "endYear": -19,
     "startYear": -19,
-    "title": "Star Wars: The Bad Batch",
+    "title": "The Bad Batch",
     "type": "tv",
     "order": 2
   },
@@ -2413,13 +2418,13 @@
   {
     "endYear": -9,
     "startYear": -9,
-    "title": "Star Wars: Obi-Wan Kenobi",
+    "title": "Obi-Wan Kenobi",
     "type": "tv"
   },
   {
     "endYear": -5,
     "startYear": -5,
-    "title": "Star Wars: Andor",
+    "title": "Andor",
     "type": "tv"
   },
   {
@@ -2471,9 +2476,16 @@
   {
     "endYear": 9,
     "startYear": 9,
-    "title": "Star Wars: Ahsoka",
+    "title": "Ahsoka",
     "type": "tv",
     "order": 3
+  },
+  {
+    "endYear": 9,
+    "startYear": 9,
+    "title": "Skeleton Crew",
+    "type": "tv",
+    "order": 4
   },
   {
     "endYear": 35,

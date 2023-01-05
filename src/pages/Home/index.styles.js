@@ -1,10 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const getCharacterTop = (theme, character) => theme.layout.elements.year.height *
-  character.yearIndex +
-  theme.layout.topMargin;
-
 const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +
   characterCount *
@@ -81,7 +77,7 @@ export const Era = styled(({ era, characterCount, endYear, ...rest }) => <div da
   left: 0;
   min-width: 100vw;
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount)}rem`};
-  height: ${({ era, endYear, theme }) => theme.layout.gridHeight * (endYear?.yearIndex - era.yearIndex)}rem;
+  height: ${({ era, endYear, theme }) => theme.layout.gridHeight * (endYear.yearIndex - era.yearIndex)}rem;
   z-index: 1;
   transition: all 500ms ease-in-out;
 
@@ -173,13 +169,16 @@ export const MovieTitle = styled.div`
   }
 `;
 
+export const getCharacterTop = (theme, character) => theme.layout.elements.year.height * character.yearIndex + theme.layout.topMargin;
+export const getCharacterLeft = (theme, character) =>  (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin;
+export const getCharacterHeight = (theme, character) => theme.layout.elements.year.height * (character.endYearIndex - character.yearIndex);
 export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest} data-testid="character"/>)`
   ${({ theme }) => theme.elements.character};
   position: absolute;
   top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
-  left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;
+  left: ${({ character, theme }) => getCharacterLeft(theme, character)}rem;
   width: ${({ theme }) => theme.layout.elements.character.width}rem;
-  height: ${({ character, theme }) => theme.layout.elements.year.height * (character.endYearIndex - character.yearIndex)}rem;
+  height: ${({ character, theme }) => getCharacterHeight(theme, character)}rem;
   z-index: 30;
   pointer-events: auto;
 `;

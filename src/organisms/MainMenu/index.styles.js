@@ -20,10 +20,11 @@ export const MenuWrapper = styled.div`
   right: 0rem;
   width: 50vw;
   max-width: 20rem;
-`;
+  `;
 
 export const Menu = styled.ul`
   ${({ theme }) => theme.elements.menu.ul};
+  border-radius: 0px 0px 0px 10px;
   width: 100%;
   list-style: none;
   padding: 0;

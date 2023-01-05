@@ -2,13 +2,17 @@ import React from 'react';
 import analytics, { ACTIONS } from '../../analytics';
 import { ReactComponent as MenuImg } from '../../assets/menu.svg';
 import { ReactComponent as SearchImg } from '../../assets/search.svg';
+import { ReactComponent as HelpImg } from '../../assets/help.svg';
 import Donate from '../Donate';
 import Filter from '../Filter';
 import ThemeSwitcher from '../ThemeSwitcher';
 
 import * as Styled from './index.styles';
+import Modal from '../../molecules/modal';
+import HowTo from '../HowTo';
 
 const MainMenu = () => {
+  const [showHowTo, setShowHowTo] = React.useState(false);
   const MENUS = {
     MAIN: 'main',
     DONATE: 'donate',
@@ -40,9 +44,17 @@ const MainMenu = () => {
     analytics.event(ACTIONS.OPEN_FILTER);
   });
 
+  const toggleHowTo = React.useCallback(() => {
+    setShowHowTo(!showHowTo);
+  });
+
   const closeMenus = () => {
     setOpenedMenu('');
   };
+
+  React.useEffect(() => {
+    setTimeout(() => toggleHowTo(), 1500);
+  }, []);
 
   return (
     <Styled.Wrapper>
@@ -66,6 +78,8 @@ const MainMenu = () => {
       }
       {openedMenu === MENUS.DONATE &&
         <Donate onClose={closeMenus} />}
+      <Styled.MenuButton onClick={() => setShowHowTo(true)}><HelpImg alt="show the how to window" style={{width: '22px'}} /></Styled.MenuButton>
+      {showHowTo && <Modal onClickBg={() => setShowHowTo(false)}><HowTo /></Modal>}
     </Styled.Wrapper>
   );
 };

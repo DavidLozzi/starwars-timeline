@@ -34,6 +34,12 @@ const palette = {
   white: '255,255,255',
 };
 
+const breakpoints = {
+  sm: '@media screen and (min-width: 390px)',
+  md: '@media screen and (min-width: 640px)',
+  lg: '@media screen and (min-width: 1024px)'
+};
+
 
 export default {
   name: 'jedi',
@@ -50,10 +56,16 @@ export default {
       background-color: rgb(${palette.black});
       h1 {
         color: rgb(224,196,56);
-        margin-left: 2rem;
-        font-size: 1.3rem;
+        margin-left: .5rem;
+        font-size: 1rem;
         font-family: 'Arial Black', Arial, sans-serif;
         text-transform: uppercase;
+      }
+      ${breakpoints.md} {
+        h1 {
+          margin-left: 2rem;
+          font-size: 1.4rem;
+        }
       }
     `,
     menu: {
@@ -223,12 +235,15 @@ export default {
         backgroundColor: `rgba(${palette.secondary},1)`
       }
     },
-    modalWrapper: {
-      backgroundColor: `rgba(${palette.gray},1)`
-    },
+    modalWrapper: css`
+      background-color: rgba(${palette.gray},0.7)
+    `,
     modal: css`
       background-color: rgba(${palette.white},1);
       color: ${palette.white};
+    `,
+    modalClose: css`
+      
     `,
     listItem: css`
       border: 0;

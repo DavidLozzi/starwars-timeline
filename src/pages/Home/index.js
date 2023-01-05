@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetailModal from '../../organisms/CharacterDetailModal';
@@ -46,6 +47,7 @@ addEventListener('scroll', () => {
 });
 // testing web editor on ipad
 const Home = () => {
+  const theme = useTheme();
   const routeParams = useParams();
   const history = useHistory();
   const [years, setYears] = React.useState([]);
@@ -56,6 +58,7 @@ const Home = () => {
   const [currentCharacter, setCurrentCharacter] = React.useState('');
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
+  const [hasScrolled, setHasScrolled] = React.useState(new Date()); // just used to refresh the state/DOM to show/hide characters
   const { filters, scrollTo, filterCount } = useAppContext();
 
   // zoom level, incremements of years to show
@@ -70,6 +73,28 @@ const Home = () => {
     setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
     setShowModal(true);
     analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
+  };
+
+  const isCharacterInView = (character) => {
+    const preLoadBuffer = 100;
+    const position = {
+      left: Styled.getCharacterLeft(theme, character) * theme.layout.pxInRem - preLoadBuffer,
+      top: Styled.getCharacterTop(theme, character) * theme.layout.pxInRem - preLoadBuffer,
+      right: (Styled.getCharacterLeft(theme, character) + theme.layout.elements.character.width) * theme.layout.pxInRem + preLoadBuffer,
+      bottom: (Styled.getCharacterHeight(theme, character) + Styled.getCharacterTop(theme, character)) * theme.layout.pxInRem + preLoadBuffer
+    };
+    const winView = window.visualViewport;
+    winView.pageRight = winView.pageLeft + winView.width;
+    winView.pageBottom = winView.pageTop + winView.height;
+    if ((position.left >= winView.pageLeft && position.left <= winView.pageRight) ||
+      (position.right >= winView.pageLeft && position.right <= winView.pageRight)) {
+      if ((position.top >= winView.pageTop && position.top <= winView.pageBottom) ||
+        (position.bottom >= winView.pageTop && position.bottom <= winView.pageBottom) ||
+        (position.top <= winView.pageTop && position.bottom >= winView.pageBottom )) {
+        return true;
+      }
+    }
+    return false;
   };
 
   React.useEffect(() => {
@@ -157,6 +182,7 @@ const Home = () => {
       .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
       .map((c, index) => ({ ...c, index }));
     setFilteredCharacters(filtChars);
+    setHasScrolled(new Date());
   }, [filters, filterCount]);
 
   React.useEffect(() => {
@@ -167,8 +193,9 @@ const Home = () => {
     setInterval(() => {
       if (window.scrolling) {
         window.scrolling = false;
-        const pxToRem = window.scrollY / 16;
+        const pxToRem = window.scrollY / theme.layout.pxInRem;
         setCurrentYearIndex(Math.round(pxToRem / 2));
+        setHasScrolled(new Date());
       }
     }, 75);
 
@@ -229,6 +256,7 @@ const Home = () => {
                           era={era}
                           key={era.title}
                           characterCount={filteredCharacters.length}
+                          endYear={endYear}
                         >
                           <Styled.Sticky>
                             <Styled.EraLabel>
@@ -263,35 +291,37 @@ const Home = () => {
             .map(c => {
               const character = filteredCharacters.find(f => f.title === c.title);
 
-              return <React.Fragment
-                key={character.title}>
-                <Styled.CharacterColumn
-                  character={character}
-                >
-                </Styled.CharacterColumn>
-                <CharacterDetailPill
-                  character={character}
-                  currentYear={currentYear}
-                  currentCharacter={currentCharacter}
-                  onPillPress={showCharacter}
-                />
-                {
-                  character.seenIn
-                    .sort((a,b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
-                    .map((seen) => <SeenIn
-                      seen={seen}
-                      character={character}
-                      key={`seen${seen.year}${character.title}`}
-                    />
-                    )
-                }
-              </React.Fragment>;
+              if (isCharacterInView(character)) {
+                return <React.Fragment
+                  key={character.title}>
+                  <Styled.CharacterColumn
+                    character={character}
+                  >
+                  </Styled.CharacterColumn>
+                  <CharacterDetailPill
+                    character={character}
+                    currentYear={currentYear}
+                    currentCharacter={currentCharacter}
+                    onPillPress={showCharacter}
+                  />
+                  {
+                    character.seenIn
+                      .sort((a, b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
+                      .map((seen) => <SeenIn
+                        seen={seen}
+                        character={character}
+                        key={`seen${seen.year}${character.title}`}
+                      />
+                      )
+                  }
+                </React.Fragment>;
+              }
             }
             )
         }
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
-      <Minimap />
+      {/* <Minimap /> */}
     </>
   );
 };

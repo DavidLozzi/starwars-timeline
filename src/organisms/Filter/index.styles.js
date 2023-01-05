@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   right: 0rem;
   width: 100vw;
   max-width: 30rem;
+  border-radius: 0px 0px 0px 10px;
 `;
 
 export const H1 = styled.h1`

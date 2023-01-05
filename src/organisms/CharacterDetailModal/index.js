@@ -54,7 +54,6 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
         <Styled.Note>Born {convertYear(birthYear)}{character.startYearUnknown ? '?' : ''}, Died {convertYear(character.endYear)}{character.endYearUnknown ? '?' : ''} ({character.endYear - birthYear} years old)</Styled.Note>
         {(character.startYearUnknown || character.endYearUnknown) && <Styled.Note>Actual birth and/or death dates are unknown.</Styled.Note>}
       </Styled.Body>
-      <Styled.Close onClick={onClose}>X</Styled.Close>
     </Styled.Header>
     <Styled.Body>
       {character.metadata && character.metadata.length > 0 && 

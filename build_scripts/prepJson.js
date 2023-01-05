@@ -70,6 +70,7 @@ for (let i = _startYear; i <= _endYear; i++) {
 // build characters
 const _filters = [];
 const _seenInFilter = [];
+const tvMovies = data.filter(d => d.type === 'tv' || d.type === 'movie');
 const _characters = data
   .filter(e => (e.type === 'character'))
   .sort((a, b) => {
@@ -87,7 +88,7 @@ const _characters = data
   .map((e, index) => {
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {
-      const eventStart = data.find(d => d.title === s).startYear; // get the start year for the event
+      const eventStart = tvMovies.find(d => d.title === s).startYear; // get the start year for the event
       const year = { ..._newYears.find(y => y.year === eventStart) }; // get the new year object created above
       const event = year.events.find(e => e.title === s); // get the new event with the right indexes created above
       delete year.events; // will replace with this characters events
@@ -121,7 +122,7 @@ const _characters = data
 
     //get the seen in filters
     e.seenIn.forEach(s => {
-      const movie = data.find(d => d.title === s);
+      const movie = tvMovies.find(d => d.title === s);
       if (_seenInFilter.some(f => f.name === s)) {
         const _seenIn = _seenInFilter.find(f => f.name === s);
         _seenIn.count += 1;
@@ -242,7 +243,11 @@ _characters.forEach(character => {
     .seenIn
     .sort((a, b) => a.year > b.year ? 1 : -1)
     .forEach(y => y.events.forEach(e => {
-      characterHtml += `<li><a href="/character/${character.title}?year=${e.startYear}">${e.title}, ${convertYear(e.startYear)} (${y.year - character.birthYear} years old)</a></li>\n`;
+      try {
+        characterHtml += `<li><a href="/character/${character.title}?year=${e.startYear}">${e.title}, ${convertYear(e.startYear)} (${y.year - character.birthYear} years old)</a></li>\n`;
+      } catch (er) {
+        console.error(character, y, e, er);
+      }
     }));
   characterHtml += '\n</ul>';
 });
