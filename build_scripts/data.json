@@ -362,6 +362,34 @@
     ]
   },
   {
+    "endYear": 40,
+    "endYearUnknown": true,
+    "seenIn": [
+      "Star Wars Rebels",
+      "Star Wars: Ahsoka"
+    ],
+    "startYear": -21,
+    "title": "Sabine Wren",
+    "imageUrl": "/images/wren.png",
+    "type": "character",
+    "description": "Sabine Wren was a Mandalorian warrior and revolutionary leader during the early rebellion against the Galactic Empire. Her artistry during the rebellion inspired the symbol of the Alliance to Restore the Republic, and her claim over the ancient Mandalorian weapon known as the Darksaber made her a symbol to Clan Wren and the hopes of freeing her people's homeworld of Mandalore from the rule of the Empire.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Sabine_Wren",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Krownest"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
     "altTitle": "Darth Sidious",
     "endYear": 35,
     "imageUrl": "/images/palpatine-young.png",
@@ -673,7 +701,8 @@
     "seenIn": [
       "Star Wars: The Bad Batch",
       "Star Wars Rebels",
-      "Rogue One: A Star Wars Story"
+      "Rogue One: A Star Wars Story",
+      "Star Wars: Ahsoka"
     ],
     "startYear": -30,
     "startYearUnknown": true,
@@ -732,13 +761,13 @@
   },
   {
     "altTitle": "",
-    "endYear": 35,
+    "endYear": 40,
     "endYearUnknown": true,
     "imageUrl": "/images/omega.png",
     "seenIn": [
       "Star Wars: The Bad Batch"
     ],
-    "startYear": -26,
+    "startYear": -32,
     "startYearUnknown": true,
     "title": "Omega",
     "type": "character",
@@ -1744,7 +1773,7 @@
       "Star Wars: Andor",
       "Rogue One: A Star Wars Story"
     ],
-    "startYear": -26,
+    "startYear": -33,
     "title": "Cassian Andor",
     "type": "character",
     "description": "Cassian Jeron Andor, also known by the aliases Willix, Aach, Joreth Sward, and the codename Fulcrum, was a soldier, pilot, and intelligence officer who served in the Confederacy of Independent Systems during the Clone Wars, and, later, with the Alliance to Restore the Republic during the Galactic Civil War. Andor was a skilled operative, working as a spy and an assassin, performing many missions for the Alliance.",
@@ -2076,7 +2105,7 @@
       "Star Wars: Andor",
       "Rogue One: A Star Wars Story"
     ],
-    "startYear": -35,
+    "startYear": -42,
     "startYearUnknown": true,
     "title": "Saw Gerrera",
     "type": "character",
@@ -2163,7 +2192,8 @@
     "imageUrl": "/images/hera.png",
     "seenIn": [
       "Star Wars: The Bad Batch",
-      "Star Wars Rebels"
+      "Star Wars Rebels",
+      "Star Wars: Ahsoka"
     ],
     "startYear": -29,
     "title": "Hera Syndulla",
@@ -2191,7 +2221,8 @@
     "endYearUnknown": true,
     "imageUrl": "/images/ezra.png",
     "seenIn": [
-      "Star Wars Rebels"
+      "Star Wars Rebels",
+      "Star Wars: Ahsoka"
     ],
     "startYear": -19,
     "title": "Ezra Bridger",
@@ -2247,7 +2278,8 @@
     "imageUrl": "/images/kanan.png",
     "seenIn": [
       "Star Wars Rebels",
-      "Star Wars: The Bad Batch"
+      "Star Wars: The Bad Batch",
+      "Star Wars: Ahsoka"
     ],
     "startYear": -33,
     "title": "Kanan Jarrus",
