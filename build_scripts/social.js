@@ -93,7 +93,7 @@ const getCharacterTweets = (character) => {
     output.split('\n').forEach(l => {
       thread = `\n🧵${tweetCnt}/^#^`;
       if (tweetCnt === 1) {
-        thread = `${hashtags}${thread}\nIMG: https://timeline.starwars.guide${c.imageUrl}`;
+        thread = `${hashtags}${thread}`;
       }
       if (tweet.length + l.length + thread.length < tweetSize) {
         tweet += `${l}\n`;
@@ -112,7 +112,7 @@ const getCharacterTweets = (character) => {
     }
     output = _output.replace(/\^\#\^/ig, tweetCnt);
   } 
-  allOutput.push({ title: `${c.type}-${c.title}`, tweet: output });
+  allOutput.push({ title: `${c.type}-${c.title}`, tweet: output, img: `https://timeline.starwars.guide${c.imageUrl}` });
 };
 
 _newYears
