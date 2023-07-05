@@ -1,7 +1,7 @@
 [
   {
     "endYear": -82,
-    "startYear": -150,
+    "startYear": -250,
     "title": "High Republic Era",
     "type": "era"
   },
@@ -588,6 +588,7 @@
       }
     ],
     "seenIn": [
+      "Star Wars: Young Jedi Adventures",
       "Episode I: The Phantom Menace",
       "Episode II: Attack of the Clones",
       "The Clone Wars (movie)",
@@ -598,7 +599,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi"
     ],
-    "startYear": -150,
+    "startYear": -250,
     "title": "Yoda",
     "type": "character",
     "description": "Yoda, a being belonging to a mysterious species, was a legendary Jedi Master who witnessed the rise and fall of the Galactic Republic, followed by the rise of the Galactic Empire. Small in stature but revered for his wisdom and power, Yoda trained generations of Jedi, ultimately serving as the Grand Master of the Jedi Order. Having lived through nine centuries of galactic history, he played integral roles in the Clone Wars, the rebirth of the Jedi through Luke Skywalker, and unlocking the path to immortality.",
@@ -639,7 +640,8 @@
       }
     ],
     "seenIn": [
-      "Star Wars Rebels"
+      "Star Wars Rebels",
+      "Ahsoka"
     ],
     "startYear": -50,
     "title": "Thrawn",
@@ -1217,6 +1219,7 @@
     "endYearUnknown": true,
     "imageUrl": "/images/chewie.png",
     "seenIn": [
+      "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
       "Solo: A Star Wars Story",
       "Episode IV: A New Hope",
@@ -1227,8 +1230,7 @@
       "Galaxy's Edge",
       "Episode IX: The Rise of Skywalker"
     ],
-    "startYear": -150,
-    "birthYear": -200,
+    "startYear": -200,
     "title": "Chewbacca",
     "type": "character",
     "description": "Chewbacca, known affectionately to his friends as Chewie, was a warrior, smuggler, mechanic, pilot, and resistance fighter who fought in the Clone Wars, the Galactic Civil War, and the Cold War and subsequent First Order/Resistance War. He hailed from the planet Kashyyyk and became a Wookiee military leader. During the Clone Wars, he was captured by Trandoshan slavers and held captive on Wasskah, but he worked with a fellow captive, Jedi Commander Ahsoka Tano, to escape. He later commanded Wookiee forces of the Kachirho Wookiee Militia during the Battle of Kashyyyk alongside the Grand Army of the Republic, led by Jedi General Yoda. During the battle, one of the last ones of the war, Yoda's clone troopers received Order 66 from Supreme Chancellor Palpatine and, with the help of Chewbacca and his fellow Wookiee Chieftain and General Tarfful, Yoda escaped Kashyyyk and the destruction of the Jedi Order.",
@@ -1411,7 +1413,7 @@
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi"
     ],
-    "startYear": -150,
+    "startYear": -250,
     "birthYear": -600,
     "title": "Jabba Desilijic Tiure",
     "type": "character",
@@ -1743,7 +1745,8 @@
       "Andor",
       "Star Wars Rebels",
       "Rogue One: A Star Wars Story",
-      "Episode VI: Return of the Jedi"
+      "Episode VI: Return of the Jedi",
+      "Ahsoka"
     ],
     "startYear": -46,
     "title": "Mon Mothma",
@@ -1983,7 +1986,7 @@
       "Episode VII: The Force Awakens",
       "Episode IX: The Rise of Skywalker"
     ],
-    "startYear": -150,
+    "startYear": -250,
     "birthYear": -973,
     "title": "Maz Kanata",
     "type": "character",
@@ -2361,6 +2364,12 @@
         "value": "No"
       }
     ]
+  },
+  {
+    "endYear": -232,
+    "startYear": -232,
+    "title": "Star Wars: Young Jedi Adventures",
+    "type": "tv"
   },
   {
     "endYear": -132,
