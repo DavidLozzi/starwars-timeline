@@ -622,7 +622,7 @@
   {
     "altTitle": "Mitth'raw' nuruodo",
     "description": "Thrawn, born as Kivu'raw'nuru with the core name Vurawn, recognized in his early military career as Mitth'raw'nuru, was an officer of the Chiss Ascendancy and Grand Admiral in the Imperial Navy during the age of the Galactic Empire. An alien Imperial officer with striking blue skin, red eyes, and an angular face, Thrawn was well known as a brilliant and ruthless strategist. He believed that in order to achieve victory in war, one must know their enemy. As such, he dedicated himself to understanding the philosophy, art, and culture of his opponents, which included the Twi'leks of Ryloth and the warriors of Mandalore. When Governor Arihnda Pryce requested a strong commander capable of defeating the rebels on Lothal, Grand Admiral Thrawn accepted the challenge, intending to dismantle the rebellion one piece at a time.",
-    "endYear": 6,
+    "endYear": 20,
     "endYearUnknown": true,
     "imageUrl": "/images/thrawn.png",
     "metadata": [
@@ -643,10 +643,35 @@
       "Star Wars Rebels",
       "Ahsoka"
     ],
-    "startYear": -50,
+    "startYear": -59,
     "title": "Thrawn",
     "type": "character",
     "wookiepedia": "https://starwars.fandom.com/wiki/Mitth'raw'nuruodo"
+  },
+  {
+    "description": "Huyang was a Mark IV architect droid professor based aboard the Jedi vessel Crucible who, for a thousand generations, taught Jedi younglings, including Grand Master Yoda and Jedi Master Mace Windu, how to construct their lightsabers following the Gathering.",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/huyang.png",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Droid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "Ahsoka"
+    ],
+    "startYear": -250,
+    "birthYear": -25020,
+    "title": "Huyang",
+    "type": "character",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Huyang"
   },
   {
     "altTitle": "Old Ben",
