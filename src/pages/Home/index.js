@@ -82,7 +82,7 @@ const Home = () => {
         <meta property="og:title" content={`${character} - Ultimate Star Wars Timeline`} />
         <meta property="og:url" content={`https://timeline.starwars.guide$/character/${characterUrl}`} />
         <meta property="og:description" content={`Learn more about ${character} on the Ultimate Star Wars Timeline!`} />
-        <meta property="og:image" content={`https://timeline.starwars.guide/social/social_${character.replace(/\s/g, '_')}.png`} />
+        <meta property="og:image" content={`https://timeline.starwars.guide/${character === 'Luke Skywalker' ? `social/social_${character.replace(/\s/g, '_')}` : '/social'}.png`} />
         <title>{character} - Ultimate Star Wars Timeline</title>
       </Helmet>;
     }

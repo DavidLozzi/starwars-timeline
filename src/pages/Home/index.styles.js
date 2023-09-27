@@ -9,9 +9,9 @@ const getFullWidth = (theme, characterCount) =>
 const fadeIn = () => keyframes`
   0% {
     opacity: 0;
-  }  
-	30% { 
-    opacity: 1; 
+  }
+	30% {
+    opacity: 1;
   }
   100% {
     opacity: 1;
@@ -105,7 +105,7 @@ export const EraPill = styled((props) => <Era data-testid="era-pill" {...props} 
   }
 `;
 
-export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) => <div data-testid="year" {...rest}/>)`
+export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) => <div data-testid="year" {...rest} />)`
   ${({ theme }) => theme.elements.year};
   min-width: calc(100vw - ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem);
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.year.leftPageMargin)}rem`};
@@ -130,7 +130,7 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
     z-index: 60;
     border-top: 0;
     margin-top: .1rem;
-    pointer-events: none; 
+    pointer-events: none;
 
     ${Sticky} {
       width: 4rem;
@@ -140,7 +140,7 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
     }
 `;
 
-export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie"/>)`
+export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie" />)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
   top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
@@ -170,9 +170,9 @@ export const MovieTitle = styled.div`
 `;
 
 export const getCharacterTop = (theme, character) => theme.layout.elements.year.height * character.yearIndex + theme.layout.topMargin;
-export const getCharacterLeft = (theme, character) =>  (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin;
+export const getCharacterLeft = (theme, character) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin;
 export const getCharacterHeight = (theme, character) => theme.layout.elements.year.height * (character.endYearIndex - character.yearIndex);
-export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest} data-testid="character"/>)`
+export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest} data-testid="character" />)`
   ${({ theme }) => theme.elements.character};
   position: absolute;
   top: ${({ character, theme }) => getCharacterTop(theme, character)}rem;
