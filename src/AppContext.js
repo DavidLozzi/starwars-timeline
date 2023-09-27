@@ -5,12 +5,13 @@ import jediTheme from './themes/jedi';
 import sithTheme from './themes/sith';
 import { getKeyCount } from './utils';
 
-const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => {}});
+const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => { } });
 
 const AppProvider = ({ children }) => {
   const [filters, setFilters] = React.useState({});
   const [filterCount, setFilterCount] = React.useState(0);
   const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
+  const [scale, setScale] = React.useState(1.0);
 
   const addFilter = (filterName, value) => {
     const _filters = { ...filters, [filterName]: value };
@@ -38,20 +39,22 @@ const AppProvider = ({ children }) => {
     }
     window.scrollTo(scrollToX, scrollToY);
   };
-  
+
   const setTheme = (themeName) => {
     switch (themeName) {
-    case 'sith':
-      setSelectedTheme(sithTheme);
-      break;
-    default:
-      setSelectedTheme(jediTheme);
-      break;
+      case 'sith':
+        setSelectedTheme(sithTheme);
+        break;
+      default:
+        setSelectedTheme(jediTheme);
+        break;
     }
     analytics.event(ACTIONS.THEME, '', themeName);
   };
+
+
   return (
-    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme }}>
+    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme, scale: { scale, setScale } }}>
       <ThemeProvider theme={selectedTheme}>
         {children}
       </ThemeProvider>

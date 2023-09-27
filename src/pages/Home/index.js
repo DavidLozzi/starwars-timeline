@@ -32,7 +32,7 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const [hasScrolled, setHasScrolled] = React.useState(new Date()); // just used to refresh the state/DOM to show/hide characters
-  const { filters, scrollTo, filterCount } = useAppContext();
+  const { filters, scrollTo, filterCount, scale } = useAppContext();
 
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1);
@@ -51,10 +51,10 @@ const Home = () => {
   const isCharacterInView = (character) => {
     const preLoadBuffer = 100;
     const position = {
-      left: Styled.getCharacterLeft(theme, character) * theme.layout.pxInRem - preLoadBuffer,
-      top: Styled.getCharacterTop(theme, character) * theme.layout.pxInRem - preLoadBuffer,
-      right: (Styled.getCharacterLeft(theme, character) + theme.layout.elements.character.width) * theme.layout.pxInRem + preLoadBuffer,
-      bottom: (Styled.getCharacterHeight(theme, character) + Styled.getCharacterTop(theme, character)) * theme.layout.pxInRem + preLoadBuffer
+      left: (Styled.getCharacterLeft(theme, character) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
+      top: (Styled.getCharacterTop(theme, character) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
+      right: ((Styled.getCharacterLeft(theme, character) + theme.layout.elements.character.width) * theme.layout.pxInRem + preLoadBuffer) * scale.scale,
+      bottom: ((Styled.getCharacterHeight(theme, character) + Styled.getCharacterTop(theme, character)) * theme.layout.pxInRem + preLoadBuffer) * scale.scale
     };
     const winView = window.visualViewport;
     winView.pageRight = winView.pageLeft + winView.width;
@@ -235,9 +235,12 @@ const Home = () => {
       <Styled.Wrapper>
         <Styled.Header>
           <h1>Ultimate Star Wars Timeline</h1>
+          {/* <button onClick={() => scale.setScale(scale.scale - .1)}>-</button>
+          <h1>{scale.scale.toFixed(1)}</h1>
+          <button onClick={() => scale.setScale(scale.scale + .1)}>+</button> */}
           <MainMenu />
         </Styled.Header>
-        <div style={{ userSelect: 'none' }}>
+        <div style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}>
           {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
           {
             years
@@ -252,13 +255,17 @@ const Home = () => {
                   >
 
                     <Styled.Year
-                      year={year}
+                      style={{
+                        top: `${theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem`
+                      }}
                       isCurrentYear={currentYear?.year === year.year}
                       characterCount={filteredCharacters.length}
                     />
                     <Styled.YearPill
-                      year={year}
                       isCurrentYear={currentYear?.year === year.year}
+                      style={{
+                        top: `${theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem`
+                      }}
                       characterCount={filteredCharacters.length}
                     >
                       <Styled.Sticky>
@@ -275,16 +282,15 @@ const Home = () => {
                       })
                       .map((era) => {
                         const endYear = years.find(y => y.year === era.endYear);
-                        return <>
+                        return <React.Fragment
+                          key={`${era.title}1`}>
                           <Styled.Era
                             era={era}
-                            key={`${era.title}1`}
                             characterCount={filteredCharacters.length}
                             endYear={endYear}
                           />
                           <Styled.EraPill
                             era={era}
-                            key={era.title}
                             characterCount={filteredCharacters.length}
                             endYear={endYear}
                           >
@@ -294,7 +300,7 @@ const Home = () => {
                               </Styled.EraLabel>
                             </Styled.Sticky>
                           </Styled.EraPill>
-                        </>;
+                        </React.Fragment>;
                       }
                       )}
 

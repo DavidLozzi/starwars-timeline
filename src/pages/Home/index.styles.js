@@ -105,13 +105,12 @@ export const EraPill = styled((props) => <Era data-testid="era-pill" {...props} 
   }
 `;
 
-export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) => <div data-testid="year" {...rest} />)`
+export const Year = styled(({ isCurrentYear, characterCount, ...rest }) => <div data-testid="year" {...rest} />)`
   ${({ theme }) => theme.elements.year};
   min-width: calc(100vw - ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem);
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - (theme.layout.elements.year.leftPageMargin)}rem`};
   position: absolute;
   left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
-  top: ${({ year, theme }) => theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem;
   z-index: 20;
   border-radius: 1rem;
   transition: all 300ms ease-in-out;
@@ -126,7 +125,6 @@ export const Year = styled(({ year, isCurrentYear, characterCount, ...rest }) =>
 
 export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} data-testid="year-pill" />)`
     left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
-    top: ${({ year, theme }) => (theme.layout.elements.year.height) * year.yearIndex + theme.layout.topMargin}rem;
     z-index: 60;
     border-top: 0;
     margin-top: .1rem;
@@ -143,11 +141,11 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
 export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) => <div {...rest} data-testid="movie" />)`
   ${({ theme }) => theme.elements.movie};
   position: absolute;
-  top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
   left: ${({ theme }) => theme.layout.elements.movie.leftPageMargin}rem;
-  min-width: calc(100vw - ${({ movie, theme }) => theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
-  width: ${({ theme, movie, characterCount }) => `${getFullWidth(theme, characterCount) - theme.layout.elements.movie.leftPageMargin}rem`};
+  top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
   height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
+  min-width: calc(100vw - ${({ movie, theme }) => theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
+  width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - theme.layout.elements.movie.leftPageMargin}rem`};
   z-index: 30;
   transition: all 500ms ease-in-out;
 

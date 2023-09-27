@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-export const SeenIn = styled(({ seen, character, movie, ...rest }) => <div {...rest}  data-testid="seenin"/>)`
+export const SeenIn = styled((props) => <div {...props} data-testid="seenin" />)`
   position: absolute;
-  top: ${({ seen, theme, movie }) => (theme.layout.elements.year.height) * seen.yearIndex + theme.layout.topMargin + (movie.index * theme.layout.elements.year.height)}rem;
-  left: ${({ character, theme }) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem;; 
   z-index: 40;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;
   display: flex;
@@ -15,7 +13,7 @@ export const SeenIn = styled(({ seen, character, movie, ...rest }) => <div {...r
 
 export const SeenInEvent = styled.span`
   font-style: italic;
-  
+
   ::after {
     content: ' & ';
   }
@@ -34,7 +32,7 @@ export const ToolTip = styled.div`
   width: 7rem;
 `;
 
-export const Circle = styled(({ seen, character, ...rest }) => <div {...rest}  data-testid="circle"/>)`
+export const Circle = styled(({ seen, character, ...rest }) => <div {...rest} data-testid="circle" />)`
   ${({ theme }) => theme.elements.seenInCircle};
   position: relative;
 
