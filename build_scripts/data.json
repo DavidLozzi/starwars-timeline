@@ -371,7 +371,7 @@
     "startYear": -46,
     "startYearUnknown": true,
     "title": "Morgan Elsbeth",
-    "imageUrl": "/images/elsebeth.png",
+    "imageUrl": "/images/elsbeth.png",
     "type": "character",
     "description": "Morgan Elsbeth was a Nightsister who was instrumental in the construction of the Imperial Navy during the reign of the Galactic Empire. By the era of the New Republic, she led a ruthless regime and served as magistrate of Calodan on the planet Corvus. Elsbeth was in possession of a spear made of pure beskar, and offered it as payment to the Mandalorian bounty hunter Din Djarin for him to kill the former Jedi Ahsoka Tano. At that time, her forces wore stylized versions of a chimaera, the personal symbol of her patron, Grand Admiral Thrawn, and the emblem of the 7th Fleet.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Morgan_Elsbeth",
@@ -817,7 +817,7 @@
   },
   {
     "altTitle": "C1-10P",
-    "endYear": 15,
+    "endYear": 20,
     "endYearUnknown": true,
     "imageUrl": "/images/chopper.png",
     "seenIn": [
@@ -2342,6 +2342,13 @@
     "altTitle": "",
     "endYear": 50,
     "endYearUnknown": true,
+    "imageYears": [
+      {
+        "endYear": 50,
+        "imageUrl": "/images/ezra-old.png",
+        "startYear": 4
+      }
+    ],
     "imageUrl": "/images/ezra.png",
     "seenIn": [
       "Star Wars Rebels",

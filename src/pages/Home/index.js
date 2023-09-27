@@ -11,35 +11,8 @@ import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
 import MainMenu from '../../organisms/MainMenu';
-import Minimap from '../../organisms/Minimap/Minimap';
 import SeenIn from '../../organisms/SeenIn';
-
-const addHead = ({ type, name, property, content }) => {
-  let nameAttrib = 'name';
-  let nameValue = name;
-  if (name === null && property) {
-    nameAttrib = 'property';
-    nameValue = property;
-  }
-
-  const headElement = document.head || document.querySelector('head');
-  let newElement;
-  switch (type) {
-  case 'title':
-    newElement = document.createElement('title');
-    newElement.appendChild(document.createTextNode(`${content} - Ultimate Star Wars Timeline`));
-    headElement.removeChild(headElement.querySelector('title'));
-    break;
-  case 'meta':
-    newElement = document.createElement('meta');
-    newElement.setAttribute(nameAttrib, nameValue);
-    newElement.setAttribute('content', content);
-    headElement.removeChild(headElement.querySelector(`meta[name="${nameValue}"]`));
-    break;
-  }
-
-  headElement.appendChild(newElement);
-};
+import { Helmet } from 'react-helmet';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -62,7 +35,7 @@ const Home = () => {
   const { filters, scrollTo, filterCount } = useAppContext();
 
   // zoom level, incremements of years to show
-  const [zoomLevel] = React.useState(1); 
+  const [zoomLevel] = React.useState(1);
 
   const showCharacter = (character) => {
     history.push(`/character/${character.title}?year=${currentYear.year}&show=true`);
@@ -90,11 +63,40 @@ const Home = () => {
       (position.right >= winView.pageLeft && position.right <= winView.pageRight)) {
       if ((position.top >= winView.pageTop && position.top <= winView.pageBottom) ||
         (position.bottom >= winView.pageTop && position.bottom <= winView.pageBottom) ||
-        (position.top <= winView.pageTop && position.bottom >= winView.pageBottom )) {
+        (position.top <= winView.pageTop && position.bottom >= winView.pageBottom)) {
         return true;
       }
     }
     return false;
+  };
+
+  const HeaderOutput = () => {
+    const character = routeParams?.character;
+    const characterUrl = encodeURI(character);
+    if (character) {
+      return <Helmet>
+        <meta name="description" content={`Learn more about ${character} on the Ultimate Star Wars Timeline!`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@UltStarWarsTime" />
+        <meta name="twitter:creator" content="@AurebeshFiles" />
+        <meta property="og:title" content={`${character} - Ultimate Star Wars Timeline`} />
+        <meta property="og:url" content={`https://timeline.starwars.guide$/character/${characterUrl}`} />
+        <meta property="og:description" content={`Learn more about ${character} on the Ultimate Star Wars Timeline!`} />
+        <meta property="og:image" content={`https://timeline.starwars.guide/social/social_${character.replace(/\s/g, '_')}.png`} />
+        <title>{character} - Ultimate Star Wars Timeline</title>
+      </Helmet>;
+    }
+    return <Helmet>
+      <meta name="description" content="The Ultimate Star Wars Timeline including characters, movies, and TV shows." />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@UltStarWarsTime" />
+      <meta name="twitter:creator" content="@AurebeshFiles" />
+      <meta property="og:title" content="Ultimate Star Wars Timeline" />
+      <meta property="og:url" content="https://timeline.starwars.guide" />
+      <meta property="og:description" content="The Ultimate Star Wars Timeline including characters, movies, and TV shows." />
+      <meta property="og:image" content="https://timeline.starwars.guide/social.png" />
+      <title>Ultimate Star Wars Timeline</title>
+    </Helmet>;
   };
 
   React.useEffect(() => {
@@ -125,8 +127,6 @@ const Home = () => {
             showCharacter(scrollToChar);
           }
         }
-        addHead({ type: 'title', content: scrollToChar.title });
-        addHead({ type: 'meta', name: 'description', content: `Star Wars Timeline for ${scrollToChar.title}` });
       }
       if (!scrollToChar) {
         scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
@@ -173,7 +173,7 @@ const Home = () => {
       filtChars = filtChars
         .filter(f => f.seenIn.some(s => s.events.some(e => e.title === filters.movie)))
         .sort((a, b) => a.startYear > b.startYear ? 1 : -1);
-      
+
       const filteredMovieYear = years.find(y => y.events.some(e => e.title === filters.movie));
       scrollTo(filteredMovieYear);
     }
@@ -199,129 +199,160 @@ const Home = () => {
       }
     }, 75);
 
+    function scrollPage(e) {
+      if (window.curDown) {
+        window.scrollBy(window.curXPos - e.pageX, window.curYPos - e.pageY);
+        window.animationFrameId = requestAnimationFrame(() => scrollPage(e));
+      }
+    }
+
+    window.curYPos = 0;
+    window.curXPos = 0;
+    window.curDown = false;
+    window.addEventListener('mousemove', function (e) {
+      if (window.curDown) {
+        cancelAnimationFrame(window.animationFrameId);
+        window.animationFrameId = requestAnimationFrame(() => scrollPage(e));
+      }
+    });
+
+    window.addEventListener('mousedown', function (e) {
+      window.curYPos = e.pageY;
+      window.curXPos = e.pageX;
+      window.curDown = true;
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      window.curDown = false;
+      cancelAnimationFrame(window.animationFrameId);
+    });
+
   }, []);
 
   return (
     <>
+      <HeaderOutput />
       <Styled.Wrapper>
         <Styled.Header>
           <h1>Ultimate Star Wars Timeline</h1>
           <MainMenu />
         </Styled.Header>
-        {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
-        {
-          years
-            .filter(({year}) => year % zoomLevel === 0)
-            .map(year => {
-              const movies = year
-                .events
-                .filter(y => (y.type === 'movie' || y.type === 'tv')); // && y.endYear === year.year)
-              return (
-                <React.Fragment
-                  key={year.display}
-                >
-
-                  <Styled.Year 
-                    year={year}
-                    isCurrentYear={currentYear?.year === year.year}
-                    characterCount={filteredCharacters.length}
-                  />
-                  <Styled.YearPill 
-                    year={year}
-                    isCurrentYear={currentYear?.year === year.year}
-                    characterCount={filteredCharacters.length}
+        <div style={{ userSelect: 'none', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+          {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
+          {
+            years
+              .filter(({ year }) => year % zoomLevel === 0)
+              .map(year => {
+                const movies = year
+                  .events
+                  .filter(y => (y.type === 'movie' || y.type === 'tv')); // && y.endYear === year.year)
+                return (
+                  <React.Fragment
+                    key={year.display}
                   >
-                    <Styled.Sticky>
-                      {year.display}
-                    </Styled.Sticky>
-                  </Styled.YearPill>
-                  {year
-                    .events
-                    .filter(y => y.type === 'era')
-                    .sort((a, b) => {
-                      if (a.index > b.index) return 1;
-                      if (a.index < b.index) return -1;
-                      return 0;
-                    })
-                    .map((era) => {
-                      const endYear = years.find(y => y.year === era.endYear);
-                      return <>
-                        <Styled.Era
-                          era={era}
-                          key={`${era.title}1`}
-                          characterCount={filteredCharacters.length}
-                          endYear={endYear}
-                        />
-                        <Styled.EraPill
-                          era={era}
-                          key={era.title}
-                          characterCount={filteredCharacters.length}
-                          endYear={endYear}
-                        >
-                          <Styled.Sticky>
-                            <Styled.EraLabel>
-                              {era.title}
-                            </Styled.EraLabel>
-                          </Styled.Sticky>
-                        </Styled.EraPill>
-                      </>;}
-                    )}
 
-                  {movies
-                    .map((movie) => <Styled.Movie
-                      movie={movie}
-                      characterCount={filteredCharacters.length}
+                    <Styled.Year
+                      year={year}
                       isCurrentYear={currentYear?.year === year.year}
-                      key={movie.title}
+                      characterCount={filteredCharacters.length}
+                    />
+                    <Styled.YearPill
+                      year={year}
+                      isCurrentYear={currentYear?.year === year.year}
+                      characterCount={filteredCharacters.length}
                     >
                       <Styled.Sticky>
-                        <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>
+                        {year.display}
                       </Styled.Sticky>
-                    </Styled.Movie>
-                    )
-                  }
-                </React.Fragment>
-              );
-            }
-            )
-        }
-        {
-          characters
-            .filter(c => filteredCharacters.some(f => f.title === c.title))
-            .map(c => {
-              const character = filteredCharacters.find(f => f.title === c.title);
+                    </Styled.YearPill>
+                    {year
+                      .events
+                      .filter(y => y.type === 'era')
+                      .sort((a, b) => {
+                        if (a.index > b.index) return 1;
+                        if (a.index < b.index) return -1;
+                        return 0;
+                      })
+                      .map((era) => {
+                        const endYear = years.find(y => y.year === era.endYear);
+                        return <>
+                          <Styled.Era
+                            era={era}
+                            key={`${era.title}1`}
+                            characterCount={filteredCharacters.length}
+                            endYear={endYear}
+                          />
+                          <Styled.EraPill
+                            era={era}
+                            key={era.title}
+                            characterCount={filteredCharacters.length}
+                            endYear={endYear}
+                          >
+                            <Styled.Sticky>
+                              <Styled.EraLabel>
+                                {era.title}
+                              </Styled.EraLabel>
+                            </Styled.Sticky>
+                          </Styled.EraPill>
+                        </>;
+                      }
+                      )}
 
-              if (isCharacterInView(character)) {
-                return <React.Fragment
-                  key={character.title}>
-                  <Styled.CharacterColumn
-                    character={character}
-                  >
-                  </Styled.CharacterColumn>
-                  <CharacterDetailPill
-                    character={character}
-                    currentYear={currentYear}
-                    currentCharacter={currentCharacter}
-                    onPillPress={showCharacter}
-                  />
-                  {
-                    character.seenIn
-                      .sort((a, b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
-                      .map((seen) => <SeenIn
-                        seen={seen}
-                        character={character}
-                        key={`seen${seen.year}${character.title}`}
-                      />
+                    {movies
+                      .map((movie) => <Styled.Movie
+                        movie={movie}
+                        characterCount={filteredCharacters.length}
+                        isCurrentYear={currentYear?.year === year.year}
+                        key={movie.title}
+                      >
+                        <Styled.Sticky>
+                          <Styled.MovieTitle>{movie.title}</Styled.MovieTitle>
+                        </Styled.Sticky>
+                      </Styled.Movie>
                       )
-                  }
-                </React.Fragment>;
+                    }
+                  </React.Fragment>
+                );
               }
-            }
-            )
-        }
+              )
+          }
+          {
+            characters
+              .filter(c => filteredCharacters.some(f => f.title === c.title))
+              .map(c => {
+                const character = filteredCharacters.find(f => f.title === c.title);
+
+                if (isCharacterInView(character)) {
+                  return <React.Fragment
+                    key={character.title}>
+                    <Styled.CharacterColumn
+                      character={character}
+                    >
+                    </Styled.CharacterColumn>
+                    <CharacterDetailPill
+                      character={character}
+                      currentYear={currentYear}
+                      currentCharacter={currentCharacter}
+                      onPillPress={showCharacter}
+                    />
+                    {
+                      character.seenIn
+                        .sort((a, b) => a.year < b.year ? 1 : -1) // purposly sorting backwards for writing to the DOM and overlapping tooltips
+                        .map((seen) => <SeenIn
+                          seen={seen}
+                          character={character}
+                          key={`seen${seen.year}${character.title}`}
+                        />
+                        )
+                    }
+                  </React.Fragment>;
+                }
+              }
+              )
+          }
+        </div>
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
-      {/* <Minimap /> */}
     </>
   );
 };
