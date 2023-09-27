@@ -237,7 +237,7 @@ const Home = () => {
           <h1>Ultimate Star Wars Timeline</h1>
           <MainMenu />
         </Styled.Header>
-        <div style={{ userSelect: 'none', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+        <div style={{ userSelect: 'none' }}>
           {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
           {
             years

@@ -119,6 +119,41 @@
     "wookiepedia": "https://starwars.fandom.com/wiki/Third_Sister"
   },
   {
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/jacen.png",
+    "imageYears": [
+      {
+        "endYear": 6,
+        "imageUrl": "/images/jacen-young.png",
+        "startYear": -1
+      }
+    ],
+    "seenIn": [
+      "Star Wars Rebels",
+      "Ahsoka"
+    ],
+    "startYear": -1,
+    "title": "Jacen Syndulla",
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Lothal"
+      },
+      {
+        "name": "Species",
+        "value": "Human/Twi'lek"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ],
+    "description": "Jacen Syndulla was a human-Twi'lek hybrid who was born during the time of the Galactic Civil War. He was the son of General Hera Syndulla and the late Jedi Knight Kanan Jarrus, and the grandson of Twi'lek revolutionary leader Cham Syndulla.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Jacen_Syndulla"
+  },
+  {
     "altTitle": "",
     "endYear": 50,
     "endYearUnknown": true,
@@ -368,7 +403,7 @@
       "Ahsoka",
       "The Mandalorian"
     ],
-    "startYear": -46,
+    "startYear": -48,
     "startYearUnknown": true,
     "title": "Morgan Elsbeth",
     "imageUrl": "/images/elsbeth.png",
@@ -430,11 +465,11 @@
     "endYear": 20,
     "endYearUnknown": true,
     "seenIn": [
-      "Star Wars Rebels",
       "The Mandalorian",
-      "The Book of Boba Fett"
+      "The Book of Boba Fett",
+      "Ahsoka"
     ],
-    "startYear": -50,
+    "startYear": -42,
     "startYearUnknown": true,
     "title": "Carson Teva",
     "imageUrl": "/images/teva.png",
@@ -462,6 +497,13 @@
     "seenIn": [
       "Star Wars Rebels",
       "Ahsoka"
+    ],
+    "imageYears": [
+      {
+        "endYear": 40,
+        "imageUrl": "/images/wren-old.png",
+        "startYear": 4
+      }
     ],
     "startYear": -21,
     "title": "Sabine Wren",
@@ -719,6 +761,13 @@
     "description": "Thrawn, born as Kivu'raw'nuru with the core name Vurawn, recognized in his early military career as Mitth'raw'nuru, was an officer of the Chiss Ascendancy and Grand Admiral in the Imperial Navy during the age of the Galactic Empire. An alien Imperial officer with striking blue skin, red eyes, and an angular face, Thrawn was well known as a brilliant and ruthless strategist. He believed that in order to achieve victory in war, one must know their enemy. As such, he dedicated himself to understanding the philosophy, art, and culture of his opponents, which included the Twi'leks of Ryloth and the warriors of Mandalore. When Governor Arihnda Pryce requested a strong commander capable of defeating the rebels on Lothal, Grand Admiral Thrawn accepted the challenge, intending to dismantle the rebellion one piece at a time.",
     "endYear": 20,
     "endYearUnknown": true,
+    "imageYears": [
+      {
+        "endYear": 40,
+        "imageUrl": "/images/thrawn-old.png",
+        "startYear": 4
+      }
+    ],
     "imageUrl": "/images/thrawn.png",
     "metadata": [
       {
@@ -2016,8 +2065,7 @@
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi"
     ],
-    "startYear": 0,
-    "startYearUnknown": true,
+    "startYear": 6,
     "title": "Phasma",
     "type": "character",
     "description": "Phasma, a stormtrooper captain of the First Order, grew up as a member of the Scyre clan on the nuclear-ravaged world of Parnassos, where she became a formidable warrior, eventually becoming the clan's military leader. Seeking passage offworld, Phasma helped the First Order General Brendol Hux find his ship, in the process betraying her own brother, Keldo, and the rest of her clan. After being rescued, Phasma joined the First Order, abandoning her former life.",
@@ -2318,6 +2366,13 @@
       "Star Wars Rebels",
       "Ahsoka"
     ],
+    "imageYears": [
+      {
+        "endYear": 40,
+        "imageUrl": "/images/hera-old.png",
+        "startYear": 4
+      }
+    ],
     "startYear": -29,
     "title": "Hera Syndulla",
     "type": "character",
@@ -2469,7 +2524,8 @@
       "Episode II: Attack of the Clones",
       "Episode IV: A New Hope",
       "The Mandalorian",
-      "The Book of Boba Fett"
+      "The Book of Boba Fett",
+      "Galaxy's Edge"
     ],
     "startYear": -25,
     "startYearUnknown": true,
