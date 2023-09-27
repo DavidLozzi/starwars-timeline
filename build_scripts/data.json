@@ -129,7 +129,7 @@
       "Galaxy's Edge"
     ],
     "startYear": -52,
-    "startYearUnkown": true,
+    "startYearUnknown": true,
     "title": "Hondo Ohnaka",
     "type": "character",
     "metadata": [
@@ -358,6 +358,101 @@
       {
         "name": "Force Sensitive",
         "value": "Yes"
+      }
+    ]
+  },
+  {
+    "endYear": 20,
+    "endYearUnknown": true,
+    "seenIn": [
+      "Ahsoka",
+      "The Mandalorian"
+    ],
+    "startYear": -46,
+    "startYearUnknown": true,
+    "title": "Morgan Elsbeth",
+    "imageUrl": "/images/elsebeth.png",
+    "type": "character",
+    "description": "Morgan Elsbeth was a Nightsister who was instrumental in the construction of the Imperial Navy during the reign of the Galactic Empire. By the era of the New Republic, she led a ruthless regime and served as magistrate of Calodan on the planet Corvus. Elsbeth was in possession of a spear made of pure beskar, and offered it as payment to the Mandalorian bounty hunter Din Djarin for him to kill the former Jedi Ahsoka Tano. At that time, her forces wore stylized versions of a chimaera, the personal symbol of her patron, Grand Admiral Thrawn, and the emblem of the 7th Fleet.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Morgan_Elsbeth",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Dathomir"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "endYear": 20,
+    "endYearUnknown": true,
+    "seenIn": [
+      "Star Wars Rebels",
+      "The Mandalorian"
+    ],
+    "imageYears": [
+      {
+        "endYear": 20,
+        "imageUrl": "/images/orrelios.png",
+        "startYear": 4
+      }
+    ],
+    "startYear": -44,
+    "title": "Garazeb Orrelios",
+    "altTitle": "Zeb",
+    "imageUrl": "/images/orrelios-rebels.png",
+    "type": "character",
+    "description": "Garazeb Orrelios was a rebel who manned the starship, the Ghost. Prior to joining the Spectres rebel cell, Orrelios was a Captain of the Lasan Honor Guard and was trained to fight with a bo-rifle. He was one of the few Lasat to survive the devastation of his homeworld of Lasan and as a result developed a deep hatred towards the Empire. As a member of the Lothal rebel cell led by the Twi'lek Hera Syndulla and the Jedi Kanan Jarrus, Orrelios took part in numerous raids and missions against the Empire. While temperamental and volatile, Zeb was compassionate and had a strong moral compass.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Garazeb_Orrelios",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Lasan"
+      },
+      {
+        "name": "Species",
+        "value": "Lasat"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
+    "endYear": 20,
+    "endYearUnknown": true,
+    "seenIn": [
+      "Star Wars Rebels",
+      "The Mandalorian",
+      "The Book of Boba Fett"
+    ],
+    "startYear": -50,
+    "startYearUnknown": true,
+    "title": "Carson Teva",
+    "imageUrl": "/images/teva.png",
+    "type": "character",
+    "description": "Carson Teva was a captain who served in the Rebel Alliance and later within the Adelphi Rangers of the New Republic Starfighter Corps flying a T-65B X-wing starfighter. While patrolling in the Outer Rim in 9 ABY, he and fellow New Republic pilot Trapper Wolf approached the gunship Razor Crest, questioning why the starship's transponder was not emitting. The Crest's pilot, the Mandalorian bounty hunter Din Djarin, explained that the vessel was pre-Galactic Empire and promised to fix his issue. Teva then requested a ping from Djarin, which the Mandalorian eventually transmitted reluctantly. Wolf then connected the Razor Crest to a breakout on a New Republic Correctional Transport and Djarin attempted to flee.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Carson_Teva",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Unknown"
+      },
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
       }
     ]
   },
@@ -1686,6 +1781,7 @@
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
       "Episode VI: Return of the Jedi",
+      "Ahsoka",
       "Episode VII: The Force Awakens",
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
