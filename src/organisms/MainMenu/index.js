@@ -15,7 +15,6 @@ import { useTheme } from 'styled-components';
 
 const MENUS = {
   MAIN: 'main',
-  DONATE: 'donate',
   FILTER: 'filter'
 };
 
@@ -90,8 +89,6 @@ const MainMenu = () => {
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
-      {openedMenu === MENUS.DONATE &&
-        <Donate onClose={closeMenus} />}
       <Styled.MenuButton onClick={toggleHowTo}><HelpImg alt="show the how to window" style={{ width: '22px' }} /></Styled.MenuButton>
       {showHowTo && <Modal onClickBg={() => setShowHowTo(false)}><HowTo /></Modal>}
     </Styled.Wrapper>
