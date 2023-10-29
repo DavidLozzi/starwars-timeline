@@ -8,7 +8,7 @@ const getFullWidth = (theme, characterCount) =>
   (theme.layout.elements.character.width + theme.layout.elements.character.spacer);
 
 const getFullHeight = (theme) => {
-  const endYear = yearsData.sort((a, b) => a.yearIndex < b.yearIndex)[yearsData.length - 1];
+  const endYear = yearsData.sort((a, b) => a.yearIndex > b.yearIndex ? 1 : -1)[yearsData.length - 1];
   return theme.layout.gridHeight * endYear.yearIndex;
 };
 
