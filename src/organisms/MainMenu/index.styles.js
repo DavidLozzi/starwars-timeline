@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   z-index: 100;
+  align-items: center;
 `;
 
 export const MenuButton = styled.button`
