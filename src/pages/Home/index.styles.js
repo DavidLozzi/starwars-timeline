@@ -1,10 +1,16 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import yearsData from '../../data/years.json';
 
 const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +
   characterCount *
   (theme.layout.elements.character.width + theme.layout.elements.character.spacer);
+
+const getFullHeight = (theme) => {
+  const endYear = yearsData.sort((a, b) => a.yearIndex < b.yearIndex)[yearsData.length - 1];
+  return theme.layout.gridHeight * endYear.yearIndex;
+};
 
 const fadeIn = () => keyframes`
   0% {
@@ -169,7 +175,7 @@ export const MovieTitle = styled.div`
 
 export const getCharacterTop = (theme, character) => theme.layout.elements.year.height * character.yearIndex + theme.layout.topMargin;
 export const getCharacterLeft = (theme, character) => (theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin;
-export const getCharacterHeight = (theme, character) => theme.layout.elements.year.height * (character.endYearIndex - character.yearIndex);
+export const getCharacterHeight = (theme, character) => getFullHeight(theme) - (theme.layout.elements.year.height * character.yearIndex);
 export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest} data-testid="character" />)`
   ${({ theme }) => theme.elements.character};
   position: absolute;

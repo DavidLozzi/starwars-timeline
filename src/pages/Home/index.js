@@ -13,6 +13,7 @@ import * as Styled from './index.styles';
 import MainMenu from '../../organisms/MainMenu';
 import SeenIn from '../../organisms/SeenIn';
 import { Helmet } from 'react-helmet';
+import Death from '../../organisms/Death';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -355,6 +356,15 @@ const Home = () => {
                 }
               }
               )
+          }
+          {
+            characters
+              .filter(c => filteredCharacters.some(f => f.title === c.title))
+              .filter(c => !c.endYearUnknown)
+              .map(c => {
+                const character = filteredCharacters.find(f => f.title === c.title);
+                return <Death character={character} key={character.title} />;
+              })
           }
         </div>
       </Styled.Wrapper>

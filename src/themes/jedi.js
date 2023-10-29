@@ -166,7 +166,6 @@ export default {
     },
     character: {
       background: `linear-gradient(rgba(${palette.secondary},1), rgba(${palette.secondary},1)) no-repeat center/8px 100%`,
-      borderRadius: '50%',
       transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
@@ -241,6 +240,19 @@ export default {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
         backgroundColor: `rgba(${palette.secondary},1)`
+      }
+    },
+    deathCircle: {
+      backgroundColor: `rgba(${palette.black},1)`,
+      borderRadius: '50%',
+      border: `3px solid rgba(${palette.secondary},1)`,
+      width: `${layout.gridWidth * .75}rem`,
+      height: `${layout.gridWidth * .75}rem`,
+      transition: 'all 300ms ease-in-out',
+      display: 'flex',
+      justifyContent: 'center',
+      ':hover': {
+        backgroundColor: `rgba(${palette.black},1)`
       }
     },
     modalWrapper: css`
