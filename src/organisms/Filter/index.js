@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from 'styled-components';
 import analytics, { ACTIONS } from '../../analytics';
 import { getKeyCount } from '../../utils';
 import filterData from '../../data/filters.json';
@@ -10,14 +11,15 @@ import searchSvg from '../../assets/search.svg';
 import filtersSvg from '../../assets/filters.svg';
 
 import * as Styled from './index.styles';
+import FilterCharacterDropdown from './Character';
 
 const Filter = ({ onClose }) => {
+  const theme = useTheme();
   const { addFilter, removeFilter, filters } = useAppContext();
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
   const [selectedFilter, setSelectedFilter] = React.useState({});
   const [selectedFilterCount, setSelectedFilterCount] = React.useState(0);
   const [selectedMovie, setSelectedMovie] = React.useState('');
-  const [characterOptions, setCharacterOptions] = React.useState([]);
   const [characterCount, setCharacterCount] = React.useState(0);
 
   const applyFilter = () => {
@@ -76,10 +78,6 @@ const Filter = ({ onClose }) => {
   }, [selectedFilter, selectedFilterCount]);
 
   React.useEffect(() => {
-    setCharacterOptions(charactersData
-      .sort((a, b) => a.title > b.title ? 1 : -1)
-      .map(c => ({ text: c.title, value: c.title })));
-    
     if (filters?.metadata) {
       setSelectedFilter(filters.metadata);
       setSelectedFilterCount(getKeyCount(filters.metadata));
@@ -89,22 +87,16 @@ const Filter = ({ onClose }) => {
       setSelectedFilterCount(s => s + 1);
     }
   }, []);
-  
+
   return (
     <Styled.Wrapper>
       <Styled.H1>Search</Styled.H1>
-      <Styled.FormRow>
+      {window.innerWidth < theme.windowWidths.lg && <Styled.FormRow>
         <Styled.FormLabel><Styled.Icon src={searchSvg} alt="Find a character icon" /> Find a character: </Styled.FormLabel>
         <Styled.FormValue>
-          <Dropdown
-            values={characterOptions}
-            defaultText="Select Character"
-            selectedText={selectedCharacter?.text}
-            onSelect={(v) => setSelectedCharacter(v)}
-            onClear={() => setSelectedCharacter(null)}
-          />
+          <FilterCharacterDropdown setSelectedCharacter={setSelectedCharacter} selectedCharacter={selectedCharacter} />
         </Styled.FormValue>
-      </Styled.FormRow>
+      </Styled.FormRow>}
       <Styled.FormRow>
         <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
       </Styled.FormRow>
@@ -112,16 +104,16 @@ const Filter = ({ onClose }) => {
         <Styled.FormLabel>Seen in Movie or TV Show:</Styled.FormLabel>
         <Styled.FormValue>
           <Dropdown
-            values={seenInData.map(s => ({ text: `${s.name} (${s.count})`, value: s.name}))}
+            values={seenInData.map(s => ({ text: `${s.name} (${s.count})`, value: s.name }))}
             defaultText="Filter by Movie/TV Show"
             selectedText={selectedMovie}
             onSelect={(v) => setSelectedMovie(v.value)}
             onClear={() => setSelectedMovie('')}
-          /> 
+          />
         </Styled.FormValue>
       </Styled.FormRow>
       {
-        filterData.sort((a,b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
+        filterData.sort((a, b) => a.name > b.name ? 1 : -1).map(filter => <Styled.FormRow key={filter.name}>
           <Styled.FormLabel>{filter.name}</Styled.FormLabel>
           <Styled.FormValue>
             <Dropdown

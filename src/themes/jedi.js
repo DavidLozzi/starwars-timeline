@@ -21,7 +21,7 @@ const layout = { // in rem
     }
   }
 };
-  
+
 const palette = {
   primary: '54,116,172',
   secondary: '224,196,56',
@@ -34,16 +34,24 @@ const palette = {
   white: '255,255,255',
 };
 
+const windowWidths = {
+  sm: 390,
+  md: 640,
+  lg: 1024
+};
+
 const breakpoints = {
-  sm: '@media screen and (min-width: 390px)',
-  md: '@media screen and (min-width: 640px)',
-  lg: '@media screen and (min-width: 1024px)'
+  sm: `@media screen and (min-width: ${windowWidths.sm}px)`,
+  md: `@media screen and (min-width: ${windowWidths.md}px)`,
+  lg: `@media screen and (min-width: ${windowWidths.lg}px)`
 };
 
 
 export default {
   name: 'jedi',
   palette,
+  breakpoints,
+  windowWidths,
   elements: {
     body: css`
       background-color: rgb(${palette.black});
@@ -114,7 +122,7 @@ export default {
         `
     },
     era: css`
-          background: linear-gradient(120deg, rgba(${ palette.black }, 1) 0%, rgba(${ palette.black }, 1) 10%, rgba(${ palette.black }, 0.75) 100%);
+          background: linear-gradient(120deg, rgba(${palette.black}, 1) 0%, rgba(${palette.black}, 1) 10%, rgba(${palette.black}, 0.75) 100%);
     `,
     eraPill: css`
       background-color: rgb(${palette.gray});
@@ -243,7 +251,7 @@ export default {
       color: ${palette.white};
     `,
     modalClose: css`
-      
+
     `,
     listItem: css`
       border: 0;

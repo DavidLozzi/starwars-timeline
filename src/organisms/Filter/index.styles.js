@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   max-width: 30rem;
   border-radius: 0px 0px 0px 10px;
+  color: #fff;
 `;
 
 export const H1 = styled.h1`
@@ -32,6 +33,7 @@ export const FormRow = styled(({ justifyFlexEnd, ...rest }) => <div {...rest} />
 export const FormLabel = styled(({ note, ...rest }) => <label {...rest} />)`
   display: flex;
   align-items: center;
+  color: rgb(${({ theme }) => theme.palette.black});
   ${({ note }) => note && css`font-size: .8rem`}
 `;
 
