@@ -1,11 +1,11 @@
 // preps data.json for the web consumption
 const data = require('./data.json'),
   fs = require('fs');
- 
+
 
 const convertYear = (year) => {
-  if(year <= 0) return `${year * -1} BBY`;
-  if(year > 0) return `${year} ABY`;
+  if (year <= 0) return `${year * -1} BBY`;
+  if (year > 0) return `${year} ABY`;
   return 'none';
 };
 
@@ -32,7 +32,7 @@ for (let i = _startYear; i <= _endYear; i++) {
       startYearDisplay: convertYear(e.startYear),
       endYearDisplay: convertYear(e.endYear)
     }));
-        
+
   _newYears.push({
     ...year,
     yearIndex,
@@ -111,7 +111,7 @@ const getCharacterTweets = (character) => {
       _output += tweet;
     }
     output = _output.replace(/\^\#\^/ig, tweetCnt);
-  } 
+  }
   allOutput.push({ title: `${c.type}-${c.title}`, tweet: output, img: `https://timeline.starwars.guide${c.imageUrl}` });
 };
 
@@ -121,7 +121,7 @@ _newYears
     let header = '';
     let linkToCharacter = '';
     if (y.events.some(e => e.type === 'era')) {
-      header += y.events.filter(e => e.type === 'era').sort((a,b) => a.startYear > b.startYear ? -1 : 1).map(e => {
+      header += y.events.filter(e => e.type === 'era').sort((a, b) => a.startYear > b.startYear ? -1 : 1).map(e => {
         if (e.endYear === y.year) {
           return `🍾  Long live the ${e.title}!`;
         }
@@ -132,7 +132,11 @@ _newYears
       header += '\n\n';
     } else {
       const era = data.find(d => d.type === 'era' && d.startYear <= y.year && d.endYear >= y.year);
-      header += `📆  During the ${era.title}, in the year of ${y.display}\n\n`;
+      if (era) {
+        header += `📆  During the ${era.title}, in the year of ${y.display}\n\n`;
+      } else {
+        console.log('No era for', y);
+      }
     }
 
     let movies = '';
@@ -187,7 +191,7 @@ _newYears
     let footer = '';
     footer += `Explore more https://timeline.starwars.guide/${linkToCharacter ? linkToCharacter : ''}\n`;
     footer += '#StarWars ';
-  
+
     if (movies.length > 0 && header.length + movies.length + footer.length < tweetSize) {
       movies = header + movies + footer;
       allOutput.push({ title: y.display, tweet: movies });
@@ -204,7 +208,7 @@ _newYears
       deaths = header + deaths + footer;
       allOutput.push({ title: y.display, tweet: deaths });
     }
-  
+
   });
 
 
@@ -214,7 +218,7 @@ fs.writeFile('./public/socials.json', JSON.stringify(allOutput), (err) => {
   if (err) {
     console.error(`socials writeFile ${JSON.stringify(err)}`);
   } else {
-    console.log('socials.txt file created');
+    console.log('socials.json file created');
   }
 });
 

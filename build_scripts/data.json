@@ -1,8 +1,8 @@
 [
   {
-    "endYear": -82,
+    "endYear": -81,
     "startYear": -300,
-    "title": "The High Republic Era",
+    "title": "High Republic Era",
     "type": "era"
   },
   {
@@ -349,7 +349,7 @@
     ]
   },
   {
-    "endYear": -19,
+    "endYear": -18,
     "startYear": -82,
     "title": "Republic Era",
     "type": "era"
@@ -1555,8 +1555,8 @@
     ]
   },
   {
-    "endYear": -19,
-    "startYear": -32,
+    "endYear": -32,
+    "startYear": -19,
     "title": "Fall of the Jedi",
     "type": "era"
   },
@@ -2509,7 +2509,7 @@
   },
   {
     "endYear": 34,
-    "startYear": 9,
+    "startYear": 5,
     "title": "The New Republic",
     "type": "era"
   },
@@ -2732,5 +2732,11 @@
     "startYear": 35,
     "title": "Episode IX: The Rise of Skywalker",
     "type": "movie"
+  },
+  {
+    "endYear": 50,
+    "startYear": 36,
+    "title": "New Jedi Order",
+    "type": "era"
   }
 ]
