@@ -777,6 +777,7 @@
     ]
   },
   {
+    "altTitle": "Darth",
     "endYear": -2,
     "imageUrl": "/images/maul.png",
     "seenIn": [
@@ -785,7 +786,7 @@
       "Star Wars Rebels"
     ],
     "startYear": -54,
-    "title": "Darth Maul",
+    "title": "Maul",
     "type": "character",
     "description": "Maul, once known as Darth Maul, established himself as a crime lord during the reign of the Galactic Empire. However, he was once the Sith apprentice of Darth Sidious, and therefore, a Dark Lord of the Sith. Having trained in the ways of the Force, Maul was a formidable warrior strong with the dark side and deadly skilled in lightsaber combat. In addition, he was a scheming mastermind who plotted his return to power despite losing his place in the ranks of the Sith.",
     "wookiepedia": "https://starwars.fandom.com/wiki/Maul",
@@ -1360,11 +1361,6 @@
         "endYear": -19,
         "imageUrl": "/images/anakin.png",
         "startYear": -28
-      },
-      {
-        "endYear": -28,
-        "imageUrl": "/images/vadar-kid.jpg",
-        "startYear": -41
       }
     ],
     "seenIn": [
@@ -2632,6 +2628,7 @@
     ]
   },
   {
+    "altTitle": "",
     "endYear": 50,
     "endYearUnknown": true,
     "imageUrl": "/images/rey.png",
@@ -2662,7 +2659,6 @@
     ]
   },
   {
-    "altTitle": "",
     "endYear": 50,
     "endYearUnknown": true,
     "imageUrl": "/images/bb8.png",
