@@ -60,6 +60,15 @@ layout: page
   <div class="character_image col-2">
     ${character.imageYears ? character.imageYears.sort((a, b) => a.startYear > b.startYear ? 1 : -1).map(img => `<img src="https://timeline.starwars.guide/${img.imageUrl}" alt="${character.title}" />`).join('\n') : ''}
     <img src="https://timeline.starwars.guide/${character.imageUrl}" alt="${character.title}" />
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-6056590143595280"
+      data-ad-slot="1622037034"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 </div>
 `;
