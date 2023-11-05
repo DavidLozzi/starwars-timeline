@@ -15,6 +15,11 @@ export const MenuButton = styled.button`
   color: ${({ theme }) => `rgb(${theme.palette.white})`};
 `;
 
+export const MenuLink = styled.a`
+  padding: .75rem;
+  color: ${({ theme }) => `rgb(${theme.palette.white})`};
+`;
+
 export const MenuWrapper = styled.div`
   position: fixed;
   top: 2.5rem;

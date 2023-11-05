@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import analytics, { ACTIONS } from '../../analytics';
 import { ReactComponent as MenuImg } from '../../assets/menu.svg';
 import { ReactComponent as SearchImg } from '../../assets/search.svg';
 import { ReactComponent as HelpImg } from '../../assets/help.svg';
 import Filter from '../Filter';
-import ThemeSwitcher from '../ThemeSwitcher';
 
 import * as Styled from './index.styles';
-import Modal from '../../molecules/modal';
-import HowTo from '../HowTo';
 import FilterCharacterDropdown from '../Filter/Character';
 import { useAppContext } from '../../AppContext';
 import { useTheme } from 'styled-components';
@@ -21,7 +18,6 @@ const MENUS = {
 const MainMenu = () => {
   const theme = useTheme();
   const { addFilter } = useAppContext();
-  const [showHowTo, setShowHowTo] = React.useState(false);
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
 
   const [openedMenu, setOpenedMenu] = React.useState('');
@@ -46,11 +42,6 @@ const MainMenu = () => {
       setOpenedMenu(MENUS.FILTER);
     }
     analytics.event(ACTIONS.OPEN_FILTER);
-  });
-
-  const toggleHowTo = React.useCallback(() => {
-    setShowHowTo(!showHowTo);
-    analytics.event(ACTIONS.OPEN_HOWTO);
   });
 
   const closeMenus = () => {
@@ -89,8 +80,7 @@ const MainMenu = () => {
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
-      <Styled.MenuButton onClick={toggleHowTo}><HelpImg alt="show the how to window" style={{ width: '22px' }} /></Styled.MenuButton>
-      {showHowTo && <Modal onClickBg={() => setShowHowTo(false)}><HowTo /></Modal>}
+      <Styled.MenuLink href="https://starwars.guide/star-wars-timeline" target="_blank"><HelpImg alt="show the how to window" style={{ width: '22px' }} /></Styled.MenuLink>
     </Styled.Wrapper>
   );
 };

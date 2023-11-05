@@ -66,7 +66,7 @@ const getCharacterTweets = (character) => {
   if (!c.endYearUnknown) {
     output += `- ${convertYear(c.endYear)} `;
   } else {
-    output += '- death date? ';
+    output += '- died? ';
   }
   if (!c.startYearUnknown && !c.endYearUnknown) {
     output += `(${c.endYear - c.startYear} years old)`;

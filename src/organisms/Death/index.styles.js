@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-export const SeenIn = styled((props) => <div {...props} data-testid="seenin" />)`
+export const SeenIn = styled((props) => <div {...props} data-testid="death" />)`
   position: absolute;
   z-index: 40;
   width: ${({ theme }) => theme.layout.gridWidth * 2}rem;

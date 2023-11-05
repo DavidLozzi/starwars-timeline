@@ -2,11 +2,11 @@
 const data = require('./data.json'),
   fs = require('fs'),
   { create } = require('xmlbuilder2');
- 
+
 
 const convertYear = (year) => {
-  if(year <= 0) return `${year * -1} BBY`;
-  if(year > 0) return `${year} ABY`;
+  if (year <= 0) return `${year * -1} BBY`;
+  if (year > 0) return `${year} ABY`;
   return 'none';
 };
 
@@ -28,7 +28,7 @@ for (let i = _startYear; i <= _endYear; i++) {
   const year = { year: i, display: convertYear(i) };
   const eventsEnding = data // get what ends this year to pad the beginning of the year
     .filter(e => (e.startYear !== i && e.endYear === i && e.type !== 'character' && e.type !== 'era'));
-  
+
   const events = data
     .filter(e => (e.startYear === i && e.type !== 'character' && e.type !== 'era'))
     .sort(sortByOrderOrTitle)
@@ -40,7 +40,7 @@ for (let i = _startYear; i <= _endYear; i++) {
       startYearDisplay: convertYear(e.startYear),
       endYearDisplay: convertYear(e.endYear)
     }));
-  
+
   data
     .filter(e => (e.startYear === i && e.type === 'era'))
     .sort(sortByOrderOrTitle)
@@ -54,7 +54,7 @@ for (let i = _startYear; i <= _endYear; i++) {
         endYearDisplay: convertYear(e.endYear)
       });
     });
-      
+
   _newYears.push({
     ...year,
     yearIndex: yearIndex,
@@ -127,18 +127,16 @@ const _characters = data
         const _seenIn = _seenInFilter.find(f => f.name === s);
         _seenIn.count += 1;
       } else {
-        _seenInFilter.push({ name: s, startYear: movie.startYear, count: 1});
+        _seenInFilter.push({ name: s, startYear: movie.startYear, count: 1 });
       }
     });
-    _seenInFilter.sort((a,b) => a.startYear > b.startYear ? 1 : -1);
+    _seenInFilter.sort((a, b) => a.startYear > b.startYear ? 1 : -1);
 
-    // find the last year's index, including seen in index
-    let endYearIndex = _newYears.find(y => y.year === e.endYear).yearIndex;
-    // get the last seen in index
-    const lastSeenIn = seenInYears.sort((a, b) => a.year > b.year ? 1 : -1).slice(-1)[0];
-    const lastEvent = lastSeenIn?.events?.sort((a, b) => a.index > b.index ? 1 : -1).slice(-1)[0];
-    if (lastEvent && endYearIndex < lastEvent.yearIndex + lastEvent.index) {
-      endYearIndex = lastEvent.yearIndex + lastEvent.index;
+    let deathYearIndex = null;
+    let deathEvent = null;
+    if (!e.endYearUnknown) {
+      deathEvent = _newYears.find(y => y.events.some(ev => ev.title === e.endYearEvent)).events.find(ev => ev.title === e.endYearEvent);
+      deathYearIndex = deathEvent.yearIndex * (deathEvent.order || 1);
     }
 
     return ({
@@ -146,7 +144,7 @@ const _characters = data
       index,
       seenIn: seenInYears,
       yearIndex: _newYears.find(y => y.year === e.startYear).yearIndex,
-      endYearIndex,
+      deathEvent,
       years: e.endYear - e.startYear,
       startYearDisplay: convertYear(e.startYear),
       endYearDisplay: convertYear(e.endYear)
@@ -165,7 +163,7 @@ _filters.forEach(filter => {
     return -1;
   });
 });
- 
+
 fs.writeFile('./src/data/years.json', JSON.stringify(_newYears), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
@@ -214,7 +212,7 @@ let characterHtml = '';
 moviesHtml += '<h2>Star Wars Movies Timeline</h2>\n';
 moviesHtml += '<p>A long time ago in a galaxy far, far away...</p>\n';
 moviesHtml += '<ul>\n';
-data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
+data.sort((a, b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
   moviesHtml += `<li><h3><a href="/?year=${movie.startYear}">${movie.title}</a></h3></li>\n`;
 });
 moviesHtml += '</ul>\n\n';
@@ -224,7 +222,7 @@ createFileFromTemplate('starwars_movies', moviesHtml, 'Star Wars Movies Timeline
 tvHtml += '<h2>Star Wars TV Shows Timeline</h2>\n';
 tvHtml += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
 tvHtml += '<ul>\n';
-data.sort((a,b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
+data.sort((a, b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
   tvHtml += `<li><a href="/?year=${tv.startYear}">${tv.title}</a></li>\n`;
 });
 tvHtml += '</ul>\n';
@@ -281,17 +279,17 @@ root
   .ele('url')
   .ele('loc').txt('https://timeline.starwars.guide/starwars_tvshows.html').up()
   .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
-  
+
 root
   .ele('url')
   .ele('loc').txt('https://timeline.starwars.guide/starwars_characters.html').up()
   .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
-    
+
 _characters.forEach(d => {
   root
     .ele('url')
     .ele('loc').txt(`https://timeline.starwars.guide/character/${d.title}?year=${d.startYear}&show=true`).up()
-    .ele('lastmod').txt(new Date().toISOString().slice(0,10)).up();
+    .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
 });
 
 // convert the XML tree to string

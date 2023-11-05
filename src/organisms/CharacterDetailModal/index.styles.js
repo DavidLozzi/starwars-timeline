@@ -29,6 +29,12 @@ export default {
     margin: 1vh 0;
     font-size: 2vh;
   `,
+  Right: styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 3vh;
+    width: 100%
+  `,
   Body: styled.div`
     display: flex;
     flex-direction: column;
@@ -48,7 +54,7 @@ export default {
     justify-content: space-between;
   `,
   Metadata: styled.div`
-    
+
   `,
   MetadataLabel: styled.div`
     font-weight: bold;

@@ -41,22 +41,21 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
     }
     setBirthYear(_birthYear);
     const seenInData = [];
-    character.seenIn.sort((a,b)=>a.year > b.year ? 1 : -1).forEach(y => y.events.forEach(e => { seenInData.push({ text: `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)`, year: y, event: e }); }));
+    character.seenIn.sort((a, b) => a.year > b.year ? 1 : -1).forEach(y => y.events.forEach(e => { seenInData.push({ text: `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)`, year: y, event: e }); }));
     setSeenInListData(seenInData);
   }, []);
 
   return <Styled.Wrapper>
     <Styled.Header>
       <Styled.Image src={imageUrl} alt={character.title} />
-      <Styled.Body>
+      <Styled.Right>
         <Styled.H1>{character.title}</Styled.H1>
         <Styled.H2>{character.altTitle}</Styled.H2>
-        <Styled.Note>Born {convertYear(birthYear)}{character.startYearUnknown ? '?' : ''}, Died {convertYear(character.endYear)}{character.endYearUnknown ? '?' : ''} ({character.endYear - birthYear} years old)</Styled.Note>
-        {(character.startYearUnknown || character.endYearUnknown) && <Styled.Note>Actual birth and/or death dates are unknown.</Styled.Note>}
-      </Styled.Body>
+        <Styled.Note>Born {convertYear(birthYear)}{character.startYearUnknown ? ' (this is a guess)' : ''} {!character.endYearUnknown ? `, Died ${convertYear(character.endYear)} (${character.endYear - birthYear} years old)` : ''}</Styled.Note>
+      </Styled.Right>
     </Styled.Header>
     <Styled.Body>
-      {character.metadata && character.metadata.length > 0 && 
+      {character.metadata && character.metadata.length > 0 &&
         <Styled.MetadataWrapper>
           {character.metadata.map(m => <Styled.Metadata key={m.name}>
             <Styled.MetadataLabel>{m.name}</Styled.MetadataLabel>
@@ -73,6 +72,6 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
     </Styled.Body>
   </Styled.Wrapper>;
 }
-;
+  ;
 
 export default CharacterDetailModal;

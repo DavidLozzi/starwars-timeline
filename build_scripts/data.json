@@ -9,6 +9,7 @@
     "altTitle": "",
     "birthYear": -896,
     "endYear": 4,
+    "endYearEvent": "Episode VI: Return of the Jedi",
     "imageUrl": "/images/yoda-young.png",
     "imageYears": [
       {
@@ -27,7 +28,8 @@
       "Star Wars Rebels",
       "Episode IV: A New Hope",
       "Episode V: The Empire Strikes Back",
-      "Episode VI: Return of the Jedi"
+      "Episode VI: Return of the Jedi",
+      "Episode VIII: The Last Jedi"
     ],
     "startYear": -300,
     "title": "Yoda",
@@ -77,6 +79,7 @@
   {
     "altTitle": "the Hutt",
     "endYear": 4,
+    "endYearEvent": "Episode VI: Return of the Jedi",
     "imageUrl": "/images/jabba.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -189,6 +192,7 @@
   {
     "altTitle": "Darth Tyranus",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/dooku.png",
     "seenIn": [
       "Episode II: Attack of the Clones",
@@ -239,7 +243,7 @@
       "Episode VIII: The Last Jedi",
       "Episode IX: The Rise of Skywalker"
     ],
-    "startYear": -100,
+    "startYear": -34,
     "startYearUnknown": true,
     "title": "C-3PO",
     "type": "character",
@@ -267,6 +271,7 @@
   {
     "altTitle": "",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/plo.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -300,6 +305,7 @@
   {
     "altTitle": "Darth Sidious",
     "endYear": 35,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/palpatine-young.png",
     "imageYears": [
       {
@@ -356,9 +362,11 @@
   },
   {
     "endYear": -32,
+    "endYearEvent": "Episode I: The Phantom Menace",
     "imageUrl": "/images/quigon.png",
     "seenIn": [
-      "Episode I: The Phantom Menace"
+      "Episode I: The Phantom Menace",
+      "Obi-Wan Kenobi"
     ],
     "startYear": -80,
     "title": "Qui-Gon Jinn",
@@ -382,6 +390,7 @@
   },
   {
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/mace.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -413,6 +422,7 @@
   {
     "altTitle": "Viceroy",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/gunray.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -445,6 +455,7 @@
   {
     "altTitle": "",
     "endYear": -22,
+    "endYearEvent": "Episode II: Attack of the Clones",
     "imageUrl": "/images/jango.png",
     "seenIn": [
       "Episode II: Attack of the Clones"
@@ -472,6 +483,7 @@
   {
     "altTitle": "Qymaen jai Sheelal",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/grievous.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -501,6 +513,7 @@
   {
     "altTitle": "Grand Moff",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/tarkin.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -533,6 +546,7 @@
   {
     "altTitle": "",
     "endYear": 9,
+    "endYearEvent": "The Book of Boba Fett",
     "imageUrl": "/images/bane.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -594,6 +608,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/bailorgana.png",
     "seenIn": [
       "Episode II: Attack of the Clones",
@@ -603,7 +618,7 @@
       "Obi-Wan Kenobi",
       "Rogue One: A Star Wars Story"
     ],
-    "startYear": -60,
+    "startYear": -67,
     "startYearUnknown": true,
     "title": "Bail Organa",
     "type": "character",
@@ -663,6 +678,7 @@
   {
     "altTitle": "Old Ben",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/obi-young.png",
     "imageYears": [
       {
@@ -710,6 +726,7 @@
   {
     "altTitle": "",
     "endYear": 9,
+    "endYearEvent": "The Book of Boba Fett",
     "imageUrl": "/images/fortuna-young.png",
     "imageYears": [
       {
@@ -722,7 +739,8 @@
       "Episode I: The Phantom Menace",
       "The Bad Batch",
       "Episode VI: Return of the Jedi",
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Book of Boba Fett"
     ],
     "startYear": -57,
     "startYearUnknown": true,
@@ -747,6 +765,7 @@
   },
   {
     "endYear": 34,
+    "endYearEvent": "Episode VIII: The Last Jedi",
     "imageUrl": "/images/ackbar.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -779,6 +798,7 @@
   {
     "altTitle": "Darth",
     "endYear": -2,
+    "endYearEvent": "Star Wars Rebels",
     "imageUrl": "/images/maul.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -840,6 +860,7 @@
   {
     "altTitle": "Uncle",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/owenlars.png",
     "imageYears": [
       {
@@ -908,8 +929,8 @@
     ]
   },
   {
-    "endYear": 20,
-    "endYearUnknown": true,
+    "endYear": 9,
+    "endYearEvent": "Ahsoka",
     "seenIn": [
       "Ahsoka",
       "The Mandalorian"
@@ -939,6 +960,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/berulars.png",
     "imageYears": [
       {
@@ -982,6 +1004,7 @@
   {
     "altTitle": "",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/padme.png",
     "seenIn": [
       "Episode I: The Phantom Menace",
@@ -1047,6 +1070,7 @@
   {
     "altTitle": "",
     "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
     "imageUrl": "/images/fisto.png",
     "seenIn": [
       "Episode II: Attack of the Clones",
@@ -1077,7 +1101,7 @@
   },
   {
     "altTitle": "",
-    "endYear": 32,
+    "endYear": 50,
     "endYearUnknown": true,
     "imageUrl": "/images/bokatan.png",
     "seenIn": [
@@ -1152,6 +1176,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/brehaorgana.png",
     "seenIn": [
       "Episode III: Revenge of the Sith",
@@ -1217,6 +1242,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Episode IV: A New Hope",
     "imageUrl": "/images/greedo.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -1319,6 +1345,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Rogue One: A Star Wars Story",
     "imageUrl": "/images/saw.png",
     "seenIn": [
       "The Clone Wars (TV series)",
@@ -1351,6 +1378,7 @@
   {
     "altTitle": "Darth Vader",
     "endYear": 4,
+    "endYearEvent": "Episode VI: Return of the Jedi",
     "imageUrl": "/images/vadar-kid.jpg",
     "imageYears": [
       {
@@ -1460,6 +1488,7 @@
   },
   {
     "endYear": 20,
+    "endYearUnknown": true,
     "seenIn": [
       "The Clone Wars (movie)",
       "The Clone Wars (TV series)",
@@ -1498,6 +1527,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Rogue One: A Star Wars Story",
     "imageUrl": "/images/andor.png",
     "seenIn": [
       "Andor",
@@ -1526,6 +1556,7 @@
   {
     "altTitle": "",
     "endYear": 0,
+    "endYearEvent": "Star Wars Rebels",
     "imageUrl": "/images/kanan.png",
     "seenIn": [
       "Star Wars Rebels",
@@ -1560,6 +1591,7 @@
   {
     "altTitle": "Nerf Herder",
     "endYear": 34,
+    "endYearEvent": "Episode VII: The Force Awakens",
     "imageUrl": "/images/solo-young.png",
     "imageYears": [
       {
@@ -2053,6 +2085,7 @@
   },
   {
     "endYear": 34,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/skywalker-young.png",
     "imageYears": [
       {
@@ -2106,6 +2139,7 @@
   {
     "altTitle": "Skywalker Solo",
     "endYear": 35,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/leiayoung.png",
     "imageYears": [
       {
@@ -2235,6 +2269,7 @@
   {
     "altTitle": "Snap",
     "endYear": 35,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/wexley.png",
     "seenIn": [
       "Episode VII: The Force Awakens",
@@ -2323,6 +2358,7 @@
   {
     "altTitle": "",
     "endYear": 35,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/hux.png",
     "seenIn": [
       "Star Wars Resistance",
@@ -2410,6 +2446,7 @@
   {
     "altTitle": "",
     "endYear": 34,
+    "endYearEvent": "Episode VIII: The Last Jedi",
     "imageUrl": "/images/snoke.png",
     "seenIn": [
       "Episode VII: The Force Awakens",
@@ -2448,6 +2485,7 @@
   {
     "altTitle": "Kylo Ren",
     "endYear": 35,
+    "endYearEvent": "Episode IX: The Rise of Skywalker",
     "imageUrl": "/images/bensolo.png",
     "seenIn": [
       "Episode VII: The Force Awakens",
@@ -2478,6 +2516,7 @@
   {
     "altTitle": "",
     "endYear": 34,
+    "endYearEvent": "Episode VIII: The Last Jedi",
     "imageUrl": "/images/phasma.png",
     "seenIn": [
       "Star Wars Resistance",

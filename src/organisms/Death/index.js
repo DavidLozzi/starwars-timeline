@@ -10,7 +10,7 @@ const Death = ({ character }) => {
   return <>
     <Styled.SeenIn
       style={{
-        top: `${theme.layout.elements.year.height * character.endYearIndex + theme.layout.topMargin}rem`,
+        top: `${theme.layout.elements.year.height * character.deathEvent.yearIndex + theme.layout.topMargin + (character.deathEvent.index * theme.layout.elements.year.height)}rem`,
         left: `${(theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem`
       }}
     >
@@ -18,7 +18,7 @@ const Death = ({ character }) => {
         character={character}
       >
         <Styled.ToolTip>
-          {character.title} died {character.endYearDisplay}
+          {character.title} died {character.endYearDisplay} in {character.endYearEvent}
         </Styled.ToolTip>
         💀
       </Styled.Circle>
