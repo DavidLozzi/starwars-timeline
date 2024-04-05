@@ -165,7 +165,7 @@ _filters.forEach(filter => {
   });
 });
 
-fs.writeFile('./src/data/years.json', JSON.stringify(_newYears), (err) => {
+fs.writeFile('../src/data/years.json', JSON.stringify(_newYears), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
   } else {
@@ -173,7 +173,7 @@ fs.writeFile('./src/data/years.json', JSON.stringify(_newYears), (err) => {
   }
 });
 
-fs.writeFile('./src/data/characters.json', JSON.stringify(_characters), (err) => {
+fs.writeFile('../src/data/characters.json', JSON.stringify(_characters), (err) => {
   if (err) {
     console.error(`characters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -181,7 +181,7 @@ fs.writeFile('./src/data/characters.json', JSON.stringify(_characters), (err) =>
   }
 });
 
-fs.writeFile('./src/data/filters.json', JSON.stringify(_filters), (err) => {
+fs.writeFile('../src/data/filters.json', JSON.stringify(_filters), (err) => {
   if (err) {
     console.error(`filters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -189,7 +189,7 @@ fs.writeFile('./src/data/filters.json', JSON.stringify(_filters), (err) => {
   }
 });
 
-fs.writeFile('./src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
+fs.writeFile('../src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
   if (err) {
     console.error(`seenIn writeFile ${JSON.stringify(err)}`);
   } else {
@@ -199,10 +199,10 @@ fs.writeFile('./src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
 
 
 const createFileFromTemplate = (fileName, content, title) => {
-  const file = fs.readFileSync('./public/contentTemplate.html', 'utf-8');
+  const file = fs.readFileSync('../public/contentTemplate.html', 'utf-8');
   let newValue = file.replace(/{{CONTENT}}/ig, content);
   newValue = newValue.replace(/{{PAGE_TITLE}}/ig, title);
-  fs.writeFileSync(`./public/${fileName}.html`, newValue, 'utf-8');
+  fs.writeFileSync(`../public/${fileName}.html`, newValue, 'utf-8');
   console.log(`updated ${fileName}.html`);
 };
 // update index.html to include some content for some SEO
@@ -256,9 +256,9 @@ createFileFromTemplate('starwars_characters', characterHtml, 'Star Wars Characte
 
 // add all to index file
 const html = `<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
-var file = fs.readFileSync('./public/index.html', 'utf-8');
+var file = fs.readFileSync('../public/index.html', 'utf-8');
 var newValue = file.replace(/<div id="content">[\s\S]*<\/ul>\n[\s]*<\/div>/mig, html);
-fs.writeFileSync('./public/index.html', newValue, 'utf-8');
+fs.writeFileSync('../public/index.html', newValue, 'utf-8');
 console.log('updated index.html');
 
 
@@ -295,5 +295,5 @@ _characters.forEach(d => {
 
 // convert the XML tree to string
 const xml = root.end({ prettyPrint: true });
-fs.writeFileSync('./public/sitemap.xml', xml, 'utf-8');
+fs.writeFileSync('../public/sitemap.xml', xml, 'utf-8');
 console.log('updated sitemap.xml');
