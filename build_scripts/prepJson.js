@@ -1,7 +1,8 @@
 // preps data.json for the web consumption
-const data = require('./data.json'),
-  fs = require('fs'),
-  { create } = require('xmlbuilder2');
+import fs from 'fs';
+import { create } from 'xmlbuilder2';
+
+const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 
 
 const convertYear = (year) => {
