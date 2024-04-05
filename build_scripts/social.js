@@ -148,7 +148,7 @@ const create_tweets = async () => {
 
     if (output.length > tweetSize) {
       let tweet = '';
-      let tweetCnt = 1;
+      let tweetCnt = 2; // start at 2 as the generated tweet is 1
       let thread = '';
       let _output = '';
       output.split('\n').forEach(l => {
@@ -281,7 +281,8 @@ const create_tweets = async () => {
     }
     const update = (message, i) => {
       console.log('\nupdating message\n', i, message);
-      allOutput[i].tweet = `${message}${threadBreak}${allOutput[i].tweet}`;
+      const threadCount = allOutput[i].tweet.split(threadBreak).length;
+      allOutput[i].tweet = `${message}\n🧵1/${threadCount + 1}${threadBreak}${allOutput[i].tweet}`;
     };
     promises.push(generate_tweet(allOutput[i], (message) => update(message, i)));
   }
