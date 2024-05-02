@@ -929,6 +929,35 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": 50,
+    "endYearUnknown": true,
+    "imageUrl": "/images/asajj.png",
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "The Bad Batch"
+    ],
+    "startYear": -50,
+    "title": "Asajj Ventress",
+    "type": "character",
+    "description": "Asajj Ventress had a complex life, transitioning from a Nightsister and Jedi Padawan to a Dark Jedi and military commander for the Confederacy of Independent Systems, and later a bounty hunter. Born on Dathomir into a clan of Nightsister witches, she was handed over as a baby to a criminal named Hal'Sted and taken to Rattatak, where she became enslaved. After her master's death at the hands of pirates, she was discovered and trained by the stranded Jedi Knight Ky Narec.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Asajj_Ventress",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Dathomir"
+      },
+      {
+        "name": "Species",
+        "value": "Zabrak"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ]
+  },
+  {
     "endYear": 9,
     "endYearEvent": "Ahsoka",
     "seenIn": [
