@@ -37,6 +37,7 @@ const AppProvider = ({ children }) => {
     if (_character) {
       scrollToX = _character.index * 80;
     }
+    console.log(`scrolling to ${scrollToX}, ${scrollToY} for year:${_year ? `${_year.year} (${_year.yearIndex})` : ''} character:${_character ? `${_character.title} (${_character.index})` : ''}, current window position: ${window.scrollX}, ${window.scrollY}`);
     window.scrollTo(scrollToX, scrollToY);
   };
 
