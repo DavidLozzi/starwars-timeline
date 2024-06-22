@@ -140,7 +140,7 @@ const Home = () => {
       } else {
         scrollToYear = years.find(y => y.year === 0);
       }
-      setTimeout(() => scrollTo(scrollToYear, scrollToChar), 5000);
+      setTimeout(() => scrollTo(scrollToYear, scrollToChar), 3000);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYearIndex(scrollToYear.yearIndex);
     }
