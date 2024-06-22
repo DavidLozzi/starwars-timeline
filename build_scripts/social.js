@@ -30,7 +30,7 @@ include it, or a timeline in your tweet.
         'content': `${JSON.stringify(data)}`,
       },
     ],
-    'model': 'gpt-4-turbo-preview',
+    'model': 'gpt-4o',
     'temperature': 0.8,
     'top_p': 0.95,
     'frequency_penalty': 0,
