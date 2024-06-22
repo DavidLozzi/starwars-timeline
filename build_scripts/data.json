@@ -184,6 +184,39 @@
     ]
   },
   {
+    "altTitle": "",
+    "endYear": -19,
+    "endYearEvent": "Episode III: Revenge of the Sith",
+    "imageUrl": "/images/mundi.png",
+    "seenIn": [
+      "The Acolyte",
+      "Episode I: The Phantom Menace",
+      "Episode II: Attack of the Clones",
+      "The Clone Wars (TV series)",
+      "Episode III: Revenge of the Sith"
+    ],
+    "startYear": -172,
+    "startYearUnknown": true,
+    "title": "Ki-Adi-Mundi",
+    "type": "character",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Cerea"
+      },
+      {
+        "name": "Species",
+        "value": "Cerean"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ],
+    "description": "Ki-Adi-Mundi was a Jedi who was active during the High Republic. He was a member of the Jedi High Council during the last decades of the Galactic Republic. Following the outbreak of the Clone Wars after the First Battle of Geonosis, Mundi became a Jedi General of the Grand Army of the Republic. Like his Jedi colleagues, he led the Republic clone troopers against the Separatist Alliance forces in several battles across the galaxy, including the second campaign on Geonosis.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Ki-Adi-Mundi"
+  },
+  {
     "endYear": -132,
     "startYear": -132,
     "title": "The Acolyte",
@@ -267,39 +300,6 @@
         "value": "No"
       }
     ]
-  },
-  {
-    "altTitle": "",
-    "endYear": -19,
-    "endYearEvent": "Episode III: Revenge of the Sith",
-    "imageUrl": "/images/mundi.png",
-    "seenIn": [
-      "The Acolyte",
-      "Episode I: The Phantom Menace",
-      "Episode II: Attack of the Clones",
-      "The Clone Wars (TV series)",
-      "Episode III: Revenge of the Sith"
-    ],
-    "startYear": -85,
-    "startYearUnknown": true,
-    "title": "Ki-Adi-Mundi",
-    "type": "character",
-    "metadata": [
-      {
-        "name": "Homeworld",
-        "value": "Cerea"
-      },
-      {
-        "name": "Species",
-        "value": "Cerean"
-      },
-      {
-        "name": "Force Sensitive",
-        "value": "Yes"
-      }
-    ],
-    "description": "Ki-Adi-Mundi was a Jedi who was active during the High Republic. He was a member of the Jedi High Council during the last decades of the Galactic Republic. Following the outbreak of the Clone Wars after the First Battle of Geonosis, Mundi became a Jedi General of the Grand Army of the Republic. Like his Jedi colleagues, he led the Republic clone troopers against the Separatist Alliance forces in several battles across the galaxy, including the second campaign on Geonosis.",
-    "wookiepedia": "https://starwars.fandom.com/wiki/Ki-Adi-Mundi"
   },
   {
     "altTitle": "",
