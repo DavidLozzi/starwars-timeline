@@ -257,19 +257,19 @@ const create_tweets = async () => {
 
       if (movies.length > 0 && header.length + movies.length + footer.length < tweetSize) {
         movies = header + movies + footer;
-        allOutput.push({ title: y.display, tweet: movies });
+        allOutput.push({ title: `movies-${y.display}`, tweet: movies });
       }
 
       if (birthdays.length > 0 && header.length + birthdays.length + footer.length < tweetSize) {
         birthdays = header + birthdays + footer;
-        allOutput.push({ title: y.display, tweet: birthdays, img: `https://timeline.starwars.guide${imageUrl}` });
+        allOutput.push({ title: `births-${y.display}`, tweet: birthdays, img: `https://timeline.starwars.guide${imageUrl}` });
       }
 
       y.events.filter(e => e.type === 'character' && e.startYear === y.year).forEach(c => getCharacterTweets(c));
 
       if (deaths.length > 0 && header.length + deaths.length + footer.length < tweetSize) {
         deaths = header + deaths + footer;
-        allOutput.push({ title: y.display, tweet: deaths });
+        allOutput.push({ title: `death-${y.display}`, tweet: deaths });
       }
 
     });
