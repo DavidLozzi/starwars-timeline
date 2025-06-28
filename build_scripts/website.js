@@ -1,6 +1,7 @@
-const data = require('../src/data/characters.json'),
-  fs = require('fs');
+import fs from 'fs';
+import { url } from 'inspector';
 
+const data = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf8'));
 
 const convertYear = (year) => {
   if (year <= 0) return `${year * -1} BBY`;
@@ -20,13 +21,26 @@ data
     character.seenIn
       .sort((a, b) => a.year > b.year ? 1 : -1)?.forEach(y => y.events?.forEach(e => { seenInData.push({ text: `${e.title}, ${convertYear(e.startYear)} (${y.year - _birthYear} years old)`, year: y, event: e }); }));
 
+    let characterImage = character.imageYears && character.imageYears.length > 0 ? character.imageYears[0].imageUrl : character.imageUrl;
+    characterImage = characterImage.replace('/images/', '');
+    // Copy the character image to the output directory
+    try {
+      const sourceImagePath = `../public/images/${characterImage}`;
+      const destImagePath = `../../starwars-guide/assets/characters/${characterImage}`;
+      fs.copyFileSync(sourceImagePath, destImagePath);
+    } catch (error) {
+      console.log(`Could not copy image for ${character.title}: ${error.message}`);
+    }
+    
     let page = `---
 title: ${character.title}
-layout: page
+layout: character
+social-desc: ${character.title} ${character.altTitle?.length > 0 ? `(${character.altTitle}) ` : ''} | Star Wars
+social-image: /assets/characters/${characterImage}
 ---
 <a href="/character" class="smaller">Back to All Characters</a>
 
-<div class="container">
+<div class="character-profile container">
   <div class="col-10">
     <p>
     ${character.title} ${character.altTitle?.length > 0 ? `(${character.altTitle}) ` : ''}\
@@ -49,7 +63,7 @@ layout: page
       }
 
 
-    <h2>You can see ${character.title} in:</h2>
+    <h3>You can see ${character.title} in:</h3>
 
     <ul>
     ${seenInData.map(seenIn => `  <li><a href="${characterUrl + seenIn.year.year}" target="_blank">${seenIn.text}</a></li>`).join('\n')}
@@ -72,8 +86,9 @@ layout: page
   </div>
 </div>
 `;
-
-    fs.writeFileSync(`../starwars-guide/character/${character.title.replace(/\s/ig, '-')}.md`, page);
+      
+    fs.writeFileSync(`../../starwars-guide/character/${character.title.replace(/\s/ig, '-')}.md`, page);
+    console.log(character.title);
   });
 
 let listView = `---
@@ -81,7 +96,7 @@ title: Star Wars Characters on the Timeline
 layout: page
 ---
 
-Have fun, explore all of the characters in the Star Wars universe, and learn more about them.
+Explore all of the characters from the <a href="https://timeline.starwars.guide" target="_blank">Ultimate Star Wars Timeline</a>.
 
 <ul class="character_list">
 ${data
@@ -89,4 +104,5 @@ ${data
     .map(character => `<li><a href="/character/${character.title.replace(/\s/ig, '-')}">${character.title}</a></li>`).join('\n')}
 </ul>
 `;
-fs.writeFileSync('../starwars-guide/character/index.md', listView);
+console.log("index");
+fs.writeFileSync('../../starwars-guide/character/index.md', listView);
