@@ -20,11 +20,11 @@ export default {
   `,
   Modal: styled.div`
     ${({ theme }) => theme.elements.modal};
-    width: 80vw;
-    max-width: 60rem;
-    min-height: 50vh;
-    max-height: 40rem;
-    border-radius: 5vh;
+    width: 90vw;
+    max-width: 900px;
+    min-height: 70vh;
+    max-height: 80vh;
+    border-radius: 20px;
     padding-bottom: 3vw;
     overflow: scroll;
     position: relative;

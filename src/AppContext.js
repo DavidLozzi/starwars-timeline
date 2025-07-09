@@ -12,6 +12,7 @@ const AppProvider = ({ children }) => {
   const [filterCount, setFilterCount] = React.useState(0);
   const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
   const [scale, setScale] = React.useState(1.0);
+  const [showOnboarding, setShowOnboarding] = React.useState(false);
 
   const addFilter = (filterName, value) => {
     const _filters = { ...filters, [filterName]: value };
@@ -53,9 +54,29 @@ const AppProvider = ({ children }) => {
     analytics.event(ACTIONS.THEME, '', themeName);
   };
 
+  const checkOnboarding = () => {
+    const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding');
+    if (!hasSeenOnboarding) {
+      setShowOnboarding(true);
+    }
+  };
+
+  const hideOnboarding = () => {
+    setShowOnboarding(false);
+  };
+
 
   return (
-    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme, scale: { scale, setScale } }}>
+    <appContext.Provider value={{ 
+      filters, 
+      filterCount, 
+      addFilter, 
+      removeFilter, 
+      scrollTo, 
+      setTheme, 
+      scale: { scale, setScale }, 
+      onboarding: { showOnboarding, checkOnboarding, hideOnboarding } 
+    }}>
       <ThemeProvider theme={selectedTheme}>
         {children}
       </ThemeProvider>

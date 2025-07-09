@@ -260,7 +260,7 @@ export default {
     `,
     modal: css`
       background-color: rgba(${palette.white},1);
-      color: ${palette.white};
+      color: ${palette.black};
     `,
     modalClose: css`
 

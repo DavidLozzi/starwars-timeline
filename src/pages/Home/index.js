@@ -5,6 +5,7 @@ import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetailModal from '../../organisms/CharacterDetailModal';
 import CharacterDetailPill from '../../organisms/CharacterDetailPill';
+import OnboardingModal from '../../organisms/OnboardingModal';
 import yearsData from '../../data/years.json';
 import charactersData from '../../data/characters.json';
 import analytics, { ACTIONS } from '../../analytics';
@@ -33,7 +34,7 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const [hasScrolled, setHasScrolled] = React.useState(new Date()); // just used to refresh the state/DOM to show/hide characters
-  const { filters, scrollTo, filterCount, scale } = useAppContext();
+  const { filters, scrollTo, filterCount, scale, onboarding } = useAppContext();
 
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1);
@@ -190,6 +191,9 @@ const Home = () => {
     setYears(yearsData);
     setCharacters(charactersData);
     setFilteredCharacters(charactersData);
+
+    // Check if user should see onboarding
+    onboarding.checkOnboarding();
 
     setInterval(() => {
       if (window.scrolling) {
@@ -369,6 +373,11 @@ const Home = () => {
         </div>
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
+      {onboarding.showOnboarding && (
+        <Modal onClickBg={() => onboarding.hideOnboarding()}>
+          <OnboardingModal onClose={() => onboarding.hideOnboarding()} />
+        </Modal>
+      )}
     </>
   );
 };
