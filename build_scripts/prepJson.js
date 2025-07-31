@@ -3,6 +3,7 @@ import fs from 'fs';
 import { create } from 'xmlbuilder2';
 
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));
 
 
 const convertYear = (year) => {
@@ -87,6 +88,12 @@ const _characters = data
     return retVal;
   })
   .map((e, index) => {
+    // Check if we have enhanced character data from character_descriptions.json
+    const enhancedData = characterDescriptions[e.wookiepedia];
+    if (enhancedData) {
+      e.description = enhancedData.description;
+      e.timeline = enhancedData.timeline;
+    }
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {
       const eventStart = tvMovies.find(d => d.title === s).startYear; // get the start year for the event
@@ -234,8 +241,14 @@ characterHtml += '<h2>Star Wars Characters Timeline</h2>\n';
 characterHtml += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
 _characters.forEach(character => {
   characterHtml += `<h3><a href="/character/${character.title}?year=${character.startYear}&show=true">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
-  <p>${character.description}</p>
-  <h4>${character.title}'s Timeline</h4>\n
+  <p>${character.description}</p>`;
+  
+  // Add timeline if available
+  if (character.timeline) {
+    characterHtml += `\n${character.timeline}\n`;
+  }
+  
+  characterHtml += `<h4>${character.title}'s Timeline</h4>\n
   <ul>\n`;
 
   character

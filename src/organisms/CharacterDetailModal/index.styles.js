@@ -45,7 +45,11 @@ export default {
   `,
   Description: styled.div`
     font-size: 1.6vh;
-    margin: 2vh 0;
+    margin: 2vh 0 1vh 0;
+  `,
+  Timeline: styled.div`
+    font-size: 1.6vh;
+    margin: 1vh 0;
   `,
   MetadataWrapper: styled.div`
     font-size: 1.6vh;

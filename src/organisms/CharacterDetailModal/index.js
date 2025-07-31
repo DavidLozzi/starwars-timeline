@@ -64,8 +64,9 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
         </Styled.MetadataWrapper>
       }
       {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
+      {character.timeline && character.timeline.trim() && <Styled.Timeline>{parse(character.timeline)}</Styled.Timeline>}
       <Styled.ListViewWrapper>
-        <Styled.ListViewTitle>{character.title} has been in:</Styled.ListViewTitle>
+        <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
         <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />
       </Styled.ListViewWrapper>
       {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank">Learn more on Wookiepedia.com</Styled.Wookiepedia>}
