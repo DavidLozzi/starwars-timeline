@@ -2,6 +2,7 @@ import fs from 'fs';
 import { url } from 'inspector';
 
 const data = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf8'));
+const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));
 
 const convertYear = (year) => {
   if (year <= 0) return `${year * -1} BBY`;
@@ -32,9 +33,21 @@ data
       console.log(`Could not copy image for ${character.title}: ${error.message}`);
     }
     
+    // Find matching character description from character_descriptions.json
+    let characterDescription = character.description;
+    let characterTimeline = '';
+    
+    if (character.wookiepedia && characterDescriptions[character.wookiepedia]) {
+      const descData = characterDescriptions[character.wookiepedia];
+      characterDescription = descData.description;
+      characterTimeline = descData.timeline;
+    }
+    
     let page = `---
-title: ${character.title}
+title: ${character.title}'s Timeline
 layout: character
+date: 2022-05-08
+last_modified_at: ${new Date().toISOString()}
 social-desc: ${character.title} ${character.altTitle?.length > 0 ? `(${character.altTitle}) ` : ''} | Star Wars
 social-image: /assets/characters/${characterImage}
 ---
@@ -49,37 +62,46 @@ social-image: /assets/characters/${characterImage}
     ${(!character.startYearUnknown && character.endYearUnknown) ? `was born in <a href="${characterUrl + character.startYear}" target="_blank">${convertYear(character.birthYear || character.startYear)}</a>.` : ''}
     </p>
 
-    <p>${character.description}</p>
-
-
+    <p>${characterDescription}</p>
+    
     ${(character.metadata && character.metadata.length > 0) ?
-        `<div class='metadata'>
+      `<div class='metadata'>
       ${character.metadata.map(m => `<div>
-        <label>${m.name}:</label>
-        <span>${m.value}</span>
+      <label>${m.name}:</label>
+      <span>${m.value}</span>
       </div>`).join('')}
-    </div>`
-        : ''
-      }
+      </div>`
+      : ''
+    }
 
-
-    <h3>You can see ${character.title} in:</h3>
+    ${characterTimeline ? `<div class="timeline">${characterTimeline}</div>` : ''}
+    
+    <p>&nbsp;</p>
+    <h3>View ${character.title} in our timeline:</h3>
 
     <ul>
     ${seenInData.map(seenIn => `  <li><a href="${characterUrl + seenIn.year.year}" target="_blank">${seenIn.text}</a></li>`).join('\n')}
     </ul>
 
+    <p>&nbsp;</p>
+
     ${character.wookiepedia ? `<a href="${character.wookiepedia}" target="_blank">Learn more on Wookiepedia.com</a>` : ''}
+
+    <p>&nbsp;</p>
+    <a href="/character" class="smaller">Back to All Characters</a>
   </div>
   <div class="character_image col-2">
     ${character.imageYears ? character.imageYears.sort((a, b) => a.startYear > b.startYear ? 1 : -1).map(img => `<img src="https://timeline.starwars.guide/${img.imageUrl}" alt="${character.title}" />`).join('\n') : ''}
     <img src="https://timeline.starwars.guide/${character.imageUrl}" alt="${character.title}" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
+        crossorigin="anonymous"></script>
+    <!-- starwars character -->
     <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-6056590143595280"
-      data-ad-slot="1622037034"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
+        style="display:block"
+        data-ad-client="ca-pub-6056590143595280"
+        data-ad-slot="1622037034"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
@@ -94,6 +116,8 @@ social-image: /assets/characters/${characterImage}
 let listView = `---
 title: Star Wars Characters on the Timeline
 layout: page
+date: 2022-05-08
+last_modified_at: ${new Date().toISOString()}
 ---
 
 Explore all of the characters from the <a href="https://timeline.starwars.guide" target="_blank">Ultimate Star Wars Timeline</a>.
