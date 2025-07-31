@@ -97,7 +97,7 @@ social-image: /assets/characters/${characterImage}
         crossorigin="anonymous"></script>
     <!-- starwars character -->
     <ins class="adsbygoogle"
-        style="display:block"
+        style="display:block; min-height: 280px; width: 100%;"
         data-ad-client="ca-pub-6056590143595280"
         data-ad-slot="1622037034"
         data-ad-format="auto"
