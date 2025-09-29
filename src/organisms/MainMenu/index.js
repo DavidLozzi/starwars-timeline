@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import analytics, { ACTIONS } from '../../analytics';
 import { ReactComponent as MenuImg } from '../../assets/menu.svg';
 import { ReactComponent as SearchImg } from '../../assets/search.svg';
@@ -71,6 +72,7 @@ const MainMenu = () => {
         <Styled.MenuWrapper>
           <Styled.Menu>
             {/* <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem> */}
+            <Styled.MenuItem><Link to="/hyperspace">Hyperspace Timeline</Link></Styled.MenuItem>
             <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
             <Styled.MenuItem><a href="https://starwars.guide/support-aurebesh-files.html" target="_blank" onClick={openDonate} rel="noreferrer">Support the Timeline</a></Styled.MenuItem>
             <Styled.MenuItem><a href="https://wordle.starwars.guide" target="_blank" rel="noreferrer">Play SWordle - Wordle for Star Wars</a></Styled.MenuItem>
