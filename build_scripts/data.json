@@ -1270,7 +1270,8 @@
     "endYearUnknown": true,
     "seenIn": [
       "Star Wars Rebels",
-      "The Mandalorian"
+      "The Mandalorian",
+      "The Mandalorian and Grogu"
     ],
     "imageYears": [
       {
@@ -1514,7 +1515,8 @@
     ],
     "seenIn": [
       "The Mandalorian",
-      "The Book of Boba Fett"
+      "The Book of Boba Fett",
+      "The Mandalorian and Grogu"
     ]
   },
   {
@@ -1919,7 +1921,8 @@
     "imageUrl": "/images/mando.png",
     "seenIn": [
       "The Mandalorian",
-      "The Book of Boba Fett"
+      "The Book of Boba Fett",
+      "The Mandalorian and Grogu"
     ],
     "startYear": -30,
     "startYearUnknown": true,
@@ -2638,6 +2641,13 @@
     "title": "Skeleton Crew",
     "type": "tv",
     "order": 4
+  },
+  {
+    "endYear": 10,
+    "startYear": 10,
+    "title": "The Mandalorian and Grogu",
+    "type": "movie",
+    "order": 1
   },
   {
     "altTitle": "FN-2187",

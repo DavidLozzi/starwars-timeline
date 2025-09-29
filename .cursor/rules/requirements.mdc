@@ -1,0 +1,6 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+See [AGENTS.md](/src/AGENTS.md) for additional learnings you must consider.
