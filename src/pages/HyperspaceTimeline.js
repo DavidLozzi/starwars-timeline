@@ -465,9 +465,9 @@ const HyperspaceTimeline = () => {
               <div style={{ background: 'rgba(17, 24, 39, 0.8)', backdropFilter: 'blur(4px)', borderRadius: '8px', padding: '8px 16px', border: '1px solid rgb(75, 85, 99)' }}>
                 <div style={{ color: 'rgb(209, 213, 219)', fontSize: '14px', textAlign: 'center' }}>
                   {isMobileScrolling ? (
-                    "Swipe up/down to navigate • Release to stop"
+                    'Swipe up/down to navigate • Release to stop'
                   ) : (
-                    "Scroll to travel through time • Mobile: Press & hold, then swipe"
+                    'Scroll to travel through time • Mobile: Press & hold, then swipe'
                   )}
                 </div>
               </div>

@@ -1028,6 +1028,12 @@
     ]
   },
   {
+    "endYear": -40,
+    "startYear": -40,
+    "title": "Star Wars: Starfighter",
+    "type": "movie"
+  },
+  {
     "altTitle": "",
     "endYear": 0,
     "endYearEvent": "Episode IV: A New Hope",
@@ -2092,6 +2098,42 @@
     "type": "tv"
   },
   {
+    "endYear": 50,
+    "endYearUnknown": true,
+    "seenIn": [
+      "The Clone Wars (TV series)",
+      "The Clone Wars (movie)",
+      "The Mandalorian and Grogu"
+    ],
+    "startYear": -23,
+    "title": "Rotta the Hutt",
+    "imageUrl": "/images/rotta_babe.png",
+    "imageYears": [
+      {
+        "startYear": 1,
+        "endYear": 50,
+        "imageUrl": "/images/rotta.png"
+      }
+    ],
+    "type": "character",
+    "description": "Rotta the Hutt was the son of Jabba the Hutt. During the Clone Wars, he was secretly kidnapped by the Confederacy of Independent Systems, which was orchestrated by Count Dooku with help from Ziro, Rotta's great-uncle. The plot was meant to discredit the Jedi Order and scuttle negotiations between the Galactic Republic and the Hutts, but the Jedi were able to rescue him. He was kidnapped by Asajj Ventress and taken to the planet Teth. A Jedi rescue team consisting of Anakin Skywalker and his Padawan Ahsoka Tano traveled to Teth to rescue him. He then became sick and nearly died on his way to Tatooine but survived thanks to Ahsoka Tano. After Anakin Skywalker and Tano evaded Dooku, who tried to kill Rotta and blame the Jedi, Rotta was returned to his father. Rotta was later present when Baron Notluwiski Papanoida visited Jabba's Palace.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Rotta",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Tatooine"
+      },
+      {
+        "name": "Species",
+        "value": "Hutt"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "No"
+      }
+    ]
+  },
+  {
     "endYear": 40,
     "endYearUnknown": true,
     "seenIn": [
@@ -2660,8 +2702,7 @@
     "endYear": 10,
     "startYear": 10,
     "title": "The Mandalorian and Grogu",
-    "type": "movie",
-    "order": 1
+    "type": "movie"
   },
   {
     "altTitle": "FN-2187",

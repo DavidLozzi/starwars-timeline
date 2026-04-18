@@ -14,6 +14,8 @@ import MainMenu from '../../organisms/MainMenu';
 import SeenIn from '../../organisms/SeenIn';
 import { Helmet } from 'react-helmet';
 import Death from '../../organisms/Death';
+const OnboardingGuide = React.lazy(() => import('../../organisms/OnboardingGuide'));
+import { getOnboardingState } from '../../utils';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -38,6 +40,28 @@ const Home = () => {
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1);
 
+  // Onboarding guide state
+  const [showOnboardingGuide, setShowOnboardingGuide] = React.useState(() => {
+    // Check localStorage on initial mount
+    const state = getOnboardingState();
+    return !state || !state.hasSeenGuide;
+  });
+  const [onboardingOpenSource, setOnboardingOpenSource] = React.useState(() => {
+    const state = getOnboardingState();
+    return !state || !state.hasSeenGuide ? 'first_visit' : null;
+  });
+
+  // Function to manually trigger onboarding guide (for on-demand access)
+  const handleShowOnboardingGuide = React.useCallback(() => {
+    setOnboardingOpenSource('menu');
+    setShowOnboardingGuide(true);
+  }, []);
+
+  const handleDismissOnboardingGuide = React.useCallback(() => {
+    setShowOnboardingGuide(false);
+    setOnboardingOpenSource(null);
+  }, []);
+
   const showCharacter = (character) => {
     history.push(`/character/${character.title}?year=${currentYear.year}&show=true`);
     showCharacterModal(character);
@@ -50,6 +74,10 @@ const Home = () => {
   };
 
   const isCharacterInView = (character) => {
+    if (!character) return false;
+    const vv = window.visualViewport;
+    if (!vv) return true;
+
     const preLoadBuffer = 100;
     const position = {
       left: (Styled.getCharacterLeft(theme, character) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
@@ -57,7 +85,7 @@ const Home = () => {
       right: ((Styled.getCharacterLeft(theme, character) + theme.layout.elements.character.width) * theme.layout.pxInRem + preLoadBuffer) * scale.scale,
       bottom: ((Styled.getCharacterHeight(theme, character) + Styled.getCharacterTop(theme, character)) * theme.layout.pxInRem + preLoadBuffer) * scale.scale
     };
-    const winView = window.visualViewport;
+    const winView = vv;
     winView.pageRight = winView.pageLeft + winView.width;
     winView.pageBottom = winView.pageTop + winView.height;
     if ((position.left >= winView.pageLeft && position.left <= winView.pageRight) ||
@@ -130,15 +158,21 @@ const Home = () => {
         }
       }
       if (!scrollToChar) {
-        scrollToChar = characters.find(c => c.title === 'Luke Skywalker');
-        history.push(`/character/${scrollToChar.title}?year=${currentYear.year}&show=true`);
+        scrollToChar = characters.find(c => c.title === 'Luke Skywalker') || characters[0];
+        const defaultYearObj = years.find(y => y.year === 0) || years[0];
+        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}&show=true`);
       }
 
       let scrollToYear = null;
-      if (searchParams.get('year')) {
-        scrollToYear = years.find(y => y.year === Number(searchParams.get('year')));
-      } else {
-        scrollToYear = years.find(y => y.year === 0);
+      const yearParam = searchParams.get('year');
+      if (yearParam != null && yearParam !== '') {
+        const y = Number(yearParam);
+        if (!Number.isNaN(y)) {
+          scrollToYear = years.find(yr => yr.year === y);
+        }
+      }
+      if (!scrollToYear) {
+        scrollToYear = years.find(yr => yr.year === 0) || years[0];
       }
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
@@ -176,7 +210,7 @@ const Home = () => {
         .sort((a, b) => a.startYear > b.startYear ? 1 : -1);
 
       const filteredMovieYear = years.find(y => y.events.some(e => e.title === filters.movie));
-      scrollTo(filteredMovieYear);
+      if (filteredMovieYear) scrollTo(filteredMovieYear);
     }
 
     filtChars = filtChars
@@ -239,7 +273,7 @@ const Home = () => {
           {/* <button onClick={() => scale.setScale(scale.scale - .1)}>-</button>
           <h1>{scale.scale.toFixed(1)}</h1>
           <button onClick={() => scale.setScale(scale.scale + .1)}>+</button> */}
-          <MainMenu />
+          <MainMenu onShowOnboardingGuide={handleShowOnboardingGuide} />
         </Styled.Header>
         <div style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}>
           {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
@@ -369,6 +403,15 @@ const Home = () => {
         </div>
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}
+      {showOnboardingGuide && (
+        <React.Suspense fallback={null}>
+          <OnboardingGuide
+            isOpen={showOnboardingGuide}
+            onDismiss={handleDismissOnboardingGuide}
+            openSource={onboardingOpenSource}
+          />
+        </React.Suspense>
+      )}
     </>
   );
 };
