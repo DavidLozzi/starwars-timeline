@@ -833,9 +833,17 @@
     "endYear": -2,
     "endYearEvent": "Star Wars Rebels",
     "imageUrl": "/images/maul.png",
+    "imageYears": [
+      {
+        "endYear": -17,
+        "imageUrl": "/images/maul-shadow-lord.png",
+        "startYear": -13
+      }
+    ],
     "seenIn": [
       "Episode I: The Phantom Menace",
       "The Clone Wars (TV series)",
+      "Star Wars: Maul - Shadow Lord",
       "Solo: A Star Wars Story",
       "Star Wars Rebels"
     ],
@@ -2076,6 +2084,12 @@
     "title": "The Clone Wars (TV series)",
     "type": "tv",
     "order": 3
+  },
+  {
+    "endYear": -13,
+    "startYear": -17,
+    "title": "Star Wars: Maul - Shadow Lord",
+    "type": "tv"
   },
   {
     "endYear": 40,
