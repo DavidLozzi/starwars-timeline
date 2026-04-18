@@ -3,7 +3,7 @@ import Modal from '../../molecules/modal';
 import { setOnboardingState } from '../../utils';
 import { DEFAULT_ONBOARDING_CONTENT } from './content';
 import analytics, { ACTIONS } from '../../analytics';
-import * as Styled from './index.styles';
+import Styled from './index.styles';
 
 // Export content for tests
 export { DEFAULT_ONBOARDING_CONTENT };
@@ -18,7 +18,7 @@ const StepContentMemo = memo(({ step }) => (
 
 StepContentMemo.displayName = 'StepContentMemo';
 
-const OnboardingGuideComponent = ({ isOpen, onDismiss, allowKeyboardDismiss = true }) => {
+const OnboardingGuideComponent = ({ isOpen, onDismiss, openSource, allowKeyboardDismiss = true }) => {
   const dismissButtonRef = useRef(null);
   const guideRef = useRef(null);
 
@@ -88,28 +88,23 @@ const OnboardingGuideComponent = ({ isOpen, onDismiss, allowKeyboardDismiss = tr
     return () => guideElement?.removeEventListener('keydown', handleTab);
   }, [isOpen]);
 
-  // Track guide display
   useEffect(() => {
-    if (isOpen) {
-      analytics.event(ACTIONS.MENU_ITEM, null, 'Onboarding Guide Displayed');
+    if (isOpen && openSource) {
+      analytics.event(ACTIONS.OPEN_HELP, 'onboarding', openSource);
     }
-  }, [isOpen]);
+  }, [isOpen, openSource]);
 
   if (!isOpen) return null;
 
   return (
-    <Modal onClickBg={handleDismiss} onClickModal={() => {}}>
+    <Modal fill onClickBg={handleDismiss} onClickModal={() => {}}>
       <Styled.GuideContainer
         ref={guideRef}
         role="dialog"
         aria-labelledby="onboarding-title"
-        aria-describedby="onboarding-description"
         aria-modal="true"
       >
-        <Styled.Title id="onboarding-title">Welcome to the Star Wars Timeline</Styled.Title>
-        <Styled.Description id="onboarding-description">
-          Let's get you started with a quick guide to using the timeline.
-        </Styled.Description>
+        <Styled.Title id="onboarding-title">Welcome to the Ultimate Star Wars Timeline</Styled.Title>
 
         {DEFAULT_ONBOARDING_CONTENT.steps.map((step) => (
           <StepContentMemo key={step.id} step={step} />

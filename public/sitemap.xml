@@ -247,6 +247,13 @@
   <url>
     <loc>https://timeline.starwars.guide/character/R5-D4?year=-25&amp;show=true</loc>
     <lastmod>2026-04-18</lastmod>
+<<<<<<< HEAD
+=======
+  </url>
+  <url>
+    <loc>https://timeline.starwars.guide/character/Rotta the Hutt?year=-23&amp;show=true</loc>
+    <lastmod>2026-04-18</lastmod>
+>>>>>>> fa84f80 (Adds Mando and Grugu, Rotta)
   </url>
   <url>
     <loc>https://timeline.starwars.guide/character/Sabine Wren?year=-21&amp;show=true</loc>

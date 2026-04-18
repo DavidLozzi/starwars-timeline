@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 const GuideContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 1.5rem;
-  max-width: 600px;
-  width: calc(100% - 2rem);
-  max-height: 90vh;
   overflow-y: auto;
   color: ${({ theme }) => theme.palette.white};
   background-color: rgba(${({ theme }) => theme.palette.black}, 0.95);
-  border-radius: 8px;
+  border-radius: inherit;
   outline: none;
   position: relative;
   z-index: 101;
@@ -25,23 +26,20 @@ const GuideContainer = styled.div`
 
   ${({ theme }) => theme.breakpoints.sm} {
     padding: 2rem;
-    width: 100%;
   }
 
   ${({ theme }) => theme.breakpoints.md} {
     padding: 2.5rem;
   }
 
-  /* Mobile responsive: full width on small screens */
   @media screen and (max-width: 320px) {
     padding: 1rem;
-    width: calc(100% - 1rem);
     font-size: 0.9rem;
   }
 `;
 
 const Title = styled.h2`
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
   font-size: 1.5rem;
   color: rgb(${({ theme }) => theme.palette.secondary});
   font-weight: bold;
@@ -49,13 +47,6 @@ const Title = styled.h2`
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2rem;
   }
-`;
-
-const Description = styled.p`
-  margin: 0 0 2rem 0;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgb(${({ theme }) => theme.palette.lightergray});
 `;
 
 const StepContent = styled.div`
@@ -82,6 +73,7 @@ const StepText = styled.p`
   line-height: 1.6;
   font-size: 1rem;
   color: rgb(${({ theme }) => theme.palette.lightergray});
+  white-space: pre-line;
 `;
 
 const ButtonContainer = styled.div`
@@ -124,7 +116,6 @@ const DismissButton = styled.button`
 export default {
   GuideContainer,
   Title,
-  Description,
   StepContent,
   StepTitle,
   StepText,

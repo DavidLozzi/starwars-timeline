@@ -3,23 +3,21 @@ export const DEFAULT_ONBOARDING_CONTENT = {
   steps: [
     {
       id: 'navigation',
-      title: 'Navigate Through Time',
-      content: 'Scroll horizontally to explore different years in the Star Wars timeline. Each column represents a different year in the Star Wars universe.'
+      title: 'Navigation',
+      content:
+        'Scroll left and right to explore characters.\n\nScroll up and down to move through time.'
     },
     {
       id: 'characters',
-      title: 'Explore Characters',
-      content: 'Click on any character to view their detailed information, including their appearances across movies and TV shows.'
+      title: 'Characters',
+      content:
+        'Click on any character to view their information and their own personal timeline.'
     },
     {
-      id: 'filters',
-      title: 'Filter Your View',
-      content: 'Use the search icon to filter by character, movie, or metadata. Find exactly what you\'re looking for quickly.'
-    },
-    {
-      id: 'layout',
-      title: 'Understanding the Layout',
-      content: 'Years run horizontally across the top, characters run vertically down the side. Each intersection shows when a character appeared in that year.'
+      id: 'search',
+      title: 'Find a specific character, movie, or TV show.',
+      content:
+        "Use the search options at the top right to find what you're looking for! Find by Character or filter by Movie or TV Show, Force Sensitive, Species, and more!"
     }
   ]
 };

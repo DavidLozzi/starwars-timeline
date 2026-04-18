@@ -58,8 +58,8 @@ describe('OnboardingGuide', () => {
   });
 
   describe('Onboarding content configuration', () => {
-    it('should have all 4 required steps', () => {
-      expect(DEFAULT_ONBOARDING_CONTENT.steps).toHaveLength(4);
+    it('should have all required steps', () => {
+      expect(DEFAULT_ONBOARDING_CONTENT.steps).toHaveLength(3);
     });
 
     it('should have navigation step with required fields', () => {
@@ -78,18 +78,11 @@ describe('OnboardingGuide', () => {
       expect(charactersStep.content).toBeDefined();
     });
 
-    it('should have filters step with required fields', () => {
-      const filtersStep = DEFAULT_ONBOARDING_CONTENT.steps.find(s => s.id === 'filters');
-      expect(filtersStep).toBeDefined();
-      expect(filtersStep.title).toBeDefined();
-      expect(filtersStep.content).toBeDefined();
-    });
-
-    it('should have layout step with required fields', () => {
-      const layoutStep = DEFAULT_ONBOARDING_CONTENT.steps.find(s => s.id === 'layout');
-      expect(layoutStep).toBeDefined();
-      expect(layoutStep.title).toBeDefined();
-      expect(layoutStep.content).toBeDefined();
+    it('should have search step with required fields', () => {
+      const searchStep = DEFAULT_ONBOARDING_CONTENT.steps.find(s => s.id === 'search');
+      expect(searchStep).toBeDefined();
+      expect(searchStep.title).toBeDefined();
+      expect(searchStep.content).toBeDefined();
     });
   });
 });
