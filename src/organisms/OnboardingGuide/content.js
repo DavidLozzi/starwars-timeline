@@ -17,7 +17,7 @@ export const DEFAULT_ONBOARDING_CONTENT = {
       id: 'search',
       title: 'Find a specific character, movie, or TV show.',
       content:
-        "Use the search options at the top right to find what you're looking for! Find by Character or filter by Movie or TV Show, Force Sensitive, Species, and more!"
+        'Use the search options at the top right to find what you\'re looking for! Find by Character or filter by Movie or TV Show, Force Sensitive, Species, and more!'
     }
   ]
 };

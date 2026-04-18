@@ -29,9 +29,7 @@ export default {
     overflow: scroll;
     position: relative;
 
-    ${({ $fill }) =>
-      $fill &&
-      `
+    ${({ $fill }) => $fill && `
       display: flex;
       flex-direction: column;
       align-items: stretch;
