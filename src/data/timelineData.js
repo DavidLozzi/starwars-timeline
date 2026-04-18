@@ -1,133 +1,132 @@
 export const timelineData = {
   characters: [
     {
-      name: "Luke Skywalker",
+      name: 'Luke Skywalker',
       birthYear: -19,
-      species: "Human",
-      homeworld: "Tatooine"
+      species: 'Human',
+      homeworld: 'Tatooine'
     },
     {
-      name: "Leia Organa",
+      name: 'Leia Organa',
       birthYear: -19,
-      species: "Human", 
-      homeworld: "Alderaan"
+      species: 'Human',
+      homeworld: 'Alderaan'
     },
     {
-      name: "Han Solo",
+      name: 'Han Solo',
       birthYear: -29,
-      species: "Human",
-      homeworld: "Corellia"
+      species: 'Human',
+      homeworld: 'Corellia'
     },
     {
-      name: "Chewbacca",
+      name: 'Chewbacca',
       birthYear: -200,
-      species: "Wookiee",
-      homeworld: "Kashyyyk"
+      species: 'Wookiee',
+      homeworld: 'Kashyyyk'
     },
     {
-      name: "Obi-Wan Kenobi",
+      name: 'Obi-Wan Kenobi',
       birthYear: -57,
       deathYear: 0,
-      species: "Human",
-      homeworld: "Stewjon"
+      species: 'Human',
+      homeworld: 'Stewjon'
     },
     {
-      name: "Darth Vader",
+      name: 'Darth Vader',
       birthYear: -41,
       deathYear: 4,
-      species: "Human",
-      homeworld: "Tatooine"
+      species: 'Human',
+      homeworld: 'Tatooine'
     },
     {
-      name: "Yoda",
+      name: 'Yoda',
       birthYear: -896,
       deathYear: 4,
-      species: "Unknown",
-      homeworld: "Unknown"
+      species: 'Unknown',
+      homeworld: 'Unknown'
     },
     {
-      name: "C-3PO",
+      name: 'C-3PO',
       birthYear: -32,
-      species: "Droid",
-      homeworld: "Tatooine"
+      species: 'Droid',
+      homeworld: 'Tatooine'
     },
     {
-      name: "R2-D2",
+      name: 'R2-D2',
       birthYear: -33,
-      species: "Droid",
-      homeworld: "Naboo"
+      species: 'Droid',
+      homeworld: 'Naboo'
     },
     {
-      name: "Padmé Amidala",
+      name: 'Padmé Amidala',
       birthYear: -46,
       deathYear: -19,
-      species: "Human",
-      homeworld: "Naboo"
+      species: 'Human',
+      homeworld: 'Naboo'
     },
     {
-      name: "Qui-Gon Jinn",
+      name: 'Qui-Gon Jinn',
       birthYear: -92,
       deathYear: -32,
-      species: "Human",
-      homeworld: "Unknown"
+      species: 'Human',
+      homeworld: 'Unknown'
     },
     {
-      name: "Mace Windu",
+      name: 'Mace Windu',
       birthYear: -72,
       deathYear: -19,
-      species: "Human",
-      homeworld: "Haruun Kal"
+      species: 'Human',
+      homeworld: 'Haruun Kal'
     }
   ],
   movies: [
     {
-      title: "The Phantom Menace",
+      title: 'The Phantom Menace',
       year: -32,
-      type: "movie",
-      characters: ["Qui-Gon Jinn", "Obi-Wan Kenobi", "Darth Vader", "Padmé Amidala", "C-3PO", "R2-D2"]
+      type: 'movie',
+      characters: ['Qui-Gon Jinn', 'Obi-Wan Kenobi', 'Darth Vader', 'Padmé Amidala', 'C-3PO', 'R2-D2']
     },
     {
-      title: "Attack of the Clones", 
+      title: 'Attack of the Clones',
       year: -22,
-      type: "movie",
-      characters: ["Obi-Wan Kenobi", "Darth Vader", "Padmé Amidala", "C-3PO", "R2-D2", "Yoda"]
+      type: 'movie',
+      characters: ['Obi-Wan Kenobi', 'Darth Vader', 'Padmé Amidala', 'C-3PO', 'R2-D2', 'Yoda']
     },
     {
-      title: "Revenge of the Sith",
+      title: 'Revenge of the Sith',
       year: -19,
-      type: "movie",
-      characters: ["Obi-Wan Kenobi", "Darth Vader", "Padmé Amidala", "C-3PO", "R2-D2", "Yoda", "Mace Windu"]
+      type: 'movie',
+      characters: ['Obi-Wan Kenobi', 'Darth Vader', 'Padmé Amidala', 'C-3PO', 'R2-D2', 'Yoda', 'Mace Windu']
     },
     {
-      title: "A New Hope",
+      title: 'A New Hope',
       year: 0,
-      type: "movie",
-      characters: ["Luke Skywalker", "Leia Organa", "Han Solo", "Chewbacca", "Obi-Wan Kenobi", "Darth Vader", "C-3PO", "R2-D2"]
+      type: 'movie',
+      characters: ['Luke Skywalker', 'Leia Organa', 'Han Solo', 'Chewbacca', 'Obi-Wan Kenobi', 'Darth Vader', 'C-3PO', 'R2-D2']
     },
     {
-      title: "The Empire Strikes Back",
+      title: 'The Empire Strikes Back',
       year: 3,
-      type: "movie",
-      characters: ["Luke Skywalker", "Leia Organa", "Han Solo", "Chewbacca", "Darth Vader", "Yoda", "C-3PO", "R2-D2"]
+      type: 'movie',
+      characters: ['Luke Skywalker', 'Leia Organa', 'Han Solo', 'Chewbacca', 'Darth Vader', 'Yoda', 'C-3PO', 'R2-D2']
     },
     {
-      title: "Return of the Jedi",
+      title: 'Return of the Jedi',
       year: 4,
-      type: "movie",
-      characters: ["Luke Skywalker", "Leia Organa", "Han Solo", "Chewbacca", "Darth Vader", "Yoda", "C-3PO", "R2-D2"]
+      type: 'movie',
+      characters: ['Luke Skywalker', 'Leia Organa', 'Han Solo', 'Chewbacca', 'Darth Vader', 'Yoda', 'C-3PO', 'R2-D2']
     },
     {
-      title: "The Clone Wars",
+      title: 'The Clone Wars',
       year: -22,
-      type: "tv",
-      characters: ["Obi-Wan Kenobi", "Darth Vader", "Padmé Amidala", "C-3PO", "R2-D2", "Yoda", "Mace Windu"]
+      type: 'tv',
+      characters: ['Obi-Wan Kenobi', 'Darth Vader', 'Padmé Amidala', 'C-3PO', 'R2-D2', 'Yoda', 'Mace Windu']
     },
     {
-      title: "The Mandalorian",
+      title: 'The Mandalorian',
       year: 9,
-      type: "tv",
-      characters: ["Luke Skywalker", "C-3PO", "R2-D2"]
+      type: 'tv',
+      characters: ['Luke Skywalker', 'C-3PO', 'R2-D2']
     }
   ]
 };
-
