@@ -16,7 +16,7 @@ const MENUS = {
   FILTER: 'filter'
 };
 
-const MainMenu = () => {
+const MainMenu = ({ onShowOnboardingGuide }) => {
   const theme = useTheme();
   const { addFilter } = useAppContext();
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
@@ -82,7 +82,12 @@ const MainMenu = () => {
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
-      <Styled.MenuLink href="https://starwars.guide/star-wars-timeline" target="_blank"><HelpImg alt="show the how to window" style={{ width: '22px' }} /></Styled.MenuLink>
+      <Styled.MenuButton 
+        onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline', '_blank'))}
+        aria-label="Show help and onboarding guide"
+      >
+        <HelpImg alt="show the how to window" style={{ width: '22px' }} />
+      </Styled.MenuButton>
     </Styled.Wrapper>
   );
 };

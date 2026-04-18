@@ -28,6 +28,19 @@ export default {
     padding-bottom: 3vw;
     overflow: scroll;
     position: relative;
+
+    ${({ $fill }) =>
+      $fill &&
+      `
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow: hidden;
+      padding-bottom: 0;
+      max-height: min(40rem, 92vh);
+      min-height: min(50vh, min(40rem, 92vh));
+      height: min(40rem, 92vh);
+    `}
   `,
   Close: styled.img`
     ${({ theme }) => theme.elements.modalClose};
