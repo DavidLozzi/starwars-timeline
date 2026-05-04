@@ -1028,6 +1028,36 @@
     ]
   },
   {
+    "altTitle": "First Brother",
+    "endYear": 9,
+    "endYearEvent": "Ahsoka",
+    "seenIn": [
+      "Ahsoka",
+      "Star Wars: Maul - Shadow Lord"
+    ],
+    "startYear": -50,
+    "imageUrl": "/images/marrok.png",
+    "startYearUnknown": true,
+    "title": "Marrok",
+    "type": "character",
+    "description": "Marrok was a mysterious warrior who once served in the Inquisitorius of the Galactic Empire, and the Jedi Order before that. During his time as an Inquisitor in the Imperial Era, Marrok worked alongside the Eleventh Brother to hunt down the crime lord and former Sith Lord Maul during the Empire's operations on the Mid Rim Territories world of Janix. Following the Empire's collapse, Marrok was hired by the Nightsister Morgan Elsbeth as a mercenary. During his time in Morgan Elsbeth's forces, Marrok worked with other Force-sensitive mercenaries—former General Baylan Skoll of the Jedi Order, and his apprentice Shin Hati.",
+    "wookiepedia": "https://starwars.fandom.com/wiki/Marrok",
+    "metadata": [
+      {
+        "name": "Homeworld",
+        "value": "Unknown"
+      },
+      {
+        "name": "Species",
+        "value": "Humanoid"
+      },
+      {
+        "name": "Force Sensitive",
+        "value": "Yes"
+      }
+    ]
+  },
+  {
     "endYear": -40,
     "startYear": -40,
     "title": "Star Wars: Starfighter",
