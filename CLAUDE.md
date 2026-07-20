@@ -6,6 +6,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The Ultimate Star Wars Timeline — a React app that renders an interactive, scrollable timeline of Star Wars characters, movies, TV shows, and eras (High Republic Era through New Jedi Order, roughly -300 BBY to 50 ABY). Live at https://timeline.starwars.guide/.
 
+## Brand position (read before changing anything user-facing)
+
+This repo is a **satellite app** in the AurebeshFiles brand. The hub is **`../starwars-guide`** (starwars.guide) — the Jekyll landing site that introduces, cross-links, and indexes every app.
+
+**`../starwars-guide/CLAUDE.md` is the source of truth for the brand as a whole**: the full sibling-repo map, branding, navigation, SEO conventions, social handles, and cross-app links are all decided there. Read it before any change that affects how this app is presented, named, or linked.
+
+Division of ownership:
+
+- **This repo owns**: the timeline app itself — data, interactions, visuals, its own deploy (GitHub Pages from `docs/`).
+- **starwars-guide owns**: the product name in marketing copy, the `/star-wars-timeline` landing page, the home-page app card, nav placement, social handles, and the `WebApplication` JSON-LD for this product.
+
+**This repo writes content into the hub.** `build_scripts/website.js` generates `character/*.md` plus images directly into `../starwars-guide` (sibling checkout required). Those files are **generated — never hand-edited in starwars-guide**; fixes belong here. Two known open items live on this side:
+
+- Character front matter emits `social-desc: "Name  | Star Wars"`, which becomes the Google snippet and OG card for ~80 pages. It needs real per-character description text.
+- Generated event markup starts at `<h4>`, so hub pages skip a heading level. The hub's `_layouts/character.html` injects an `h2` to soften it, but the real fix is here.
+
+Changing the shape of that generated output (front matter keys, heading levels, file naming) is a **cross-repo change** — check the hub's `_layouts/character.html` and `_includes/structured-data.html` before shipping it.
+
 ## Commands
 
 Run from the repo root (`starwars-timeline/`):
