@@ -5,16 +5,20 @@ import { getOnboardingState, setOnboardingState } from '../../../utils';
 import OnboardingGuide from '../index';
 import jediTheme from '../../../themes/jedi';
 
-// Mock the Modal component
-jest.mock('../../../molecules/modal', () => {
-  return function MockModal({ children, onClickBg }) {
+// Mirrors the real Modal's structure: the backdrop handles onClickBg, but
+// children sit inside an inner wrapper that stops propagation. Without that
+// inner layer, any click on a child also counts as a backdrop click.
+vi.mock('../../../molecules/modal', () => ({
+  default: function MockModal({ children, onClickBg }) {
     return (
       <div data-testid="modal" onClick={onClickBg}>
-        {children}
+        <div onClick={(e) => e.stopPropagation()}>
+          {children}
+        </div>
       </div>
     );
-  };
-});
+  },
+}));
 
 const renderWithTheme = (component) => {
   return render(
@@ -66,7 +70,7 @@ describe('OnboardingGuide Integration Tests', () => {
 
   describe('Dismissal and persistence flow', () => {
     it('should update localStorage when dismissed', () => {
-      const mockOnDismiss = jest.fn(() => {
+      const mockOnDismiss = vi.fn(() => {
         setOnboardingState(true, new Date().toISOString());
       });
 
@@ -101,16 +105,24 @@ describe('OnboardingGuide Integration Tests', () => {
         return <OnboardingGuide isOpen={isOpen} onDismiss={handleDismiss} />;
       };
 
-      const { container, rerender } = renderWithTheme(<TestComponent />);
+      const { unmount } = renderWithTheme(<TestComponent />);
       expect(screen.getByTestId('modal')).toBeInTheDocument();
 
-      const dismissButton = screen.getByText('Got it');
-      fireEvent.click(dismissButton);
+      fireEvent.click(screen.getByText('Got it'));
 
+      // The guide closes and the dismissal is persisted.
       await waitFor(() => {
-        const { container: newContainer } = renderWithTheme(<TestComponent />);
-        expect(newContainer.firstChild).toBeNull();
+        expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
       });
+      expect(getOnboardingState().hasSeenGuide).toBe(true);
+
+      // A fresh mount reads that persisted state and stays closed. This must be
+      // a single render outside waitFor -- waitFor re-invokes its callback on a
+      // poll, so rendering inside it mounts a new tree every tick until the
+      // heap is exhausted.
+      unmount();
+      const { container } = renderWithTheme(<TestComponent />);
+      expect(container.firstChild).toBeNull();
     });
   });
 });

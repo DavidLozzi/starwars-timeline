@@ -6,15 +6,20 @@ import { DEFAULT_ONBOARDING_CONTENT } from './content';
 import jediTheme from '../../themes/jedi';
 
 // Mock the Modal component
-jest.mock('../../molecules/modal', () => {
-  return function MockModal({ children, onClickBg }) {
+// Mirrors the real Modal's structure: the backdrop handles onClickBg, but
+// children sit inside an inner wrapper that stops propagation. Without that
+// inner layer, any click on a child also counts as a backdrop click.
+vi.mock('../../molecules/modal', () => ({
+  default: function MockModal({ children, onClickBg }) {
     return (
       <div data-testid="modal" onClick={onClickBg}>
-        {children}
+        <div onClick={(e) => e.stopPropagation()}>
+          {children}
+        </div>
       </div>
     );
-  };
-});
+  },
+}));
 
 const renderWithTheme = (component) => {
   return render(
@@ -25,7 +30,7 @@ const renderWithTheme = (component) => {
 };
 
 describe('OnboardingGuide', () => {
-  const mockOnDismiss = jest.fn();
+  const mockOnDismiss = vi.fn();
 
   beforeEach(() => {
     mockOnDismiss.mockClear();

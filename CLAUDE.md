@@ -14,8 +14,14 @@ Run from the repo root (`starwars-timeline/`):
 - `npm run lint` — ESLint over `src/**/*.{js,jsx}`
 - `npm run build` — production build (Vite, output to `build/`)
 - `npm run preview` — serve the built `build/` locally to sanity-check a production bundle
+- `npm test` — Vitest, single run (scope to one file with `npm test -- utils.test.js`)
+- `npm run test:watch` — Vitest in watch mode
 
-There is currently **no test runner**. The repo was migrated off Create React App and `react-scripts test` went with it; the existing `*.test.jsx` files are not wired to anything and several were already failing beforehand. CI does not run tests.
+Tests run on **Vitest** (config lives in the `test` block of `vite.config.js`), with `globals: true` so `describe`/`it`/`expect` need no imports — but mocking uses `vi.*`, not `jest.*`. `src/setupTests.js` pulls in `@testing-library/jest-dom` matchers. CI does not currently run tests.
+
+When mocking `molecules/modal`, mirror its real structure: the backdrop takes `onClickBg`, but children sit inside an inner wrapper that calls `e.stopPropagation()`. A flat mock makes every click on a child also register as a backdrop click.
+
+Never call `render()` inside a `waitFor()` callback — `waitFor` re-invokes on a poll, so each tick mounts another React tree and the run dies with a heap OOM rather than a useful failure.
 
 ### Build tooling (Vite)
 

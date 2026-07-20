@@ -14,7 +14,7 @@ describe('Onboarding localStorage helpers', () => {
     it('should handle localStorage errors gracefully', () => {
       // Mock localStorage to throw error
       const originalSetItem = Storage.prototype.setItem;
-      Storage.prototype.setItem = jest.fn(() => {
+      Storage.prototype.setItem = vi.fn(() => {
         throw new Error('QuotaExceededError');
       });
 
@@ -30,7 +30,7 @@ describe('Onboarding localStorage helpers', () => {
     it('should return null when localStorage is unavailable', () => {
       // Mock localStorage to be unavailable
       const originalGetItem = Storage.prototype.getItem;
-      Storage.prototype.getItem = jest.fn(() => {
+      Storage.prototype.getItem = vi.fn(() => {
         throw new Error('localStorage unavailable');
       });
 
@@ -73,7 +73,7 @@ describe('Onboarding localStorage helpers', () => {
     it('should return false when localStorage is unavailable', () => {
       // Mock localStorage to throw error
       const originalSetItem = Storage.prototype.setItem;
-      Storage.prototype.setItem = jest.fn(() => {
+      Storage.prototype.setItem = vi.fn(() => {
         throw new Error('QuotaExceededError');
       });
 
