@@ -14,6 +14,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # Hoisted to job level so step-level `if:` can test it — the `secrets`
+    # context is not available in step conditions, but `env` is.
+    env:
+      SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
+
     strategy:
       matrix:
         node-version: [20.x]
@@ -42,8 +47,9 @@ jobs:
     #
     # Requires repo secret SYNC_REPOS_TOKEN: fine-grained PAT with
     #   - DavidLozzi/starwars-guide: Contents Read and write
+    # Without that secret these steps are skipped and the build still passes.
     - name: Checkout starwars-guide
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       uses: actions/checkout@v4
       with:
         repository: DavidLozzi/starwars-guide
@@ -54,9 +60,7 @@ jobs:
         persist-credentials: false
 
     - name: Verify cross-repo token access
-      if: github.event_name == 'push'
-      env:
-        SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       run: |
         set -e
         perm=$(curl -s \
@@ -73,20 +77,18 @@ jobs:
     # website.js writes to ../../starwars-guide relative to build_scripts/,
     # i.e. the parent of the workspace; link the checkout there.
     - name: Link starwars-guide for website.js
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       run: |
         ln -sfn "$GITHUB_WORKSPACE/starwars-guide" "$GITHUB_WORKSPACE/../starwars-guide"
         mkdir -p "$GITHUB_WORKSPACE/starwars-guide/character" "$GITHUB_WORKSPACE/starwars-guide/assets/characters"
 
     - name: Generate character pages (website.js)
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       working-directory: build_scripts
       run: node website.js
 
     - name: Commit and push starwars-guide
-      if: github.event_name == 'push'
-      env:
-        SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       run: |
         set -e
         git config --global --unset-all http.https://github.com/.extraheader || true
