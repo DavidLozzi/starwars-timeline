@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { url } from 'inspector';
 
 const data = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf8'));
 const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));

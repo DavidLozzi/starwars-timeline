@@ -36,3 +36,68 @@ jobs:
         add: '.'
         message: 'github action build'
 
+    # Sync generated Jekyll character pages to DavidLozzi/starwars-guide.
+    # Must run after add-and-commit above, which stages '.' and would otherwise
+    # pick up the starwars-guide checkout as a gitlink.
+    #
+    # Requires repo secret SYNC_REPOS_TOKEN: fine-grained PAT with
+    #   - DavidLozzi/starwars-guide: Contents Read and write
+    - name: Checkout starwars-guide
+      if: github.event_name == 'push'
+      uses: actions/checkout@v4
+      with:
+        repository: DavidLozzi/starwars-guide
+        ref: main
+        token: ${{ secrets.SYNC_REPOS_TOKEN }}
+        path: starwars-guide
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Verify cross-repo token access
+      if: github.event_name == 'push'
+      env:
+        SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
+      run: |
+        set -e
+        perm=$(curl -s \
+          -H "Authorization: Bearer ${SYNC_TOKEN}" \
+          -H "Accept: application/vnd.github+json" \
+          "https://api.github.com/repos/DavidLozzi/starwars-guide" \
+          | jq -r '.permissions.push // false')
+        if [ "$perm" != "true" ]; then
+          echo "::error::SYNC_REPOS_TOKEN lacks push access to DavidLozzi/starwars-guide. Add this repo with Contents: Read and write."
+          exit 1
+        fi
+        echo "OK: push access to starwars-guide"
+
+    # website.js writes to ../../starwars-guide relative to build_scripts/,
+    # i.e. the parent of the workspace; link the checkout there.
+    - name: Link starwars-guide for website.js
+      if: github.event_name == 'push'
+      run: |
+        ln -sfn "$GITHUB_WORKSPACE/starwars-guide" "$GITHUB_WORKSPACE/../starwars-guide"
+        mkdir -p "$GITHUB_WORKSPACE/starwars-guide/character" "$GITHUB_WORKSPACE/starwars-guide/assets/characters"
+
+    - name: Generate character pages (website.js)
+      if: github.event_name == 'push'
+      working-directory: build_scripts
+      run: node website.js
+
+    - name: Commit and push starwars-guide
+      if: github.event_name == 'push'
+      env:
+        SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
+      run: |
+        set -e
+        git config --global --unset-all http.https://github.com/.extraheader || true
+        cd "$GITHUB_WORKSPACE/starwars-guide"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add character assets/characters
+        if git diff --cached --quiet; then
+          echo "No starwars-guide changes"
+        else
+          git commit -m "chore: sync character pages from starwars-timeline (${{ github.repository }}@${{ github.sha }})"
+          git -c credential.helper= push "https://x-access-token:${SYNC_TOKEN}@github.com/DavidLozzi/starwars-guide.git" HEAD:main
+        fi
+

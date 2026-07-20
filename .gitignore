@@ -14,6 +14,9 @@
 # production
 /build
 
+# sibling repo checked out by CI to sync character pages
+/starwars-guide
+
 # misc
 .DS_Store
 .env.local
