@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as DownSvg } from '../../assets/chevron-down.svg';
-import { ReactComponent as CloseSvg } from '../../assets/close.svg';
+import DownSvg from '../../assets/chevron-down.svg?react';
+import CloseSvg from '../../assets/close.svg?react';
 import * as Styled from './index.styles';
 
 const Dropdown = ({ values, selectedText, defaultText, onSelect, onClear, style = 'form' }) => {

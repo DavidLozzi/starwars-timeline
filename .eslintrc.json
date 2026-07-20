@@ -48,7 +48,9 @@
     {
       "files": [
         "**/*.test.js",
-        "**/__tests__/**/*.js"
+        "**/*.test.jsx",
+        "**/__tests__/**/*.js",
+        "**/__tests__/**/*.jsx"
       ],
       "env": {
         "jest": true

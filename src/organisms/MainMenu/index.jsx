@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import analytics, { ACTIONS } from '../../analytics';
-import { ReactComponent as MenuImg } from '../../assets/menu.svg';
-import { ReactComponent as SearchImg } from '../../assets/search.svg';
-import { ReactComponent as HelpImg } from '../../assets/help.svg';
+import MenuImg from '../../assets/menu.svg?react';
+import SearchImg from '../../assets/search.svg?react';
+import HelpImg from '../../assets/help.svg?react';
 import Filter from '../Filter';
 
 import * as Styled from './index.styles';
