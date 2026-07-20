@@ -17,10 +17,12 @@ Division of ownership:
 - **This repo owns**: the timeline app itself — data, interactions, visuals, its own deploy (GitHub Pages from `docs/`).
 - **starwars-guide owns**: the product name in marketing copy, the `/star-wars-timeline` landing page, the home-page app card, nav placement, social handles, and the `WebApplication` JSON-LD for this product.
 
-**This repo writes content into the hub.** `build_scripts/website.js` generates `character/*.md` plus images directly into `../starwars-guide` (sibling checkout required). Those files are **generated — never hand-edited in starwars-guide**; fixes belong here. Two known open items live on this side:
+**This repo writes content into the hub.** `build_scripts/website.js` generates `character/*.md` plus images directly into `../starwars-guide` (sibling checkout required). Those files are **generated — never hand-edited in starwars-guide**; fixes belong here. What the generator emits:
 
-- Character front matter emits `social-desc: "Name  | Star Wars"`, which becomes the Google snippet and OG card for ~80 pages. It needs real per-character description text.
-- Generated event markup starts at `<h4>`, so hub pages skip a heading level. The hub's `_layouts/character.html` injects an `h2` to soften it, but the real fix is here.
+- `social-desc` is real per-character copy: the bio, HTML stripped, truncated to ~160 characters on a sentence or word boundary. `social-title` is `"Name — Star Wars Timeline & Story"`. Both feed `_includes/head.html` (meta description, OG/Twitter) and the character JSON-LD.
+- A `character:` front-matter block (species, homeworld, birth/death year, wookieepedia, appearances) is emitted for future hub use. **Nothing in the hub reads it yet** — the same facts already render in the page body's `metadata` div, so don't duplicate them in the layout.
+- `last_modified_at` is only re-stamped when the body or the rest of the front matter actually changed, so a re-run doesn't churn all ~80 hub pages.
+- Timeline events are emitted as `<h3>` (were `<h4>`), matching the h1 → h2 outline the hub layout supplies.
 
 Changing the shape of that generated output (front matter keys, heading levels, file naming) is a **cross-repo change** — check the hub's `_layouts/character.html` and `_includes/structured-data.html` before shipping it.
 
@@ -68,9 +70,11 @@ The app does **not** hand-author `src/data/*.json`. Those files are generated:
    - `src/data/seenIn.json` — aggregated "seen in" facet (movies/shows) with counts
    - It also regenerates the SEO content block in the root `index.html` (the `<div id="content">` inside `<div id="root">`, which React replaces on mount), plus `public/starwars_movies.html`, `public/starwars_tvshows.html`, `public/starwars_characters.html`, and `public/sitemap.xml`.
 3. **To add/edit timeline content (a character, movie, era, etc.), edit `build_scripts/data.json`, then run `node prepJson.js` from `build_scripts/` to regenerate everything in `src/data/`.** Do not hand-edit `src/data/*.json` directly — it will be overwritten.
-4. `src/data/timelineData.js` is unrelated sample/demo data used only by the experimental `/hyperspace` route (`HyperspaceTimeline.jsx`) — not part of the real data pipeline.
+4. **Adding a new character**: after adding its entry to `data.json` (with a `wookiepedia` URL), also run `node description.js` from `build_scripts/` to generate its bio/timeline into `character_descriptions.json` before running `prepJson.js`. `description.js` only processes characters missing from `character_descriptions.json` — it filters `data.json` characters down to those whose `wookiepedia` URL has no existing entry, so it's always safe/incremental to run, but it will **never** refresh an existing character's description, even if you later change that character's `data.json` fields (e.g. `startYear`). It needs `OPENAI_API_KEY` in `build_scripts/.env` (see `.env.sample`).
+   - Known drift: `description.js` derives its own birth/death years from the Wookieepedia page via OpenAI, independent of `data.json`'s hand-authored `startYear`/`endYear`/`birthYear`. The two are never reconciled, so a character with `startYearUnknown: true` can show a header year (from `data.json`) that disagrees with its own generated timeline's first event. Regenerating the description (deleting its entry and re-running `description.js`) does not fix this by itself — the new output can still disagree with `data.json`.
+5. `src/data/timelineData.js` is unrelated sample/demo data used only by the experimental `/hyperspace` route (`HyperspaceTimeline.jsx`) — not part of the real data pipeline.
 
-Other `build_scripts/*.js` are one-off/utility scripts, not part of the standard build: `description.js` (OpenAI character descriptions/timelines), `social.js` (generates tweet copy), `website.js` (exports character data for a separate companion site), `getWords.js` (extracts words for a Wordle-style spinoff app).
+Other `build_scripts/*.js` are one-off/utility scripts, not part of the standard build: `social.js` (generates tweet copy), `website.js` (exports character data for a separate companion site), `getWords.js` (extracts words for a Wordle-style spinoff app).
 
 ## Architecture
 

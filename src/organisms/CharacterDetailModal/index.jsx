@@ -52,19 +52,22 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
         <Styled.H1>{character.title}</Styled.H1>
         <Styled.H2>{character.altTitle}</Styled.H2>
         <Styled.Note>Born {convertYear(birthYear)}{character.startYearUnknown ? ' (this is a guess)' : ''} {!character.endYearUnknown ? `, Died ${convertYear(character.endYear)} (${character.endYear - birthYear} years old)` : ''}</Styled.Note>
+        {character.metadata && character.metadata.length > 0 &&
+          <Styled.MetadataWrapper>
+            {character.metadata.map(m => <Styled.Metadata key={m.name}>
+              <Styled.MetadataLabel>{m.name}</Styled.MetadataLabel>
+              <Styled.MetadataValue>{m.value}</Styled.MetadataValue>
+            </Styled.Metadata>)}
+          </Styled.MetadataWrapper>
+        }
       </Styled.Right>
     </Styled.Header>
     <Styled.Body>
-      {character.metadata && character.metadata.length > 0 &&
-        <Styled.MetadataWrapper>
-          {character.metadata.map(m => <Styled.Metadata key={m.name}>
-            <Styled.MetadataLabel>{m.name}</Styled.MetadataLabel>
-            <Styled.MetadataValue>{m.value}</Styled.MetadataValue>
-          </Styled.Metadata>)}
-        </Styled.MetadataWrapper>
-      }
       {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
-      {character.timeline && character.timeline.trim() && <Styled.Timeline>{parse(character.timeline)}</Styled.Timeline>}
+      {character.timeline && character.timeline.trim() && <>
+        <Styled.SectionTitle>Timeline Summary</Styled.SectionTitle>
+        <Styled.Timeline>{parse(character.timeline)}</Styled.Timeline>
+      </>}
       <Styled.ListViewWrapper>
         <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
         <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />

@@ -9,10 +9,96 @@ const convertYear = (year) => {
   return 'none';
 };
 
+// YAML double-quoted scalars accept JSON string escaping, so JSON.stringify is a
+// safe quoter for names/descriptions containing colons, quotes or apostrophes.
+const yaml = (value) => JSON.stringify(String(value ?? ''));
+
+// A few source descriptions carry stray control characters where an apostrophe
+// belongs (e.g. "Fett\u0002s"), which leak into meta tags and page copy.
+const sanitize = (text) => (text || '')
+  .replace(/([A-Za-z])[\u0000-\u001f]([A-Za-z])/g, '$1’$2')
+  .replace(/[\u0000-\u001f]/g, ' ');
+
+const stripHtml = (html) => sanitize(html)
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&nbsp;/g, ' ')
+  .replace(/&amp;/g, '&')
+  .replace(/&#39;|&rsquo;/g, '’')
+  .replace(/&quot;/g, '"')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+// Search snippets and OG cards get cut around 160 characters; prefer ending on a
+// sentence, fall back to a word boundary with an ellipsis.
+const MAX_DESC = 160;
+const truncate = (text) => {
+  if (text.length <= MAX_DESC) return text;
+  const window = text.slice(0, MAX_DESC + 1);
+  const sentenceEnd = Math.max(window.lastIndexOf('. '), window.lastIndexOf('! '), window.lastIndexOf('? '));
+  if (sentenceEnd >= 80) return window.slice(0, sentenceEnd + 1);
+  const wordEnd = window.lastIndexOf(' ');
+  return `${window.slice(0, wordEnd > 0 ? wordEnd : MAX_DESC).replace(/[,;:.—-]+$/, '')}…`;
+};
+
+// character.imageUrl already starts with a slash, so join without doubling it.
+const imageSrc = (url) => `https://timeline.starwars.guide/${String(url || '').replace(/^\/+/, '')}`;
+
+const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
+
+// Fallback for the handful of characters with no generated bio: build a factual
+// sentence from metadata, lifespan and appearances rather than emitting a stub.
+const fallbackDescription = (character, birthYear, appearances) => {
+  const species = meta(character, 'Species');
+  const homeworld = meta(character, 'Homeworld');
+  const parts = [`${character.title} is a Star Wars character`];
+  if (species) parts.push(`, a ${species}`);
+  if (homeworld) parts.push(` from ${homeworld}`);
+  if (!character.startYearUnknown) parts.push(`, born in ${convertYear(birthYear)}`);
+  if (!character.endYearUnknown) parts.push(`, died in ${convertYear(character.endYear)}`);
+  parts.push('.');
+  if (appearances.length > 0) parts.push(` Appears in ${appearances.slice(0, 3).join(', ')}.`);
+  return parts.join('');
+};
+
+// Only stamp a new last_modified_at when the page body or the rest of the front
+// matter actually changed — otherwise every run rewrites all ~80 hub pages.
+const isVolatile = (line) => line.startsWith('last_modified_at:');
+
+const existingPage = (filePath) => {
+  try {
+    const contents = fs.readFileSync(filePath, 'utf8');
+    const match = /^---\n([\s\S]*?)\n---\n/.exec(contents);
+    if (!match) return null;
+    const lines = match[1].split('\n');
+    const lastModified = lines.find(isVolatile)?.replace(/^last_modified_at:\s*/, '').trim();
+    return {
+      stable: lines.filter(l => !isVolatile(l)),
+      lastModified,
+      body: contents.slice(match[0].length),
+    };
+  } catch {
+    return null;
+  }
+};
+
+const writePage = (filePath, frontMatterLines, body) => {
+  const previous = existingPage(filePath);
+  const stable = frontMatterLines.filter(l => !isVolatile(l));
+  const unchanged = !!previous
+    && previous.body === body
+    && previous.stable.join('\n') === stable.join('\n');
+  const lastModified = unchanged && previous.lastModified
+    ? previous.lastModified
+    : new Date().toISOString();
+  const withStamp = frontMatterLines.map(l => isVolatile(l) ? `last_modified_at: ${lastModified}` : l);
+  fs.writeFileSync(filePath, `---\n${withStamp.join('\n')}\n---\n${body}`);
+  return unchanged;
+};
+
 data
   .sort((a, b) => a.title > b.title ? 1 : -1)
   .forEach(character => {
-    const characterUrl = `https://timeline.starwars.guide/character/${character.title}?year=`;
+    const characterUrl = `https://timeline.starwars.guide/character/${encodeURIComponent(character.title)}?year=`;
     let _birthYear = character.startYear;
     if (character.birthYear) {
       _birthYear = character.birthYear;
@@ -42,15 +128,38 @@ data
       characterTimeline = descData.timeline;
     }
     
-    let page = `---
-title: ${character.title}'s Timeline
-layout: character
-date: 2022-05-08
-last_modified_at: ${new Date().toISOString()}
-social-desc: ${character.title} ${character.altTitle?.length > 0 ? `(${character.altTitle}) ` : ''} | Star Wars
-social-image: /assets/characters/${characterImage}
----
-<a href="/character" class="smaller">Back to All Characters</a>
+    characterDescription = sanitize(characterDescription);
+    // Timeline events are authored as h4; the page's own outline is h1 (layout
+    // title) > h2 (layout section) > h3, so demoting them to h3 removes the
+    // skipped heading level on the hub.
+    characterTimeline = sanitize(characterTimeline).replace(/<(\/?)h4>/gi, '<$1h3>');
+
+    const appearances = [...new Set(seenInData.map(s => s.event.title))];
+    const socialDesc = truncate(stripHtml(characterDescription))
+      || truncate(fallbackDescription(character, _birthYear, appearances));
+
+    const frontMatter = [
+      `title: ${yaml(`${character.title}'s Timeline`)}`,
+      'layout: character',
+      'date: 2022-05-08',
+      'last_modified_at: PLACEHOLDER',
+      `social-title: ${yaml(`${character.title} — Star Wars Timeline & Story`)}`,
+      `social-desc: ${yaml(socialDesc)}`,
+      `social-image: /assets/characters/${characterImage}`,
+      `character:`,
+      `  name: ${yaml(character.title)}`,
+      ...(character.altTitle?.length > 0 ? [`  also_known_as: ${yaml(character.altTitle)}`] : []),
+      ...(meta(character, 'Species') ? [`  species: ${yaml(meta(character, 'Species'))}`] : []),
+      ...(meta(character, 'Homeworld') ? [`  homeworld: ${yaml(meta(character, 'Homeworld'))}`] : []),
+      ...(character.startYearUnknown ? [] : [`  birth_year: ${yaml(convertYear(_birthYear))}`]),
+      ...(character.endYearUnknown ? [] : [`  death_year: ${yaml(convertYear(character.endYear))}`]),
+      ...(character.wookiepedia ? [`  wookieepedia: ${character.wookiepedia}`] : []),
+      ...(appearances.length > 0
+        ? ['  appearances:', ...appearances.map(a => `    - ${yaml(a)}`)]
+        : []),
+    ];
+
+    let body = `<a href="/character" class="smaller">Back to All Characters</a>
 
 <div class="character-profile container">
   <div class="col-10">
@@ -90,8 +199,8 @@ social-image: /assets/characters/${characterImage}
     <a href="/character" class="smaller">Back to All Characters</a>
   </div>
   <div class="character_image col-2">
-    ${character.imageYears ? character.imageYears.sort((a, b) => a.startYear > b.startYear ? 1 : -1).map(img => `<img src="https://timeline.starwars.guide/${img.imageUrl}" alt="${character.title}" />`).join('\n') : ''}
-    <img src="https://timeline.starwars.guide/${character.imageUrl}" alt="${character.title}" />
+    ${character.imageYears ? character.imageYears.sort((a, b) => a.startYear > b.startYear ? 1 : -1).map(img => `<img src="${imageSrc(img.imageUrl)}" alt="${character.title}" />`).join('\n') : ''}
+    <img src="${imageSrc(character.imageUrl)}" alt="${character.title}" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
         crossorigin="anonymous"></script>
     <!-- starwars character -->
@@ -108,17 +217,22 @@ social-image: /assets/characters/${characterImage}
 </div>
 `;
       
-    fs.writeFileSync(`../../starwars-guide/character/${character.title.replace(/\s/ig, '-')}.md`, page);
-    console.log(character.title);
+    const filePath = `../../starwars-guide/character/${character.title.replace(/\s/ig, '-')}.md`;
+    const unchanged = writePage(filePath, frontMatter, body);
+    console.log(`${character.title}${unchanged ? ' (unchanged)' : ''}`);
   });
 
-let listView = `---
-title: Star Wars Characters on the Timeline
-layout: page
-date: 2022-05-08
-last_modified_at: ${new Date().toISOString()}
----
+const listFrontMatter = [
+  'title: Star Wars Characters on the Timeline',
+  'layout: page',
+  'date: 2022-05-08',
+  'last_modified_at: PLACEHOLDER',
+  `social-title: ${yaml('All Star Wars Character Timelines')}`,
+  `social-desc: ${yaml(`Browse timelines for ${data.length} Star Wars characters — birth and death years, species, homeworlds, and every movie and series they appear in.`)}`,
+  'social-image: /assets/social.png',
+];
 
+let listView = `
 Explore all of the characters from the <a href="https://timeline.starwars.guide" target="_blank">Ultimate Star Wars Timeline</a>.
 
 <ul class="character_list">
@@ -127,5 +241,5 @@ ${data
     .map(character => `<li><a href="/character/${character.title.replace(/\s/ig, '-')}">${character.title}</a></li>`).join('\n')}
 </ul>
 `;
-console.log("index");
-fs.writeFileSync('../../starwars-guide/character/index.md', listView);
+const indexUnchanged = writePage('../../starwars-guide/character/index.md', listFrontMatter, listView);
+console.log(`index${indexUnchanged ? ' (unchanged)' : ''}`);

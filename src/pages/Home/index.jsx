@@ -15,7 +15,7 @@ import SeenIn from '../../organisms/SeenIn';
 import { Helmet } from 'react-helmet';
 import Death from '../../organisms/Death';
 const OnboardingGuide = React.lazy(() => import('../../organisms/OnboardingGuide'));
-import { getOnboardingState } from '../../utils';
+import { getOnboardingState, decodeCharacterParam } from '../../utils';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -25,6 +25,10 @@ addEventListener('scroll', () => {
 const Home = () => {
   const theme = useTheme();
   const routeParams = useParams();
+  const routeCharacter = React.useMemo(
+    () => decodeCharacterParam(routeParams?.character),
+    [routeParams?.character]
+  );
   const history = useHistory();
   const [years, setYears] = React.useState([]);
   const [characters, setCharacters] = React.useState([]);
@@ -100,7 +104,7 @@ const Home = () => {
   };
 
   const HeaderOutput = () => {
-    const character = routeParams?.character;
+    const character = routeCharacter;
     const characterUrl = encodeURI(character);
     if (character) {
       return <Helmet>
@@ -148,8 +152,8 @@ const Home = () => {
     if (years.length > 0 && characters.length > 0) {
       const searchParams = new URLSearchParams(window.location.search);
       let scrollToChar;
-      if (routeParams?.character) {
-        scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeParams.character.toLowerCase());
+      if (routeCharacter) {
+        scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeCharacter.toLowerCase());
         if (scrollToChar) {
           setCurrentCharacter(scrollToChar.title);
           if (Boolean(searchParams.get('show')) == true) {

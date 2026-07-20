@@ -34,10 +34,25 @@ const palette = {
   white: '255,255,255',
 };
 
+// Kept in sync with the Jedi theme — components reference theme.breakpoints
+// regardless of which theme is active.
+const windowWidths = {
+  sm: 390,
+  md: 640,
+  lg: 1024
+};
+
+const breakpoints = {
+  sm: `@media screen and (min-width: ${windowWidths.sm}px)`,
+  md: `@media screen and (min-width: ${windowWidths.md}px)`,
+  lg: `@media screen and (min-width: ${windowWidths.lg}px)`
+};
 
 export default {
   name: 'sith',
   palette,
+  breakpoints,
+  windowWidths,
   elements: {
     body: css`
       background-color: rgb(${palette.black});

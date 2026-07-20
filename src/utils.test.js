@@ -1,4 +1,25 @@
-import { hasLocalStorage, getOnboardingState, setOnboardingState } from './utils';
+import { hasLocalStorage, getOnboardingState, setOnboardingState, decodeCharacterParam } from './utils';
+
+describe('decodeCharacterParam', () => {
+  it('decodes percent-encoded names from companion-site links', () => {
+    expect(decodeCharacterParam('Ahsoka%20Tano')).toBe('Ahsoka Tano');
+    expect(decodeCharacterParam('Padm%C3%A9%20Amidala%20Naberrie')).toBe('Padmé Amidala Naberrie');
+  });
+
+  it('leaves already-decoded names alone', () => {
+    expect(decodeCharacterParam('Ahsoka Tano')).toBe('Ahsoka Tano');
+    expect(decodeCharacterParam('Yoda')).toBe('Yoda');
+  });
+
+  it('returns the raw value for malformed encoding instead of throwing', () => {
+    expect(decodeCharacterParam('100%')).toBe('100%');
+  });
+
+  it('returns undefined when there is no character in the route', () => {
+    expect(decodeCharacterParam(undefined)).toBeUndefined();
+    expect(decodeCharacterParam('')).toBeUndefined();
+  });
+});
 
 describe('Onboarding localStorage helpers', () => {
   beforeEach(() => {

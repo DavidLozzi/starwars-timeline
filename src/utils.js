@@ -1,5 +1,21 @@
 export const getKeyCount = (o) => Object.keys(o).length;
 
+/**
+ * Decode a character name taken from the route. React Router v5 hands back raw
+ * path segments, so links from starwars.guide arrive as "Ahsoka%20Tano" and
+ * would never match a character title.
+ * @param {string} param Raw `:character` route param
+ * @returns {string|undefined} Decoded name, or the raw value if it is malformed
+ */
+export const decodeCharacterParam = (param) => {
+  if (!param) return undefined;
+  try {
+    return decodeURIComponent(param);
+  } catch {
+    return param;
+  }
+};
+
 // Onboarding state management helpers
 const ONBOARDING_STORAGE_KEY = 'starwars_timeline_onboarding_dismissed';
 
