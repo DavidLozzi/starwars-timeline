@@ -269,9 +269,11 @@ createFileFromTemplate('starwars_characters', characterHtml, 'Star Wars Characte
 
 // add all to index file
 const html = `<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
-var file = fs.readFileSync('../public/index.html', 'utf-8');
+// index.html lives at the repo root, not in public/ -- Vite treats it as the
+// app entry point and build template.
+var file = fs.readFileSync('../index.html', 'utf-8');
 var newValue = file.replace(/<div id="content">[\s\S]*<\/ul>\n[\s]*<\/div>/mig, html);
-fs.writeFileSync('../public/index.html', newValue, 'utf-8');
+fs.writeFileSync('../index.html', newValue, 'utf-8');
 console.log('updated index.html');
 
 
