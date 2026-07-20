@@ -21,4 +21,13 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+
+  test: {
+    environment: 'jsdom',
+    // `globals` exposes describe/it/expect without importing them, matching the
+    // CRA/Jest style the existing tests are written in.
+    globals: true,
+    setupFiles: './src/setupTests.js',
+    css: false,
+  },
 });

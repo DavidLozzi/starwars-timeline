@@ -55,6 +55,9 @@
       "env": {
         "jest": true
       },
+      "globals": {
+        "vi": true
+      },
       "rules": {
         "react/react-in-jsx-scope": "off"
       }
