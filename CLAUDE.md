@@ -26,6 +26,21 @@ Division of ownership:
 
 Changing the shape of that generated output (front matter keys, heading levels, file naming) is a **cross-repo change** — check the hub's `_layouts/character.html` and `_includes/structured-data.html` before shipping it.
 
+## Brand ecosystem — all apps
+
+Every repo is checked out beside this one under `/Volumes/T9/git/`. The canonical table (with sync/dispatch details) lives in `../starwars-guide/CLAUDE.md` — update there first, then mirror here.
+
+| Repo | What it is | Live at |
+|---|---|---|
+| `starwars-guide` | Jekyll hub site — landing pages, character pages, blog, SEO | starwars.guide |
+| `starwars-timeline` **(this repo)** | React interactive timeline; generates hub `character/*.md` | timeline.starwars.guide |
+| `swordle` | React Wordle game front end | wordle.starwars.guide |
+| `swordle-data` | SWordle word-list source of truth; generates hub `swordle-word-list.md` | — |
+| `hyperpanels/search` | Next.js comic-panel search FE + admin | hyperpanels.starwars.guide |
+| `hyperpanels/data` | Python ingestion pipeline (panels → OpenAI Vision → Typesense) | — |
+| `hyperpanels/keyboard` | iOS app + custom keyboard over the same Typesense catalog | App Store (in progress) |
+| `clone-defense` | Canvas 2D tower-defense game (Jedi Defense); ships as a subdirectory of the hub | starwars.guide/clone-defense (launching) |
+
 ## Commands
 
 Run from the repo root (`starwars-timeline/`):
