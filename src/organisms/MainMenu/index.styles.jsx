@@ -15,6 +15,24 @@ export const MenuButton = styled.button`
   color: ${({ theme }) => `rgb(${theme.palette.white})`};
 `;
 
+export const IconBadge = styled(({ hasBadge, ...rest }) => <span {...rest} />)`
+  position: relative;
+  display: flex;
+
+  ${({ hasBadge, theme }) => hasBadge && `
+    ::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background-color: rgb(${theme.palette.secondary});
+    }
+  `}
+`;
+
 export const MenuLink = styled.a`
   padding: .75rem;
   color: ${({ theme }) => `rgb(${theme.palette.white})`};

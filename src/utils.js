@@ -74,3 +74,37 @@ export const setOnboardingState = (hasSeenGuide, dismissedDate = null) => {
     return false;
   }
 };
+
+// News feed "last read" tracking. Dates are the feed's `YYYY-MM-DD` strings, which
+// sort correctly as plain strings — same comparison SWordle uses for its badge.
+const NEWS_STORAGE_KEY = 'starwars_timeline_last_news_date';
+
+/**
+ * Get the date of the newest news item the user has already seen
+ * @returns {string|null} `YYYY-MM-DD` or null if never read/unavailable
+ */
+export const getLastNewsDate = () => {
+  if (!hasLocalStorage()) return null;
+  try {
+    const stored = localStorage.getItem(NEWS_STORAGE_KEY);
+    return typeof stored === 'string' && stored ? stored : null;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Record the newest news item date the user has seen, clearing the unread badge
+ * @param {string} date `YYYY-MM-DD` from the feed
+ * @returns {boolean} True if successfully stored
+ */
+export const setLastNewsDate = (date) => {
+  if (!hasLocalStorage() || !date) return false;
+  try {
+    localStorage.setItem(NEWS_STORAGE_KEY, date);
+    return true;
+  } catch (error) {
+    console.warn('Failed to save last news date:', error);
+    return false;
+  }
+};

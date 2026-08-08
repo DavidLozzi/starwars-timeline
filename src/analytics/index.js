@@ -9,7 +9,9 @@ export const ACTIONS = {
   APPLY_FILTER: 'apply filter',
   CLEAR_FILTER: 'clear filter',
   MENU_ITEM: 'menu item',
-  THEME: 'switch theme'
+  THEME: 'switch theme',
+  OPEN_NEWS: 'open news',
+  NEWS_ITEM: 'news item'
 };
 
 export default {

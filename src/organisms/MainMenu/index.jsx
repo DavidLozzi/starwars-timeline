@@ -4,12 +4,16 @@ import analytics, { ACTIONS } from '../../analytics';
 import MenuImg from '../../assets/menu.svg?react';
 import SearchImg from '../../assets/search.svg?react';
 import HelpImg from '../../assets/help.svg?react';
+import AnnouncementImg from '../../assets/announcement.svg?react';
 import Filter from '../Filter';
+import News from '../News';
 
 import * as Styled from './index.styles';
 import FilterCharacterDropdown from '../Filter/Character';
 import { useAppContext } from '../../AppContext';
 import { useTheme } from 'styled-components';
+import useNewsFeed from '../../hooks/useNewsFeed';
+import { getLastNewsDate, setLastNewsDate } from '../../utils';
 
 const MENUS = {
   MAIN: 'main',
@@ -22,6 +26,25 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
 
   const [openedMenu, setOpenedMenu] = React.useState('');
+
+  // News lives in a modal, not one of the anchored panels, so it gets its own flag
+  const { items: newsItems, products: newsProducts } = useNewsFeed();
+  const [showNews, setShowNews] = React.useState(false);
+  const [lastReadNews, setLastReadNews] = React.useState(() => getLastNewsDate());
+
+  // items arrive newest first, so the first one is what "read everything" means
+  const newestNewsDate = newsItems[0]?.date;
+  const hasUnreadNews = !!newestNewsDate && (!lastReadNews || newestNewsDate > lastReadNews);
+
+  const openNews = React.useCallback(() => {
+    closeMenus();
+    setShowNews(true);
+    if (newestNewsDate) {
+      setLastNewsDate(newestNewsDate);
+      setLastReadNews(newestNewsDate);
+    }
+    analytics.event(ACTIONS.OPEN_NEWS);
+  }, [newestNewsDate]);
 
   const openDonate = React.useCallback((e) => {
     analytics.event(ACTIONS.MENU_ITEM, null, 'Support the Timeline');
@@ -82,7 +105,18 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
-      <Styled.MenuButton 
+      <Styled.MenuButton onClick={openNews} aria-label="Show news and announcements">
+        <Styled.IconBadge hasBadge={hasUnreadNews}>
+          <AnnouncementImg />
+        </Styled.IconBadge>
+      </Styled.MenuButton>
+      <News
+        isOpen={showNews}
+        onClose={() => setShowNews(false)}
+        items={newsItems}
+        products={newsProducts}
+      />
+      <Styled.MenuButton
         onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline', '_blank'))}
         aria-label="Show help and onboarding guide"
       >

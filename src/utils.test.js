@@ -1,4 +1,4 @@
-import { hasLocalStorage, getOnboardingState, setOnboardingState, decodeCharacterParam } from './utils';
+import { hasLocalStorage, getOnboardingState, setOnboardingState, decodeCharacterParam, getLastNewsDate, setLastNewsDate } from './utils';
 
 describe('decodeCharacterParam', () => {
   it('decodes percent-encoded names from companion-site links', () => {
@@ -120,6 +120,51 @@ describe('Onboarding localStorage helpers', () => {
       const stored = JSON.parse(localStorage.getItem('starwars_timeline_onboarding_dismissed'));
       expect(stored.hasSeenGuide).toBe(false);
       expect(stored.dismissedDate).toBeUndefined();
+    });
+  });
+});
+
+describe('News localStorage helpers', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  describe('getLastNewsDate', () => {
+    it('should return null when nothing has been read', () => {
+      expect(getLastNewsDate()).toBeNull();
+    });
+
+    it('should return the stored date', () => {
+      localStorage.setItem('starwars_timeline_last_news_date', '2026-08-03');
+      expect(getLastNewsDate()).toBe('2026-08-03');
+    });
+
+    it('should return null when localStorage throws', () => {
+      const originalGetItem = Storage.prototype.getItem;
+      Storage.prototype.getItem = vi.fn(() => {
+        throw new Error('localStorage unavailable');
+      });
+
+      expect(getLastNewsDate()).toBeNull();
+
+      Storage.prototype.getItem = originalGetItem;
+    });
+  });
+
+  describe('setLastNewsDate', () => {
+    it('should store the date and report success', () => {
+      expect(setLastNewsDate('2026-08-03')).toBe(true);
+      expect(localStorage.getItem('starwars_timeline_last_news_date')).toBe('2026-08-03');
+    });
+
+    it('should ignore an empty date', () => {
+      expect(setLastNewsDate()).toBe(false);
+      expect(localStorage.getItem('starwars_timeline_last_news_date')).toBeNull();
+    });
+
+    it('should round-trip with getLastNewsDate', () => {
+      setLastNewsDate('2026-08-03');
+      expect(getLastNewsDate()).toBe('2026-08-03');
     });
   });
 });
