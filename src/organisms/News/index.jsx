@@ -63,7 +63,7 @@ const News = ({ isOpen, onClose, items, products }) => {
                     rel="noreferrer"
                     onClick={() => analytics.event(ACTIONS.NEWS_ITEM, 'news', item.id)}
                   >
-                    Read more
+                    {item.link_text || 'Read more'}
                   </Styled.ReadMore>
                 )}
               </Styled.Item>
