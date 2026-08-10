@@ -37,6 +37,13 @@ jobs:
     - run: cd build_scripts && node prepJson.js
     - run: npm run build --if-present
 
+    # Must run after the build: it reuses build/index.html so the hashed asset
+    # references stay correct. Without these files GitHub Pages answers every
+    # /character/<Name> URL with a 404.
+    - name: Prerender character pages
+      working-directory: build_scripts
+      run: node prerenderCharacters.js
+
     # Replace docs/ wholesale rather than copying over it. `cp -r` never
     # deletes, so every past build's hashed chunks stayed behind forever --
     # docs/ had grown to 131 MB of dead files. Anything the site needs must
@@ -50,6 +57,13 @@ jobs:
         cp -r ./build/. ./docs/
         test -f ./docs/CNAME || { echo "::error::docs/CNAME missing - custom domain would break"; exit 1; }
         test -f ./docs/index.html || { echo "::error::docs/index.html missing"; exit 1; }
+        test -d ./docs/character || { echo "::error::docs/character missing - prerender did not run"; exit 1; }
+        expected=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("./src/data/characters.json","utf8")).length)')
+        count=$(find ./docs/character -maxdepth 1 -name '*.html' | wc -l | tr -d ' ')
+        [ "$count" = "$expected" ] || { echo "::error::docs/character has $count pages, expected $expected"; exit 1; }
+        grep -q 'rel="canonical"' ./docs/character/Yoda.html || { echo "::error::prerendered page missing canonical"; exit 1; }
+        # Glob rather than a literal e-acute so the runner's locale can't cause a false failure.
+        find ./docs/character -maxdepth 1 -name 'Padm*Amidala*.html' | grep -q . || { echo "::error::non-ASCII character page missing"; exit 1; }
 
     - uses: EndBug/add-and-commit@v7.3.0
       with:

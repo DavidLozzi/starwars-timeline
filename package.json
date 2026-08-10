@@ -20,6 +20,8 @@
     "start": "vite",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "build": "vite build",
+    "prerender": "cd build_scripts && node prerenderCharacters.js",
+    "build:full": "npm run build && npm run prerender",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"

@@ -67,12 +67,14 @@ const Home = () => {
   }, []);
 
   const showCharacter = (character) => {
-    history.push(`/character/${character.title}?year=${currentYear.year}&show=true`);
+    // No &show=true: the character route opens the modal on its own, and the
+    // param only bloated the URLs people share (and Google indexes).
+    history.push(`/character/${encodeURIComponent(character.title)}?year=${currentYear.year}`);
     showCharacterModal(character);
   };
 
-  const showCharacterModal = (character) => {
-    setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={currentYear} />);
+  const showCharacterModal = (character, year = currentYear) => {
+    setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={year} />);
     setShowModal(true);
     analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
   };
@@ -105,18 +107,33 @@ const Home = () => {
 
   const HeaderOutput = () => {
     const character = routeCharacter;
-    const characterUrl = encodeURI(character);
     if (character) {
+      // Keep these in sync with the prerendered page that GitHub Pages serves
+      // for this URL (build_scripts/prerenderCharacters.js) -- helmet replaces
+      // the static tags on mount, so a mismatch means the crawled HTML and the
+      // rendered HTML disagree. metaDescription is precomputed by prepJson.js.
+      const characterData = charactersData.find(c => c.title.toLowerCase() === character.toLowerCase());
+      const name = characterData?.title || character;
+      const url = `https://timeline.starwars.guide/character/${encodeURIComponent(name)}`;
+      const description = characterData?.metaDescription || `Learn more about ${name} on the Ultimate Star Wars Timeline!`;
+      const image = name === 'Luke Skywalker'
+        ? 'https://timeline.starwars.guide/social/social_Luke_Skywalker.png'
+        : 'https://timeline.starwars.guide/social.png';
       return <Helmet>
-        <meta name="description" content={`Learn more about ${character} on the Ultimate Star Wars Timeline!`} />
+        <meta name="description" content={description} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@UltStarWarsTime" />
         <meta name="twitter:creator" content="@AurebeshFiles" />
-        <meta property="og:title" content={`${character} - Ultimate Star Wars Timeline`} />
-        <meta property="og:url" content={`https://timeline.starwars.guide$/character/${characterUrl}`} />
-        <meta property="og:description" content={`Learn more about ${character} on the Ultimate Star Wars Timeline!`} />
-        <meta property="og:image" content={`https://timeline.starwars.guide/${character === 'Luke Skywalker' ? `social/social_${character.replace(/\s/g, '_')}` : '/social'}.png`} />
-        <title>{character} - Ultimate Star Wars Timeline</title>
+        <meta name="twitter:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:site_name" content="Ultimate Star Wars Timeline" />
+        <meta property="og:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta property="og:url" content={url} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <title>{name} - Ultimate Star Wars Timeline</title>
       </Helmet>;
     }
     return <Helmet>
@@ -139,7 +156,10 @@ const Home = () => {
       if (_currentYear) {
         setCurrentYear(_currentYear);
         if (Number(searchParams.get('year')) !== _currentYear.year) {
-          history.push({
+          // replace, not push: scrolling fires this constantly, so pushing filled
+          // the back stack with one entry per year and leaked a ?year= variant of
+          // every character URL into search engines.
+          history.replace({
             pathname: window.location.pathname,
             search: `year=${_currentYear.year}`
           });
@@ -152,19 +172,21 @@ const Home = () => {
     if (years.length > 0 && characters.length > 0) {
       const searchParams = new URLSearchParams(window.location.search);
       let scrollToChar;
+      let openModal = false;
       if (routeCharacter) {
         scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeCharacter.toLowerCase());
         if (scrollToChar) {
           setCurrentCharacter(scrollToChar.title);
-          if (Boolean(searchParams.get('show')) == true) {
-            showCharacter(scrollToChar);
-          }
+          // Landing directly on /character/<Name> (which search results now do,
+          // without any query params) should show that character's details --
+          // otherwise the bio in the prerendered page vanishes on mount.
+          openModal = true;
         }
       }
       if (!scrollToChar) {
         scrollToChar = characters.find(c => c.title === 'Luke Skywalker') || characters[0];
         const defaultYearObj = years.find(y => y.year === 0) || years[0];
-        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}&show=true`);
+        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}`);
       }
 
       let scrollToYear = null;
@@ -176,11 +198,23 @@ const Home = () => {
         }
       }
       if (!scrollToYear) {
-        scrollToYear = years.find(yr => yr.year === 0) || years[0];
+        // Search results land on /character/<Name> with no year. Aim at the
+        // character's first appearance rather than 0 BBY (centuries off for the
+        // High Republic) or their lifespan midpoint (empty for anyone whose
+        // death is unknown, since endYear is then the end of the timeline).
+        const firstSeenYear = scrollToChar.seenIn?.length > 0
+          ? Math.min(...scrollToChar.seenIn.map(s => s.year))
+          : scrollToChar.startYear;
+        scrollToYear = years.find(yr => yr.year === firstSeenYear)
+          || years.find(yr => yr.year === 0)
+          || years[0];
       }
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYearIndex(scrollToYear.yearIndex);
+      if (openModal) {
+        showCharacterModal(scrollToChar, scrollToYear);
+      }
     }
   }, [years, characters]);
 
@@ -192,7 +226,7 @@ const Home = () => {
         const targetYear = scrollToChar.endYear - Math.round((scrollToChar.endYear - scrollToChar.startYear) / 2);
         scrollToYear = years.find(y => y.year === targetYear);
       }
-      history.push(`/character/${scrollToChar.title}?year=${scrollToYear.year}`);
+      history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${scrollToYear.year}`);
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYear(scrollToYear);

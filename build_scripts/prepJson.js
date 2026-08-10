@@ -1,6 +1,13 @@
 // preps data.json for the web consumption
 import fs from 'fs';
 import { create } from 'xmlbuilder2';
+import { sanitize, stripHtml, truncate } from './textUtils.js';
+
+const SITE = 'https://timeline.starwars.guide';
+// Character URLs are served by a prerendered file per character
+// (build_scripts/prerenderCharacters.js), so the path must be the encoded
+// title and nothing else -- that is the canonical URL Google indexes.
+const characterUrl = (title) => `${SITE}/character/${encodeURIComponent(title.normalize('NFC'))}`;
 
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));
@@ -94,6 +101,11 @@ const _characters = data
       e.description = enhancedData.description;
       e.timeline = enhancedData.timeline;
     }
+    // Single source of truth for the meta description / OG copy: the prerendered
+    // page (prerenderCharacters.js) and react-helmet in src/pages/Home both read
+    // this, so the raw and rendered HTML can't disagree.
+    e.metaDescription = truncate(stripHtml(sanitize(e.description || '')))
+      || `Learn more about ${e.title} on the Ultimate Star Wars Timeline!`;
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {
       const eventStart = tvMovies.find(d => d.title === s).startYear; // get the start year for the event
@@ -155,7 +167,8 @@ const _characters = data
       deathEvent,
       years: e.endYear - e.startYear,
       startYearDisplay: convertYear(e.startYear),
-      endYearDisplay: convertYear(e.endYear)
+      endYearDisplay: convertYear(e.endYear),
+      birthYearDisplay: convertYear(e.birthYear ?? e.startYear)
     });
   });
 
@@ -240,7 +253,7 @@ createFileFromTemplate('starwars_tvshows', tvHtml, 'Star Wars TV Show Timeline')
 characterHtml += '<h2>Star Wars Characters Timeline</h2>\n';
 characterHtml += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
 _characters.forEach(character => {
-  characterHtml += `<h3><a href="/character/${character.title}?year=${character.startYear}&show=true">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
+  characterHtml += `<h3><a href="/character/${encodeURIComponent(character.title)}">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
   <p>${character.description}</p>`;
   
   // Add timeline if available
@@ -256,7 +269,13 @@ _characters.forEach(character => {
     .sort((a, b) => a.year > b.year ? 1 : -1)
     .forEach(y => y.events.forEach(e => {
       try {
-        characterHtml += `<li><a href="/character/${character.title}?year=${e.startYear}">${e.title}, ${convertYear(e.startYear)} (${y.year - character.birthYear} years old)</a></li>\n`;
+        // Droids and a few others have no known birth year -- emitting
+        // "(NaN years old)" into indexable copy is worse than omitting the age.
+        const birthYear = character.startYearUnknown ? null : (character.birthYear ?? character.startYear);
+        const age = birthYear === null ? '' : ` (${y.year - birthYear} years old)`;
+        // ?year= jumps the timeline to that event and is worth keeping for
+        // humans; the prerendered page's canonical drops it for search engines.
+        characterHtml += `<li><a href="/character/${encodeURIComponent(character.title)}?year=${e.startYear}">${e.title}, ${convertYear(e.startYear)}${age}</a></li>\n`;
       } catch (er) {
         console.error(character, y, e, er);
       }
@@ -268,11 +287,20 @@ _characters.forEach(character => {
 createFileFromTemplate('starwars_characters', characterHtml, 'Star Wars Characters Timeline');
 
 // add all to index file
-const html = `<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
+const html = `<h1>Ultimate Star Wars Timeline</h1>\n<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
 // index.html lives at the repo root, not in public/ -- Vite treats it as the
-// app entry point and build template.
-var file = fs.readFileSync('../index.html', 'utf-8');
-var newValue = file.replace(/<div id="content">[\s\S]*<\/ul>\n[\s]*<\/div>/mig, html);
+// app entry point and build template. The markers are the shared anchor for
+// this rewrite and for prerenderCharacters.js; a plain regex over the block is
+// too greedy to be safe.
+const BODY_START = '<!-- PRERENDER:BODY:START -->';
+const BODY_END = '<!-- PRERENDER:BODY:END -->';
+const file = fs.readFileSync('../index.html', 'utf-8');
+const startAt = file.indexOf(BODY_START);
+const endAt = file.indexOf(BODY_END);
+if (startAt === -1 || endAt === -1 || endAt < startAt) {
+  throw new Error(`index.html is missing the ${BODY_START} / ${BODY_END} markers`);
+}
+const newValue = `${file.slice(0, startAt + BODY_START.length)}\n${html}\n    ${file.slice(endAt)}`;
 fs.writeFileSync('../index.html', newValue, 'utf-8');
 console.log('updated index.html');
 
@@ -281,32 +309,25 @@ console.log('updated index.html');
 const root = create({ version: '1.0', encoding: 'UTF-8', ignoreConverters: true })
   .ele('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' });
 
-root
-  .ele('url')
-  .ele('loc').txt('https://timeline.starwars.guide/').up()
-  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+const today = new Date().toISOString().slice(0, 10);
+const addUrl = (loc, changefreq) => {
+  const url = root.ele('url');
+  url.ele('loc').txt(loc).up();
+  url.ele('lastmod').txt(today).up();
+  if (changefreq) url.ele('changefreq').txt(changefreq).up();
+};
 
-root
-  .ele('url')
-  .ele('loc').txt('https://timeline.starwars.guide/starwars_movies.html').up()
-  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
+addUrl(`${SITE}/`);
+addUrl(`${SITE}/starwars_movies.html`);
+addUrl(`${SITE}/starwars_tvshows.html`);
+addUrl(`${SITE}/starwars_characters.html`);
 
-root
-  .ele('url')
-  .ele('loc').txt('https://timeline.starwars.guide/starwars_tvshows.html').up()
-  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
-
-root
-  .ele('url')
-  .ele('loc').txt('https://timeline.starwars.guide/starwars_characters.html').up()
-  .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
-
-_characters.forEach(d => {
-  root
-    .ele('url')
-    .ele('loc').txt(`https://timeline.starwars.guide/character/${d.title}?year=${d.startYear}&show=true`).up()
-    .ele('lastmod').txt(new Date().toISOString().slice(0, 10)).up();
-});
+// Clean, percent-encoded character URLs only. Query params (?year=, &show=) are
+// not part of the canonical URL and raw spaces are not legal in a <loc>.
+_characters
+  .map(d => characterUrl(d.title))
+  .sort()
+  .forEach(loc => addUrl(loc, 'monthly'));
 
 // convert the XML tree to string
 const xml = root.end({ prettyPrint: true });
