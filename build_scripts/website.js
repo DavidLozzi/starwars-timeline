@@ -22,6 +22,13 @@ const imageSrc = (url) => `https://timeline.starwars.guide/${String(url || '').r
 // Search Console. Keep slugs lowercase.
 const slug = (title) => title.replace(/\s/ig, '-').toLowerCase();
 
+// Character pages have no `permalink`, so Jekyll emits `<slug>.html` and that is
+// what the canonical tag and the sitemap point at. Netlify also serves the
+// extensionless `/character/<slug>` with a 200, so linking to that form made
+// Google file the linked URL as "Alternate page with proper canonical tag" and
+// index the .html one instead. Always link the canonical .html form.
+const characterPageUrl = (title) => `/character/${slug(title)}.html`;
+
 const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
 
 // Fallback for the handful of characters with no generated bio: build a factual
@@ -138,7 +145,7 @@ data
         : []),
     ];
 
-    let body = `<a href="/character" class="smaller">Back to All Characters</a>
+    let body = `<a href="/character/" class="smaller">Back to All Characters</a>
 
 <div class="character-profile container">
   <div class="col-10">
@@ -175,7 +182,7 @@ data
     ${character.wookiepedia ? `<a href="${character.wookiepedia}" target="_blank">Learn more on Wookiepedia.com</a>` : ''}
 
     <p>&nbsp;</p>
-    <a href="/character" class="smaller">Back to All Characters</a>
+    <a href="/character/" class="smaller">Back to All Characters</a>
   </div>
   <div class="character_image col-2">
     ${character.imageYears ? character.imageYears.sort((a, b) => a.startYear > b.startYear ? 1 : -1).map(img => `<img src="${imageSrc(img.imageUrl)}" alt="${character.title}" />`).join('\n') : ''}
@@ -217,7 +224,7 @@ Explore all of the characters from the <a href="https://timeline.starwars.guide"
 <ul class="character_list">
 ${data
     .sort((a, b) => a.title > b.title ? 1 : -1)
-    .map(character => `<li><a href="/character/${slug(character.title)}">${character.title}</a></li>`).join('\n')}
+    .map(character => `<li><a href="${characterPageUrl(character.title)}">${character.title}</a></li>`).join('\n')}
 </ul>
 `;
 const indexUnchanged = writePage('../../starwars-guide/character/index.md', listFrontMatter, listView);

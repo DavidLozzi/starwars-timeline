@@ -23,6 +23,7 @@ Division of ownership:
 - A `character:` front-matter block (species, homeworld, birth/death year, wookieepedia, appearances) is emitted for future hub use. **Nothing in the hub reads it yet** — the same facts already render in the page body's `metadata` div, so don't duplicate them in the layout.
 - `last_modified_at` is only re-stamped when the body or the rest of the front matter actually changed, so a re-run doesn't churn all ~80 hub pages.
 - Timeline events are emitted as `<h3>` (were `<h4>`), matching the h1 → h2 outline the hub layout supplies.
+- **Every emitted internal link must be the exact canonical URL — no redirect, no alternate form.** Two rules, both learned from Search Console: character pages have no `permalink`, so Jekyll emits `<slug>.html` and *that* is the canonical, but Netlify also serves the extensionless `/character/<slug>` with a 200 — linking the extensionless form made Google index the `.html` URL and file the linked one as "Alternate page with proper canonical tag" (fixed 2026-08-10). Use the `characterPageUrl()` helper, never hand-build the path. Separately, `/character` 301s to `/character/`, so the "Back to All Characters" links are written with the trailing slash. Slugs also stay lowercase — see the comment above `slug()`.
 
 Changing the shape of that generated output (front matter keys, heading levels, file naming) is a **cross-repo change** — check the hub's `_layouts/character.html` and `_includes/structured-data.html` before shipping it.
 
