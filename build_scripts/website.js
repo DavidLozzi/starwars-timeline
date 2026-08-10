@@ -17,6 +17,11 @@ const yaml = (value) => JSON.stringify(String(value ?? ''));
 // character.imageUrl already starts with a slash, so join without doubling it.
 const imageSrc = (url) => `https://timeline.starwars.guide/${String(url || '').replace(/^\/+/, '')}`;
 
+// Netlify 301s any URL containing an uppercase letter to its lowercase form, so
+// mixed-case filenames made every character page a "Page with redirect" in
+// Search Console. Keep slugs lowercase.
+const slug = (title) => title.replace(/\s/ig, '-').toLowerCase();
+
 const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
 
 // Fallback for the handful of characters with no generated bio: build a factual
@@ -191,7 +196,7 @@ data
 </div>
 `;
       
-    const filePath = `../../starwars-guide/character/${character.title.replace(/\s/ig, '-')}.md`;
+    const filePath = `../../starwars-guide/character/${slug(character.title)}.md`;
     const unchanged = writePage(filePath, frontMatter, body);
     console.log(`${character.title}${unchanged ? ' (unchanged)' : ''}`);
   });
@@ -212,7 +217,7 @@ Explore all of the characters from the <a href="https://timeline.starwars.guide"
 <ul class="character_list">
 ${data
     .sort((a, b) => a.title > b.title ? 1 : -1)
-    .map(character => `<li><a href="/character/${character.title.replace(/\s/ig, '-')}">${character.title}</a></li>`).join('\n')}
+    .map(character => `<li><a href="/character/${slug(character.title)}">${character.title}</a></li>`).join('\n')}
 </ul>
 `;
 const indexUnchanged = writePage('../../starwars-guide/character/index.md', listFrontMatter, listView);
