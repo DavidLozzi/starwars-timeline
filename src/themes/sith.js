@@ -17,7 +17,8 @@ const layout = { // in rem
     character: {
       width: 4,
       spacer: 1,
-      leftPageMargin: 10
+      leftPageMargin: 10,
+      pillHeight: 9.5 // CharacterDetail min-height; also how far the pill rides above the line
     }
   }
 };

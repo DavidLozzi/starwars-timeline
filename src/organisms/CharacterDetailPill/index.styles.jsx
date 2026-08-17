@@ -6,7 +6,12 @@ import * as HomeStyled from '../../pages/Home/index.styles';
 export const CharacterPill = styled(({ ...rest }) => <HomeStyled.CharacterColumn {...rest} data-testid="characterpill"/>)`
   background: none;
   z-index: 50;
-  pointer-events: none; 
+  pointer-events: none;
+
+  /* Lift the sticky container a pill-height above the character's line so the
+     pill's bottom rests on the start year instead of covering the first years. */
+  top: ${({ character, theme }) => HomeStyled.getCharacterTop(theme, character) - theme.layout.elements.character.pillHeight}rem;
+  height: ${({ character, theme }) => HomeStyled.getCharacterHeight(theme, character) + theme.layout.elements.character.pillHeight}rem;
 
   ${HomeStyled.Sticky} {
     top: 6rem;
@@ -19,7 +24,7 @@ const wiggle = (theme) => keyframes`
 `;
 
 export const CharacterDetail = styled(({ isActive, isCurrent, ...rest }) => <div {...rest} data-testid="characterdetail" />)`
-  min-height: 9.5rem;
+  min-height: ${({ theme }) => theme.layout.elements.character.pillHeight}rem;
   cursor: pointer;
   pointer-events: auto; 
   ${({ theme }) => theme.elements.characterDetail};

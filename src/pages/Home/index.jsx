@@ -87,7 +87,8 @@ const Home = () => {
     const preLoadBuffer = 100;
     const position = {
       left: (Styled.getCharacterLeft(theme, character) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
-      top: (Styled.getCharacterTop(theme, character) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
+      // the detail pill rides a pill-height above the top of the character's line, so include it here
+      top: ((Styled.getCharacterTop(theme, character) - theme.layout.elements.character.pillHeight) * theme.layout.pxInRem - preLoadBuffer) * scale.scale,
       right: ((Styled.getCharacterLeft(theme, character) + theme.layout.elements.character.width) * theme.layout.pxInRem + preLoadBuffer) * scale.scale,
       bottom: ((Styled.getCharacterHeight(theme, character) + Styled.getCharacterTop(theme, character)) * theme.layout.pxInRem + preLoadBuffer) * scale.scale
     };
