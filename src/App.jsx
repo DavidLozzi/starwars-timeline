@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import HyperspaceTimeline from './pages/HyperspaceTimeline';
 import GlobalStyles from './globalStyles';
 import AppProvider from './AppContext';
+import AdBanner from './organisms/AdBanner';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/hyperspace" component={HyperspaceTimeline} />
         </Switch>
       </Router>
+      <AdBanner />
     </AppProvider>
   );
 }
