@@ -2928,9 +2928,15 @@
     "type": "movie"
   },
   {
-    "endYear": 50,
+    "endYear": 75,
     "startYear": 36,
     "title": "New Jedi Order",
     "type": "era"
+  },
+  {
+    "endYear": 40,
+    "startYear": 40,
+    "title": "Star Wars: Starfighter",
+    "type": "movie"
   }
 ]

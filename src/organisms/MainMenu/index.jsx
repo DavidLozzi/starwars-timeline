@@ -98,8 +98,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
             <Styled.MenuItem><Link to="/hyperspace">Hyperspace Timeline</Link></Styled.MenuItem>
             <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
             <Styled.MenuItem><a href="https://starwars.guide/support-aurebesh-files.html" target="_blank" onClick={openDonate} rel="noreferrer">Support the Timeline</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://wordle.starwars.guide" target="_blank" rel="noreferrer">Play SWordle - Wordle for Star Wars</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://twitter.com/UltStarWarsTime" target="_blank" rel="noreferrer">@UltStarWarsTime</a></Styled.MenuItem>
+            <Styled.MenuItem><a href="https://starwars.guide/games" target="_blank" rel="noreferrer">Star Wars Games</a></Styled.MenuItem>
             <Styled.MenuItem note>
               Created By: <a href="https://twitter.com/aurebeshfiles" target="_blank" rel="noreferrer">@AurebeshFiles</a></Styled.MenuItem>
           </Styled.Menu>
