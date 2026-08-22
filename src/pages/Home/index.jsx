@@ -21,6 +21,14 @@ window.scrolling = false;
 addEventListener('scroll', () => {
   window.scrolling = true;
 });
+// characters.json already ships oldest-first (prepJson.js sorts by startYear, then birthYear) and each
+// entry's `index` is its position in that order. Never re-derive that sort here -- reassert it from the
+// data, then compact so hidden characters let the remaining columns shift left. Compaction preserves
+// relative order, so a compacted index stays monotonic in age and this is safe to apply repeatedly.
+const orderByAge = (chars) => [...chars]
+  .sort((a, b) => a.index - b.index)
+  .map((c, index) => ({ ...c, index }));
+
 // testing web editor on ipad
 const Home = () => {
   const theme = useTheme();
@@ -39,7 +47,7 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const [hasScrolled, setHasScrolled] = React.useState(new Date()); // just used to refresh the state/DOM to show/hide characters
-  const { filters, scrollTo, filterCount, scale } = useAppContext();
+  const { filters, scrollTo, filterCount, scale, hideDeceased } = useAppContext();
 
   // zoom level, incremements of years to show
   const [zoomLevel] = React.useState(1);
@@ -67,9 +75,7 @@ const Home = () => {
   }, []);
 
   const showCharacter = (character) => {
-    // No &show=true: the character route opens the modal on its own, and the
-    // param only bloated the URLs people share (and Google indexes).
-    history.push(`/character/${encodeURIComponent(character.title)}?year=${currentYear.year}`);
+    history.push(`/character/${encodeURIComponent(character.title)}?year=${currentYear.year}&show=true`);
     showCharacterModal(character);
   };
 
@@ -78,6 +84,15 @@ const Home = () => {
     setShowModal(true);
     analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
   };
+
+  // Deceased characters drop out as the scrolled-to year passes their death; orderByAge compacts the
+  // survivors so the remaining columns shift left without disturbing the oldest-first order.
+  const visibleCharacters = React.useMemo(() => {
+    if (!hideDeceased) return filteredCharacters;
+    const year = currentYear?.year;
+    if (year === undefined) return filteredCharacters;
+    return orderByAge(filteredCharacters.filter(c => c.endYearUnknown || c.endYear >= year));
+  }, [filteredCharacters, hideDeceased, currentYear]);
 
   const isCharacterInView = (character) => {
     if (!character) return false;
@@ -178,16 +193,13 @@ const Home = () => {
         scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeCharacter.toLowerCase());
         if (scrollToChar) {
           setCurrentCharacter(scrollToChar.title);
-          // Landing directly on /character/<Name> (which search results now do,
-          // without any query params) should show that character's details --
-          // otherwise the bio in the prerendered page vanishes on mount.
-          openModal = true;
+          openModal = Boolean(searchParams.get('show')) == true;
         }
       }
       if (!scrollToChar) {
         scrollToChar = characters.find(c => c.title === 'Luke Skywalker') || characters[0];
         const defaultYearObj = years.find(y => y.year === 0) || years[0];
-        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}`);
+        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}&show=true`);
       }
 
       let scrollToYear = null;
@@ -245,17 +257,13 @@ const Home = () => {
     }
     if (filters?.movie) {
       filtChars = filtChars
-        .filter(f => f.seenIn.some(s => s.events.some(e => e.title === filters.movie)))
-        .sort((a, b) => a.startYear > b.startYear ? 1 : -1);
+        .filter(f => f.seenIn.some(s => s.events.some(e => e.title === filters.movie)));
 
       const filteredMovieYear = years.find(y => y.events.some(e => e.title === filters.movie));
       if (filteredMovieYear) scrollTo(filteredMovieYear);
     }
 
-    filtChars = filtChars
-      .sort((a, b) => a.startYear > b.startYear ? 1 : -1)
-      .map((c, index) => ({ ...c, index }));
-    setFilteredCharacters(filtChars);
+    setFilteredCharacters(orderByAge(filtChars));
     setHasScrolled(new Date());
   }, [filters, filterCount]);
 
@@ -333,14 +341,14 @@ const Home = () => {
                         top: `${theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem`
                       }}
                       isCurrentYear={currentYear?.year === year.year}
-                      characterCount={filteredCharacters.length}
+                      characterCount={visibleCharacters.length}
                     />
                     <Styled.YearPill
                       isCurrentYear={currentYear?.year === year.year}
                       style={{
                         top: `${theme.layout.elements.year.height * year.yearIndex + theme.layout.topMargin}rem`
                       }}
-                      characterCount={filteredCharacters.length}
+                      characterCount={visibleCharacters.length}
                     >
                       <Styled.Sticky>
                         {year.display}
@@ -360,12 +368,12 @@ const Home = () => {
                           key={`${era.title}1`}>
                           <Styled.Era
                             era={era}
-                            characterCount={filteredCharacters.length}
+                            characterCount={visibleCharacters.length}
                             endYear={endYear}
                           />
                           <Styled.EraPill
                             era={era}
-                            characterCount={filteredCharacters.length}
+                            characterCount={visibleCharacters.length}
                             endYear={endYear}
                           >
                             <Styled.Sticky>
@@ -381,7 +389,7 @@ const Home = () => {
                     {movies
                       .map((movie) => <Styled.Movie
                         movie={movie}
-                        characterCount={filteredCharacters.length}
+                        characterCount={visibleCharacters.length}
                         isCurrentYear={currentYear?.year === year.year}
                         key={movie.title}
                       >
@@ -398,9 +406,9 @@ const Home = () => {
           }
           {
             characters
-              .filter(c => filteredCharacters.some(f => f.title === c.title))
+              .filter(c => visibleCharacters.some(f => f.title === c.title))
               .map(c => {
-                const character = filteredCharacters.find(f => f.title === c.title);
+                const character = visibleCharacters.find(f => f.title === c.title);
 
                 if (isCharacterInView(character)) {
                   return <React.Fragment
@@ -432,10 +440,10 @@ const Home = () => {
           }
           {
             characters
-              .filter(c => filteredCharacters.some(f => f.title === c.title))
+              .filter(c => visibleCharacters.some(f => f.title === c.title))
               .filter(c => !c.endYearUnknown)
               .map(c => {
-                const character = filteredCharacters.find(f => f.title === c.title);
+                const character = visibleCharacters.find(f => f.title === c.title);
                 return <Death character={character} key={character.title} />;
               })
           }

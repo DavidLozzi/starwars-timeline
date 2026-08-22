@@ -12,6 +12,8 @@ const AppProvider = ({ children }) => {
   const [filterCount, setFilterCount] = React.useState(0);
   const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
   const [scale, setScale] = React.useState(1.0);
+  // not a `filters` entry: it re-evaluates against the scrolled-to year, not once on apply
+  const [hideDeceased, setHideDeceased] = React.useState(false);
 
   const addFilter = (filterName, value) => {
     const _filters = { ...filters, [filterName]: value };
@@ -55,7 +57,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme, scale: { scale, setScale } }}>
+    <appContext.Provider value={{ filters, filterCount, addFilter, removeFilter, scrollTo, setTheme, hideDeceased, setHideDeceased, scale: { scale, setScale } }}>
       <ThemeProvider theme={selectedTheme}>
         {children}
       </ThemeProvider>

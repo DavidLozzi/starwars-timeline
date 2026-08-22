@@ -15,12 +15,13 @@ import FilterCharacterDropdown from './Character';
 
 const Filter = ({ onClose }) => {
   const theme = useTheme();
-  const { addFilter, removeFilter, filters } = useAppContext();
+  const { addFilter, removeFilter, filters, hideDeceased, setHideDeceased } = useAppContext();
   const [selectedCharacter, setSelectedCharacter] = React.useState(null);
   const [selectedFilter, setSelectedFilter] = React.useState({});
   const [selectedFilterCount, setSelectedFilterCount] = React.useState(0);
   const [selectedMovie, setSelectedMovie] = React.useState('');
   const [characterCount, setCharacterCount] = React.useState(0);
+  const [selectedHideDeceased, setSelectedHideDeceased] = React.useState(hideDeceased);
 
   const applyFilter = () => {
     if (selectedCharacter) {
@@ -36,6 +37,10 @@ const Filter = ({ onClose }) => {
       addFilter('movie', selectedMovie);
       analytics.event(ACTIONS.APPLY_FILTER, 'filter', selectedMovie);
     }
+    if (selectedHideDeceased !== hideDeceased) {
+      setHideDeceased(selectedHideDeceased);
+      analytics.event(ACTIONS.APPLY_FILTER, 'filter', `hideDeceased=${selectedHideDeceased}`);
+    }
     onClose();
   };
 
@@ -43,6 +48,8 @@ const Filter = ({ onClose }) => {
     setSelectedCharacter(null);
     setSelectedFilter({});
     setSelectedMovie('');
+    setSelectedHideDeceased(false);
+    setHideDeceased(false);
     removeFilter('character');
     removeFilter('metadata');
     removeFilter('movie');
@@ -127,6 +134,20 @@ const Filter = ({ onClose }) => {
 
         </Styled.FormRow>)
       }
+      <Styled.FormRow>
+        <Styled.FormLabel htmlFor="hideDeceased">Hide Deceased</Styled.FormLabel>
+        <Styled.FormValue>
+          <Styled.Toggle>
+            <input
+              id="hideDeceased"
+              type="checkbox"
+              checked={selectedHideDeceased}
+              onChange={(e) => setSelectedHideDeceased(e.target.checked)}
+            />
+            <span />
+          </Styled.Toggle>
+        </Styled.FormValue>
+      </Styled.FormRow>
       <Styled.FormRow justifyFlexEnd>
         <Styled.FormLabel note>{selectedFilterCount} filters applied will display {characterCount} characters</Styled.FormLabel>
       </Styled.FormRow>

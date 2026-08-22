@@ -20,6 +20,8 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    // reserved ngrok tunnel domain for local dev sharing (see .claude/skills/ngrok)
+    allowedHosts: ['artistic-guinea-sensible.ngrok-free.app'],
   },
 
   test: {
