@@ -70,6 +70,8 @@ export default {
       font-size: 1.3rem;
       font-family: Arial Black;
       text-transform: uppercase;
+      /* matches the pill bezel: 1px light top edge + soft drop */
+      text-shadow: 0 1px 0 rgba(255,241,168,0.22), 0 .1rem .3rem rgba(0,0,0,0.55);
     }
   `,
     menu: {
@@ -159,19 +161,39 @@ export default {
     currentMovie: {
     },
     character: {
-      background: `linear-gradient(rgba(${palette.secondary},0.5), rgba(${palette.secondary},0.7)) no-repeat center/8px 100%`,
+      // See the Jedi theme for why this is two background layers rather than a
+      // box-shadow or drop-shadow filter: beveled rod + offset cast shadow.
+      background: `linear-gradient(90deg,
+          rgba(150,85,135,1) 0%,
+          rgba(${palette.secondary},0.85) 35%,
+          rgba(197,138,183,1) 50%,
+          rgba(${palette.secondary},0.85) 70%,
+          rgba(155,88,140,1) 100%) no-repeat center/8px 100%,
+        linear-gradient(90deg,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0.15) 40%,
+          rgba(0,0,0,0.15) 70%,
+          rgba(0,0,0,0) 100%) no-repeat calc(50% + 2px) center/11px 100%`,
       borderRadius: '50%',
       transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
-      backgroundColor: `rgba(${palette.secondary},0.9)`,
+      background: `linear-gradient(180deg, rgba(191,124,176,1) 0%, rgba(${palette.secondary},0.9) 55%, rgba(155,86,140,1) 100%)`,
+      border: '1px solid rgba(235,190,225,0.2)',
+      // outer drop shadow + inset bezel highlight (top) and shade (bottom)
+      boxShadow: `0 .15rem .5rem rgba(0,0,0,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        inset 0 -1px 2px rgba(50,25,45,0.18)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
       textAlign: 'center',
       filter: 'grayscale(75%)'
     },
     characterDetailActive: {
-      filter: 'grayscale(0)'
+      filter: 'grayscale(0)',
+      boxShadow: `0 .18rem .6rem rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        inset 0 -1px 2px rgba(50,25,45,0.18)`
     },
     characterDetailCurrent: {
       transition: 'all 150ms eaase-in-out'
@@ -226,15 +248,18 @@ export default {
       fontStyle: 'italic'
     },
     seenInCircle: {
-      backgroundColor: `rgba(${palette.tertiary},0.9)`,
+      // off-center radial highlight reads as a lit sphere; hover must respecify
+      // `background` (not backgroundColor) or the gradient survives the swap
+      background: `radial-gradient(circle at 34% 28%, rgba(178,42,44,0.92) 0%, rgba(${palette.tertiary},0.9) 55%, rgba(107,5,7,0.92) 100%)`,
       borderRadius: '50%',
       border: `3px solid rgba(${palette.secondary},0.8)`,
+      boxShadow: '0 .1rem .3rem rgba(0,0,0,0.25), inset 0 -1px 2px rgba(0,0,0,0.18)',
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
-        backgroundColor: `rgba(${palette.secondary},0.9)`
+        background: `radial-gradient(circle at 34% 28%, rgba(197,138,183,0.92) 0%, rgba(${palette.secondary},0.9) 55%, rgba(140,77,126,0.92) 100%)`
       }
     },
     modalWrapper: {

@@ -69,6 +69,8 @@ export default {
         font-size: 1rem;
         font-family: 'Arial Black', Arial, sans-serif;
         text-transform: uppercase;
+        /* matches the pill bezel: 1px light top edge + soft drop */
+        text-shadow: 0 1px 0 rgba(255,241,168,0.22), 0 .1rem .3rem rgba(0,0,0,0.55);
       }
       ${breakpoints.md} {
         h1 {
@@ -166,18 +168,42 @@ export default {
       backgroundColor: `rgba(${palette.primary},0.8)`,
     },
     character: {
-      background: `linear-gradient(rgba(${palette.secondary},1), rgba(${palette.secondary},1)) no-repeat center/8px 100%`,
+      // Two stacked background layers, no filter/box-shadow: the column box is
+      // 4rem wide and thousands of rem tall, so box-shadow would trace the box
+      // (not the stripe) and a drop-shadow filter would rasterize that whole
+      // area. Layer 1 = beveled rod (dark edges, lit core across the 8px
+      // stripe). Layer 2 = a wider, offset, soft-edged dark stripe painted
+      // behind it as the cast shadow.
+      background: `linear-gradient(90deg,
+          rgba(190,166,48,1) 0%,
+          rgba(${palette.secondary},1) 35%,
+          rgba(234,211,94,1) 50%,
+          rgba(${palette.secondary},1) 70%,
+          rgba(196,171,49,1) 100%) no-repeat center/8px 100%,
+        linear-gradient(90deg,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0.15) 40%,
+          rgba(0,0,0,0.15) 70%,
+          rgba(0,0,0,0) 100%) no-repeat calc(50% + 2px) center/11px 100%`,
       transition: 'all 300ms ease-in-out'
     },
     characterDetail: {
-      backgroundColor: `rgba(${palette.secondary},1)`,
+      background: `linear-gradient(180deg, rgba(234,209,88,1) 0%, rgba(${palette.secondary},1) 55%, rgba(213,186,53,1) 100%)`,
+      border: '1px solid rgba(255,241,168,0.25)',
+      // outer drop shadow + inset bezel highlight (top) and shade (bottom)
+      boxShadow: `0 .15rem .5rem rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.28),
+        inset 0 -1px 2px rgba(90,78,22,0.15)`,
       borderRadius: `${layout.gridWidth}rem`, //${({ theme }) => theme.layout.gridWidth}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem ${({ theme }) => theme.layout.gridWidth * 0.25}rem;
       fontSize: '.8rem',
       textAlign: 'center',
       filter: 'grayscale(75%)'
     },
     characterDetailActive: {
-      filter: 'grayscale(0)'
+      filter: 'grayscale(0)',
+      boxShadow: `0 .18rem .6rem rgba(0,0,0,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.38),
+        inset 0 -1px 2px rgba(90,78,22,0.15)`
     },
     characterDetailCurrent: {
       transition: 'all 150ms eaase-in-out'
@@ -232,15 +258,18 @@ export default {
       fontStyle: 'italic'
     },
     seenInCircle: {
-      backgroundColor: `rgba(${palette.primary},1)`,
+      // off-center radial highlight reads as a lit sphere; hover must respecify
+      // `background` (not backgroundColor) or the gradient survives the swap
+      background: `radial-gradient(circle at 34% 28%, rgba(92,152,204,1) 0%, rgba(${palette.primary},1) 55%, rgba(42,92,138,1) 100%)`,
       borderRadius: '50%',
       border: `3px solid rgba(${palette.secondary},1)`,
+      boxShadow: '0 .1rem .3rem rgba(0,0,0,0.22), inset 0 -1px 2px rgba(0,0,0,0.15)',
       width: `${layout.gridWidth * .75}rem`,
       height: `${layout.gridWidth * .75}rem`,
       ':hover': {
         width: `${layout.gridWidth}rem`,
         height: `${layout.gridWidth}rem`,
-        backgroundColor: `rgba(${palette.secondary},1)`
+        background: `radial-gradient(circle at 34% 28%, rgba(240,217,100,1) 0%, rgba(${palette.secondary},1) 55%, rgba(191,166,45,1) 100%)`
       }
     },
     deathCircle: {
