@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- The `booting` class scopes the critical boot CSS below so it can never leak
+     into the mounted app; src/index.jsx removes it once React has rendered. -->
+<html lang="en" class="booting">
 
 <head>
   <!-- Start Single Page Apps for GitHub Pages -->
@@ -84,7 +86,107 @@
 
     gtag('config', 'G-0KMM0RG2X2');
   </script>
-  <script type="module" crossorigin src="/assets/index-GXYcdM7b.js"></script>
+
+  <!--
+      Critical boot CSS. styled-components injects everything else, but that only
+      happens once the JS bundle has parsed and React has mounted -- until then the
+      pre-rendered #root SEO markup rendered as black-on-white default HTML.
+
+      #boot-loader is the classic opening title card. It is a SIBLING of #root and
+      is emitted BEFORE it in the body, so the browser paints it on the very first
+      frame -- ahead of the ~300kB of pre-rendered SEO markup that streams in after
+      it. (An earlier version lived inside #root, after that markup, and the content
+      flashed for a moment before the overlay covered it.)
+
+      Being outside #root also means ReactDOM.render does NOT wipe it: the app
+      mounts and paints underneath, and src/index.jsx calls window.__dismissBoot()
+      to fade the card away. If the bundle never loads, the card gives up on its own
+      after 10s (pure CSS, no JS) so the pre-rendered content stays reachable.
+    -->
+  <style>
+    /* Everything here is scoped to html.booting. React renders INTO #root, so an
+       unscoped `#root a` (or a `color` on body) would keep styling the live app
+       after mount -- that is exactly how the character pills ended up with
+       unreadable light-gray text, since neither theme's body block sets a color
+       and the components inherit it. */
+    .booting body {
+      background-color: rgb(30, 30, 30);
+      color: rgb(200, 200, 200);
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .booting #root h1,
+    .booting #root h2,
+    .booting #root h3,
+    .booting #root h4,
+    .booting #root a {
+      color: rgb(224, 196, 56);
+    }
+
+    #boot-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      background-color: #000;
+      animation: boot-give-up 1s ease-in 10s forwards;
+    }
+
+    #boot-loader p {
+      margin: 0;
+      max-width: 30rem;
+      /* The crawl's opening card: News Gothic in the films, so aim for the
+         closest widely installed grotesques before falling back to Arial. */
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1.25rem, 5.5vw, 2.75rem);
+      line-height: 1.35;
+      letter-spacing: .01em;
+      color: #4bd5ee;
+      /* Kept short relative to the hold: the fade-in eats the front of it, so a
+         long one makes the card feel like it appeared for much less time than
+         HOLD_MS actually is. */
+      animation: boot-fade-in .8s ease-out both;
+    }
+
+    /* Set by window.__dismissBoot(); wins over the give-up animation. */
+    #boot-loader.boot-done {
+      animation: none;
+      opacity: 0;
+      transition: opacity 700ms ease-in;
+      pointer-events: none;
+    }
+
+    @keyframes boot-fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes boot-give-up {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #boot-loader p,
+      #boot-loader.boot-done {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-Q_reVE30.js"></script>
   <title>Kaydel Ko Connix - Ultimate Star Wars Timeline</title>
   <meta data-react-helmet="true" name="description" content="Kaydel Ko Connix was a human female who served the Resistance during its war against the First Order.">
   <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
@@ -108,6 +210,34 @@
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <!-- Must stay ABOVE #root so it is parsed and painted before the pre-rendered
+       SEO markup; see the boot CSS comment in <head>. -->
+  <div id="boot-loader">
+    <p>A long time ago in a galaxy far, far away....</p>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById('boot-loader');
+      // The home page holds the title card for a beat before revealing the
+      // timeline. Deep links (/character/<Name>, mostly arrivals from search)
+      // skip the hold and drop straight into the app -- the hold lands inside
+      // the home page's LCP, so every extra second costs real Core Web Vitals
+      // field data, and search traffic mostly lands on character pages.
+      var isHome = !/^\/character\//.test(window.location.pathname);
+      var HOLD_MS = isHome ? 3000 : 0;
+      var shownAt = Date.now();
+
+      window.__dismissBoot = function () {
+        window.__dismissBoot = function () { };
+        setTimeout(function () {
+          el.className = 'boot-done';
+          setTimeout(function () { el.remove(); }, 800);
+        }, Math.max(0, HOLD_MS - (Date.now() - shownAt)));
+      };
+    }());
+  </script>
+
   <div id="root">
     <!-- PRERENDER:BODY:START -->
 <h1>Kaydel Ko Connix</h1>
