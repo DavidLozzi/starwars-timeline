@@ -103,8 +103,11 @@ const _characters = data
     }
     // Single source of truth for the meta description / OG copy: the prerendered
     // page (prerenderCharacters.js) and react-helmet in src/pages/Home both read
-    // this, so the raw and rendered HTML can't disagree.
-    e.metaDescription = truncate(stripHtml(sanitize(e.description || '')))
+    // this, so the raw and rendered HTML can't disagree. Prefer the socialDesc
+    // Claude wrote as a description; truncating the bio just restates the page's
+    // own opening sentence, so it is only the fallback.
+    e.metaDescription = sanitize(enhancedData?.socialDesc || '')
+      || truncate(stripHtml(sanitize(e.description || '')))
       || `Learn more about ${e.title} on the Ultimate Star Wars Timeline!`;
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {

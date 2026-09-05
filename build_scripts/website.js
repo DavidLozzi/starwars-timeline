@@ -107,11 +107,13 @@ data
     // Find matching character description from character_descriptions.json
     let characterDescription = character.description;
     let characterTimeline = '';
-    
+    let generatedSocialDesc = '';
+
     if (character.wookiepedia && characterDescriptions[character.wookiepedia]) {
       const descData = characterDescriptions[character.wookiepedia];
       characterDescription = descData.description;
       characterTimeline = descData.timeline;
+      generatedSocialDesc = descData.socialDesc || '';
     }
     
     characterDescription = sanitize(characterDescription);
@@ -121,7 +123,12 @@ data
     characterTimeline = sanitize(characterTimeline).replace(/<(\/?)h4>/gi, '<$1h3>');
 
     const appearances = [...new Set(seenInData.map(s => s.event.title))];
-    const socialDesc = truncate(stripHtml(characterDescription))
+    // Prefer the description Claude wrote *as* a meta description (description.js
+    // emits socialDesc; `--social-only` backfills it). Truncating the bio only
+    // restates the page's own first sentence, which Google discards — the chain
+    // below is the fallback for entries that predate socialDesc or have no bio.
+    const socialDesc = sanitize(generatedSocialDesc)
+      || truncate(stripHtml(characterDescription))
       || truncate(fallbackDescription(character, _birthYear, appearances));
 
     const frontMatter = [

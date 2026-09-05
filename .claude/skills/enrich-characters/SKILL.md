@@ -31,12 +31,21 @@ no API key). Drop it to use the Anthropic API (needs `ANTHROPIC_API_KEY` in
 | **Specific characters** | `node description.js --via-claude-code "Ahsoka Tano" "Grogu"` |
 | **Rerun everything** (after a prompt change) | `node description.js --via-claude-code --all` |
 | **Preview the prompt, call nothing** | `node description.js --dry-run "Grogu"` |
+| **Backfill only `socialDesc`** (cheap; rewrites stored bios, no research) | `node description.js --social-only --via-claude-code` |
+| **Rewrite every `socialDesc`** (after a `SOCIAL_RULES` change) | `node description.js --social-only --via-claude-code --all` |
 
 Names must match `title` in `data.json` (case-insensitive). Unknown names abort with a
 "Not found in data.json" list.
 
 Tuning lives at the top of `description.js`: `CONCURRENCY = 8`, `EFFORT = 'medium'`.
 ~83s/character avg, ~$0.40/character.
+
+`--social-only` is a different pass entirely: it never touches `data.json` or the web,
+just rewrites the stored `description` into the ~150-character `socialDesc` meta
+description. `SOCIAL_MODEL = 'claude-sonnet-5'`, `SOCIAL_CONCURRENCY = 12`, a couple of
+seconds per character. A full run over 78 characters took ~2 minutes. A normal (non
+`--social-only`) run already emits `socialDesc`, so this is for backfills and prompt
+changes, not for adding a character.
 
 ## How to drive it
 

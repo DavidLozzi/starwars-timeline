@@ -58,7 +58,10 @@
       "webSearches": 1,
       "costUsd": 0.326326,
       "denials": []
-    }
+    },
+    "socialDesc": "Temmin \"Snap\" Wexley was a Resistance ace and Black Squadron pilot under Poe Dameron, an Akiva-born mechanic who died fighting at the Battle of Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:05.360Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Jango_Fett": {
     "character": "Jango Fett",
@@ -105,7 +108,10 @@
       "webSearches": 2,
       "costUsd": 0.48083449999999994,
       "denials": []
-    }
+    },
+    "socialDesc": "Explore Jango Fett's story: the elite bounty hunter chosen as the Clone Army's genetic template, father to Boba Fett, slain by Mace Windu at Geonosis.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:08.098Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Gial_Ackbar": {
     "character": "Gial Ackbar",
@@ -173,7 +179,10 @@
       "webSearches": 2,
       "costUsd": 0.3860805,
       "denials": []
-    }
+    },
+    "socialDesc": "Gial Ackbar, Mon Calamari admiral, commanded the Rebel fleet at Endor and later advised the Resistance before dying aboard the Raddus in 34 ABY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:12.818Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Breha_Organa": {
     "character": "Breha Organa",
@@ -249,7 +258,10 @@
       "webSearches": 2,
       "costUsd": 0.27892474999999994,
       "denials": []
-    }
+    },
+    "socialDesc": "Breha Organa, adoptive mother of Leia and secret architect of the Rebel Alliance, ruled Alderaan as queen until the Death Star destroyed her world in 0 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:11.252Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Greedo": {
     "character": "Greedo",
@@ -288,7 +300,10 @@
       "webSearches": 2,
       "costUsd": 0.340237,
       "denials": []
-    }
+    },
+    "socialDesc": "Greedo was Jabba the Hutt's inept Rodian bounty hunter, sent to collect Han Solo's debt in Mos Eisley, only to be shot dead before he could fire first.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:11.768Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Dooku": {
     "character": "Count Dooku",
@@ -342,7 +357,10 @@
       "webSearches": 1,
       "costUsd": 0.396999,
       "denials": []
-    }
+    },
+    "socialDesc": "Count Dooku ruled Serenno as a Sith Lord, leading the Separatist war against the Republic before Anakin Skywalker killed him on Sidious's orders.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:08.459Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Anakin_Skywalker": {
     "character": "Anakin Skywalker",
@@ -396,7 +414,10 @@
       "webSearches": 1,
       "costUsd": 0.333284,
       "denials": []
-    }
+    },
+    "socialDesc": "Anakin Skywalker: Jedi General turned Sith Lord Darth Vader, Chosen One who served the Empire for decades before dying redeemed saving his son Luke.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:08.636Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Grievous": {
     "character": "General Grievous",
@@ -471,7 +492,10 @@
       "webSearches": 2,
       "costUsd": 0.39973649999999994,
       "denials": []
-    }
+    },
+    "socialDesc": "General Grievous led the Separatist droid army through the Clone Wars, hunted Jedi for their lightsabers, and fell to Obi-Wan Kenobi on Utapau.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:09.695Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Nute_Gunray": {
     "character": "Nute Gunray",
@@ -553,7 +577,10 @@
       "webSearches": 1,
       "costUsd": 0.35003125,
       "denials": []
-    }
+    },
+    "socialDesc": "Nute Gunray, Trade Federation Viceroy who staged the Naboo blockade for Darth Sidious, later joined the Separatist Council and died on Mustafar in 19 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:14.924Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Qui-Gon_Jinn": {
     "character": "Qui-Gon Jinn",
@@ -621,7 +648,10 @@
       "webSearches": 3,
       "costUsd": 0.5141185,
       "denials": []
-    }
+    },
+    "socialDesc": "Qui-Gon Jinn, the rebellious Jedi Master who defied the Council, discovered Anakin Skywalker, and died on Naboo believing he'd found the Chosen One.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:38.353Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Grogu": {
     "character": "Grogu",
@@ -689,7 +719,10 @@
       "webSearches": 1,
       "costUsd": 0.39844999999999997,
       "denials": []
-    }
+    },
+    "socialDesc": "Grogu is the Force-sensitive foundling of Yoda's species whose bond with Din Djarin reshaped the Mandalorian era, from Jedi Temple survivor to adopted son.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:07.915Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Bo-Katan_Kryze": {
     "character": "Bo-Katan Kryze",
@@ -778,7 +811,10 @@
       "cacheReadTokens": 191317,
       "webSearches": 9,
       "costUsd": 0.8721245
-    }
+    },
+    "socialDesc": "Bo-Katan Kryze, Mandalorian warrior turned Mand'alor, fought Death Watch, Maul, and the Empire before uniting her people after the Great Purge.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:12.106Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Wilhuff_Tarkin": {
     "character": "Wilhuff Tarkin",
@@ -817,7 +853,10 @@
       "webSearches": 1,
       "costUsd": 0.319888,
       "denials": []
-    }
+    },
+    "socialDesc": "Wilhuff Tarkin rose from Eriadu's governor to the Empire's first Grand Moff, engineering the Death Star's destruction of Alderaan before dying at Yavin.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:12.635Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Maul": {
     "character": "Maul",
@@ -878,7 +917,10 @@
       "webSearches": 1,
       "costUsd": 0.3040425,
       "denials": []
-    }
+    },
+    "socialDesc": "Maul is the Sith assassin turned Shadow Collective warlord whose vendetta against Obi-Wan Kenobi spanned the Clone Wars to his death on Tatooine.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:19.964Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Huyang": {
     "character": "Huyang",
@@ -939,7 +981,10 @@
       "webSearches": 2,
       "costUsd": 0.440844,
       "denials": []
-    }
+    },
+    "socialDesc": "Huyang, the ancient droid professor who built lightsabers for generations of Jedi, later became Ahsoka Tano's co-pilot and keeper of the Order's lost knowledge.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:41.204Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Kanan_Jarrus": {
     "character": "Kanan Jarrus",
@@ -1022,7 +1067,10 @@
       "webSearches": 2,
       "costUsd": 0.27558150000000003,
       "denials": []
-    }
+    },
+    "socialDesc": "Kanan Jarrus was a Jedi survivor of Order 66 who led the Ghost crew, mentored Ezra Bridger, and died on Lothal saving his rebel family.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:27.684Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Maz_Kanata": {
     "character": "Maz Kanata",
@@ -1076,7 +1124,10 @@
       "webSearches": 1,
       "costUsd": 0.1973725,
       "denials": []
-    }
+    },
+    "socialDesc": "Maz Kanata: pirate queen of Takodana, keeper of Anakin and Luke Skywalker's lightsaber, and Resistance ally who survived the war against the First Order.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:25.766Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Max_Rebo": {
     "character": "Max Rebo",
@@ -1151,7 +1202,10 @@
       "webSearches": 2,
       "costUsd": 0.27473325000000004,
       "denials": []
-    }
+    },
+    "socialDesc": "Max Rebo was the Ortolan jizz-wailer who fronted Jabba the Hutt's house band in his Tatooine palace before later playing Mos Espa's Sanctuary cantina.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:24.874Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Chewbacca": {
     "character": "Chewbacca",
@@ -1226,7 +1280,10 @@
       "webSearches": 2,
       "costUsd": 0.27688325,
       "denials": []
-    }
+    },
+    "socialDesc": "Chewbacca is the Wookiee co-pilot of the Millennium Falcon, bound to Han Solo by a life debt, who fought from the Clone Wars to the First Order's defeat.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:25.178Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Padm%C3%A9_Amidala": {
     "character": "Padmé Amidala Naberrie",
@@ -1265,7 +1322,10 @@
       "webSearches": 1,
       "costUsd": 0.18934025,
       "denials": []
-    }
+    },
+    "socialDesc": "Padmé Amidala Naberrie, Naboo's queen-turned-senator, championed peace through the Clone Wars before dying in 19 BBY as mother to Luke and Leia.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:37.559Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Hondo_Ohnaka": {
     "character": "Hondo Ohnaka",
@@ -1340,7 +1400,10 @@
       "webSearches": 2,
       "costUsd": 0.361012,
       "denials": []
-    }
+    },
+    "socialDesc": "Hondo Ohnaka, the Weequay pirate captain who ransomed Count Dooku, ran the Florrum gang, and later resurfaced as a smuggler and fence on Batuu decades on.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:40.087Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Morgan_Elsbeth": {
     "character": "Morgan Elsbeth",
@@ -1422,7 +1485,10 @@
       "webSearches": 2,
       "costUsd": 0.40671075,
       "denials": []
-    }
+    },
+    "socialDesc": "Morgan Elsbeth built Imperial warships, ruled Corvus as a brutal magistrate, and gave her life on Peridea covering Grand Admiral Thrawn's escape.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:30.881Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Kit_Fisto": {
     "character": "Kit Fisto",
@@ -1497,7 +1563,10 @@
       "webSearches": 2,
       "costUsd": 0.31539725,
       "denials": []
-    }
+    },
+    "socialDesc": "Kit Fisto, Jedi Master and Council member famed as a lightsaber duelist, led Clone Wars campaigns before Darth Sidious killed him in 19 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:38.321Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Han_Solo": {
     "character": "Han Solo",
@@ -1544,7 +1613,10 @@
       "webSearches": 2,
       "costUsd": 0.30810525,
       "denials": []
-    }
+    },
+    "socialDesc": "Han Solo, Corellian smuggler turned Rebel general, piloted the Millennium Falcon through the Galactic Civil War before dying at his son Kylo Ren's hand.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:23.831Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Bib_Fortuna": {
     "character": "Bib Fortuna",
@@ -1619,7 +1691,10 @@
       "webSearches": 2,
       "costUsd": 0.37927750000000005,
       "denials": []
-    }
+    },
+    "socialDesc": "Bib Fortuna, Jabba the Hutt's scheming majordomo who ran Tatooine's palace for decades before briefly ruling it himself until Boba Fett ended his reign.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:34.725Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Mace_Windu": {
     "character": "Mace Windu",
@@ -1695,7 +1770,10 @@
       "webSearches": 2,
       "costUsd": 0.28017749999999997,
       "denials": []
-    }
+    },
+    "socialDesc": "Mace Windu's profile details the Jedi Council master and Vaapad creator turned Clone Wars general, killed by Anakin during his duel with Darth Sidious.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:36.457Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Landonis_Balthazar_Calrissian": {
     "character": "Lando Calrissian",
@@ -1756,7 +1834,10 @@
       "webSearches": 2,
       "costUsd": 0.34580500000000003,
       "denials": []
-    }
+    },
+    "socialDesc": "Lando Calrissian, Cloud City's charming administrator-turned-Rebel general, whose gambling, betrayal, and redemption arc spans Endor to Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:35.937Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Saw_Gerrera": {
     "character": "Saw Gerrera",
@@ -1831,7 +1912,10 @@
       "webSearches": 2,
       "costUsd": 0.3711295,
       "denials": []
-    }
+    },
+    "socialDesc": "Saw Gerrera, Onderon-born insurgent leader whose ruthless Partisans got him expelled from the Rebel Alliance; he raised Jyn Erso and died on Jedha.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:47.640Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Darth_Sidious": {
     "character": "Sheev Palpatine",
@@ -1892,7 +1976,10 @@
       "webSearches": 2,
       "costUsd": 0.27740375,
       "denials": []
-    }
+    },
+    "socialDesc": "Sheev Palpatine's page covers his rise from Naboo senator to Emperor, his secret Sith identity as Darth Sidious, and his defeat at Endor and return on Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:39.587Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Asajj_Ventress": {
     "character": "Asajj Ventress",
@@ -1960,7 +2047,10 @@
       "webSearches": 2,
       "costUsd": 0.33536175,
       "denials": []
-    }
+    },
+    "socialDesc": "Explore Asajj Ventress: former Nightsister turned Sith assassin for Count Dooku, later a bounty hunter whose sacrifice for Quinlan Vos led to redemption.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:38.849Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Rose_Tico": {
     "character": "Rose Tico",
@@ -2021,7 +2111,10 @@
       "webSearches": 1,
       "costUsd": 0.20372574999999998,
       "denials": []
-    }
+    },
+    "socialDesc": "Rose Tico was a Resistance engineer whose Canto Bight mission with Finn and heroics at Crait helped turn the tide against the First Order, surviving the war.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:38.352Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Leia_Skywalker_Organa_Solo": {
     "character": "Leia Organa",
@@ -2082,7 +2175,10 @@
       "webSearches": 1,
       "costUsd": 0.21979575,
       "denials": []
-    }
+    },
+    "socialDesc": "Leia Organa, twin sister of Luke Skywalker, led the Rebel Alliance and later the Resistance as General, dying in 35 ABY after training Rey in the Force.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:39.411Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/R5-D4": {
     "character": "R5-D4",
@@ -2171,7 +2267,10 @@
       "webSearches": 2,
       "costUsd": 0.2940505,
       "denials": []
-    }
+    },
+    "socialDesc": "R5-D4 is the Tatooine astromech whose self-sabotage sent R2-D2 to Luke Skywalker, later resurfacing decades on to aid Din Djarin's mission to Mandalore.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:39.706Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/8D8": {
     "character": "8D8",
@@ -2249,7 +2348,10 @@
       "denials": [
         "Bash"
       ]
-    }
+    },
+    "socialDesc": "8D8 served as Jabba the Hutt's droid enforcer at his Tatooine palace, then became Boba Fett's majordomo, translating and advising through the Pyke war.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:48.319Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Rex": {
     "character": "Rex",
@@ -2303,7 +2405,10 @@
       "webSearches": 2,
       "costUsd": 0.35569175,
       "denials": []
-    }
+    },
+    "socialDesc": "Rex was the battle-hardened clone captain who led the 501st Legion under Anakin Skywalker, survived Order 66, and fought on through the Rebellion to Endor.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:47.434Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Sabine_Wren": {
     "character": "Sabine Wren",
@@ -2364,7 +2469,10 @@
       "webSearches": 1,
       "costUsd": 0.25965024999999997,
       "denials": []
-    }
+    },
+    "socialDesc": "Sabine Wren, Mandalorian defector turned Ghost crew demolitions expert, wielded the Darksaber and later trained as Ahsoka Tano's Padawan, stranded in Peridea.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:53.904Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Obi-Wan_Kenobi": {
     "character": "Obi-Wan Kenobi",
@@ -2418,7 +2526,10 @@
       "webSearches": 1,
       "costUsd": 0.27274225,
       "denials": []
-    }
+    },
+    "socialDesc": "Obi-Wan Kenobi, Jedi General turned exiled protector of Luke Skywalker, defeated Darth Vader on Mustafar before dying on the first Death Star in 0 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:48.162Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Phasma": {
     "character": "Phasma",
@@ -2480,7 +2591,10 @@
       "webSearches": 2,
       "costUsd": 0.38983625,
       "denials": []
-    }
+    },
+    "socialDesc": "Phasma commanded the First Order's stormtroopers in gleaming chromium armor, rising from Parnassos's wastelands to die aboard the Supremacy at Crait.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:52.987Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Jabba_Desilijic_Tiure": {
     "character": "Jabba Desilijic Tiure",
@@ -2527,7 +2641,10 @@
       "webSearches": 1,
       "costUsd": 0.27655725,
       "denials": []
-    }
+    },
+    "socialDesc": "Jabba the Hutt, Tatooine's ruthless crime lord and Desilijic clan boss, whose piracy and smuggling empire ended in death by Leia's chain aboard his sail barge.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:55.623Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Yoda": {
     "character": "Yoda",
@@ -2609,7 +2726,10 @@
       "webSearches": 2,
       "costUsd": 0.30202999999999997,
       "denials": []
-    }
+    },
+    "socialDesc": "Yoda led the Jedi Order as Grand Master, mentored Luke Skywalker after Order 66 forced him into Dagobah exile, and died in 4 ABY as a Force spirit.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:35.428Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/R2-D2": {
     "character": "R2-D2",
@@ -2691,7 +2811,10 @@
       "webSearches": 2,
       "costUsd": 0.340015,
       "denials": []
-    }
+    },
+    "socialDesc": "R2-D2 is the astromech droid whose unwiped memory linked Naboo, the Clone Wars, the Rebellion and the Resistance across decades of Skywalker family service.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:51.906Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Babu_Frik": {
     "character": "Babu Frik",
@@ -2752,7 +2875,10 @@
       "webSearches": 4,
       "costUsd": 0.386177,
       "denials": []
-    }
+    },
+    "socialDesc": "Babu Frik, Kijimi's black-market droid expert, gained fame for cracking C-3PO's memory lock to reveal a Sith clue in the hunt for Palpatine.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:57.574Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Ben_Solo": {
     "character": "Ben Solo",
@@ -2791,7 +2917,10 @@
       "webSearches": 2,
       "costUsd": 0.24606275,
       "denials": []
-    }
+    },
+    "socialDesc": "Ben Solo traces the Skywalker heir's fall as Kylo Ren, Supreme Leader of the First Order, and his redemption as he sacrificed himself to save Rey at Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:58.443Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Cassian_Jeron_Andor": {
     "character": "Cassian Andor",
@@ -2859,7 +2988,10 @@
       "webSearches": 1,
       "costUsd": 0.28001925,
       "denials": []
-    }
+    },
+    "socialDesc": "Cassian Andor: former Alliance intelligence operative who led the Rogue One team that stole the Death Star plans, dying alongside Jyn Erso at Scarif.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:02.909Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Beru_Whitesun_Lars": {
     "character": "Beru Lars",
@@ -2941,7 +3073,10 @@
       "webSearches": 2,
       "costUsd": 0.30686549999999996,
       "denials": []
-    }
+    },
+    "socialDesc": "Beru Lars was the Tatooine moisture farmer who secretly raised Luke Skywalker for two decades before Imperial stormtroopers killed her and Owen in 0 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:56.069Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/C1-10P": {
     "character": "Chopper",
@@ -3023,7 +3158,10 @@
       "webSearches": 2,
       "costUsd": 0.34126300000000004,
       "denials": []
-    }
+    },
+    "socialDesc": "Chopper is Hera Syndulla's salvaged astromech droid, a Ghost crew mainstay whose sabotage and grit carried the Spectres from Ryloth to the New Republic.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:03.276Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Fennec_Shand": {
     "character": "Fennec Shand",
@@ -3112,7 +3250,10 @@
       "webSearches": 1,
       "costUsd": 0.43422200000000005,
       "denials": []
-    }
+    },
+    "socialDesc": "Fennec Shand's page charts her path from a Clone Wars-era mercenary hunting Omega to Boba Fett's loyal, cyber-enhanced partner during the New Republic era.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:03.688Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Mon_Mothma": {
     "character": "Mon Mothma",
@@ -3182,7 +3323,10 @@
       "webSearches": 2,
       "costUsd": 0.49864625,
       "denials": []
-    }
+    },
+    "socialDesc": "Mon Mothma's page covers her path from Chandrilan senator and Palpatine critic to Rebel Alliance founder and New Republic Chancellor after Endor.",
+    "socialDescGeneratedAt": "2026-09-05T15:33:58.265Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Bail_Prestor_Organa": {
     "character": "Bail Organa",
@@ -3257,7 +3401,10 @@
       "webSearches": 3,
       "costUsd": 0.4577334999999999,
       "denials": []
-    }
+    },
+    "socialDesc": "Bail Organa was Alderaan's senator and viceroy who helped found the Rebel Alliance, adopted Leia after Order 66, and died when Alderaan was destroyed.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:44.065Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Jar_Jar_Binks": {
     "character": "Jar Jar Binks",
@@ -3332,7 +3479,10 @@
       "webSearches": 2,
       "costUsd": 0.3831355,
       "denials": []
-    }
+    },
+    "socialDesc": "Jar Jar Binks, the accident-prone Gungan senator whose vote for emergency powers doomed the Republic, later scraped by as a shunned Naboo street performer.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:38.263Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Luke_Skywalker": {
     "character": "Luke Skywalker",
@@ -3400,7 +3550,10 @@
       "webSearches": 1,
       "costUsd": 0.21331275,
       "denials": []
-    }
+    },
+    "socialDesc": "Luke Skywalker: farm boy turned Jedi Master who destroyed the Death Star, redeemed Darth Vader, and became one with the Force defending the Resistance.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:03.903Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Ki-Adi-Mundi": {
     "character": "Ki-Adi-Mundi",
@@ -3468,7 +3621,10 @@
       "webSearches": 2,
       "costUsd": 0.360166,
       "denials": []
-    }
+    },
+    "socialDesc": "Ki-Adi-Mundi sat on the Jedi Council for nearly a century, led Republic clone troops as a Jedi General in the Clone Wars, and died on Mygeeto in Order 66.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:13.859Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Qi%27ra": {
     "character": "Qi'ra",
@@ -3536,7 +3692,10 @@
       "webSearches": 1,
       "costUsd": 0.21394175,
       "denials": []
-    }
+    },
+    "socialDesc": "Qi'ra, the Corellian street survivor turned Crimson Dawn crime lord, betrayed Dryden Vos, served Maul, and vanished from the underworld she once ruled.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:04.740Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Finn": {
     "character": "Finn",
@@ -3590,7 +3749,10 @@
       "webSearches": 1,
       "costUsd": 0.273843,
       "denials": []
-    }
+    },
+    "socialDesc": "Finn, once First Order trooper FN-2187, defected in a crisis of conscience and rose from deserter to Resistance general across the war against the First Order.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:46.440Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Poe_Dameron": {
     "character": "Poe Dameron",
@@ -3644,7 +3806,10 @@
       "webSearches": 2,
       "costUsd": 0.298481,
       "denials": []
-    }
+    },
+    "socialDesc": "Poe Dameron: Resistance ace pilot and General who led Black Squadron, then co-commanded the Resistance fleet that defeated Palpatine at Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:30.273Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Ahsoka_Tano": {
     "character": "Ahsoka Tano",
@@ -3705,7 +3870,10 @@
       "webSearches": 1,
       "costUsd": 0.3027235,
       "denials": []
-    }
+    },
+    "socialDesc": "Ahsoka Tano is the Togruta ex-Jedi and rebel spymaster Fulcrum who survived Order 66, faced Darth Vader, and hunted Thrawn for the New Republic.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:08.397Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Hunter": {
     "character": "Hunter",
@@ -3787,7 +3955,10 @@
       "webSearches": 2,
       "costUsd": 0.322703,
       "denials": []
-    }
+    },
+    "socialDesc": "Hunter led the Bad Batch through the Clone Wars and defied Order 66, becoming Omega's guardian and settling on Pabu after rescuing her from Mount Tantiss.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:12.426Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/BB-8": {
     "character": "BB-8",
@@ -3855,7 +4026,10 @@
       "webSearches": 2,
       "costUsd": 0.2284485,
       "denials": []
-    }
+    },
+    "socialDesc": "BB-8 is the Resistance astromech droid who carried Luke Skywalker's map fragment for Poe Dameron and helped topple the First Order alongside Rey and Finn.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:06.693Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Jacen_Syndulla": {
     "character": "Jacen Syndulla",
@@ -3916,7 +4090,10 @@
       "webSearches": 1,
       "costUsd": 0.25792375,
       "denials": []
-    }
+    },
+    "socialDesc": "Jacen Syndulla, son of Hera Syndulla and Kanan Jarrus, is a Force-sensitive boy from Ahsoka who hopes to follow his late father's path as a Jedi.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:18.568Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/C-3PO": {
     "character": "C-3PO",
@@ -3999,7 +4176,10 @@
       "webSearches": 3,
       "costUsd": 0.4903045,
       "denials": []
-    }
+    },
+    "socialDesc": "C-3PO, the fussy protocol droid built by Anakin Skywalker on Tatooine, served the Skywalkers, the Rebellion, and the New Republic, surviving every era.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:38.579Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Omega": {
     "character": "Omega",
@@ -4081,7 +4261,10 @@
       "webSearches": 3,
       "costUsd": 0.38346600000000003,
       "denials": []
-    }
+    },
+    "socialDesc": "Omega is the youngest member of the Bad Batch, an unaltered Jango Fett clone who survived Mount Tantiss and later joined the Rebel Alliance as a pilot.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:12.304Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Ezra_Bridger": {
     "character": "Ezra Bridger",
@@ -4135,7 +4318,10 @@
       "webSearches": 2,
       "costUsd": 0.26307425,
       "denials": []
-    }
+    },
+    "socialDesc": "Ezra Bridger's page covers the orphaned Lothal thief turned Jedi Padawan whose sacrifice against Thrawn exiled him beyond the galaxy until his return in Ahsoka.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:12.631Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Armitage_Hux": {
     "character": "Armitage Hux",
@@ -4218,7 +4404,10 @@
       "webSearches": 2,
       "costUsd": 0.3602825,
       "denials": []
-    }
+    },
+    "socialDesc": "Armitage Hux rose to First Order general and Starkiller Base commander, then became a secret Resistance informant before Pryde had him executed.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:14.954Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Boba_Fett": {
     "character": "Boba Fett",
@@ -4286,7 +4475,10 @@
       "webSearches": 1,
       "costUsd": 0.30149575,
       "denials": []
-    }
+    },
+    "socialDesc": "Boba Fett's page covers the Mandalorian-armored clone of Jango Fett who hunted for the Empire and Jabba the Hutt before rising as Tatooine's crime lord.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:13.819Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Garazeb_Orrelios": {
     "character": "Garazeb Orrelios",
@@ -4347,7 +4539,10 @@
       "webSearches": 3,
       "costUsd": 0.34319275000000005,
       "denials": []
-    }
+    },
+    "socialDesc": "Zeb Orrelios, Lasan Honor Guard veteran turned Spectres rebel, fought the Empire alongside the Ghost crew and later found his people alive on Lira San.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:12.903Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Snoke": {
     "character": "Snoke",
@@ -4415,7 +4610,10 @@
       "webSearches": 2,
       "costUsd": 0.34205349999999995,
       "denials": []
-    }
+    },
+    "socialDesc": "Snoke, the First Order's original Supreme Leader, mentored Kylo Ren toward the dark side and was exposed as a Sith-made clone before dying aboard the Supremacy.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:37.459Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Cad_Bane": {
     "character": "Cad Bane",
@@ -4483,7 +4681,10 @@
       "webSearches": 1,
       "costUsd": 0.2504605,
       "denials": []
-    }
+    },
+    "socialDesc": "Cad Bane is the galaxy's deadliest gun-for-hire, a Duros mercenary who worked for Darth Sidious, clashed with Jedi, and later died at Boba Fett's hands.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:36.782Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Hera_Syndulla": {
     "character": "Hera Syndulla",
@@ -4539,7 +4740,10 @@
       "webSearches": 2,
       "costUsd": 0.3619515,
       "denials": []
-    }
+    },
+    "socialDesc": "Hera Syndulla: Twi'lek ace pilot and Spectres commander who helped ignite rebellion on Lothal, rose to general, then searched for Ezra Bridger in Ahsoka.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:30.235Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Mitth'raw'nuruodo": {
     "character": "Thrawn",
@@ -4600,7 +4804,10 @@
       "webSearches": 2,
       "costUsd": 0.27265575,
       "denials": []
-    }
+    },
+    "socialDesc": "Thrawn is the Chiss Grand Admiral whose ruthless tactical genius nearly crushed the Rebellion on Lothal before being stranded in Peridea by the purrgil.",
+    "socialDescGeneratedAt": "2026-09-05T15:32:51.603Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Third_Sister": {
     "character": "Reva",
@@ -4697,7 +4904,10 @@
       "webSearches": 2,
       "costUsd": 0.32369974999999995,
       "denials": []
-    }
+    },
+    "socialDesc": "Reva Sevander was the Third Sister of the Inquisitorius, an Order 66 survivor who hunted Jedi, tried to kill Vader, and chose mercy over vengeance.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:27.939Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Rey_Skywalker": {
     "character": "Rey Skywalker",
@@ -4751,7 +4961,10 @@
       "webSearches": 1,
       "costUsd": 0.27227500000000004,
       "denials": []
-    }
+    },
+    "socialDesc": "Rey Skywalker: the Jakku scavenger turned Jedi who defeated Emperor Palpatine on Exegol and took the Skywalker name to rebuild the Jedi Order.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:30.652Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Kaydel_Ko_Connix": {
     "character": "Kaydel Ko Connix",
@@ -4812,7 +5025,10 @@
       "webSearches": 2,
       "costUsd": 0.33780375,
       "denials": []
-    }
+    },
+    "socialDesc": "Kaydel Ko Connix rose from D'Qar comms officer to Resistance commander, fighting at Starkiller Base, Crait, and the war-ending Battle of Exegol.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:24.356Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Carson_Teva": {
     "character": "Carson Teva",
@@ -4894,7 +5110,10 @@
       "webSearches": 1,
       "costUsd": 0.2592625,
       "denials": []
-    }
+    },
+    "socialDesc": "Carson Teva, New Republic X-wing captain of the Adelphi Rangers, tracked Imperial remnants across the Outer Rim and became an ally to Din Djarin.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:36.753Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Din_Djarin": {
     "character": "Mando",
@@ -4983,7 +5202,10 @@
       "webSearches": 2,
       "costUsd": 0.34748999999999997,
       "denials": []
-    }
+    },
+    "socialDesc": "Din Djarin is the beskar-armored bounty hunter turned New Republic marshal whose bond with Grogu led him to reunite Mandalore and wield the Darksaber.",
+    "socialDescGeneratedAt": "2026-09-05T15:35:35.259Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Plo_Koon": {
     "character": "Plo Koon",
@@ -5066,7 +5288,10 @@
       "webSearches": 3,
       "costUsd": 0.43561874999999994,
       "denials": []
-    }
+    },
+    "socialDesc": "Plo Koon: Kel Dor Jedi Master and Council member who led the 104th \"Wolfpack,\" mentored young Ahsoka Tano, and died at Cato Neimoidia in Order 66.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:18.157Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Owen_Lars": {
     "character": "Owen Lars",
@@ -5148,7 +5373,10 @@
       "webSearches": 2,
       "costUsd": 0.4039785,
       "denials": []
-    }
+    },
+    "socialDesc": "Owen Lars was Luke Skywalker's guardian on Tatooine, sheltering Anakin's son from the Empire until Imperial stormtroopers killed him in 0 BBY.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:24.548Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Marrok": {
     "character": "Marrok",
@@ -5237,7 +5465,10 @@
       "webSearches": 2,
       "costUsd": 0.41797299999999993,
       "denials": []
-    }
+    },
+    "socialDesc": "Marrok, the armored Inquisitor called First Brother, hunted Jedi survivors before serving Morgan Elsbeth as a mercenary and falling to Ahsoka Tano on Seatos.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:27.185Z",
+    "socialDescModel": "claude-sonnet-5"
   },
   "https://starwars.fandom.com/wiki/Rotta": {
     "character": "Rotta the Hutt",
@@ -5312,6 +5543,9 @@
       "webSearches": 2,
       "costUsd": 0.30466799999999994,
       "denials": []
-    }
+    },
+    "socialDesc": "Rotta the Hutt, Jabba's infant son kidnapped during the Clone Wars and saved by Ahsoka Tano, later became an arena gladiator rescued by Din Djarin.",
+    "socialDescGeneratedAt": "2026-09-05T15:34:29.902Z",
+    "socialDescModel": "claude-sonnet-5"
   }
 }
