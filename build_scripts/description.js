@@ -2,7 +2,7 @@
 //
 // Reads data.json, sends each character's full entry to Claude (Opus 4.8) with
 // web search + web fetch so it can verify dates against Wookieepedia rather than
-// recalling them, and writes description / timeline / notes into
+// recalling them, and writes description / socialDesc / timeline / notes into
 // character_descriptions.json, keyed by wookiepedia URL.
 //
 // Two drivers, same prompt and same output schema:
@@ -18,10 +18,21 @@
 //   node description.js "Ahsoka Tano" ...  regenerate just the named characters
 //   node description.js --via-claude-code  run through local Claude Code instead of the API
 //   node description.js --dry-run <name>   print the prompt that would be sent, call nothing
+//
+// Social-description backfill (from build_scripts/):
+//   node description.js --social-only            fill socialDesc where it is missing
+//   node description.js --social-only --all      rewrite every socialDesc
+//   node description.js --social-only "Thrawn"   rewrite just the named characters
+//
+// --social-only rewrites the stored description into a meta description. It does
+// no research (no web tools, no data.json lookup), so it is seconds per character
+// on a small model rather than minutes on Opus. Use it to backfill entries that
+// predate socialDesc; a normal run already emits it alongside the bio.
 import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import dotenv from 'dotenv';
+import { sanitize, stripHtml, truncate, MAX_DESC } from './textUtils.js';
 
 dotenv.config();
 
@@ -32,6 +43,11 @@ const CONCURRENCY = 8;
 const EFFORT = 'medium';
 const MAX_TURNS = 16;
 const RESULTS_PATH = './character_descriptions.json';
+
+// The --social-only pass rewrites text we already have — no research, no tools,
+// one turn — so it runs on a small model and far wider than the research pass.
+const SOCIAL_MODEL = 'claude-sonnet-5';
+const SOCIAL_CONCURRENCY = 12;
 
 const client = new Anthropic();
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
@@ -60,6 +76,15 @@ const FIELD_GUIDE = `Every entry in our data file is one row of the timeline. Fi
 - imageUrl / imageYears: display assets only, ignore them.
 - wookiepedia / databank: reference URLs for this character.`;
 
+// The socialDesc rules live on their own because two prompts use them: the full
+// research pass below, and the --social-only backfill. They must not drift — a
+// backfilled page and a freshly generated one should read the same way.
+const SOCIAL_RULES = `- Between 140 and 160 characters. Never more than 160 — anything longer is cut off in search results.
+- Do NOT reuse the opening clause of the description. Search engines discard a meta description that only repeats copy already visible on the page, so this has to be independently written, not the first sentence trimmed down.
+- Lead with the character's name, then what they are actually known for: role, era, allegiance, and fate where canon settles it. Prefer the concrete over the encyclopedic — "clone captain who led the 501st Legion and outlived the Empire he was built to serve" beats "was a human male clone trooper of the Grand Army of the Republic".
+- Summarize the character, not the page — never mention the page, the timeline or the site itself. Do not open the way a biography opens ("X was a human male..."); open with what makes them worth reading about.
+- Plain text only: no HTML, no surrounding quotes, no ellipsis, no trailing "…". It must end on a complete sentence with a full stop.`;
+
 const TASK = `You are building reference content for The Ultimate Star Wars Timeline (https://timeline.starwars.guide), a canon-focused interactive timeline.
 
 For the character described below:
@@ -68,9 +93,13 @@ For the character described below:
 
 2. Write "description": a single-paragraph summary of who the character is, what they are known for, and their major milestones. HTML, wrapped in one <p> tag. No links, no citations, no headings.
 
-3. Write "timeline": a comprehensive, chronological list of that character's events. HTML, alternating <h3>Date - Title</h3> and <p>brief description</p>. Prefix estimated years with ~ (e.g. "~36 BBY - Birth on Shili"). Use BBY/ABY, never negative numbers. No links, no citations. The events must be consistent with the dates you verified in step 1 — if you concluded the character was born in 41 BBY, the birth event says 41 BBY.
+3. Write "socialDesc": the meta description for this character's page — the line that appears under the title in Google results and on a shared social card.
 
-4. Report "notes": anything the maintainer should act on. This is the most valuable part of your output, so be specific and be willing to disagree with our data. Include:
+${SOCIAL_RULES}
+
+4. Write "timeline": a comprehensive, chronological list of that character's events. HTML, alternating <h3>Date - Title</h3> and <p>brief description</p>. Prefix estimated years with ~ (e.g. "~36 BBY - Birth on Shili"). Use BBY/ABY, never negative numbers. No links, no citations. The events must be consistent with the dates you verified in step 1 — if you concluded the character was born in 41 BBY, the birth event says 41 BBY.
+
+5. Report "notes": anything the maintainer should act on. This is the most valuable part of your output, so be specific and be willing to disagree with our data. Include:
    - dates in our payload that contradict what you found (say what we have, what it should be, and why),
    - anything else factually wrong or out of date in our entry — species, homeworld, the old description, a "seenIn" appearance that is not real, a death recorded for a character who survives,
    - things worth adding that we clearly do not track yet,
@@ -107,6 +136,13 @@ const dateSchema = (label) => ({
   additionalProperties: false,
 });
 
+// Shared by PROFILE_SCHEMA and the --social-only tool so both passes are held to
+// the same contract.
+const socialDescSchema = {
+  type: 'string',
+  description: `Meta description for the character's page. 140-160 characters, plain text, a complete sentence, independently written rather than lifted from the description's opening clause.`,
+};
+
 const PROFILE_SCHEMA = {
   type: 'object',
   properties: {
@@ -114,6 +150,7 @@ const PROFILE_SCHEMA = {
         type: 'string',
         description: 'One-paragraph summary wrapped in a single <p> tag.',
       },
+      socialDesc: socialDescSchema,
       timeline: {
         type: 'string',
         description: 'Chronological events as alternating <h3>Date - Title</h3> and <p>description</p>.',
@@ -153,7 +190,7 @@ const PROFILE_SCHEMA = {
         },
       },
   },
-  required: ['description', 'timeline', 'birth', 'death', 'notes'],
+  required: ['description', 'socialDesc', 'timeline', 'birth', 'death', 'notes'],
   additionalProperties: false,
 };
 
@@ -208,6 +245,13 @@ const unescapeMarkup = (html) => {
     .replace(/&#39;/g, '\'')
     .replace(/&amp;/g, '&');
 };
+
+// The prompt asks for <= MAX_DESC characters; truncate() here is the safety net,
+// not the mechanism — an overshoot means the prompt is drifting, so callers log
+// it rather than letting a silently trimmed line pass as authored copy.
+const normalizeSocialDesc = (text) => stripHtml(sanitize(text || ''))
+  .replace(/^["'“”]+|["'“”]+$/g, '')
+  .trim();
 
 // Deterministic cross-check: whatever Claude concluded, compare it to the data
 // we actually ship so a disagreement can't be lost in prose.
@@ -412,9 +456,9 @@ const selectCharacters = (existingResults) => {
 
 // Bounded concurrency — these calls fetch pages and think, so they run for
 // minutes each; firing all 78 at once just burns rate limit.
-const runPool = async (items, worker) => {
+const runPool = async (items, worker, concurrency = CONCURRENCY) => {
   const queue = [...items];
-  const runners = Array.from({ length: Math.min(CONCURRENCY, queue.length) }, async () => {
+  const runners = Array.from({ length: Math.min(concurrency, queue.length) }, async () => {
     while (queue.length > 0) {
       await worker(queue.shift());
     }
@@ -457,9 +501,15 @@ const processCharacters = async () => {
       const { profile, stats } = await runCharacter(character);
       const notes = [...dateMismatchNotes(character, profile), ...(profile.notes || [])];
 
+      const socialDesc = normalizeSocialDesc(unescapeMarkup(profile.socialDesc));
+      if (socialDesc.length > MAX_DESC) {
+        console.warn(`  ! ${character.title}: socialDesc came back ${socialDesc.length} chars, truncating to ${MAX_DESC}`);
+      }
+
       results[character.wookiepedia] = {
         character: character.title,
         description: unescapeMarkup(profile.description),
+        socialDesc: socialDesc.length > MAX_DESC ? truncate(socialDesc) : socialDesc,
         timeline: unescapeMarkup(profile.timeline),
         dates: { birth: profile.birth, death: profile.death },
         notes,
@@ -524,4 +574,200 @@ const processCharacters = async () => {
   }
 };
 
-processCharacters();
+// ---------------------------------------------------------------------------
+// --social-only: rewrite the stored bio into a meta description.
+//
+// This pass never touches data.json and never reaches the web — it reads
+// character_descriptions.json, rewrites in place, and writes back. That is what
+// makes it cheap enough to run over every character: one turn on a small model
+// instead of minutes of research on Opus.
+
+const SOCIAL_RESULT_SCHEMA = {
+  type: 'object',
+  properties: { socialDesc: socialDescSchema },
+  required: ['socialDesc'],
+  additionalProperties: false,
+};
+
+const socialTool = {
+  name: 'submit_social_desc',
+  description: 'Record the finished meta description for this character. Call exactly once.',
+  strict: true,
+  input_schema: SOCIAL_RESULT_SCHEMA,
+};
+
+// `rejected` is a previous answer that came back over the character limit. Asking
+// again with it quoted is better than truncating: truncation puts back the
+// mid-sentence ellipsis this whole change exists to remove.
+const buildSocialPrompt = (entry, rejected = '') => `${rejected ? `Your previous attempt was ${rejected.length} characters — too long. Rewrite it shorter, keeping the same angle. Do not simply trim the end; recompose it so it still finishes cleanly.
+
+Previous attempt:
+${rejected}
+
+` : ''}You are writing the meta description for a character page on The Ultimate Star Wars Timeline (https://timeline.starwars.guide), a canon-focused interactive timeline.
+
+The bio below is already the opening paragraph of ${entry.character}'s page. Write the meta description for that page.
+
+${SOCIAL_RULES}
+
+## ${entry.character}'s bio, as it appears on the page
+
+${stripHtml(entry.description || '')}`;
+
+const runSocialViaApi = async (entry, rejected) => {
+  const response = await client.messages
+    .stream({
+      model: SOCIAL_MODEL,
+      max_tokens: 2000,
+      tools: [socialTool],
+      tool_choice: { type: 'tool', name: socialTool.name },
+      messages: [{ role: 'user', content: buildSocialPrompt(entry, rejected) }],
+    })
+    .finalMessage();
+
+  const submission = response.content.find(
+    (block) => block.type === 'tool_use' && block.name === socialTool.name
+  );
+  if (!submission) throw new Error(`finished without calling ${socialTool.name}`);
+  return submission.input.socialDesc;
+};
+
+const runSocialViaClaudeCode = async (entry, rejected) => {
+  const session = query({
+    prompt: `${buildSocialPrompt(entry, rejected)}
+
+Return the result as JSON matching the required output schema. Do not summarize what you did — only the JSON is read.`,
+    options: {
+      model: SOCIAL_MODEL,
+      // 2 was too tight — a sixth of the first backfill run died on the turn cap
+      // after spending a turn reasoning about length before answering.
+      maxTurns: 4,
+      systemPrompt: 'You write concise, accurate metadata for reference pages.',
+      allowedTools: [],
+      permissionMode: 'dontAsk',
+      settingSources: [],
+      outputFormat: { type: 'json_schema', schema: SOCIAL_RESULT_SCHEMA },
+    },
+  });
+
+  for await (const message of session) {
+    if (message.type !== 'result') continue;
+    if (message.subtype !== 'success') {
+      throw new Error(message.errors?.join('; ') || message.subtype);
+    }
+    const output = message.structured_output || JSON.parse(message.result);
+    return output.socialDesc;
+  }
+  throw new Error('Claude Code session ended without a result message');
+};
+
+const runSocialOnce = (entry, rejected) =>
+  (viaClaudeCode ? runSocialViaClaudeCode : runSocialViaApi)(entry, rejected);
+
+// One retry when the answer overruns, then truncate as a last resort.
+const runSocial = async (entry) => {
+  const first = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry)));
+  if (first.length <= MAX_DESC) return { socialDesc: first, retried: false };
+
+  const second = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry, first)));
+  if (second.length <= MAX_DESC) return { socialDesc: second, retried: true };
+  return { socialDesc: truncate(second), retried: true, truncatedFrom: second.length };
+};
+
+// Mirrors selectCharacters, but selects over character_descriptions.json rather
+// than data.json: an entry with no description has nothing to rewrite.
+const selectSocialEntries = (results) => {
+  const args = process.argv.slice(2);
+  const all = Object.entries(results).filter(([, entry]) => entry.description);
+  const names = args.filter((arg) => !arg.startsWith('--'));
+
+  if (args.includes('--all')) return { entries: all, mode: 'all' };
+  if (names.length > 0) {
+    const wanted = names.map((name) => name.toLowerCase());
+    const nameOf = ([, entry]) => (entry.character || '').toLowerCase();
+    const matched = all.filter((pair) => wanted.includes(nameOf(pair)));
+    const missing = names.filter((name) => !all.some((pair) => nameOf(pair) === name.toLowerCase()));
+    if (missing.length > 0) {
+      console.error(`Not found in ${RESULTS_PATH}: ${missing.join(', ')}`);
+    }
+    return { entries: matched, mode: 'named' };
+  }
+  return { entries: all.filter(([, entry]) => !entry.socialDesc), mode: 'missing' };
+};
+
+const processSocialDescriptions = async () => {
+  let results;
+  try {
+    results = JSON.parse(fs.readFileSync(RESULTS_PATH, 'utf8'));
+  } catch {
+    console.error(`--social-only rewrites existing entries, but ${RESULTS_PATH} could not be read. Run description.js first.`);
+    process.exitCode = 1;
+    return;
+  }
+
+  const { entries, mode } = selectSocialEntries(results);
+  const withoutBio = Object.values(results).filter((entry) => !entry.description).length;
+  const driver = viaClaudeCode ? 'local Claude Code' : 'Claude API';
+  console.log(`Writing socialDesc for ${entries.length} character(s) [${mode}] with ${SOCIAL_MODEL} via ${driver}\n`);
+  if (withoutBio > 0) {
+    console.log(`${withoutBio} entry/entries have no description and are skipped — website.js and prepJson.js fall back for those.\n`);
+  }
+  if (entries.length === 0) return;
+
+  if (process.argv.includes('--dry-run')) {
+    entries.forEach(([, entry]) => {
+      console.log(`===== prompt for ${entry.character} =====\n${buildSocialPrompt(entry)}\n`);
+    });
+    console.log(`Dry run — no calls made for ${entries.length} character(s).`);
+    return;
+  }
+
+  const failures = [];
+  const overshot = [];
+  const startedAt = Date.now();
+  let done = 0;
+
+  await runPool(entries, async ([key, entry]) => {
+    try {
+      const { socialDesc, retried, truncatedFrom } = await runSocial(entry);
+      if (truncatedFrom) overshot.push({ title: entry.character, length: truncatedFrom });
+
+      results[key] = {
+        ...entry,
+        socialDesc,
+        socialDescGeneratedAt: new Date().toISOString(),
+        socialDescModel: SOCIAL_MODEL,
+      };
+      // Write as we go, same as the research pass — an interrupted run keeps its work.
+      fs.writeFileSync(RESULTS_PATH, JSON.stringify(results, null, 2));
+
+      console.log(
+        `[${++done}/${entries.length}] ${entry.character} — ${socialDesc.length} chars` +
+          `${retried ? ' (retried)' : ''}${truncatedFrom ? ` (TRUNCATED from ${truncatedFrom})` : ''}` +
+          `\n    ${socialDesc}`
+      );
+    } catch (error) {
+      failures.push({ title: entry.character, message: error.message });
+      console.error(`[${++done}/${entries.length}] ${entry.character} — FAILED: ${error.message}`);
+    }
+  }, SOCIAL_CONCURRENCY);
+
+  console.log(`\nWrote ${RESULTS_PATH} in ${((Date.now() - startedAt) / 1000).toFixed(0)}s`);
+
+  if (overshot.length > 0) {
+    console.warn(`\n${overshot.length} character(s) were still over ${MAX_DESC} characters after a retry and were truncated — the prompt is drifting:`);
+    overshot.forEach(({ title, length }) => console.warn(`  - ${title}: ${length} chars`));
+  }
+
+  if (failures.length > 0) {
+    console.error(`\n${failures.length} character(s) failed:`);
+    failures.forEach(({ title, message }) => console.error(`  - ${title}: ${message}`));
+    process.exitCode = 1;
+  }
+};
+
+if (process.argv.includes('--social-only')) {
+  processSocialDescriptions();
+} else {
+  processCharacters();
+}
