@@ -18,7 +18,7 @@ export const stripHtml = (html) => sanitize(html)
 
 // Search snippets and OG cards get cut around 160 characters; prefer ending on a
 // sentence, fall back to a word boundary with an ellipsis.
-export const MAX_DESC = 160;
+export const MAX_DESC = 155;
 export const truncate = (text) => {
   if (text.length <= MAX_DESC) return text;
   const window = text.slice(0, MAX_DESC + 1);

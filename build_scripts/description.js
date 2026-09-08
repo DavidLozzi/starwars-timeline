@@ -79,7 +79,7 @@ const FIELD_GUIDE = `Every entry in our data file is one row of the timeline. Fi
 // The socialDesc rules live on their own because two prompts use them: the full
 // research pass below, and the --social-only backfill. They must not drift — a
 // backfilled page and a freshly generated one should read the same way.
-const SOCIAL_RULES = `- Between 140 and 160 characters. Never more than 160 — anything longer is cut off in search results.
+const SOCIAL_RULES = `- Between 140 and 155 characters. Never more than 155 — Google truncates on pixel width, not character count, so anything longer risks being cut off in search results.
 - Do NOT reuse the opening clause of the description. Search engines discard a meta description that only repeats copy already visible on the page, so this has to be independently written, not the first sentence trimmed down.
 - Lead with the character's name, then what they are actually known for: role, era, allegiance, and fate where canon settles it. Prefer the concrete over the encyclopedic — "clone captain who led the 501st Legion and outlived the Empire he was built to serve" beats "was a human male clone trooper of the Grand Army of the Republic".
 - Summarize the character, not the page — never mention the page, the timeline or the site itself. Do not open the way a biography opens ("X was a human male..."); open with what makes them worth reading about.
@@ -140,7 +140,7 @@ const dateSchema = (label) => ({
 // the same contract.
 const socialDescSchema = {
   type: 'string',
-  description: `Meta description for the character's page. 140-160 characters, plain text, a complete sentence, independently written rather than lifted from the description's opening clause.`,
+  description: `Meta description for the character's page. 140-155 characters, plain text, a complete sentence, independently written rather than lifted from the description's opening clause.`,
 };
 
 const PROFILE_SCHEMA = {

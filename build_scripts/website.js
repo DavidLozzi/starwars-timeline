@@ -22,12 +22,13 @@ const imageSrc = (url) => `https://timeline.starwars.guide/${String(url || '').r
 // Search Console. Keep slugs lowercase.
 const slug = (title) => title.replace(/\s/ig, '-').toLowerCase();
 
-// Character pages have no `permalink`, so Jekyll emits `<slug>.html` and that is
-// what the canonical tag and the sitemap point at. Netlify also serves the
-// extensionless `/character/<slug>` with a 200, so linking to that form made
-// Google file the linked URL as "Alternate page with proper canonical tag" and
-// index the .html one instead. Always link the canonical .html form.
-const characterPageUrl = (title) => `/character/${slug(title)}.html`;
+// The hub sets `permalink: /character/:basename/` as a front-matter default, so
+// the trailing-slash `/character/<slug>/` IS the canonical — the sitemap and the
+// canonical tag both point at it, and the old `<slug>.html` URLs 301 there via
+// netlify.toml. Linking the .html form would send every internal link through a
+// redirect, which is what put ~79 pages in "Duplicate, Google chose different
+// canonical" in Search Console. Always link the trailing-slash form.
+const characterPageUrl = (title) => `/character/${slug(title)}/`;
 
 const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
 
