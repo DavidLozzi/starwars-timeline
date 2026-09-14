@@ -100,7 +100,7 @@ export default {
   MetadataValue: styled.div`
     overflow-wrap: anywhere;
   `,
-  Wookiepedia: styled.a`
+  WikiLink: styled.a`
     font-size: 1.4vh;
     display: inline-block;
     color: rgb(${({ theme }) => theme.palette.primary});

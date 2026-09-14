@@ -1,9 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { getOnboardingState, setOnboardingState } from '../../../utils';
+import { getOnboardingState, setOnboardingState, ONBOARDING_STORAGE_KEY } from '../../../utils';
 import OnboardingGuide from '../index';
-import jediTheme from '../../../themes/jedi';
+import themeList from '@site/themes';
+
+const defaultTheme = themeList.themes.find(t => t.id === themeList.defaultId).theme;
 
 // Mirrors the real Modal's structure: the backdrop handles onClickBg, but
 // children sit inside an inner wrapper that stops propagation. Without that
@@ -22,7 +24,7 @@ vi.mock('../../../molecules/modal', () => ({
 
 const renderWithTheme = (component) => {
   return render(
-    <ThemeProvider theme={jediTheme}>
+    <ThemeProvider theme={defaultTheme}>
       {component}
     </ThemeProvider>
   );
@@ -36,7 +38,7 @@ describe('OnboardingGuide Integration Tests', () => {
   describe('First-visit auto-display flow', () => {
     it('should appear on mount when localStorage indicates first visit', () => {
       // Ensure no state exists
-      localStorage.removeItem('starwars_timeline_onboarding_dismissed');
+      localStorage.removeItem(ONBOARDING_STORAGE_KEY);
 
       const TestComponent = () => {
         const [isOpen, setIsOpen] = React.useState(() => {

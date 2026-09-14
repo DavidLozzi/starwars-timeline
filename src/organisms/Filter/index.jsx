@@ -2,13 +2,14 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 import analytics, { ACTIONS } from '../../analytics';
 import { getKeyCount } from '../../utils';
-import filterData from '../../data/filters.json';
+import filterData from '@site/generated/filters.json';
 import { useAppContext } from '../../AppContext';
-import charactersData from '../../data/characters.json';
-import seenInData from '../../data/seenIn.json';
+import charactersData from '@site/generated/characters.json';
+import seenInData from '@site/generated/seenIn.json';
 import Dropdown from '../../molecules/dropdown';
 import searchSvg from '../../assets/search.svg';
 import filtersSvg from '../../assets/filters.svg';
+import site from '../../site';
 
 import * as Styled from './index.styles';
 import FilterCharacterDropdown from './Character';
@@ -108,11 +109,11 @@ const Filter = ({ onClose }) => {
         <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
       </Styled.FormRow>
       <Styled.FormRow>
-        <Styled.FormLabel>Seen in Movie or TV Show:</Styled.FormLabel>
+        <Styled.FormLabel>{site.labels.seenInLabel}</Styled.FormLabel>
         <Styled.FormValue>
           <Dropdown
             values={seenInData.map(s => ({ text: `${s.name} (${s.count})`, value: s.name }))}
-            defaultText="Filter by Movie/TV Show"
+            defaultText={site.labels.seenInPlaceholder}
             selectedText={selectedMovie}
             onSelect={(v) => setSelectedMovie(v.value)}
             onClear={() => setSelectedMovie('')}
@@ -135,7 +136,7 @@ const Filter = ({ onClose }) => {
         </Styled.FormRow>)
       }
       <Styled.FormRow>
-        <Styled.FormLabel htmlFor="hideDeceased">Hide Deceased</Styled.FormLabel>
+        <Styled.FormLabel htmlFor="hideDeceased">{site.labels.hideDeceasedLabel}</Styled.FormLabel>
         <Styled.FormValue>
           <Styled.Toggle>
             <input

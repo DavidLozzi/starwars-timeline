@@ -16,7 +16,15 @@ jobs:
 
     # Hoisted to job level so step-level `if:` can test it — the `secrets`
     # context is not available in step conditions, but `env` is.
+    #
+    # SITE pins the pack this job builds/deploys. There is intentionally no
+    # `site` matrix and no Marvel job here: Marvel hosting is deferred (a
+    # plain GitHub Pages repo would serve from a sub-path and break every
+    # absolute reference this app makes — see the plan's WU-16 notes), so
+    # sites/marvel/generated/*.json is only ever produced by a local
+    # `SITE=marvel` build, never by CI.
     env:
+      SITE: starwars
       SYNC_TOKEN: ${{ secrets.SYNC_REPOS_TOKEN }}
 
     strategy:
@@ -58,12 +66,29 @@ jobs:
         test -f ./docs/CNAME || { echo "::error::docs/CNAME missing - custom domain would break"; exit 1; }
         test -f ./docs/index.html || { echo "::error::docs/index.html missing"; exit 1; }
         test -d ./docs/character || { echo "::error::docs/character missing - prerender did not run"; exit 1; }
-        expected=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("./src/data/characters.json","utf8")).length)')
+        expected=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("./sites/starwars/generated/characters.json","utf8")).length)')
         count=$(find ./docs/character -maxdepth 1 -name '*.html' | wc -l | tr -d ' ')
         [ "$count" = "$expected" ] || { echo "::error::docs/character has $count pages, expected $expected"; exit 1; }
-        grep -q 'rel="canonical"' ./docs/character/Yoda.html || { echo "::error::prerendered page missing canonical"; exit 1; }
-        # Glob rather than a literal e-acute so the runner's locale can't cause a false failure.
-        find ./docs/character -maxdepth 1 -name 'Padm*Amidala*.html' | grep -q . || { echo "::error::non-ASCII character page missing"; exit 1; }
+        # Derived at runtime from the pack's own data rather than a hardcoded
+        # character name, so CI stays content-agnostic: first title (any
+        # character page must carry a canonical link) and the first title
+        # containing a non-ASCII character (proves percent-decoded filenames
+        # survive the GitHub Pages round-trip).
+        FIRST_TITLE=$(node -e '
+          const fs = require("fs");
+          const characters = JSON.parse(fs.readFileSync("./sites/starwars/generated/characters.json", "utf8"));
+          process.stdout.write(characters[0].title.normalize("NFC"));
+        ')
+        NONASCII_TITLE=$(node -e '
+          const fs = require("fs");
+          const characters = JSON.parse(fs.readFileSync("./sites/starwars/generated/characters.json", "utf8"));
+          const found = characters.find(c => /[^\x00-\x7F]/.test(c.title));
+          if (!found) { console.error("no non-ASCII character title found in sites/starwars/generated/characters.json"); process.exit(1); }
+          process.stdout.write(found.title.normalize("NFC"));
+        ')
+        test -f "./docs/character/${FIRST_TITLE}.html" || { echo "::error::first character page missing: ${FIRST_TITLE}"; exit 1; }
+        grep -q 'rel="canonical"' "./docs/character/${FIRST_TITLE}.html" || { echo "::error::prerendered page missing canonical"; exit 1; }
+        test -f "./docs/character/${NONASCII_TITLE}.html" || { echo "::error::non-ASCII character page missing: ${NONASCII_TITLE}"; exit 1; }
 
     - uses: EndBug/add-and-commit@v7.3.0
       with:

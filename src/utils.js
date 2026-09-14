@@ -1,3 +1,5 @@
+import config from './site';
+
 export const getKeyCount = (o) => Object.keys(o).length;
 
 /**
@@ -16,8 +18,12 @@ export const decodeCharacterParam = (param) => {
   }
 };
 
-// Onboarding state management helpers
-const ONBOARDING_STORAGE_KEY = 'starwars_timeline_onboarding_dismissed';
+// Onboarding state management helpers. Exported so utils.test.js can assert
+// against the computed key rather than hardcoding it a second time -- the
+// Star Wars pack must keep producing the exact same string
+// ('starwars_timeline_onboarding_dismissed') so existing users' dismissed
+// state isn't silently reset.
+export const ONBOARDING_STORAGE_KEY = `${config.storagePrefix}_onboarding_dismissed`;
 
 /**
  * Check if localStorage is available and functional
@@ -77,7 +83,9 @@ export const setOnboardingState = (hasSeenGuide, dismissedDate = null) => {
 
 // News feed "last read" tracking. Dates are the feed's `YYYY-MM-DD` strings, which
 // sort correctly as plain strings — same comparison SWordle uses for its badge.
-const NEWS_STORAGE_KEY = 'starwars_timeline_last_news_date';
+// Exported for the same reason as ONBOARDING_STORAGE_KEY above (must stay
+// 'starwars_timeline_last_news_date' for the Star Wars pack).
+export const NEWS_STORAGE_KEY = `${config.storagePrefix}_last_news_date`;
 
 /**
  * Get the date of the newest news item the user has already seen

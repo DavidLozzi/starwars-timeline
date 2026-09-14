@@ -1,16 +1,17 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import analytics, { ACTIONS } from './analytics';
-import jediTheme from './themes/jedi';
-import sithTheme from './themes/sith';
+import themeList from '@site/themes';
 import { getKeyCount } from './utils';
 
 const appContext = React.createContext({ filters: {}, addFilter: () => { }, removeFilter: () => { } });
 
+const findTheme = (id) => themeList.themes.find(t => t.id === id) || themeList.themes.find(t => t.id === themeList.defaultId);
+
 const AppProvider = ({ children }) => {
   const [filters, setFilters] = React.useState({});
   const [filterCount, setFilterCount] = React.useState(0);
-  const [selectedTheme, setSelectedTheme] = React.useState(jediTheme);
+  const [selectedTheme, setSelectedTheme] = React.useState(findTheme(themeList.defaultId).theme);
   const [scale, setScale] = React.useState(1.0);
   // not a `filters` entry: it re-evaluates against the scrolled-to year, not once on apply
   const [hideDeceased, setHideDeceased] = React.useState(false);
@@ -43,16 +44,9 @@ const AppProvider = ({ children }) => {
     window.scrollTo(scrollToX, scrollToY);
   };
 
-  const setTheme = (themeName) => {
-    switch (themeName) {
-      case 'sith':
-        setSelectedTheme(sithTheme);
-        break;
-      default:
-        setSelectedTheme(jediTheme);
-        break;
-    }
-    analytics.event(ACTIONS.THEME, '', themeName);
+  const setTheme = (themeId) => {
+    setSelectedTheme(findTheme(themeId).theme);
+    analytics.event(ACTIONS.THEME, '', themeId);
   };
 
 

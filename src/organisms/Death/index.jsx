@@ -3,6 +3,7 @@ import { useTheme } from 'styled-components';
 
 import * as Styled from './index.styles';
 import { CharacterColumn } from '../../pages/Home/index.styles';
+import site from '../../site';
 
 const Death = ({ character }) => {
   const theme = useTheme();
@@ -20,7 +21,7 @@ const Death = ({ character }) => {
         <Styled.ToolTip>
           {character.title} died {character.endYearDisplay} in {character.endYearEvent}
         </Styled.ToolTip>
-        💀
+        {site.labels.deathIcon}
       </Styled.Circle>
     </Styled.SeenIn>
   </>;

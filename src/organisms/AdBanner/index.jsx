@@ -1,8 +1,9 @@
 import React from 'react';
 import * as Styled from './index.styles';
+import config from '../../site';
 
-const AD_CLIENT = 'ca-pub-6056590143595280';
-const AD_SLOT = '3687052385';
+const AD_CLIENT = config.analytics.adsenseClient;
+const AD_SLOT = config.analytics.adSlot;
 
 /* The adsbygoogle.js loader lives in index.html; this only asks it to fill the
    slot. Fixed size on purpose — no data-ad-format / data-full-width-responsive,
@@ -12,6 +13,7 @@ const AdBanner = () => {
   const pushed = React.useRef(false);
 
   React.useEffect(() => {
+    if (!AD_CLIENT || !AD_SLOT) return;
     // Pushing a slot that already holds an ad throws "All 'ins' elements in the
     // DOM with class=adsbygoogle already have ads in them", so fill exactly once.
     if (pushed.current) return;
@@ -27,6 +29,8 @@ const AdBanner = () => {
       // blocked scripts / privacy tools — do not break the app
     }
   }, []);
+
+  if (!AD_CLIENT || !AD_SLOT) return null;
 
   return (
     <Styled.Wrapper>

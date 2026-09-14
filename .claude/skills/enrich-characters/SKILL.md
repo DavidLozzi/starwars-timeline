@@ -14,10 +14,12 @@ description: >
 Wraps `build_scripts/description.js`. It runs Claude Opus 4.8 with web_search/web_fetch,
 reads each character's Wookieepedia page, verifies dates, and writes
 `description` / `timeline` / `dates` / `notes` into
-`build_scripts/character_descriptions.json`. **Nothing writes back to `data.json`** —
+`sites/starwars/character_descriptions.json`. **Nothing writes back to `data.json`** —
 acting on a note is a manual edit.
 
-Entries are keyed by the character's `wookiepedia` URL from `data.json`.
+Entries are keyed by the character's `wookiepedia` URL from `sites/starwars/data.json`.
+The script resolves the pack via the `SITE` env var (defaulting to `starwars`) through
+`build_scripts/site.mjs` — pass `SITE=marvel` to target another pack's data instead.
 
 ## Run modes
 
@@ -34,8 +36,8 @@ no API key). Drop it to use the Anthropic API (needs `ANTHROPIC_API_KEY` in
 | **Backfill only `socialDesc`** (cheap; rewrites stored bios, no research) | `node description.js --social-only --via-claude-code` |
 | **Rewrite every `socialDesc`** (after a `SOCIAL_RULES` change) | `node description.js --social-only --via-claude-code --all` |
 
-Names must match `title` in `data.json` (case-insensitive). Unknown names abort with a
-"Not found in data.json" list.
+Names must match `title` in `sites/starwars/data.json` (case-insensitive). Unknown names
+abort with a "Not found in data.json" list.
 
 Tuning lives at the top of `description.js`: `CONCURRENCY = 8`, `EFFORT = 'medium'`.
 ~83s/character avg, ~$0.40/character.
@@ -61,12 +63,13 @@ changes, not for adding a character.
    seenIn) grouped by type. Append them to `scratchpad/correction-backlog.md`. State
    plainly that `data.json` is untouched — the user applies fixes manually.
 5. **Surface the app** only if asked: `character_descriptions.json` feeds the app via
-   `node prepJson.js` (from `build_scripts/`), which regenerates `src/data/*`. Mention it
-   as the follow-up step; don't run it unless the user wants the change live.
+   `node prepJson.js` (from `build_scripts/`), which regenerates
+   `sites/starwars/generated/*.json`. Mention it as the follow-up step; don't run it
+   unless the user wants the change live.
 
 ## Do not
 
-- Hand-edit `character_descriptions.json` or `src/data/*.json`.
+- Hand-edit `character_descriptions.json` or `sites/starwars/generated/*.json`.
 - Auto-apply notes to `data.json`.
 - Refresh existing entries on a default run — default only touches missing keys. To
   refresh an existing character, name it or use `--all`.

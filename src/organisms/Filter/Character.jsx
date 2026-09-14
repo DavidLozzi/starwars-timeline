@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from '../../molecules/dropdown';
-import charactersData from '../../data/characters.json';
+import charactersData from '@site/generated/characters.json';
 
 const FilterCharacterDropdown = ({ label = 'Select Character', setSelectedCharacter, selectedCharacter, style }) => {
   const [characterOptions, setCharacterOptions] = React.useState([]);

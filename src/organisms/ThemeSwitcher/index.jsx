@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
-import sithSvg from '../../assets/sith.svg';
-import jediSvg from '../../assets/jedi.svg';
+import themeList from '@site/themes';
 import { useAppContext } from '../../AppContext';
 import * as Styled from './index.styles';
 
@@ -9,11 +8,21 @@ const ThemeSwitcher = () => {
   const theme = useTheme();
   const { setTheme } = useAppContext();
 
+  // A pack with fewer than two themes has nothing to switch between.
+  if (themeList.themes.length < 2) return null;
+
   return (
     <Styled.Wrapper>
       <Styled.Title>Theme:</Styled.Title>
-      <Styled.ImageButton src={jediSvg} alt="Switch to Jedi Theme" onClick={() => setTheme('jedi')} isActive={theme.name === 'jedi'} />
-      <Styled.ImageButton src={sithSvg} alt="Switch to Sith Theme" onClick={() => setTheme('sith')} isActive={theme.name === 'sith'} />
+      {themeList.themes.map(t => (
+        <Styled.ImageButton
+          key={t.id}
+          src={t.icon}
+          alt={`Switch to ${t.label} Theme`}
+          onClick={() => setTheme(t.id)}
+          isActive={theme.name === t.id}
+        />
+      ))}
       <Styled.Note>(beta)</Styled.Note>
     </Styled.Wrapper>
   );

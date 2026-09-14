@@ -4,18 +4,13 @@ import ListView from '../../molecules/listview';
 import Styled from './index.styles';
 import { useAppContext } from '../../AppContext';
 import analytics, { ACTIONS } from '../../analytics';
+import site, { formatYear as convertYear } from '../../site';
 
 const CharacterDetailModal = ({ character, onClose, currentYear }) => {
-  const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
+  const [imageUrl, setImageUrl] = React.useState(site.images.default);
   const [birthYear, setBirthYear] = React.useState(0);
   const [seenInListData, setSeenInListData] = React.useState([]);
   const { scrollTo } = useAppContext();
-
-  const convertYear = (year) => {
-    if (year <= 0) return `${year * -1} BBY`;
-    if (year > 0) return `${year} ABY`;
-    return 'none';
-  };
 
   const goToSeenIn = (seenIn) => {
     scrollTo(seenIn.year, character);
@@ -72,7 +67,7 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
         <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
         <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />
       </Styled.ListViewWrapper>
-      {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank">Learn more on Wookiepedia.com</Styled.Wookiepedia>}
+      {character[site.labels.wikiField] && <Styled.WikiLink href={character[site.labels.wikiField]} target="_blank">{site.labels.wikiLinkText}</Styled.WikiLink>}
     </Styled.Body>
   </Styled.Wrapper>;
 }

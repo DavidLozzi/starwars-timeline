@@ -4,6 +4,7 @@ import { setOnboardingState } from '../../utils';
 import { DEFAULT_ONBOARDING_CONTENT } from './content';
 import analytics, { ACTIONS } from '../../analytics';
 import Styled from './index.styles';
+import site from '../../site';
 
 // Export content for tests
 export { DEFAULT_ONBOARDING_CONTENT };
@@ -104,7 +105,7 @@ const OnboardingGuideComponent = ({ isOpen, onDismiss, openSource, allowKeyboard
         aria-labelledby="onboarding-title"
         aria-modal="true"
       >
-        <Styled.Title id="onboarding-title">Welcome to the Ultimate Star Wars Timeline</Styled.Title>
+        <Styled.Title id="onboarding-title">{site.welcomeTitle}</Styled.Title>
 
         {DEFAULT_ONBOARDING_CONTENT.steps.map((step) => (
           <StepContentMemo key={step.id} step={step} />

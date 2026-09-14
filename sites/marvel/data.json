@@ -1,0 +1,2584 @@
+[
+  {
+    "title": "The War Years",
+    "type": "era",
+    "startYear": 1933,
+    "endYear": 1961,
+    "universe": "shared"
+  },
+  {
+    "title": "The Mutant Age",
+    "type": "era",
+    "startYear": 1962,
+    "endYear": 1999,
+    "universe": "shared"
+  },
+  {
+    "title": "The Age of Heroes",
+    "type": "era",
+    "startYear": 2000,
+    "endYear": 2011,
+    "universe": "shared"
+  },
+  {
+    "title": "The Avengers Era",
+    "type": "era",
+    "startYear": 2012,
+    "endYear": 2017,
+    "universe": "shared"
+  },
+  {
+    "title": "The Blip",
+    "type": "era",
+    "startYear": 2018,
+    "endYear": 2022,
+    "universe": "shared"
+  },
+  {
+    "title": "The Multiverse Era",
+    "type": "era",
+    "startYear": 2023,
+    "endYear": 2039,
+    "universe": "shared"
+  },
+  {
+    "title": "Captain America: The First Avenger",
+    "type": "movie",
+    "startYear": 1943,
+    "endYear": 1943,
+    "universe": "mcu"
+  },
+  {
+    "title": "The Fantastic Four: First Steps",
+    "type": "movie",
+    "startYear": 1964,
+    "endYear": 1964,
+    "universe": "mcu"
+  },
+  {
+    "title": "Captain Marvel",
+    "type": "movie",
+    "startYear": 1995,
+    "endYear": 1995,
+    "universe": "mcu"
+  },
+  {
+    "title": "Iron Man",
+    "type": "movie",
+    "startYear": 2010,
+    "endYear": 2010,
+    "universe": "mcu"
+  },
+  {
+    "title": "Iron Man 2",
+    "type": "movie",
+    "startYear": 2011,
+    "endYear": 2011,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "The Incredible Hulk",
+    "type": "movie",
+    "startYear": 2011,
+    "endYear": 2011,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Thor",
+    "type": "movie",
+    "startYear": 2011,
+    "endYear": 2011,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "The Avengers",
+    "type": "movie",
+    "startYear": 2012,
+    "endYear": 2012,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Iron Man 3",
+    "type": "movie",
+    "startYear": 2012,
+    "endYear": 2012,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Thor: The Dark World",
+    "type": "movie",
+    "startYear": 2013,
+    "endYear": 2013,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Captain America: The Winter Soldier",
+    "type": "movie",
+    "startYear": 2014,
+    "endYear": 2014,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Guardians of the Galaxy",
+    "type": "movie",
+    "startYear": 2014,
+    "endYear": 2014,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Guardians of the Galaxy Vol. 2",
+    "type": "movie",
+    "startYear": 2014,
+    "endYear": 2014,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Avengers: Age of Ultron",
+    "type": "movie",
+    "startYear": 2015,
+    "endYear": 2015,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Ant-Man",
+    "type": "movie",
+    "startYear": 2015,
+    "endYear": 2015,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Captain America: Civil War",
+    "type": "movie",
+    "startYear": 2016,
+    "endYear": 2016,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Black Widow",
+    "type": "movie",
+    "startYear": 2016,
+    "endYear": 2016,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Spider-Man: Homecoming",
+    "type": "movie",
+    "startYear": 2016,
+    "endYear": 2016,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Black Panther",
+    "type": "movie",
+    "startYear": 2016,
+    "endYear": 2016,
+    "universe": "mcu",
+    "order": 4
+  },
+  {
+    "title": "Doctor Strange",
+    "type": "movie",
+    "startYear": 2017,
+    "endYear": 2017,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Thor: Ragnarok",
+    "type": "movie",
+    "startYear": 2017,
+    "endYear": 2017,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Ant-Man and the Wasp",
+    "type": "movie",
+    "startYear": 2018,
+    "endYear": 2018,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Avengers: Infinity War",
+    "type": "movie",
+    "startYear": 2018,
+    "endYear": 2018,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Avengers: Endgame",
+    "type": "movie",
+    "startYear": 2023,
+    "endYear": 2023,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Spider-Man: Far From Home",
+    "type": "movie",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Shang-Chi and the Legend of the Ten Rings",
+    "type": "movie",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Eternals",
+    "type": "movie",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Spider-Man: No Way Home",
+    "type": "movie",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 4
+  },
+  {
+    "title": "Doctor Strange in the Multiverse of Madness",
+    "type": "movie",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Thor: Love and Thunder",
+    "type": "movie",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "Black Panther: Wakanda Forever",
+    "type": "movie",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Deadpool & Wolverine",
+    "type": "movie",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 4
+  },
+  {
+    "title": "Ant-Man and the Wasp: Quantumania",
+    "type": "movie",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 1
+  },
+  {
+    "title": "Guardians of the Galaxy Vol. 3",
+    "type": "movie",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "The Marvels",
+    "type": "movie",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Thunderbolts*",
+    "type": "movie",
+    "startYear": 2027,
+    "endYear": 2027,
+    "universe": "mcu"
+  },
+  {
+    "title": "Loki",
+    "type": "tv",
+    "startYear": 2012,
+    "endYear": 2012,
+    "universe": "mcu",
+    "order": 3
+  },
+  {
+    "title": "Agents of S.H.I.E.L.D.",
+    "type": "tv",
+    "startYear": 2013,
+    "endYear": 2017,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "WandaVision",
+    "type": "tv",
+    "startYear": 2023,
+    "endYear": 2023,
+    "universe": "mcu",
+    "order": 2
+  },
+  {
+    "title": "The Falcon and the Winter Soldier",
+    "type": "tv",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 5
+  },
+  {
+    "title": "Moon Knight",
+    "type": "tv",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 6
+  },
+  {
+    "title": "Hawkeye",
+    "type": "tv",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "mcu",
+    "order": 7
+  },
+  {
+    "title": "Ms. Marvel",
+    "type": "tv",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 5
+  },
+  {
+    "title": "She-Hulk: Attorney at Law",
+    "type": "tv",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 6
+  },
+  {
+    "title": "Echo",
+    "type": "tv",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "mcu",
+    "order": 7
+  },
+  {
+    "title": "Secret Invasion",
+    "type": "tv",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 4
+  },
+  {
+    "title": "Agatha All Along",
+    "type": "tv",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 5
+  },
+  {
+    "title": "Daredevil: Born Again",
+    "type": "tv",
+    "startYear": 2026,
+    "endYear": 2026,
+    "universe": "mcu",
+    "order": 6
+  },
+  {
+    "title": "Spider-Man",
+    "type": "movie",
+    "startYear": 2002,
+    "endYear": 2002,
+    "universe": "raimi",
+    "order": 1
+  },
+  {
+    "title": "Spider-Man 2",
+    "type": "movie",
+    "startYear": 2004,
+    "endYear": 2004,
+    "universe": "raimi",
+    "order": 1
+  },
+  {
+    "title": "Spider-Man 3",
+    "type": "movie",
+    "startYear": 2007,
+    "endYear": 2007,
+    "universe": "raimi",
+    "order": 1
+  },
+  {
+    "title": "The Amazing Spider-Man",
+    "type": "movie",
+    "startYear": 2012,
+    "endYear": 2012,
+    "universe": "amazing",
+    "order": 4
+  },
+  {
+    "title": "The Amazing Spider-Man 2",
+    "type": "movie",
+    "startYear": 2014,
+    "endYear": 2014,
+    "universe": "amazing",
+    "order": 4
+  },
+  {
+    "title": "Madame Web",
+    "type": "movie",
+    "startYear": 2003,
+    "endYear": 2003,
+    "universe": "ssu",
+    "order": 1
+  },
+  {
+    "title": "Venom",
+    "type": "movie",
+    "startYear": 2018,
+    "endYear": 2018,
+    "universe": "ssu",
+    "order": 3
+  },
+  {
+    "title": "Venom: Let There Be Carnage",
+    "type": "movie",
+    "startYear": 2021,
+    "endYear": 2021,
+    "universe": "ssu"
+  },
+  {
+    "title": "Morbius",
+    "type": "movie",
+    "startYear": 2022,
+    "endYear": 2022,
+    "universe": "ssu"
+  },
+  {
+    "title": "Venom: The Last Dance",
+    "type": "movie",
+    "startYear": 2024,
+    "endYear": 2024,
+    "universe": "ssu",
+    "order": 8
+  },
+  {
+    "title": "Kraven the Hunter",
+    "type": "movie",
+    "startYear": 2025,
+    "endYear": 2025,
+    "universe": "ssu",
+    "order": 8
+  },
+  {
+    "title": "X-Men: First Class",
+    "type": "movie",
+    "startYear": 1962,
+    "endYear": 1962,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X-Men: Days of Future Past",
+    "type": "movie",
+    "startYear": 1973,
+    "endYear": 1973,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X-Men Origins: Wolverine",
+    "type": "movie",
+    "startYear": 1979,
+    "endYear": 1979,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X-Men: Apocalypse",
+    "type": "movie",
+    "startYear": 1983,
+    "endYear": 1983,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X-Men: Dark Phoenix",
+    "type": "movie",
+    "startYear": 1992,
+    "endYear": 1992,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X-Men",
+    "type": "movie",
+    "startYear": 2000,
+    "endYear": 2000,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "X2: X-Men United",
+    "type": "movie",
+    "startYear": 2003,
+    "endYear": 2003,
+    "universe": "fox-xmen",
+    "order": 2
+  },
+  {
+    "title": "X-Men: The Last Stand",
+    "type": "movie",
+    "startYear": 2006,
+    "endYear": 2006,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "The Wolverine",
+    "type": "movie",
+    "startYear": 2013,
+    "endYear": 2013,
+    "universe": "fox-xmen",
+    "order": 3
+  },
+  {
+    "title": "Deadpool",
+    "type": "movie",
+    "startYear": 2016,
+    "endYear": 2016,
+    "universe": "fox-xmen",
+    "order": 5
+  },
+  {
+    "title": "Deadpool 2",
+    "type": "movie",
+    "startYear": 2018,
+    "endYear": 2018,
+    "universe": "fox-xmen",
+    "order": 4
+  },
+  {
+    "title": "The New Mutants",
+    "type": "movie",
+    "startYear": 2018,
+    "endYear": 2018,
+    "universe": "fox-xmen",
+    "order": 5
+  },
+  {
+    "title": "Logan",
+    "type": "movie",
+    "startYear": 2029,
+    "endYear": 2029,
+    "universe": "fox-xmen"
+  },
+  {
+    "title": "Fantastic Four",
+    "type": "movie",
+    "startYear": 2005,
+    "endYear": 2005,
+    "universe": "fox-ff",
+    "order": 1
+  },
+  {
+    "title": "Fantastic Four: Rise of the Silver Surfer",
+    "type": "movie",
+    "startYear": 2007,
+    "endYear": 2007,
+    "universe": "fox-ff",
+    "order": 2
+  },
+  {
+    "title": "Fantastic Four (2015)",
+    "type": "movie",
+    "startYear": 2015,
+    "endYear": 2015,
+    "universe": "fox-ff",
+    "order": 3
+  },
+  {
+    "title": "Blade",
+    "type": "movie",
+    "startYear": 1998,
+    "endYear": 1998,
+    "universe": "pre-mcu"
+  },
+  {
+    "title": "Blade II",
+    "type": "movie",
+    "startYear": 2002,
+    "endYear": 2002,
+    "universe": "pre-mcu",
+    "order": 2
+  },
+  {
+    "title": "Daredevil (2003 film)",
+    "type": "movie",
+    "startYear": 2003,
+    "endYear": 2003,
+    "universe": "pre-mcu",
+    "order": 3
+  },
+  {
+    "title": "Hulk",
+    "type": "movie",
+    "startYear": 2003,
+    "endYear": 2003,
+    "universe": "pre-mcu",
+    "order": 4
+  },
+  {
+    "title": "The Punisher (2004 film)",
+    "type": "movie",
+    "startYear": 2004,
+    "endYear": 2004,
+    "universe": "pre-mcu",
+    "order": 2
+  },
+  {
+    "title": "Blade: Trinity",
+    "type": "movie",
+    "startYear": 2004,
+    "endYear": 2004,
+    "universe": "pre-mcu",
+    "order": 3
+  },
+  {
+    "title": "Elektra",
+    "type": "movie",
+    "startYear": 2005,
+    "endYear": 2005,
+    "universe": "pre-mcu",
+    "order": 2
+  },
+  {
+    "title": "Ghost Rider",
+    "type": "movie",
+    "startYear": 2007,
+    "endYear": 2007,
+    "universe": "pre-mcu",
+    "order": 3
+  },
+  {
+    "title": "Ghost Rider: Spirit of Vengeance",
+    "type": "movie",
+    "startYear": 2011,
+    "endYear": 2011,
+    "universe": "pre-mcu",
+    "order": 4
+  },
+  {
+    "title": "Daredevil",
+    "type": "tv",
+    "startYear": 2015,
+    "endYear": 2018,
+    "universe": "defenders",
+    "order": 4
+  },
+  {
+    "title": "Jessica Jones",
+    "type": "tv",
+    "startYear": 2015,
+    "endYear": 2019,
+    "universe": "defenders",
+    "order": 5
+  },
+  {
+    "title": "Luke Cage",
+    "type": "tv",
+    "startYear": 2016,
+    "endYear": 2018,
+    "universe": "defenders",
+    "order": 6
+  },
+  {
+    "title": "Iron Fist",
+    "type": "tv",
+    "startYear": 2017,
+    "endYear": 2018,
+    "universe": "defenders",
+    "order": 3
+  },
+  {
+    "title": "The Defenders",
+    "type": "tv",
+    "startYear": 2017,
+    "endYear": 2017,
+    "universe": "defenders",
+    "order": 4
+  },
+  {
+    "title": "The Punisher",
+    "type": "tv",
+    "startYear": 2017,
+    "endYear": 2019,
+    "universe": "defenders",
+    "order": 5
+  },
+  {
+    "title": "Tony Stark",
+    "altTitle": "Iron Man",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2010,
+    "birthYear": 1970,
+    "endYear": 2023,
+    "endYearEvent": "Avengers: Endgame",
+    "imageUrl": "/images/tony-stark.png",
+    "wiki": "https://marvel.fandom.com/wiki/Anthony_Stark_(Earth-199999)",
+    "description": "Tony Stark is a billionaire engineer who built the first Iron Man armor to escape captivity, then kept building better ones to protect the world as a founding member of the Avengers. His genius powered the team's technology for over a decade, and he ultimately gave his life to defeat Thanos and undo the Blip.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Powered Armor)"
+      }
+    ],
+    "seenIn": [
+      "Iron Man",
+      "Iron Man 2",
+      "The Avengers",
+      "Iron Man 3",
+      "Avengers: Age of Ultron",
+      "Captain America: Civil War",
+      "Spider-Man: Homecoming",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "title": "Steve Rogers",
+    "altTitle": "Captain America",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 1943,
+    "birthYear": 1918,
+    "endYear": 2023,
+    "endYearUnknown": true,
+    "imageUrl": "/images/steve-rogers.png",
+    "wiki": "https://marvel.fandom.com/wiki/Steven_Rogers_(Earth-199999)",
+    "description": "Steve Rogers is a World War II super soldier who spent decades frozen in ice before waking into the modern world and leading the Avengers. Unwavering and idealistic, he fought alongside the team through Ultron, the Winter Soldier crisis, and Thanos's invasion, before using time travel to live out a full life and returning his shield to Sam Wilson.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Super Soldier)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Captain America: The First Avenger",
+      "The Avengers",
+      "Captain America: The Winter Soldier",
+      "Avengers: Age of Ultron",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "title": "Natasha Romanoff",
+    "altTitle": "Black Widow",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2012,
+    "endYear": 2023,
+    "endYearEvent": "Avengers: Endgame",
+    "imageUrl": "/images/natasha-romanoff.png",
+    "wiki": "https://marvel.fandom.com/wiki/Natasha_Romanoff_(Earth-199999)",
+    "description": "Natasha Romanoff is a former Russian spy turned S.H.I.E.L.D. agent and founding Avenger, known for her espionage skills and quiet loyalty to her adopted family of heroes. She sacrificed herself on Vormir so the team could retrieve the Soul Stone and reverse the Blip.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "The Avengers",
+      "Captain America: The Winter Soldier",
+      "Avengers: Age of Ultron",
+      "Black Widow",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "title": "Peter Quill",
+    "altTitle": "Star-Lord",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2014,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/peter-quill.png",
+    "wiki": "https://marvel.fandom.com/wiki/Peter_Quill_(Earth-199999)",
+    "description": "Peter Quill was abducted from Earth as a child and raised among space pirates, eventually leading the Guardians of the Galaxy on a mission to protect the cosmos. His half-Celestial heritage gives him latent abilities he rarely relies on, preferring a well-timed quip and an old mixtape instead.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human/Celestial"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Guardians of the Galaxy"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Guardians of the Galaxy",
+      "Guardians of the Galaxy Vol. 2",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Guardians of the Galaxy Vol. 3"
+    ]
+  },
+  {
+    "title": "Wanda Maximoff",
+    "altTitle": "Scarlet Witch",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2015,
+    "endYear": 2025,
+    "endYearUnknown": true,
+    "imageUrl": "/images/wanda-maximoff.png",
+    "wiki": "https://marvel.fandom.com/wiki/Wanda_Maximoff_(Earth-199999)",
+    "description": "Wanda Maximoff is a reality-warping Avenger whose chaos magic grew from a HYDRA experiment into one of the most powerful forces on Earth. After losing Vision in the fight against Thanos, her grief reshaped an entire town in Westview, and she later resurfaced as the Scarlet Witch in a battle over the Darkhold's power.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Avengers: Age of Ultron",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "WandaVision",
+      "Doctor Strange in the Multiverse of Madness"
+    ]
+  },
+  {
+    "title": "Thor",
+    "altTitle": "God of Thunder",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2011,
+    "startYearUnknown": true,
+    "endYear": 2025,
+    "endYearUnknown": true,
+    "imageUrl": "/images/thor.png",
+    "wiki": "https://marvel.fandom.com/wiki/Thor_Odinson_(Earth-199999)",
+    "description": "Thor is the Asgardian God of Thunder, heir to Odin's throne, who learned humility on Earth before losing his home, his brother, and half his people to Thanos. He remains one of the universe's mightiest warriors, wielding Stormbreaker alongside the Guardians of the Galaxy and, later, Zeus's thunderbolt against new threats.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Asgardian"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Thor",
+      "The Avengers",
+      "Thor: The Dark World",
+      "Avengers: Age of Ultron",
+      "Thor: Ragnarok",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Thor: Love and Thunder"
+    ]
+  },
+  {
+    "title": "Loki",
+    "altTitle": "God of Mischief",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2011,
+    "startYearUnknown": true,
+    "endYear": 2018,
+    "endYearEvent": "Avengers: Infinity War",
+    "imageUrl": "/images/loki.png",
+    "wiki": "https://marvel.fandom.com/wiki/Loki_Laufeyson_(Earth-199999)",
+    "description": "Loki is Thor's adopted brother, a Frost Giant raised as an Asgardian prince whose ambition and resentment repeatedly set him against the Avengers before a fragile reconciliation with his brother. He was killed by Thanos aboard the Statesman while trying to protect Thor, though a variant of him escaped into a diverging timeline during the Avengers' 2012 time heist.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Asgardian/Frost Giant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Asgard"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Thor",
+      "The Avengers",
+      "Thor: The Dark World",
+      "Thor: Ragnarok",
+      "Avengers: Infinity War",
+      "Loki"
+    ]
+  },
+  {
+    "title": "Bruce Banner (MCU)",
+    "altTitle": "Hulk",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2011,
+    "endYear": 2023,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bruce-banner-mcu.png",
+    "wiki": "https://marvel.fandom.com/wiki/Robert_Bruce_Banner_(Earth-199999)",
+    "description": "Bruce Banner is a brilliant physicist whose gamma radiation experiment gave him the ability to transform into the Hulk, a nearly unstoppable green giant he spent years struggling to control. He eventually merged his intellect with the Hulk's strength, becoming Smart Hulk and losing an arm in the fight to undo the Blip.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Gamma-Mutated)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "The Incredible Hulk",
+      "The Avengers",
+      "Avengers: Age of Ultron",
+      "Thor: Ragnarok",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "title": "Clint Barton",
+    "altTitle": "Hawkeye",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2012,
+    "endYear": 2024,
+    "endYearUnknown": true,
+    "imageUrl": "/images/clint-barton.png",
+    "wiki": "https://marvel.fandom.com/wiki/Clinton_Barton_(Earth-199999)",
+    "description": "Clint Barton is a S.H.I.E.L.D. marksman and founding Avenger who lost his family to the Blip and became the vigilante Ronin during the five years Thanos's snap erased half of all life. He later mentored Kate Bishop while hunting down loose ends from his time as Ronin.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "The Avengers",
+      "Avengers: Age of Ultron",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Hawkeye"
+    ]
+  },
+  {
+    "title": "Nick Fury",
+    "altTitle": "Director Fury",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 1995,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/nick-fury.png",
+    "wiki": "https://marvel.fandom.com/wiki/Nicholas_Fury_(Earth-199999)",
+    "description": "Nick Fury is the one-eyed spymaster who built S.H.I.E.L.D. into a global defense network and personally recruited the Avengers Initiative. He lost his eye to a Kree agent's claws while working alongside a young Carol Danvers, and has spent decades since operating in the shadows, most recently investigating a Skrull infiltration from orbit.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "S.H.I.E.L.D."
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "Captain Marvel",
+      "Iron Man",
+      "Iron Man 2",
+      "The Avengers",
+      "Captain America: The Winter Soldier",
+      "Avengers: Infinity War",
+      "Secret Invasion"
+    ]
+  },
+  {
+    "title": "Bucky Barnes",
+    "altTitle": "Winter Soldier",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 1943,
+    "birthYear": 1917,
+    "endYear": 2027,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bucky-barnes.png",
+    "wiki": "https://marvel.fandom.com/wiki/James_Barnes_(Earth-199999)",
+    "description": "Bucky Barnes is Steve Rogers's childhood friend, presumed dead in World War II before being rebuilt by HYDRA as the brainwashed assassin the Winter Soldier. Freed from mind control, he spent years atoning for his crimes alongside Sam Wilson and later took a seat in the U.S. Congress.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Super Soldier)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Captain America: The First Avenger",
+      "Captain America: The Winter Soldier",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "The Falcon and the Winter Soldier",
+      "Thunderbolts*"
+    ]
+  },
+  {
+    "title": "Sam Wilson",
+    "altTitle": "Falcon",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2014,
+    "endYear": 2024,
+    "endYearUnknown": true,
+    "imageUrl": "/images/sam-wilson.png",
+    "wiki": "https://marvel.fandom.com/wiki/Samuel_Wilson_(Earth-199999)",
+    "description": "Sam Wilson is a former Air Force pararescueman turned Avenger who fights with a mechanical wingsuit as the Falcon. After Steve Rogers chose to live out his life in the past, he entrusted Sam with the shield, and Sam took up the mantle of Captain America.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Powered Wingsuit)"
+      }
+    ],
+    "seenIn": [
+      "Captain America: The Winter Soldier",
+      "Captain America: Civil War",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "The Falcon and the Winter Soldier"
+    ]
+  },
+  {
+    "title": "T'Challa",
+    "altTitle": "Black Panther",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2016,
+    "endYear": 2025,
+    "endYearEvent": "Black Panther: Wakanda Forever",
+    "imageUrl": "/images/t-challa.png",
+    "wiki": "https://marvel.fandom.com/wiki/T%27Challa_(Earth-199999)",
+    "description": "T'Challa is the King of Wakanda and the Black Panther, protector of a secretive nation built on vibranium technology far beyond the rest of the world. He led Wakanda's forces against Thanos's army and later opened his country to the world, before succumbing to an unspecified illness that Wakanda's own science could not cure.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Wakanda"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Captain America: Civil War",
+      "Black Panther",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Black Panther: Wakanda Forever"
+    ]
+  },
+  {
+    "title": "Stephen Strange",
+    "altTitle": "Doctor Strange",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2017,
+    "endYear": 2025,
+    "endYearUnknown": true,
+    "imageUrl": "/images/stephen-strange.png",
+    "wiki": "https://marvel.fandom.com/wiki/Stephen_Strange_(Earth-199999)",
+    "description": "Stephen Strange was a brilliant but arrogant surgeon whose hands were ruined in a car accident, sending him to Kathmandu to seek healing and finding the mystic arts instead. As Sorcerer Supreme, he guards Earth's reality from magical threats and has personally seen millions of possible futures play out.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Masters of the Mystic Arts"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Doctor Strange",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Spider-Man: No Way Home",
+      "Doctor Strange in the Multiverse of Madness"
+    ]
+  },
+  {
+    "title": "Scott Lang",
+    "altTitle": "Ant-Man",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2015,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/scott-lang.png",
+    "wiki": "https://marvel.fandom.com/wiki/Scott_Lang_(Earth-199999)",
+    "description": "Scott Lang is a reformed cat burglar who dons Hank Pym's subatomic Ant-Man suit to shrink to insect size and, when needed, grow to giant proportions. Trapped in the Quantum Realm during the Blip, his escape gave the Avengers the key to time travel and ultimately to undoing Thanos's snap.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Powered Suit)"
+      }
+    ],
+    "seenIn": [
+      "Ant-Man",
+      "Captain America: Civil War",
+      "Ant-Man and the Wasp",
+      "Avengers: Endgame",
+      "Ant-Man and the Wasp: Quantumania"
+    ]
+  },
+  {
+    "title": "Vision",
+    "altTitle": "Vision",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2015,
+    "endYear": 2018,
+    "endYearEvent": "Avengers: Infinity War",
+    "imageUrl": "/images/vision.png",
+    "wiki": "https://marvel.fandom.com/wiki/Vision_(Earth-199999)",
+    "description": "Vision is a synthetic being born from Ultron's body, JARVIS's consciousness, and the Mind Stone, brought to life by Tony Stark and Bruce Banner. He fell in love with Wanda Maximoff and was ultimately destroyed by Thanos, who tore the Mind Stone from his forehead moments after Wanda's own attempt to spare him from that fate.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Synthezoid"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Avengers: Age of Ultron",
+      "Captain America: Civil War",
+      "Avengers: Infinity War"
+    ]
+  },
+  {
+    "title": "Gamora",
+    "altTitle": "Gamora",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2014,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/gamora.png",
+    "wiki": "https://marvel.fandom.com/wiki/Gamora_(Earth-199999)",
+    "description": "Gamora is the last of her kind from a massacred Zehoberei village, adopted and trained as a weapon by Thanos before turning against him to join the Guardians of the Galaxy. The version of her from 2014 was pulled forward in time by Thanos and, after his defeat, chose to stay in the present with the Guardians despite having no memory of her old life with them.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Zehoberei"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Guardians of the Galaxy"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Guardians of the Galaxy",
+      "Guardians of the Galaxy Vol. 2",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Guardians of the Galaxy Vol. 3"
+    ]
+  },
+  {
+    "title": "Nebula",
+    "altTitle": "Nebula",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2014,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/nebula.png",
+    "wiki": "https://marvel.fandom.com/wiki/Nebula_(Earth-199999)",
+    "description": "Nebula is Gamora's cybernetically-rebuilt adoptive sister, tortured and rebuilt by Thanos after every loss to her in combat until barely anything organic remained. She broke from her father to join the Guardians of the Galaxy and played a key role in the Avengers' time heist against her past self.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Luphomoid (Cybernetic)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Guardians of the Galaxy"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Guardians of the Galaxy",
+      "Guardians of the Galaxy Vol. 2",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Guardians of the Galaxy Vol. 3"
+    ]
+  },
+  {
+    "title": "Rocket",
+    "altTitle": "Rocket Raccoon",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2014,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/rocket.png",
+    "wiki": "https://marvel.fandom.com/wiki/Rocket_Raccoon_(Earth-199999)",
+    "description": "Rocket is a genetically and cybernetically engineered creature built from a small mammal through cruel experimentation, channeling his trauma into sharp sarcasm and weapons expertise. He fought to free every other test subject from his creator's lab and stepped up to lead the Guardians of the Galaxy afterward.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Genetically Engineered Raccoon"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Guardians of the Galaxy"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Guardians of the Galaxy",
+      "Guardians of the Galaxy Vol. 2",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Guardians of the Galaxy Vol. 3"
+    ]
+  },
+  {
+    "title": "Carol Danvers",
+    "altTitle": "Captain Marvel",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 1995,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/carol-danvers.png",
+    "wiki": "https://marvel.fandom.com/wiki/Carol_Danvers_(Earth-199999)",
+    "description": "Carol Danvers is a former Air Force pilot whose DNA was fused with a Kree Supreme Intelligence core, granting her near-limitless photon energy powers under the name Captain Marvel. She spent years protecting distant worlds before returning to Earth to help finish the fight against Thanos and, later, to unravel a conspiracy tangled with her own powers.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human/Kree Hybrid"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Captain Marvel",
+      "Avengers: Endgame",
+      "The Marvels"
+    ]
+  },
+  {
+    "title": "Peter Parker (MCU)",
+    "altTitle": "Spider-Man",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2016,
+    "endYear": 2024,
+    "endYearUnknown": true,
+    "imageUrl": "/images/peter-parker-mcu.png",
+    "wiki": "https://marvel.fandom.com/wiki/Peter_Parker_(Earth-199999)",
+    "description": "Peter Parker is a Queens teenager bitten by a genetically altered spider, gaining wall-crawling strength and a danger-sensing \"spider-sense\" that he uses as the friendly neighborhood Spider-Man. Mentored by Tony Stark and later devastated by a spell gone wrong, he made the world forget he ever existed to protect the people he loves.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Avengers"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Powered Suit)"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man: Homecoming",
+      "Avengers: Infinity War",
+      "Avengers: Endgame",
+      "Spider-Man: Far From Home",
+      "Spider-Man: No Way Home"
+    ]
+  },
+  {
+    "title": "Thanos",
+    "altTitle": "The Mad Titan",
+    "type": "character",
+    "universe": "mcu",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2023,
+    "endYearEvent": "Avengers: Endgame",
+    "imageUrl": "/images/thanos.png",
+    "wiki": "https://marvel.fandom.com/wiki/Thanos_(Earth-199999)",
+    "description": "Thanos is the Titan warlord obsessed with the belief that erasing half of all life in the universe would save it from resource collapse, a philosophy he pursued for decades before finally gathering all six Infinity Stones. He was beheaded by Thor moments after achieving his goal, and a past version of himself pulled forward in time was later disintegrated by the combined Avengers using his own stones.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Titan"
+      },
+      {
+        "name": "Affiliation",
+        "value": "The Black Order"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes"
+      }
+    ],
+    "seenIn": [
+      "Avengers: Age of Ultron",
+      "Avengers: Infinity War",
+      "Avengers: Endgame"
+    ]
+  },
+  {
+    "title": "Peter Parker (Raimi)",
+    "altTitle": "Spider-Man",
+    "type": "character",
+    "universe": "raimi",
+    "startYear": 2002,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/peter-parker-raimi.png",
+    "wiki": "https://marvel.fandom.com/wiki/Peter_Parker_(Earth-96283)",
+    "description": "Peter Parker is a shy Queens teenager bitten by a genetically-altered spider, gaining wall-crawling strength and reflexes he uses to protect New York as Spider-Man. Guided by his uncle's dying words that with great power comes great responsibility, he balances a photography job at the Daily Bugle with a secret war against the Green Goblin, Doctor Octopus, and his own inner darkness.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Daily Bugle"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Spider-Man)"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man",
+      "Spider-Man 2",
+      "Spider-Man 3"
+    ]
+  },
+  {
+    "title": "Mary Jane Watson",
+    "type": "character",
+    "universe": "raimi",
+    "startYear": 2002,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/mary-jane-watson.png",
+    "wiki": "https://marvel.fandom.com/wiki/Mary_Jane_Watson_(Earth-96283)",
+    "description": "Mary Jane Watson is Peter Parker's childhood neighbor and on-again, off-again love interest, an aspiring actress who becomes a frequent target of the villains stalking Spider-Man. Her relationship with Peter anchors all three films, culminating in a fragile reconciliation after his battle with Sandman and Venom.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Actress"
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man",
+      "Spider-Man 2",
+      "Spider-Man 3"
+    ]
+  },
+  {
+    "title": "Harry Osborn",
+    "altTitle": "New Goblin",
+    "type": "character",
+    "universe": "raimi",
+    "startYear": 2002,
+    "endYear": 2007,
+    "endYearEvent": "Spider-Man 3",
+    "imageUrl": "/images/harry-osborn.png",
+    "wiki": "https://marvel.fandom.com/wiki/Harry_Osborn_(Earth-96283)",
+    "description": "Harry Osborn is Peter Parker's best friend and the son of industrialist Norman Osborn, whose inherited rage and Oscorp technology eventually turn him into the second Green Goblin. After learning the truth about his father's death and Spider-Man's identity, he sacrifices himself saving Peter and Mary Jane from Venom and Sandman.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Oscorp"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Glider Technology)"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man",
+      "Spider-Man 2",
+      "Spider-Man 3"
+    ]
+  },
+  {
+    "title": "Norman Osborn",
+    "altTitle": "Green Goblin",
+    "type": "character",
+    "universe": "raimi",
+    "startYear": 2002,
+    "endYear": 2002,
+    "endYearEvent": "Spider-Man",
+    "imageUrl": "/images/norman-osborn.png",
+    "wiki": "https://marvel.fandom.com/wiki/Norman_Osborn_(Earth-96283)",
+    "description": "Norman Osborn is the ruthless head of Oscorp Industries whose experimental performance-enhancing formula drives him insane, transforming him into the murderous Green Goblin. His attacks on Spider-Man end in his own death, impaled on his glider during their final battle over New York.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Oscorp"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Goblin Serum)"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man",
+      "Spider-Man: No Way Home"
+    ]
+  },
+  {
+    "title": "Otto Octavius",
+    "altTitle": "Doctor Octopus",
+    "type": "character",
+    "universe": "raimi",
+    "startYear": 2004,
+    "endYear": 2004,
+    "endYearEvent": "Spider-Man 2",
+    "imageUrl": "/images/otto-octavius.png",
+    "wiki": "https://marvel.fandom.com/wiki/Otto_Octavius_(Earth-96283)",
+    "description": "Otto Octavius is a brilliant physicist whose fusion energy experiment goes catastrophically wrong, fusing four mechanical arms to his spine and corrupting his mind into the villainous Doctor Octopus. He ultimately regains his senses and sacrifices himself, drowning his own reactor beneath the East River to save the city.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Independent"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Mechanical Arms)"
+      }
+    ],
+    "seenIn": [
+      "Spider-Man 2",
+      "Spider-Man: No Way Home"
+    ]
+  },
+  {
+    "title": "Peter Parker (Amazing)",
+    "altTitle": "Spider-Man",
+    "type": "character",
+    "universe": "amazing",
+    "startYear": 2012,
+    "endYear": 2014,
+    "endYearUnknown": true,
+    "imageUrl": "/images/peter-parker-amazing.png",
+    "wiki": "https://marvel.fandom.com/wiki/Peter_Parker_(Earth-120703)",
+    "description": "Peter Parker is a science-minded Queens teenager who investigates his late father's research at Oscorp, gets bitten by a genetically engineered spider, and becomes Spider-Man to fight crime and confront the Lizard. His growing romance with Gwen Stacy and his promise to her father to keep her safe define his years as a hero.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Midtown Science High School"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Spider-Man)"
+      }
+    ],
+    "seenIn": [
+      "The Amazing Spider-Man",
+      "The Amazing Spider-Man 2"
+    ]
+  },
+  {
+    "title": "Gwen Stacy",
+    "type": "character",
+    "universe": "amazing",
+    "startYear": 2012,
+    "endYear": 2014,
+    "endYearEvent": "The Amazing Spider-Man 2",
+    "imageUrl": "/images/gwen-stacy.png",
+    "wiki": "https://marvel.fandom.com/wiki/Gwen_Stacy_(Earth-120703)",
+    "description": "Gwen Stacy is Peter Parker's brilliant classmate and girlfriend, a fellow science student who assists him against the Lizard and later Oscorp's escaped experiments. She falls to her death during Spider-Man's battle with the Green Goblin, a loss that haunts him for the rest of the franchise.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Oscorp Intern"
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "The Amazing Spider-Man",
+      "The Amazing Spider-Man 2"
+    ]
+  },
+  {
+    "title": "Max Dillon",
+    "altTitle": "Electro",
+    "type": "character",
+    "universe": "amazing",
+    "startYear": 2014,
+    "endYear": 2014,
+    "endYearUnknown": true,
+    "imageUrl": "/images/max-dillon.png",
+    "wiki": "https://marvel.fandom.com/wiki/Max_Dillon_(Earth-120703)",
+    "description": "Max Dillon is an overlooked Oscorp electrical engineer whose obsessive admiration for Spider-Man turns to fury after an accident bathes him in electric eels and leaves him able to generate and control electricity. As Electro, he becomes one of Spider-Man's most destructive foes before Oscorp's own experiments spiral further out of control.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Oscorp"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Electrokinesis)"
+      }
+    ],
+    "seenIn": [
+      "The Amazing Spider-Man 2",
+      "Spider-Man: No Way Home"
+    ]
+  },
+  {
+    "title": "Eddie Brock",
+    "altTitle": "Venom",
+    "type": "character",
+    "universe": "ssu",
+    "startYear": 2018,
+    "endYear": 2024,
+    "endYearUnknown": true,
+    "imageUrl": "/images/eddie-brock.png",
+    "wiki": "https://marvel.fandom.com/wiki/Eddie_Brock_(Earth-688712)",
+    "description": "Eddie Brock is a disgraced investigative journalist who bonds with an alien symbiote, gaining monstrous strength and a volatile second personality that calls itself Venom. Equal parts antihero and threat, he spends years defending San Francisco while trying to keep the symbiote's darker impulses in check.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Symbiote Host)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Independent"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Symbiote)"
+      }
+    ],
+    "seenIn": [
+      "Venom",
+      "Venom: Let There Be Carnage",
+      "Venom: The Last Dance"
+    ]
+  },
+  {
+    "title": "Cletus Kasady",
+    "altTitle": "Carnage",
+    "type": "character",
+    "universe": "ssu",
+    "startYear": 2021,
+    "endYear": 2021,
+    "endYearEvent": "Venom: Let There Be Carnage",
+    "imageUrl": "/images/cletus-kasady.png",
+    "wiki": "https://marvel.fandom.com/wiki/Cletus_Kasady_(Earth-688712)",
+    "description": "Cletus Kasady is a serial killer who bonds with a symbiote offshoot of Venom while on death row, becoming the far more violent and unstable Carnage. His rampage through San Francisco to reclaim his lover Frances ends when Eddie Brock and Venom defeat him at a burning cathedral.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Symbiote Host)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "None (Serial Killer)"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Symbiote)"
+      }
+    ],
+    "seenIn": [
+      "Venom: Let There Be Carnage"
+    ]
+  },
+  {
+    "title": "Logan Howlett",
+    "altTitle": "Wolverine",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1933,
+    "birthYear": 1832,
+    "endYear": 2029,
+    "endYearEvent": "Logan",
+    "imageUrl": "/images/logan-howlett.png",
+    "wiki": "https://marvel.fandom.com/wiki/James_Howlett_(Earth-10005)",
+    "description": "Logan is a nearly immortal mutant with rapid healing and adamantium-laced claws, forged by decades of black-ops experimentation and personal loss into the X-Men's most reluctant hero. He fights alongside Xavier's students across four decades before a slow-acting poison finally catches up to him in 2029, where he sacrifices himself protecting a new generation of mutants. His long memory ties together Fox's fractured X-Men timeline more than any other character.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Regeneration, Adamantium Claws)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Days of Future Past",
+      "X-Men Origins: Wolverine",
+      "X-Men",
+      "X2: X-Men United",
+      "X-Men: The Last Stand",
+      "The Wolverine",
+      "Deadpool & Wolverine",
+      "Logan"
+    ]
+  },
+  {
+    "title": "Charles Xavier",
+    "altTitle": "Professor X",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1962,
+    "endYear": 2029,
+    "endYearEvent": "Logan",
+    "imageUrl": "/images/charles-xavier.png",
+    "wiki": "https://marvel.fandom.com/wiki/Charles_Xavier_(Earth-10005)",
+    "description": "Charles Xavier is the telepathic founder of the school for gifted mutants, spending decades trying to build peaceful coexistence between mutants and humanity. His friendship-turned-rivalry with Erik Lehnsherr shapes nearly every major X-Men conflict from the 1960s onward, and the same time-travel event that rewrites their future keeps him at the center of it into old age. He dies in 2029, his final seizure setting off the chain of events that defines Logan's last stand.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men (Founder)"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Telepathy)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: First Class",
+      "X-Men: Days of Future Past",
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix",
+      "X-Men",
+      "X2: X-Men United",
+      "X-Men: The Last Stand",
+      "Logan"
+    ]
+  },
+  {
+    "title": "Erik Lehnsherr",
+    "altTitle": "Magneto",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1962,
+    "birthYear": 1932,
+    "endYear": 2006,
+    "endYearUnknown": true,
+    "imageUrl": "/images/erik-lehnsherr.png",
+    "wiki": "https://marvel.fandom.com/wiki/Erik_Lehnsherr_(Earth-10005)",
+    "description": "Erik Lehnsherr is a Holocaust survivor turned master of magnetism, his childhood trauma convincing him that mutants must dominate rather than coexist with humanity. He alternates between ally and adversary of Charles Xavier across decades of mutant history, founding and leading the Brotherhood of Mutants through the school's most dangerous years. His fate after the mid-2000s is left open in the films that carry his old friend's story forward to its end.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Brotherhood of Mutants"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Magnetism)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: First Class",
+      "X-Men: Days of Future Past",
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix",
+      "X-Men",
+      "X2: X-Men United",
+      "X-Men: The Last Stand"
+    ]
+  },
+  {
+    "title": "Raven Darkhölme",
+    "altTitle": "Mystique",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1962,
+    "endYear": 1992,
+    "endYearEvent": "X-Men: Dark Phoenix",
+    "imageUrl": "/images/raven-darkholme.png",
+    "wiki": "https://marvel.fandom.com/wiki/Raven_Darkh%C3%B6lme_(Earth-10005)",
+    "description": "Raven Darkhölme is a shapeshifting mutant raised alongside Charles Xavier who becomes a reluctant symbol for mutant liberation after a very public act of heroism in 1973. Torn between Xavier's ideals and Erik's militancy, she spends the next two decades as one of the mutant community's most visible and most hunted figures. She is killed in 1992 during a rescue mission gone wrong, a death that sends the X-Men down a darker path.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Brotherhood of Mutants / X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Shapeshifting)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: First Class",
+      "X-Men: Days of Future Past",
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Hank McCoy",
+    "altTitle": "Beast",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1962,
+    "endYear": 2006,
+    "endYearUnknown": true,
+    "imageUrl": "/images/hank-mccoy.png",
+    "wiki": "https://marvel.fandom.com/wiki/Henry_McCoy_(Earth-10005)",
+    "description": "Hank McCoy is a brilliant scientist and mutant whose feline strength and agility come with a physical transformation he spends years trying to suppress. A founding member of Xavier's school, he serves as the X-Men's moral conscience through its earliest and most turbulent decades and, later, as a government liaison for mutant affairs. He remains one of Xavier's most steadfast allies through the fallout of the 1990s.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Enhanced Strength & Agility)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: First Class",
+      "X-Men: Days of Future Past",
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix",
+      "X-Men: The Last Stand"
+    ]
+  },
+  {
+    "title": "Jean Grey",
+    "altTitle": "Phoenix",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1983,
+    "endYear": 1992,
+    "endYearEvent": "X-Men: Dark Phoenix",
+    "imageUrl": "/images/jean-grey.png",
+    "wiki": "https://marvel.fandom.com/wiki/Jean_Grey_(Earth-10005)",
+    "description": "Jean Grey is an immensely powerful telepath and telekinetic recruited to Xavier's school as a teenager, her raw potential always shadowed by the danger of losing control. When her abilities fully awaken as the cosmic Phoenix Force, the resulting spiral of grief and power consumes her. She dies in 1992, a tragedy that fractures the X-Men she grew up alongside.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Telepathy, Telekinesis)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Scott Summers",
+    "altTitle": "Cyclops",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1983,
+    "endYear": 1992,
+    "endYearUnknown": true,
+    "imageUrl": "/images/scott-summers.png",
+    "wiki": "https://marvel.fandom.com/wiki/Scott_Summers_(Earth-10005)",
+    "description": "Scott Summers is a mutant whose eyes fire uncontrolled blasts of concussive force, contained only by the ruby-quartz visor Xavier gives him after finding him as a traumatized teenager. He becomes one of the X-Men's most disciplined field leaders and Jean Grey's closest companion. He survives the Phoenix crisis of 1992, though visibly changed by it.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Optic Force Blasts)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Ororo Munroe",
+    "altTitle": "Storm",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1983,
+    "endYear": 1992,
+    "endYearUnknown": true,
+    "imageUrl": "/images/ororo-munroe.png",
+    "wiki": "https://marvel.fandom.com/wiki/Ororo_Munroe_(Earth-10005)",
+    "description": "Ororo Munroe is a mutant who can summon and control weather on a massive scale, discovered as a gifted young thief before Xavier brings her into the fold. She grows into one of the X-Men's most powerful and composed members through the turbulent 1980s and 90s. Her calm command of her abilities makes her a natural leader in the field.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Weather Control)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Rogue",
+    "altTitle": "Rogue",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 2000,
+    "endYear": 2006,
+    "endYearUnknown": true,
+    "imageUrl": "/images/rogue.png",
+    "wiki": "https://marvel.fandom.com/wiki/Rogue_(Earth-10005)",
+    "description": "Rogue is a mutant who absorbs the memories, life force, and abilities of anyone she touches skin-to-skin, a power she can't turn off. Taken in by Xavier's school as a runaway teenager, she becomes central to the X-Men's early battles against the Brotherhood and Weapon X-related threats. She ultimately chooses to give up her powers rather than live without human touch.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Power/Memory Absorption)"
+      }
+    ],
+    "seenIn": [
+      "X-Men",
+      "X2: X-Men United",
+      "X-Men: The Last Stand"
+    ]
+  },
+  {
+    "title": "Peter Maximoff",
+    "altTitle": "Quicksilver",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1973,
+    "endYear": 1992,
+    "endYearUnknown": true,
+    "imageUrl": "/images/peter-maximoff.png",
+    "wiki": "https://marvel.fandom.com/wiki/Peter_Maximoff_(Earth-10005)",
+    "description": "Peter Maximoff is a mutant with extreme superspeed who treats his powers, and most consequences, like a joke, much to Xavier's exasperation. His mother's history with Erik Lehnsherr, a secret even to him for years, puts him at the edge of several major X-Men conflicts from the 1970s through the 90s. He never loses his easygoing streak, even as the stakes around him escalate.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Superspeed)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Days of Future Past",
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Wade Wilson",
+    "altTitle": "Deadpool",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 2016,
+    "endYear": 2025,
+    "endYearUnknown": true,
+    "imageUrl": "/images/wade-wilson.png",
+    "wiki": "https://marvel.fandom.com/wiki/Wade_Wilson_(Earth-10005)",
+    "description": "Wade Wilson is a mercenary turned into a disfigured, regenerating anti-hero by an experimental program that made him functionally impossible to kill. He breaks the fourth wall as often as he breaks bones, running his own gleefully violent brand of vigilante justice alongside, and occasionally colliding with, the X-Men. Decades later he drags a reluctant Wolverine into a multiverse-hopping buddy story of his own making.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant (Mutate)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Mercenary / X-Force"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Regeneration)"
+      }
+    ],
+    "seenIn": [
+      "Deadpool",
+      "Deadpool 2",
+      "Deadpool & Wolverine"
+    ]
+  },
+  {
+    "title": "Kurt Wagner",
+    "altTitle": "Nightcrawler",
+    "type": "character",
+    "universe": "fox-xmen",
+    "startYear": 1983,
+    "endYear": 1992,
+    "endYearUnknown": true,
+    "imageUrl": "/images/kurt-wagner.png",
+    "wiki": "https://marvel.fandom.com/wiki/Kurt_Wagner_(Earth-10005)",
+    "description": "Kurt Wagner is a teleporting, blue-skinned mutant raised in a German circus before Xavier recruits him to the school in the 1980s. His faith and gentle nature stand in sharp contrast to his intimidating appearance and the violence he's repeatedly drawn into. He remains one of Xavier's most loyal students through the Phoenix crisis of 1992.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Mutant"
+      },
+      {
+        "name": "Affiliation",
+        "value": "X-Men"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Teleportation)"
+      }
+    ],
+    "seenIn": [
+      "X-Men: Apocalypse",
+      "X-Men: Dark Phoenix"
+    ]
+  },
+  {
+    "title": "Reed Richards (Fox FF)",
+    "altTitle": "Mr. Fantastic",
+    "type": "character",
+    "universe": "fox-ff",
+    "startYear": 2005,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/reed-richards-fox-ff.png",
+    "wiki": "https://marvel.fandom.com/wiki/Reed_Richards_(Earth-121698)",
+    "description": "Reed Richards is a brilliant but socially awkward scientist whose experimental space mission exposes him and his crew to cosmic radiation, stretching his body into a nearly limitless elastic form. He leads the newly-formed Fantastic Four in learning to control their powers while facing off against a rival scientist gone wrong. His relationship with Sue Storm anchors the team through its early, chaotic years.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Cosmic-Powered)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Fantastic Four"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Elasticity)"
+      }
+    ],
+    "seenIn": [
+      "Fantastic Four",
+      "Fantastic Four: Rise of the Silver Surfer"
+    ]
+  },
+  {
+    "title": "Susan Storm",
+    "altTitle": "Invisible Woman",
+    "type": "character",
+    "universe": "fox-ff",
+    "startYear": 2005,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/susan-storm.png",
+    "wiki": "https://marvel.fandom.com/wiki/Susan_Storm_(Earth-121698)",
+    "description": "Susan Storm gains the ability to turn invisible and generate protective force fields after the same cosmic radiation exposure that transforms her teammates. A former colleague of Victor Von Doom and Reed Richards's on-again-off-again fiancée, she frequently ends up holding the team together, literally and otherwise. She becomes the Fantastic Four's most level-headed strategist under pressure.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Cosmic-Powered)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Fantastic Four"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Invisibility, Force Fields)"
+      }
+    ],
+    "seenIn": [
+      "Fantastic Four",
+      "Fantastic Four: Rise of the Silver Surfer"
+    ]
+  },
+  {
+    "title": "Johnny Storm",
+    "altTitle": "Human Torch",
+    "type": "character",
+    "universe": "fox-ff",
+    "startYear": 2005,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/johnny-storm.png",
+    "wiki": "https://marvel.fandom.com/wiki/Jonathan_Storm_(Earth-121698)",
+    "description": "Johnny Storm is Sue's younger brother, a reckless thrill-seeker whose cosmic exposure lets him burst into flame and fly at will. He's the most eager of the Fantastic Four to embrace fame and his new powers, often to the team's frustration. His rivalry-turned-friendship with Ben Grimm is one of the team's most enduring dynamics.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Cosmic-Powered)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Fantastic Four"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Flame Control, Flight)"
+      }
+    ],
+    "seenIn": [
+      "Fantastic Four",
+      "Fantastic Four: Rise of the Silver Surfer"
+    ]
+  },
+  {
+    "title": "Ben Grimm",
+    "altTitle": "The Thing",
+    "type": "character",
+    "universe": "fox-ff",
+    "startYear": 2005,
+    "endYear": 2007,
+    "endYearUnknown": true,
+    "imageUrl": "/images/ben-grimm.png",
+    "wiki": "https://marvel.fandom.com/wiki/Benjamin_Grimm_(Earth-121698)",
+    "description": "Ben Grimm is the Fantastic Four's pilot, transformed by cosmic radiation into a hulking, rock-skinned powerhouse he never asked to become. Self-conscious about his new appearance, he channels his frustration into being the team's most dependable heavy hitter. His friendship with Johnny Storm provides much of the team's comic relief.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Cosmic-Powered/Mutated)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Fantastic Four"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Superhuman Strength, Rock Hide)"
+      }
+    ],
+    "seenIn": [
+      "Fantastic Four",
+      "Fantastic Four: Rise of the Silver Surfer"
+    ]
+  },
+  {
+    "title": "Matt Murdock",
+    "altTitle": "Daredevil",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/matt-murdock.png",
+    "wiki": "https://marvel.fandom.com/wiki/Matthew_Murdock_(Earth-199999)",
+    "description": "Matt Murdock is a blind Hell's Kitchen attorney whose heightened senses, a legacy of the accident that cost him his sight, let him prowl the city's rooftops as the vigilante Daredevil. By day he practices law with Foggy Nelson; by night he wages a brutal one-man war on the crime lords who run his neighborhood, above all Wilson Fisk.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Nelson & Murdock / Defenders"
+      },
+      {
+        "name": "Powered",
+        "value": "No (Enhanced Senses)"
+      }
+    ],
+    "seenIn": [
+      "Daredevil",
+      "The Defenders",
+      "Daredevil: Born Again"
+    ]
+  },
+  {
+    "title": "Jessica Jones",
+    "altTitle": "Jessica Jones",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2019,
+    "endYearUnknown": true,
+    "imageUrl": "/images/jessica-jones.png",
+    "wiki": "https://marvel.fandom.com/wiki/Jessica_Jones_(Earth-199999)",
+    "description": "Jessica Jones is a hard-drinking, short-tempered private investigator in Hell's Kitchen whose superhuman strength and durability came from a botched military experiment. Haunted by her trauma at the hands of the mind-controlling Kilgrave, she reluctantly uses her abilities to help others while running Alias Investigations.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Alias Investigations / Defenders"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Super Strength)"
+      }
+    ],
+    "seenIn": [
+      "Jessica Jones",
+      "The Defenders"
+    ]
+  },
+  {
+    "title": "Luke Cage",
+    "altTitle": "Power Man",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2018,
+    "endYearUnknown": true,
+    "imageUrl": "/images/luke-cage.png",
+    "wiki": "https://marvel.fandom.com/wiki/Carl_Lucas_(Earth-199999)",
+    "description": "Luke Cage is a former convict turned unbreakable, superhumanly strong protector of Harlem after an experimental procedure in prison left his skin bulletproof. Operating first as hired muscle and later as a neighborhood hero, he becomes a symbol of resilience for the community he refuses to abandon.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Enhanced)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Harlem's Paradise / Defenders"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Unbreakable Skin, Super Strength)"
+      }
+    ],
+    "seenIn": [
+      "Jessica Jones",
+      "Luke Cage",
+      "The Defenders"
+    ]
+  },
+  {
+    "title": "Danny Rand",
+    "altTitle": "Iron Fist",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2017,
+    "startYearUnknown": true,
+    "endYear": 2018,
+    "endYearUnknown": true,
+    "imageUrl": "/images/danny-rand.png",
+    "wiki": "https://marvel.fandom.com/wiki/Daniel_Rand_(Earth-199999)",
+    "description": "Danny Rand is the heir to a New York fortune who, after surviving a plane crash as a child, was raised by the monks of the mystical city of K'un-Lun and trained to become its Immortal Iron Fist. Wielding a chi-charged fist capable of shattering steel, he returns to reclaim his family's company and defend it from the Hand.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Rand Enterprises / Defenders"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Chi Manipulation)"
+      }
+    ],
+    "seenIn": [
+      "Iron Fist",
+      "The Defenders"
+    ]
+  },
+  {
+    "title": "Frank Castle",
+    "altTitle": "The Punisher",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2019,
+    "endYearUnknown": true,
+    "imageUrl": "/images/frank-castle.png",
+    "wiki": "https://marvel.fandom.com/wiki/Frank_Castle_(Earth-199999)",
+    "description": "Frank Castle is a former Marine whose family was murdered in a mob crossfire, driving him to become the Punisher, a one-man army who metes out lethal justice to criminals the courts can't touch. His war widens from street gangs to the corrupt operators who covered up his family's death.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "U.S. Marine Corps (former)"
+      },
+      {
+        "name": "Powered",
+        "value": "No (Elite Combat Training)"
+      }
+    ],
+    "seenIn": [
+      "Daredevil",
+      "The Punisher"
+    ]
+  },
+  {
+    "title": "Wilson Fisk",
+    "altTitle": "Kingpin",
+    "type": "character",
+    "universe": "defenders",
+    "startYear": 2015,
+    "startYearUnknown": true,
+    "endYear": 2026,
+    "endYearUnknown": true,
+    "imageUrl": "/images/wilson-fisk.png",
+    "wiki": "https://marvel.fandom.com/wiki/Wilson_Fisk_(Earth-199999)",
+    "description": "Wilson Fisk is the outwardly respectable businessman known in the shadows as the Kingpin, a criminal mastermind whose imposing size and iron will let him strangle Hell's Kitchen's underworld into a single, personal empire. Repeatedly imprisoned and repeatedly returning, he eventually leverages his ambitions all the way to elected office in New York City.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human"
+      },
+      {
+        "name": "Affiliation",
+        "value": "Fisk Industries"
+      },
+      {
+        "name": "Powered",
+        "value": "No"
+      }
+    ],
+    "seenIn": [
+      "Daredevil",
+      "Hawkeye",
+      "Echo",
+      "Daredevil: Born Again"
+    ]
+  },
+  {
+    "title": "Bruce Banner (Pre-MCU)",
+    "altTitle": "Hulk",
+    "type": "character",
+    "universe": "pre-mcu",
+    "startYear": 2003,
+    "startYearUnknown": true,
+    "endYear": 2003,
+    "endYearUnknown": true,
+    "imageUrl": "/images/bruce-banner-pre-mcu.png",
+    "wiki": "https://marvel.fandom.com/wiki/Bruce_Banner_(Earth-1191)",
+    "description": "Bruce Banner is a genetics researcher whose botched gamma radiation experiment, compounded by his father's earlier tampering with his DNA, transforms him into the Hulk, a towering, near-unstoppable green rage monster whenever his adrenaline spikes. Hunted by the military and haunted by fractured memories of his childhood, he struggles to control the creature inside him.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Mutate)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "None"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Gamma Transformation)"
+      }
+    ],
+    "seenIn": [
+      "Hulk"
+    ]
+  },
+  {
+    "title": "Blade",
+    "altTitle": "Blade",
+    "type": "character",
+    "universe": "pre-mcu",
+    "startYear": 1998,
+    "startYearUnknown": true,
+    "endYear": 2004,
+    "endYearUnknown": true,
+    "imageUrl": "/images/blade.png",
+    "wiki": "https://marvel.fandom.com/wiki/Eric_Brooks_(Earth-9081)",
+    "description": "Blade is a half-vampire, half-human 'daywalker' who inherited a vampire's strength and healing along with immunity to its weaknesses, and has spent his life hunting the undead to avenge his mother's death. Armed with a silver sword and an arsenal of engineered weapons, he wages a one-man war against vampire bloodlines seeking to enslave humanity.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human/Vampire Hybrid"
+      },
+      {
+        "name": "Affiliation",
+        "value": "None"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Vampiric Abilities)"
+      }
+    ],
+    "seenIn": [
+      "Blade",
+      "Blade II",
+      "Blade: Trinity"
+    ]
+  },
+  {
+    "title": "Johnny Blaze",
+    "altTitle": "Ghost Rider",
+    "type": "character",
+    "universe": "pre-mcu",
+    "startYear": 2007,
+    "startYearUnknown": true,
+    "endYear": 2011,
+    "endYearUnknown": true,
+    "imageUrl": "/images/johnny-blaze.png",
+    "wiki": "https://marvel.fandom.com/wiki/John_Blaze_(Earth-4931)",
+    "description": "Johnny Blaze is a motorcycle stunt rider who sold his soul to the demon Mephistopheles to save his father's life, and is periodically transformed into the Ghost Rider, a flaming-skulled Spirit of Vengeance who punishes the guilty with his Penance Stare. He struggles to control the curse while keeping the people he loves out of its reach.",
+    "metadata": [
+      {
+        "name": "Species",
+        "value": "Human (Possessed)"
+      },
+      {
+        "name": "Affiliation",
+        "value": "None"
+      },
+      {
+        "name": "Powered",
+        "value": "Yes (Spirit of Vengeance)"
+      }
+    ],
+    "seenIn": [
+      "Ghost Rider",
+      "Ghost Rider: Spirit of Vengeance"
+    ]
+  }
+]

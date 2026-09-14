@@ -14,6 +14,7 @@ import { useAppContext } from '../../AppContext';
 import { useTheme } from 'styled-components';
 import useNewsFeed from '../../hooks/useNewsFeed';
 import { getLastNewsDate, setLastNewsDate } from '../../utils';
+import site from '../../site';
 
 const MENUS = {
   MAIN: 'main',
@@ -47,7 +48,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
   }, [newestNewsDate]);
 
   const openDonate = React.useCallback((e) => {
-    analytics.event(ACTIONS.MENU_ITEM, null, 'Support the Timeline');
+    analytics.event(ACTIONS.MENU_ITEM, null, site.menu.supportLabel);
   });
 
   const toggleMenu = React.useCallback(() => {
@@ -95,12 +96,22 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
         <Styled.MenuWrapper>
           <Styled.Menu>
             {/* <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem> */}
-            <Styled.MenuItem><Link to="/hyperspace">Hyperspace Timeline</Link></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://starwars.guide/support-aurebesh-files.html" target="_blank" onClick={openDonate} rel="noreferrer">Support the Timeline</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://starwars.guide/games" target="_blank" rel="noreferrer">Star Wars Games</a></Styled.MenuItem>
-            <Styled.MenuItem note>
-              Created By: <a href="https://twitter.com/aurebeshfiles" target="_blank" rel="noreferrer">@AurebeshFiles</a></Styled.MenuItem>
+            {site.features.hyperspace &&
+              <Styled.MenuItem><Link to="/hyperspace">Hyperspace Timeline</Link></Styled.MenuItem>
+            }
+            {site.menu.issuesUrl &&
+              <Styled.MenuItem><a href={site.menu.issuesUrl} target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
+            }
+            {site.menu.supportUrl && site.menu.supportLabel &&
+              <Styled.MenuItem><a href={site.menu.supportUrl} target="_blank" onClick={openDonate} rel="noreferrer">{site.menu.supportLabel}</a></Styled.MenuItem>
+            }
+            {site.menu.gamesUrl && site.menu.gamesLabel &&
+              <Styled.MenuItem><a href={site.menu.gamesUrl} target="_blank" rel="noreferrer">{site.menu.gamesLabel}</a></Styled.MenuItem>
+            }
+            {site.social.creatorUrl && site.social.creatorLabel &&
+              <Styled.MenuItem note>
+                Created By: <a href={site.social.creatorUrl} target="_blank" rel="noreferrer">{site.social.creatorLabel}</a></Styled.MenuItem>
+            }
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
@@ -115,12 +126,14 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
         items={newsItems}
         products={newsProducts}
       />
-      <Styled.MenuButton
-        onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline', '_blank'))}
-        aria-label="Show help and onboarding guide"
-      >
-        <HelpImg alt="show the how to window" style={{ width: '22px' }} />
-      </Styled.MenuButton>
+      {(onShowOnboardingGuide || site.menu.helpUrl) &&
+        <Styled.MenuButton
+          onClick={onShowOnboardingGuide || (() => window.open(site.menu.helpUrl, '_blank'))}
+          aria-label="Show help and onboarding guide"
+        >
+          <HelpImg alt="show the how to window" style={{ width: '22px' }} />
+        </Styled.MenuButton>
+      }
     </Styled.Wrapper>
   );
 };

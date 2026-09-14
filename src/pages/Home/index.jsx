@@ -5,8 +5,8 @@ import { useAppContext } from '../../AppContext';
 import Modal from '../../molecules/modal';
 import CharacterDetailModal from '../../organisms/CharacterDetailModal';
 import CharacterDetailPill from '../../organisms/CharacterDetailPill';
-import yearsData from '../../data/years.json';
-import charactersData from '../../data/characters.json';
+import yearsData from '@site/generated/years.json';
+import charactersData from '@site/generated/characters.json';
 import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
@@ -16,6 +16,7 @@ import { Helmet } from 'react-helmet';
 import Death from '../../organisms/Death';
 const OnboardingGuide = React.lazy(() => import('../../organisms/OnboardingGuide'));
 import { getOnboardingState, decodeCharacterParam } from '../../utils';
+import site, { characterUrl, socialImageFor, absolute } from '../../site';
 
 window.scrolling = false;
 addEventListener('scroll', () => {
@@ -130,38 +131,37 @@ const Home = () => {
       // rendered HTML disagree. metaDescription is precomputed by prepJson.js.
       const characterData = charactersData.find(c => c.title.toLowerCase() === character.toLowerCase());
       const name = characterData?.title || character;
-      const url = `https://timeline.starwars.guide/character/${encodeURIComponent(name)}`;
-      const description = characterData?.metaDescription || `Learn more about ${name} on the Ultimate Star Wars Timeline!`;
-      const image = name === 'Luke Skywalker'
-        ? 'https://timeline.starwars.guide/social/social_Luke_Skywalker.png'
-        : 'https://timeline.starwars.guide/social.png';
+      const url = characterUrl(name);
+      const description = characterData?.metaDescription || site.characterDescFallback(name);
+      const image = socialImageFor(name);
+      const title = `${name}${site.characterTitleSuffix}`;
       return <Helmet>
         <meta name="description" content={description} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@UltStarWarsTime" />
-        <meta name="twitter:creator" content="@AurebeshFiles" />
-        <meta name="twitter:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta name="twitter:site" content={site.social.twitterSite} />
+        <meta name="twitter:creator" content={site.social.twitterCreator} />
+        <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
         <meta property="og:type" content="profile" />
-        <meta property="og:site_name" content="Ultimate Star Wars Timeline" />
-        <meta property="og:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta property="og:site_name" content={site.siteName} />
+        <meta property="og:title" content={title} />
         <meta property="og:url" content={url} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
-        <title>{name} - Ultimate Star Wars Timeline</title>
+        <title>{title}</title>
       </Helmet>;
     }
     return <Helmet>
-      <meta name="description" content="The Ultimate Star Wars Timeline including characters, movies, and TV shows." />
+      <meta name="description" content={site.homeDescription} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@UltStarWarsTime" />
-      <meta name="twitter:creator" content="@AurebeshFiles" />
-      <meta property="og:title" content="Ultimate Star Wars Timeline" />
-      <meta property="og:url" content="https://timeline.starwars.guide" />
-      <meta property="og:description" content="The Ultimate Star Wars Timeline including characters, movies, and TV shows." />
-      <meta property="og:image" content="https://timeline.starwars.guide/social.png" />
-      <title>Ultimate Star Wars Timeline</title>
+      <meta name="twitter:site" content={site.social.twitterSite} />
+      <meta name="twitter:creator" content={site.social.twitterCreator} />
+      <meta property="og:title" content={site.siteName} />
+      <meta property="og:url" content={site.origin} />
+      <meta property="og:description" content={site.homeDescription} />
+      <meta property="og:image" content={absolute(site.images.social)} />
+      <title>{site.siteName}</title>
     </Helmet>;
   };
 
@@ -316,14 +316,14 @@ const Home = () => {
       <HeaderOutput />
       <Styled.Wrapper>
         <Styled.Header>
-          <h1>Ultimate Star Wars Timeline</h1>
+          <h1>{site.siteName}</h1>
           {/* <button onClick={() => scale.setScale(scale.scale - .1)}>-</button>
           <h1>{scale.scale.toFixed(1)}</h1>
           <button onClick={() => scale.setScale(scale.scale + .1)}>+</button> */}
           <MainMenu onShowOnboardingGuide={handleShowOnboardingGuide} />
         </Styled.Header>
         <div style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}>
-          {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
+          {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>{site.tagline}</Styled.Long><Styled.Note>{site.loadingNote}</Styled.Note></Styled.Crawl>}
           {
             years
               .filter(({ year }) => year % zoomLevel === 0)

@@ -1,23 +1,30 @@
 // preps data.json for the web consumption
 import fs from 'fs';
+import path from 'path';
 import { create } from 'xmlbuilder2';
 import { sanitize, stripHtml, truncate } from './textUtils.js';
+import { resolveSite } from './site.mjs';
+import { formatYear } from '../shared/yearFormat.mjs';
 
-const SITE = 'https://timeline.starwars.guide';
+// Every path below is absolute and comes from the resolved site pack, so this
+// script runs identically from the repo root (via npm prestart/prebuild) and
+// from build_scripts/ (as CI and the docs have always invoked it).
+const site = await resolveSite();
+const { config } = site;
+
 // Character URLs are served by a prerendered file per character
 // (build_scripts/prerenderCharacters.js), so the path must be the encoded
 // title and nothing else -- that is the canonical URL Google indexes.
-const characterUrl = (title) => `${SITE}/character/${encodeURIComponent(title.normalize('NFC'))}`;
+const characterUrl = (title) => `${config.origin}/character/${encodeURIComponent(title.normalize('NFC'))}`;
 
-const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
-const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync(site.dataPath, 'utf8'));
+const characterDescriptions = JSON.parse(fs.readFileSync(site.descriptionsPath, 'utf8'));
+
+fs.mkdirSync(site.generatedDir, { recursive: true });
+fs.mkdirSync(site.publicDir, { recursive: true });
 
 
-const convertYear = (year) => {
-  if (year <= 0) return `${year * -1} BBY`;
-  if (year > 0) return `${year} ABY`;
-  return 'none';
-};
+const convertYear = (year) => formatYear(year, config.years);
 
 const sortByOrderOrTitle = (a, b) => {
   if (!!a.order && !!b.order) {
@@ -96,7 +103,7 @@ const _characters = data
   })
   .map((e, index) => {
     // Check if we have enhanced character data from character_descriptions.json
-    const enhancedData = characterDescriptions[e.wookiepedia];
+    const enhancedData = characterDescriptions[e[config.labels.wikiField]];
     if (enhancedData) {
       e.description = enhancedData.description;
       e.timeline = enhancedData.timeline;
@@ -108,7 +115,7 @@ const _characters = data
     // own opening sentence, so it is only the fallback.
     e.metaDescription = sanitize(enhancedData?.socialDesc || '')
       || truncate(stripHtml(sanitize(e.description || '')))
-      || `Learn more about ${e.title} on the Ultimate Star Wars Timeline!`;
+      || config.characterDescFallback(e.title);
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {
       const eventStart = tvMovies.find(d => d.title === s).startYear; // get the start year for the event
@@ -150,7 +157,12 @@ const _characters = data
         const _seenIn = _seenInFilter.find(f => f.name === s);
         _seenIn.count += 1;
       } else {
-        _seenInFilter.push({ name: s, startYear: movie.startYear, count: 1 });
+        // universe is the one field the object-spreads elsewhere in this file
+        // don't carry through for free. JSON.stringify omits own properties
+        // whose value is undefined, so for a pack whose movie/tv entries have
+        // no `universe` (Star Wars), this key is dropped entirely and the
+        // output bytes/key order are unchanged.
+        _seenInFilter.push({ name: s, startYear: movie.startYear, count: 1, universe: movie.universe });
       }
     });
     _seenInFilter.sort((a, b) => a.startYear > b.startYear ? 1 : -1);
@@ -188,7 +200,7 @@ _filters.forEach(filter => {
   });
 });
 
-fs.writeFile('../src/data/years.json', JSON.stringify(_newYears), (err) => {
+fs.writeFile(path.join(site.generatedDir, 'years.json'), JSON.stringify(_newYears), (err) => {
   if (err) {
     console.error(`years writeFile ${JSON.stringify(err)}`);
   } else {
@@ -196,7 +208,7 @@ fs.writeFile('../src/data/years.json', JSON.stringify(_newYears), (err) => {
   }
 });
 
-fs.writeFile('../src/data/characters.json', JSON.stringify(_characters), (err) => {
+fs.writeFile(path.join(site.generatedDir, 'characters.json'), JSON.stringify(_characters), (err) => {
   if (err) {
     console.error(`characters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -204,7 +216,7 @@ fs.writeFile('../src/data/characters.json', JSON.stringify(_characters), (err) =
   }
 });
 
-fs.writeFile('../src/data/filters.json', JSON.stringify(_filters), (err) => {
+fs.writeFile(path.join(site.generatedDir, 'filters.json'), JSON.stringify(_filters), (err) => {
   if (err) {
     console.error(`filters writeFile ${JSON.stringify(err)}`);
   } else {
@@ -212,7 +224,7 @@ fs.writeFile('../src/data/filters.json', JSON.stringify(_filters), (err) => {
   }
 });
 
-fs.writeFile('../src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => {
+fs.writeFile(path.join(site.generatedDir, 'seenIn.json'), JSON.stringify(_seenInFilter), (err) => {
   if (err) {
     console.error(`seenIn writeFile ${JSON.stringify(err)}`);
   } else {
@@ -222,10 +234,10 @@ fs.writeFile('../src/data/seenIn.json', JSON.stringify(_seenInFilter), (err) => 
 
 
 const createFileFromTemplate = (fileName, content, title) => {
-  const file = fs.readFileSync('../public/contentTemplate.html', 'utf-8');
+  const file = fs.readFileSync(path.join(site.publicDir, 'contentTemplate.html'), 'utf-8');
   let newValue = file.replace(/{{CONTENT}}/ig, content);
   newValue = newValue.replace(/{{PAGE_TITLE}}/ig, title);
-  fs.writeFileSync(`../public/${fileName}.html`, newValue, 'utf-8');
+  fs.writeFileSync(path.join(site.publicDir, `${fileName}.html`), newValue, 'utf-8');
   console.log(`updated ${fileName}.html`);
 };
 // update index.html to include some content for some SEO
@@ -233,28 +245,28 @@ let moviesHtml = '';
 let tvHtml = '';
 let characterHtml = '';
 
-moviesHtml += '<h2>Star Wars Movies Timeline</h2>\n';
-moviesHtml += '<p>A long time ago in a galaxy far, far away...</p>\n';
+moviesHtml += `<h2>${config.seoPages.movies.heading}</h2>\n`;
+moviesHtml += `<p>${config.seoPages.movies.intro}</p>\n`;
 moviesHtml += '<ul>\n';
 data.sort((a, b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'movie').forEach(movie => {
   moviesHtml += `<li><h3><a href="/?year=${movie.startYear}">${movie.title}</a></h3></li>\n`;
 });
 moviesHtml += '</ul>\n\n';
 
-createFileFromTemplate('starwars_movies', moviesHtml, 'Star Wars Movies Timeline');
+createFileFromTemplate(config.seoPages.movies.file, moviesHtml, config.seoPages.movies.title);
 
-tvHtml += '<h2>Star Wars TV Shows Timeline</h2>\n';
-tvHtml += '<p>Click on any of the Star Wars TV shows below to see it in the timline!</p>';
+tvHtml += `<h2>${config.seoPages.tv.heading}</h2>\n`;
+tvHtml += `<p>${config.seoPages.tv.intro}</p>`;
 tvHtml += '<ul>\n';
 data.sort((a, b) => a.startYear > b.startYear ? 1 : -1).filter(d => d.type === 'tv').forEach(tv => {
   tvHtml += `<li><a href="/?year=${tv.startYear}">${tv.title}</a></li>\n`;
 });
 tvHtml += '</ul>\n';
 
-createFileFromTemplate('starwars_tvshows', tvHtml, 'Star Wars TV Show Timeline');
+createFileFromTemplate(config.seoPages.tv.file, tvHtml, config.seoPages.tv.title);
 
-characterHtml += '<h2>Star Wars Characters Timeline</h2>\n';
-characterHtml += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
+characterHtml += `<h2>${config.seoPages.characters.heading}</h2>\n`;
+characterHtml += `<p>${config.seoPages.characters.intro}</p>`;
 _characters.forEach(character => {
   characterHtml += `<h3><a href="/character/${encodeURIComponent(character.title)}">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
   <p>${character.description}</p>`;
@@ -287,24 +299,24 @@ _characters.forEach(character => {
 });
 
 
-createFileFromTemplate('starwars_characters', characterHtml, 'Star Wars Characters Timeline');
+createFileFromTemplate(config.seoPages.characters.file, characterHtml, config.seoPages.characters.title);
 
 // add all to index file
-const html = `<h1>Ultimate Star Wars Timeline</h1>\n<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
+const html = `<h1>${config.siteName}</h1>\n<div id="content">${moviesHtml + tvHtml + characterHtml}</div>`;
 // index.html lives at the repo root, not in public/ -- Vite treats it as the
 // app entry point and build template. The markers are the shared anchor for
 // this rewrite and for prerenderCharacters.js; a plain regex over the block is
 // too greedy to be safe.
 const BODY_START = '<!-- PRERENDER:BODY:START -->';
 const BODY_END = '<!-- PRERENDER:BODY:END -->';
-const file = fs.readFileSync('../index.html', 'utf-8');
+const file = fs.readFileSync(site.templatePath, 'utf-8');
 const startAt = file.indexOf(BODY_START);
 const endAt = file.indexOf(BODY_END);
 if (startAt === -1 || endAt === -1 || endAt < startAt) {
-  throw new Error(`index.html is missing the ${BODY_START} / ${BODY_END} markers`);
+  throw new Error(`${site.templatePath} is missing the ${BODY_START} / ${BODY_END} markers`);
 }
 const newValue = `${file.slice(0, startAt + BODY_START.length)}\n${html}\n    ${file.slice(endAt)}`;
-fs.writeFileSync('../index.html', newValue, 'utf-8');
+fs.writeFileSync(path.join(site.root, 'index.html'), newValue, 'utf-8');
 console.log('updated index.html');
 
 
@@ -320,10 +332,10 @@ const addUrl = (loc, changefreq) => {
   if (changefreq) url.ele('changefreq').txt(changefreq).up();
 };
 
-addUrl(`${SITE}/`);
-addUrl(`${SITE}/starwars_movies.html`);
-addUrl(`${SITE}/starwars_tvshows.html`);
-addUrl(`${SITE}/starwars_characters.html`);
+addUrl(`${config.origin}/`);
+addUrl(`${config.origin}/${config.seoPages.movies.file}.html`);
+addUrl(`${config.origin}/${config.seoPages.tv.file}.html`);
+addUrl(`${config.origin}/${config.seoPages.characters.file}.html`);
 
 // Clean, percent-encoded character URLs only. Query params (?year=, &show=) are
 // not part of the canonical URL and raw spaces are not legal in a <loc>.
@@ -334,5 +346,5 @@ _characters
 
 // convert the XML tree to string
 const xml = root.end({ prettyPrint: true });
-fs.writeFileSync('../public/sitemap.xml', xml, 'utf-8');
+fs.writeFileSync(path.join(site.publicDir, 'sitemap.xml'), xml, 'utf-8');
 console.log('updated sitemap.xml');

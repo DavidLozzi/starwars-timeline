@@ -3,7 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import OnboardingGuide from './index';
 import { DEFAULT_ONBOARDING_CONTENT } from './content';
-import jediTheme from '../../themes/jedi';
+import themeList from '@site/themes';
+
+const defaultTheme = themeList.themes.find(t => t.id === themeList.defaultId).theme;
 
 // Mock the Modal component
 // Mirrors the real Modal's structure: the backdrop handles onClickBg, but
@@ -23,7 +25,7 @@ vi.mock('../../molecules/modal', () => ({
 
 const renderWithTheme = (component) => {
   return render(
-    <ThemeProvider theme={jediTheme}>
+    <ThemeProvider theme={defaultTheme}>
       {component}
     </ThemeProvider>
   );

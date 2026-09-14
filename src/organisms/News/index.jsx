@@ -2,10 +2,12 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import Modal from '../../molecules/modal';
 import analytics, { ACTIONS } from '../../analytics';
+import config from '../../site';
 
 import * as Styled from './index.styles';
 
-const ALL_NEWS_URL = 'https://starwars.guide/news/';
+const ALL_NEWS_URL = config.menu.allNewsUrl;
+const ALL_NEWS_LABEL = config.menu.allNewsLabel;
 
 // The feed's dates are plain YYYY-MM-DD; parsing them as-is would land on the previous
 // day in western timezones, so read the parts directly.
@@ -70,9 +72,11 @@ const News = ({ isOpen, onClose, items, products }) => {
             );
           })}
         </Styled.List>
-        <Styled.Footer>
-          <a href={ALL_NEWS_URL} target="_blank" rel="noreferrer">All news from Star Wars Guide</a>
-        </Styled.Footer>
+        {ALL_NEWS_URL && ALL_NEWS_LABEL && (
+          <Styled.Footer>
+            <a href={ALL_NEWS_URL} target="_blank" rel="noreferrer">{ALL_NEWS_LABEL}</a>
+          </Styled.Footer>
+        )}
       </Styled.Wrapper>
     </Modal>,
     document.body

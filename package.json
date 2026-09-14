@@ -17,8 +17,10 @@
     "zod": "^3.25.76"
   },
   "scripts": {
+    "prestart": "node build_scripts/prepJson.js",
     "start": "vite",
-    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint": "eslint --no-error-on-unmatched-pattern \"src/**/*.{js,jsx}\" \"sites/**/*.{js,mjs}\" \"shared/*.mjs\" \"scripts/*.js\"",
+    "prebuild": "node build_scripts/prepJson.js",
     "build": "vite build",
     "prerender": "cd build_scripts && node prerenderCharacters.js",
     "build:full": "npm run build && npm run prerender",

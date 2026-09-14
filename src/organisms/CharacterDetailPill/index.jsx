@@ -2,10 +2,11 @@ import React from 'react';
 
 import * as HomeStyled from '../../pages/Home/index.styles';
 import * as Styled from './index.styles';
+import site from '../../site';
 
 const CharacterDetailPill = ({ character, currentYear, currentCharacter, onPillPress }) => {
   const startYear = character.birthYear || character.startYear;
-  let imageUrl = character.imageUrl || '/images/starwars.jpg';
+  let imageUrl = character.imageUrl || site.images.default;
   const endYearImage = character?.imageYears ? character.imageYears.sort((a, b) => a.endYear < b.endYear ? 1 : -1)[0] : null;
   if (currentYear && character.imageYears?.some(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year)) {
     imageUrl = character.imageYears.find(y => y.startYear <= currentYear.year && y.endYear >= currentYear.year).imageUrl;

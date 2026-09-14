@@ -33,8 +33,13 @@ import Anthropic from '@anthropic-ai/sdk';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import dotenv from 'dotenv';
 import { sanitize, stripHtml, truncate, MAX_DESC } from './textUtils.js';
+import { resolveSite } from './site.mjs';
+import { formatYear } from '../shared/yearFormat.mjs';
 
 dotenv.config();
+
+const site = await resolveSite();
+const wikiUrlField = site.config.contentGen.wikiUrlField;
 
 const MODEL = 'claude-opus-4-8';
 // Each character is minutes of model time, so throughput comes from running
@@ -42,7 +47,7 @@ const MODEL = 'claude-opus-4-8';
 const CONCURRENCY = 8;
 const EFFORT = 'medium';
 const MAX_TURNS = 16;
-const RESULTS_PATH = './character_descriptions.json';
+const RESULTS_PATH = site.descriptionsPath;
 
 // The --social-only pass rewrites text we already have — no research, no tools,
 // one turn — so it runs on a small model and far wider than the research pass.
@@ -50,61 +55,24 @@ const SOCIAL_MODEL = 'claude-sonnet-5';
 const SOCIAL_CONCURRENCY = 12;
 
 const client = new Anthropic();
-const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync(site.dataPath, 'utf8'));
 
-const convertYear = (year) => {
-  if (year === null || year === undefined) return 'unknown';
-  if (year <= 0) return `${year * -1} BBY`;
-  return `${year} ABY`;
-};
+const convertYear = (year) => formatYear(year, site.config.years);
 
 // Explains our data shape to Claude. The fields are inconsistent by design —
 // entries were authored over years — so spell out what each variation means.
-const FIELD_GUIDE = `Every entry in our data file is one row of the timeline. Fields vary from character to character; here is what each one means:
-
-- title: the name we display. altTitle: a nickname or second identity (e.g. "Snips", "Darth Tyranus"). Optional.
-- type: always "character" for these entries. Other rows in the same file are "movie", "tv" and "era".
-- startYear: the year the character's column STARTS on the timeline. Usually the birth year, but not always — for very long-lived characters it is clamped to the start of the timeline (e.g. Yoda starts at -300 while birthYear is -896).
-- birthYear: present only when it differs from startYear. When present, THIS is the real birth year and startYear is only a rendering position.
-- startYearUnknown: true means the birth year is a guess we made to position the column, not a canon date. The app labels it "(this is a guess)".
-- endYear: the year the column ENDS. Usually the death year. When endYearUnknown is true, the character did not die then — they are alive, their fate is unknown, or we simply stopped drawing the column.
-- endYearEvent: the movie or series during which the character died, when we know it.
-- Years use the timeline convention: NEGATIVE is BBY, POSITIVE is ABY. -36 means 36 BBY. There is no year zero in our data.
-- metadata: a list of {name, value} facts we display. Common names are Homeworld, Species, Force Sensitive, Creator, Clone — a character may have any subset.
-- seenIn: the movies and series the character appears in, by our display titles. Not exhaustive canon; it is what our timeline plots.
-- description: an older, hand-collected summary (often lifted from Wookieepedia). Treat it as a starting point that may be stale or wrong, not as truth.
-- imageUrl / imageYears: display assets only, ignore them.
-- wookiepedia / databank: reference URLs for this character.`;
+// Pack-specific prose lives in site.config.mjs (contentGen.fieldGuide).
+const FIELD_GUIDE = site.config.contentGen.fieldGuide;
 
 // The socialDesc rules live on their own because two prompts use them: the full
 // research pass below, and the --social-only backfill. They must not drift — a
 // backfilled page and a freshly generated one should read the same way.
-const SOCIAL_RULES = `- Between 140 and 155 characters. Never more than 155 — Google truncates on pixel width, not character count, so anything longer risks being cut off in search results.
-- Do NOT reuse the opening clause of the description. Search engines discard a meta description that only repeats copy already visible on the page, so this has to be independently written, not the first sentence trimmed down.
-- Lead with the character's name, then what they are actually known for: role, era, allegiance, and fate where canon settles it. Prefer the concrete over the encyclopedic — "clone captain who led the 501st Legion and outlived the Empire he was built to serve" beats "was a human male clone trooper of the Grand Army of the Republic".
-- Summarize the character, not the page — never mention the page, the timeline or the site itself. Do not open the way a biography opens ("X was a human male..."); open with what makes them worth reading about.
-- Plain text only: no HTML, no surrounding quotes, no ellipsis, no trailing "…". It must end on a complete sentence with a full stop.`;
+// Pack-specific prose lives in site.config.mjs (contentGen.socialRules).
+const SOCIAL_RULES = site.config.contentGen.socialRules;
 
-const TASK = `You are building reference content for The Ultimate Star Wars Timeline (https://timeline.starwars.guide), a canon-focused interactive timeline.
-
-For the character described below:
-
-1. VERIFY THE DATES FIRST. Fetch the character's Wookieepedia page (the wookiepedia URL in the payload) — that article is the primary source and usually answers everything. Budget roughly three web fetches total: spend them on the Wookieepedia article first, and only search further when it leaves a date genuinely unresolved or you hit a conflict worth reporting. Determine the canon birth year and death year. Pay particular attention to the dates we claim to know: a date is "claimed known" when startYearUnknown / endYearUnknown is absent or false. Those are the ones our app presents as fact, so an error there is worse than an imprecise guess. Confirm each against a source; if a date genuinely cannot be pinned down in canon, say so rather than inventing precision.
-
-2. Write "description": a single-paragraph summary of who the character is, what they are known for, and their major milestones. HTML, wrapped in one <p> tag. No links, no citations, no headings.
-
-3. Write "socialDesc": the meta description for this character's page — the line that appears under the title in Google results and on a shared social card.
-
-${SOCIAL_RULES}
-
-4. Write "timeline": a comprehensive, chronological list of that character's events. HTML, alternating <h3>Date - Title</h3> and <p>brief description</p>. Prefix estimated years with ~ (e.g. "~36 BBY - Birth on Shili"). Use BBY/ABY, never negative numbers. No links, no citations. The events must be consistent with the dates you verified in step 1 — if you concluded the character was born in 41 BBY, the birth event says 41 BBY.
-
-5. Report "notes": anything the maintainer should act on. This is the most valuable part of your output, so be specific and be willing to disagree with our data. Include:
-   - dates in our payload that contradict what you found (say what we have, what it should be, and why),
-   - anything else factually wrong or out of date in our entry — species, homeworld, the old description, a "seenIn" appearance that is not real, a death recorded for a character who survives,
-   - things worth adding that we clearly do not track yet,
-   - genuine canon ambiguity we should know about (conflicting sources, Legends vs canon, a date that only exists in a reference book).
-   If a field checks out fine, do not write a note about it. An empty notes list is a valid answer for a well-maintained entry.`;
+// Pack-specific prose lives in site.config.mjs (contentGen.taskIntro), which
+// already has SOCIAL_RULES inlined at the same position this used to.
+const TASK = site.config.contentGen.taskIntro;
 
 // The two drivers collect the answer differently: the API path takes a tool
 // call, Claude Code takes structured output.
@@ -120,7 +88,7 @@ const dateSchema = (label) => ({
   properties: {
     year: {
       anyOf: [{ type: 'integer' }, { type: 'null' }],
-      description: 'Timeline convention: negative for BBY, positive for ABY (-36 means 36 BBY). null if canon gives no usable year.',
+      description: `${site.config.contentGen.yearConvention} null if canon gives no usable year.`,
     },
     confidence: {
       type: 'string',
@@ -299,7 +267,7 @@ const runViaClaudeCode = async (character) => {
       model: MODEL,
       effort: EFFORT,
       maxTurns: MAX_TURNS,
-      systemPrompt: 'You are a Star Wars canon researcher. Verify claims against sources before stating them.',
+      systemPrompt: site.config.contentGen.researcherPersona,
       allowedTools: ['WebFetch', 'WebSearch'],
       permissionMode: 'dontAsk',
       settingSources: [],
@@ -433,7 +401,7 @@ const runCharacter = (character) =>
 
 const selectCharacters = (existingResults) => {
   const args = process.argv.slice(2);
-  const all = data.filter((item) => item.type === 'character' && item.wookiepedia);
+  const all = data.filter((item) => item.type === 'character' && item[wikiUrlField]);
   const names = args.filter((arg) => !arg.startsWith('--'));
 
   if (args.includes('--all')) return { characters: all, mode: 'all' };
@@ -449,7 +417,7 @@ const selectCharacters = (existingResults) => {
     return { characters: matched, mode: 'named' };
   }
   return {
-    characters: all.filter((character) => !existingResults[character.wookiepedia]),
+    characters: all.filter((character) => !existingResults[character[wikiUrlField]]),
     mode: 'missing',
   };
 };
@@ -506,7 +474,7 @@ const processCharacters = async () => {
         console.warn(`  ! ${character.title}: socialDesc came back ${socialDesc.length} chars, truncating to ${MAX_DESC}`);
       }
 
-      results[character.wookiepedia] = {
+      results[character[wikiUrlField]] = {
         character: character.title,
         description: unescapeMarkup(profile.description),
         socialDesc: socialDesc.length > MAX_DESC ? truncate(socialDesc) : socialDesc,
@@ -604,9 +572,7 @@ const buildSocialPrompt = (entry, rejected = '') => `${rejected ? `Your previous
 Previous attempt:
 ${rejected}
 
-` : ''}You are writing the meta description for a character page on The Ultimate Star Wars Timeline (https://timeline.starwars.guide), a canon-focused interactive timeline.
-
-The bio below is already the opening paragraph of ${entry.character}'s page. Write the meta description for that page.
+` : ''}${site.config.contentGen.socialTaskIntro(entry.character)}
 
 ${SOCIAL_RULES}
 
@@ -642,7 +608,7 @@ Return the result as JSON matching the required output schema. Do not summarize 
       // 2 was too tight — a sixth of the first backfill run died on the turn cap
       // after spending a turn reasoning about length before answering.
       maxTurns: 4,
-      systemPrompt: 'You write concise, accurate metadata for reference pages.',
+      systemPrompt: site.config.contentGen.socialWriterPersona,
       allowedTools: [],
       permissionMode: 'dontAsk',
       settingSources: [],

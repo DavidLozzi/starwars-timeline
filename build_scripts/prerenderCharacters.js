@@ -14,16 +14,21 @@
 import fs from 'fs';
 import path from 'path';
 import { sanitize, escapeAttr, escapeHtml } from './textUtils.js';
+import { resolveSite } from './site.mjs';
 
-const SITE = 'https://timeline.starwars.guide';
-const BUILD_DIR = '../build';
-const OUT_DIR = `${BUILD_DIR}/character`;
+// site.mjs is builtin-only, so this script stays dependency-free as required:
+// CI installs the root package but never build_scripts/node_modules.
+const site = await resolveSite();
+const { config } = site;
+
+const BUILD_DIR = site.buildDir;
+const OUT_DIR = site.outDir;
 const BODY_START = '<!-- PRERENDER:BODY:START -->';
 const BODY_END = '<!-- PRERENDER:BODY:END -->';
-const HOME_CANONICAL = `<link rel="canonical" href="${SITE}/" />`;
+const HOME_CANONICAL = `<link rel="canonical" href="${config.origin}/" />`;
 
-const template = fs.readFileSync(`${BUILD_DIR}/index.html`, 'utf-8');
-const characters = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf-8'));
+const template = fs.readFileSync(path.join(BUILD_DIR, 'index.html'), 'utf-8');
+const characters = JSON.parse(fs.readFileSync(path.join(site.generatedDir, 'characters.json'), 'utf-8'));
 
 const bodyStartAt = template.indexOf(BODY_START);
 const bodyEndAt = template.indexOf(BODY_END);
@@ -37,15 +42,20 @@ if (!template.includes('</head>')) {
   throw new Error('build/index.html has no </head>');
 }
 
-const characterUrl = (title) => `${SITE}/character/${encodeURIComponent(title.normalize('NFC'))}`;
-const absolute = (url) => `${SITE}/${String(url || '').replace(/^\/+/, '')}`;
+const characterUrl = (title) => `${config.origin}/character/${encodeURIComponent(title.normalize('NFC'))}`;
+const absolute = (url) => `${config.origin}/${String(url || '').replace(/^\/+/, '')}`;
 const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
+// Marvel-only: labels a character's universe (e.g. "Marvel Cinematic
+// Universe") so duplicate names across continuities (the three Spider-Men)
+// are distinguishable on their prerendered pages. Star Wars characters carry
+// no `universe`, and config.universes is unset for that pack, so this always
+// resolves to undefined there.
+const universeLabel = (c) => config.universes?.find(u => u.id === c.universe)?.label;
 
-// Matches the react-helmet logic in src/pages/Home: only Luke has a bespoke
-// social card today, everyone else shares the site card.
-const socialImage = (character) => (character.title === 'Luke Skywalker'
-  ? `${SITE}/social/social_Luke_Skywalker.png`
-  : `${SITE}/social.png`);
+// Matches the react-helmet logic in src/pages/Home: only characters listed in
+// config.images.socialOverrides have a bespoke social card, everyone else
+// shares the site card.
+const socialImage = (character) => absolute(config.images.socialOverrides[character.title] ?? config.images.social);
 
 // react-helmet's updateTags only removes tags carrying data-react-helmet, so
 // anything it also renders must be stamped or the page ends up with two
@@ -56,9 +66,10 @@ const metaTag = (attr, name, content) =>
 
 const headFor = (character) => {
   const url = characterUrl(character.title);
-  const title = `${character.title} - Ultimate Star Wars Timeline`;
+  const title = `${character.title}${config.characterTitleSuffix}`;
   const description = character.metaDescription;
   const image = socialImage(character);
+  const wikiUrl = character[config.labels.wikiField];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -70,17 +81,22 @@ const headFor = (character) => {
         description,
         url,
         image: absolute(character.imageUrl),
-        ...(meta(character, 'Species') ? { additionalType: 'FictionalCharacter' } : {}),
-        ...(meta(character, 'Homeworld') && meta(character, 'Homeworld') !== 'Unknown'
-          ? { homeLocation: { '@type': 'Place', name: meta(character, 'Homeworld') } }
+        ...(meta(character, config.metadataJsonLd.speciesField) ? { additionalType: 'FictionalCharacter' } : {}),
+        // homeworldField is optional: a pack with no notion of a homeworld (e.g.
+        // Marvel, which maps this JSON-LD slot to Affiliation) sets it to
+        // null/unset so we never emit a homeLocation for a non-place value.
+        ...(config.metadataJsonLd.homeworldField
+          && meta(character, config.metadataJsonLd.homeworldField)
+          && meta(character, config.metadataJsonLd.homeworldField) !== 'Unknown'
+          ? { homeLocation: { '@type': 'Place', name: meta(character, config.metadataJsonLd.homeworldField) } }
           : {}),
-        ...(character.wookiepedia ? { sameAs: [character.wookiepedia] } : {})
+        ...(wikiUrl ? { sameAs: [wikiUrl] } : {})
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Ultimate Star Wars Timeline', item: `${SITE}/` },
-          { '@type': 'ListItem', position: 2, name: 'Characters', item: `${SITE}/starwars_characters.html` },
+          { '@type': 'ListItem', position: 1, name: config.siteName, item: `${config.origin}/` },
+          { '@type': 'ListItem', position: 2, name: config.labels.charactersBreadcrumb, item: `${config.origin}/${config.seoPages.characters.file}.html` },
           { '@type': 'ListItem', position: 3, name: character.title, item: url }
         ]
       }
@@ -91,13 +107,13 @@ const headFor = (character) => {
     `<title>${escapeHtml(title)}</title>`,
     metaTag('name', 'description', description),
     metaTag('name', 'twitter:card', 'summary_large_image'),
-    metaTag('name', 'twitter:site', '@UltStarWarsTime'),
-    metaTag('name', 'twitter:creator', '@AurebeshFiles'),
+    metaTag('name', 'twitter:site', config.social.twitterSite),
+    metaTag('name', 'twitter:creator', config.social.twitterCreator),
     metaTag('name', 'twitter:title', title),
     metaTag('name', 'twitter:description', description),
     metaTag('name', 'twitter:image', image),
     metaTag('property', 'og:type', 'profile'),
-    metaTag('property', 'og:site_name', 'Ultimate Star Wars Timeline'),
+    metaTag('property', 'og:site_name', config.siteName),
     metaTag('property', 'og:title', title),
     metaTag('property', 'og:url', url),
     metaTag('property', 'og:description', description),
@@ -126,11 +142,12 @@ const bodyFor = (character) => {
     .sort((a, b) => a.year > b.year ? 1 : -1)
     .flatMap(y => y.events.map(e => ({ year: y.year, event: e })));
   const birthYear = character.startYearUnknown ? null : (character.birthYear ?? character.startYear);
+  const wikiUrl = character[config.labels.wikiField];
 
   return `<h1>${name}</h1>
-<p class="breadcrumb"><a href="/">Ultimate Star Wars Timeline</a> &rsaquo; <a href="/starwars_characters.html">Characters</a> &rsaquo; ${name}</p>
+<p class="breadcrumb"><a href="/">${escapeHtml(config.siteName)}</a> &rsaquo; <a href="/${config.seoPages.characters.file}.html">${escapeHtml(config.labels.charactersBreadcrumb)}</a> &rsaquo; ${name}</p>
 <img src="${escapeAttr(character.imageUrl)}" alt="${escapeAttr(character.title)}" width="200" />
-<p>${escapeHtml(lifespan(character))}</p>
+<p>${escapeHtml(lifespan(character))}</p>${universeLabel(character) ? `\n<p class="universe">Universe: ${escapeHtml(universeLabel(character))}</p>` : ''}
 <div>${sanitize(character.description || '')}</div>
 ${(character.metadata?.length > 0)
     ? `<dl>\n${character.metadata.map(m => `  <dt>${escapeHtml(m.name)}</dt><dd>${escapeHtml(m.value)}</dd>`).join('\n')}\n</dl>`
@@ -143,10 +160,10 @@ ${events.map(({ year, event }) => {
     return `  <li><a href="${escapeAttr(`${url}?year=${event.startYear}`)}">${escapeHtml(event.title)}, ${escapeHtml(event.startYearDisplay)}${age}</a></li>`;
   }).join('\n')}
 </ul>
-${character.wookiepedia
-    ? `<p><a href="${escapeAttr(character.wookiepedia)}" rel="nofollow noopener" target="_blank">${name} on Wookieepedia</a></p>`
+${wikiUrl
+    ? `<p><a href="${escapeAttr(wikiUrl)}" rel="nofollow noopener" target="_blank">${name} ${escapeHtml(config.labels.wikiLinkSuffix)}</a></p>`
     : ''}
-<p><a href="/starwars_characters.html">All Star Wars characters</a></p>`;
+<p><a href="/${config.seoPages.characters.file}.html">${escapeHtml(config.labels.allCharactersText)}</a></p>`;
 };
 
 fs.mkdirSync(OUT_DIR, { recursive: true });

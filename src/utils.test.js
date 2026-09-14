@@ -1,4 +1,4 @@
-import { hasLocalStorage, getOnboardingState, setOnboardingState, decodeCharacterParam, getLastNewsDate, setLastNewsDate } from './utils';
+import { hasLocalStorage, getOnboardingState, setOnboardingState, decodeCharacterParam, getLastNewsDate, setLastNewsDate, ONBOARDING_STORAGE_KEY, NEWS_STORAGE_KEY } from './utils';
 
 describe('decodeCharacterParam', () => {
   it('decodes percent-encoded names from companion-site links', () => {
@@ -68,14 +68,14 @@ describe('Onboarding localStorage helpers', () => {
 
     it('should return parsed state when valid state exists', () => {
       const state = { hasSeenGuide: true, dismissedDate: '2025-01-27T10:30:00Z' };
-      localStorage.setItem('starwars_timeline_onboarding_dismissed', JSON.stringify(state));
+      localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(state));
 
       const result = getOnboardingState();
       expect(result).toEqual(state);
     });
 
     it('should return null when stored data is invalid', () => {
-      localStorage.setItem('starwars_timeline_onboarding_dismissed', 'invalid json');
+      localStorage.setItem(ONBOARDING_STORAGE_KEY, 'invalid json');
 
       const result = getOnboardingState();
       expect(result).toBeNull();
@@ -83,7 +83,7 @@ describe('Onboarding localStorage helpers', () => {
 
     it('should return null when hasSeenGuide is not boolean', () => {
       const state = { hasSeenGuide: 'true' };
-      localStorage.setItem('starwars_timeline_onboarding_dismissed', JSON.stringify(state));
+      localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(state));
 
       const result = getOnboardingState();
       expect(result).toBeNull();
@@ -108,7 +108,7 @@ describe('Onboarding localStorage helpers', () => {
       const result = setOnboardingState(true, '2025-01-27T10:30:00Z');
       expect(result).toBe(true);
 
-      const stored = JSON.parse(localStorage.getItem('starwars_timeline_onboarding_dismissed'));
+      const stored = JSON.parse(localStorage.getItem(ONBOARDING_STORAGE_KEY));
       expect(stored.hasSeenGuide).toBe(true);
       expect(stored.dismissedDate).toBe('2025-01-27T10:30:00Z');
     });
@@ -117,7 +117,7 @@ describe('Onboarding localStorage helpers', () => {
       const result = setOnboardingState(false);
       expect(result).toBe(true);
 
-      const stored = JSON.parse(localStorage.getItem('starwars_timeline_onboarding_dismissed'));
+      const stored = JSON.parse(localStorage.getItem(ONBOARDING_STORAGE_KEY));
       expect(stored.hasSeenGuide).toBe(false);
       expect(stored.dismissedDate).toBeUndefined();
     });
@@ -135,7 +135,7 @@ describe('News localStorage helpers', () => {
     });
 
     it('should return the stored date', () => {
-      localStorage.setItem('starwars_timeline_last_news_date', '2026-08-03');
+      localStorage.setItem(NEWS_STORAGE_KEY, '2026-08-03');
       expect(getLastNewsDate()).toBe('2026-08-03');
     });
 
@@ -154,12 +154,12 @@ describe('News localStorage helpers', () => {
   describe('setLastNewsDate', () => {
     it('should store the date and report success', () => {
       expect(setLastNewsDate('2026-08-03')).toBe(true);
-      expect(localStorage.getItem('starwars_timeline_last_news_date')).toBe('2026-08-03');
+      expect(localStorage.getItem(NEWS_STORAGE_KEY)).toBe('2026-08-03');
     });
 
     it('should ignore an empty date', () => {
       expect(setLastNewsDate()).toBe(false);
-      expect(localStorage.getItem('starwars_timeline_last_news_date')).toBeNull();
+      expect(localStorage.getItem(NEWS_STORAGE_KEY)).toBeNull();
     });
 
     it('should round-trip with getLastNewsDate', () => {

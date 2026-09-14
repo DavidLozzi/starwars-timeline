@@ -1,10 +1,15 @@
-// Prepare social media posts for Star Wars Timeline
+// Prepare social media posts for the configured site pack's timeline
 import fs from 'fs';
+import path from 'path';
 import got from 'got';
 import dotenv from 'dotenv';
+import { resolveSite } from './site.mjs';
+import { formatYear } from '../shared/yearFormat.mjs';
 dotenv.config();
 
-const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+const site = await resolveSite();
+
+const data = JSON.parse(fs.readFileSync(site.dataPath, 'utf8'));
 
 const generate_tweet = async (data, callback) => {
   const headers = {
@@ -16,14 +21,7 @@ const generate_tweet = async (data, callback) => {
     'messages': [
       {
         'role': 'system',
-        'content': `You are a GPT tasked with creating tweets based on a Star Wars timeline. You will be \
-provided a tweet for one event or character, please review it and summarize it in a way that is engaging and informative. \
-You can also add hashtags and emojis. Your tweet is the intro the the tweet sent to you. Do not ask the reader to do anything, \
-just summarize the content. Keep it to 280 characters or less. \
-
-Your tweet is a summary of the tweet(s) the user is giving you. The tweet provided to you will be added to your tweet later, do not \
-include it, or a timeline in your tweet.
-`,
+        'content': site.config.socialPost.systemPrompt,
       },
       {
         'role': 'user',
@@ -64,11 +62,7 @@ include it, or a timeline in your tweet.
 };
 
 
-const convertYear = (year) => {
-  if (year <= 0) return `${year * -1} BBY`;
-  if (year > 0) return `${year} ABY`;
-  return 'none';
-};
+const convertYear = (year) => formatYear(year, site.config.years);
 
 const create_tweets = async () => {
   const sortByTitle = (a, b) => a.title > b.title ? 1 : -1;
@@ -105,15 +99,8 @@ const create_tweets = async () => {
   }
 
 
-  const getEventIcon = (e) => {
-    if (e.type === 'movie') {
-      return '🍿';
-    }
-    if (e.type === 'tv') {
-      return '📺';
-    }
-  };
-  const characters = JSON.parse(fs.readFileSync('../src/data/characters.json'));
+  const getEventIcon = (e) => site.config.socialPost.icons[e.type];
+  const characters = JSON.parse(fs.readFileSync(path.join(site.generatedDir, 'characters.json')));
   const getCharacterTweets = (character) => {
     const c = characters.find(ch => ch.title === character.title);
     const _birthYear = c.birthYear || c.startYear;
@@ -143,8 +130,8 @@ const create_tweets = async () => {
             output += `${getEventIcon(e)} ${e.title}, ${convertYear(e.startYear)} (${c.startYearUnknown ? 'abt ' : ''}${y.year - _birthYear}yo)\n`;
           }));
 
-    output += `\nExplore more https://timeline.starwars.guide/character/${encodeURI(c.title)}?year=${c.startYear}`;
-    const hashtags = `\n#${c.title.replace(/[\s-]/ig, '')}${c.altTitle ? ` #${c.altTitle.replace(/[\s-]/ig, '')}` : ''} #StarWars`;
+    output += `\nExplore more ${site.config.origin}/character/${encodeURI(c.title)}?year=${c.startYear}`;
+    const hashtags = `\n#${c.title.replace(/[\s-]/ig, '')}${c.altTitle ? ` #${c.altTitle.replace(/[\s-]/ig, '')}` : ''} ${site.config.socialPost.hashtag}`;
 
     if (output.length > tweetSize) {
       let tweet = '';
@@ -173,7 +160,7 @@ const create_tweets = async () => {
       }
       output = _output.replace(/\^\#\^/ig, tweetCnt);
     }
-    allOutput.push({ title: `${c.type}-${c.title}`, tweet: output, img: `https://timeline.starwars.guide${c.imageUrl}` });
+    allOutput.push({ title: `${c.type}-${c.title}`, tweet: output, img: `${site.config.origin}${c.imageUrl}` });
   };
 
   _newYears
@@ -184,17 +171,17 @@ const create_tweets = async () => {
       if (y.events.some(e => e.type === 'era')) {
         header += y.events.filter(e => e.type === 'era').sort((a, b) => a.startYear > b.startYear ? -1 : 1).map(e => {
           if (e.endYear === y.year) {
-            return `🍾  Long live the ${e.title}!`;
+            return site.config.socialPost.eraEnd(e.title);
           }
           if (e.startYear === y.year) {
-            return `📆  The ${e.title} has begun, in the year of ${y.display}`;
+            return site.config.socialPost.eraBegin(e.title, y.display);
           }
         }).filter(e => !!e).sort(sortByValue).join('\n');
         header += '\n\n';
       } else {
         const era = data.find(d => d.type === 'era' && d.startYear <= y.year && d.endYear >= y.year);
         if (era) {
-          header += `📆  During the ${era.title}, in the year of ${y.display}\n\n`;
+          header += `${site.config.socialPost.eraDuring(era.title, y.display)}\n\n`;
         } else {
           console.log('No era for', y);
         }
@@ -207,11 +194,8 @@ const create_tweets = async () => {
           if (!linkToCharacter) {
             linkToCharacter = `?year=${e.startYear}`;
           }
-          if (e.type === 'movie') {
-            return `🍿  "${e.title}" movie occurred`;
-          }
-          if (e.type === 'tv') {
-            return `📺  "${e.title}" TV show occurred`;
+          if (e.type === 'movie' || e.type === 'tv') {
+            return `${getEventIcon(e)}  "${e.title}" ${site.config.socialPost.typeLabels[e.type]} occurred`;
           }
           return null;
         }).filter(e => !!e).sort(sortByValue).join('\n');
@@ -222,7 +206,7 @@ const create_tweets = async () => {
       let imageUrl = '';
       //birthdays
       if (y.events.some(e => e.type === 'character' && e.startYear === y.year)) {
-        birthdays += '🎂  ';
+        birthdays += `${site.config.socialPost.icons.birth}  `;
         birthdays += y.events.sort(sortByTitle).map(e => {
           if (e.type === 'character') {
             if (e.startYear === y.year) {
@@ -241,7 +225,7 @@ const create_tweets = async () => {
       let deaths = '';
       //deaths
       if (y.events.some(e => e.type === 'character' && e.endYear === y.year && !e.endYearUnknown)) {
-        deaths += '🪦  ';
+        deaths += `${site.config.socialPost.icons.death}  `;
         deaths += y.events.sort(sortByTitle).filter(e => e.type === 'character' && e.endYear === y.year && !e.endYearUnknown).map(e => {
           if (!linkToCharacter) {
             linkToCharacter = `character/${encodeURI(e.title)}?year=${e.startYear}`;
@@ -252,8 +236,8 @@ const create_tweets = async () => {
       }
 
       let footer = '';
-      footer += `Explore more https://timeline.starwars.guide/${linkToCharacter ? linkToCharacter : ''}\n`;
-      footer += '#StarWars ';
+      footer += `Explore more ${site.config.origin}/${linkToCharacter ? linkToCharacter : ''}\n`;
+      footer += `${site.config.socialPost.hashtag} `;
 
       if (movies.length > 0 && header.length + movies.length + footer.length < tweetSize) {
         movies = header + movies + footer;
@@ -262,7 +246,7 @@ const create_tweets = async () => {
 
       if (birthdays.length > 0 && header.length + birthdays.length + footer.length < tweetSize) {
         birthdays = header + birthdays + footer;
-        allOutput.push({ title: `births-${y.display}`, tweet: birthdays, img: `https://timeline.starwars.guide${imageUrl}` });
+        allOutput.push({ title: `births-${y.display}`, tweet: birthdays, img: `${site.config.origin}${imageUrl}` });
       }
 
       y.events.filter(e => e.type === 'character' && e.startYear === y.year).forEach(c => getCharacterTweets(c));
@@ -289,7 +273,7 @@ const create_tweets = async () => {
 
   await Promise.all(promises);
 
-  fs.writeFile('../public/socials.json', JSON.stringify(allOutput, null, 2), (err) => {
+  fs.writeFile(path.join(site.publicDir, 'socials.json'), JSON.stringify(allOutput, null, 2), (err) => {
     if (err) {
       console.error(`socials writeFile ${JSON.stringify(err)}`);
     } else {

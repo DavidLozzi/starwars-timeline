@@ -1,11 +1,14 @@
 import React from 'react';
 import { hasLocalStorage } from '../utils';
+import config from '../site';
 
 // One news stream serves every AurebeshFiles app; it lives in starwars-guide and is
 // fetched at runtime so new items appear without a release here. Contract:
 // ../starwars-guide/NEWS-FEED.md
-const FEED_URL = 'https://starwars.guide/news-feed.json';
-const CACHE_KEY = 'starwars_timeline_news_cache';
+// A pack that doesn't declare a feed URL (e.g. Marvel) gets an always-empty,
+// never-fetching feed -- see the early return below.
+const FEED_URL = config.menu.newsFeedUrl;
+const CACHE_KEY = `${config.storagePrefix}_news_cache`;
 
 const readCache = () => {
   if (!hasLocalStorage()) return null;
@@ -51,10 +54,12 @@ const visibleItems = (items) => {
  * @returns {{items: Array, products: Object, loading: boolean}}
  */
 const useNewsFeed = () => {
-  const [feed, setFeed] = React.useState(() => readCache());
-  const [loading, setLoading] = React.useState(true);
+  const [feed, setFeed] = React.useState(() => (FEED_URL ? readCache() : null));
+  const [loading, setLoading] = React.useState(Boolean(FEED_URL));
 
   React.useEffect(() => {
+    if (!FEED_URL) return undefined;
+
     let active = true;
 
     // a cached feed can render its chips before (or without) a successful fetch

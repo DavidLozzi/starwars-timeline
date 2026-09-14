@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import yearsData from '../../data/years.json';
+import yearsData from '@site/generated/years.json';
 
 const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +

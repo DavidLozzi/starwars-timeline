@@ -1,13 +1,17 @@
 // gets words to use in SWORDLE app
 
-const data = require('./data.json');
+import fs from 'fs';
+import { resolveSite } from './site.mjs';
+
+const site = await resolveSite();
+const data = JSON.parse(fs.readFileSync(site.dataPath, 'utf8'));
 
 const words = [];
 
 const splitAndAdd = (phrase) => {
   phrase?.split(' ').forEach(t => {
     const newT = t.replace(/[:.,]/ig, '');
-    if (newT.length >= 4 && newT.length <= 6 && newT !== 'Star') {
+    if (newT.length >= 4 && newT.length <= 6 && !site.config.excludedWords.includes(newT)) {
       words.push(newT);
     }
   });
