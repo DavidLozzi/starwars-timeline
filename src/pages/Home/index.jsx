@@ -11,6 +11,7 @@ import analytics, { ACTIONS } from '../../analytics';
 
 import * as Styled from './index.styles';
 import MainMenu from '../../organisms/MainMenu';
+import Minimap from '../../organisms/Minimap/Minimap';
 import SeenIn from '../../organisms/SeenIn';
 import { Helmet } from 'react-helmet';
 import Death from '../../organisms/Death';
@@ -322,6 +323,7 @@ const Home = () => {
           <button onClick={() => scale.setScale(scale.scale + .1)}>+</button> */}
           <MainMenu onShowOnboardingGuide={handleShowOnboardingGuide} />
         </Styled.Header>
+        <Minimap years={years} characters={visibleCharacters} />
         <div style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}>
           {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
           {

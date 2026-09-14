@@ -2,15 +2,20 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import yearsData from '../../data/years.json';
 
-const getFullWidth = (theme, characterCount) =>
+export const getFullWidth = (theme, characterCount) =>
   theme.layout.elements.character.leftPageMargin +
   characterCount *
   (theme.layout.elements.character.width + theme.layout.elements.character.spacer);
 
-const getFullHeight = (theme) => {
+export const getFullHeight = (theme) => {
   const endYear = yearsData.sort((a, b) => a.yearIndex > b.yearIndex ? 1 : -1)[yearsData.length - 1];
   return theme.layout.gridHeight * endYear.yearIndex;
 };
+
+export const getEraTop = (theme, era) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin;
+export const getEraHeight = (theme, era, endYear) => theme.layout.gridHeight * (endYear.yearIndex - era.yearIndex);
+export const getMovieTop = (theme, movie) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin;
+export const getMovieHeight = (theme, movie) => theme.layout.gridHeight * (movie.years + 1);
 
 const fadeIn = () => keyframes`
   0% {
@@ -79,11 +84,11 @@ export const Sticky = styled.div`
 export const Era = styled(({ era, characterCount, endYear, ...rest }) => <div data-testid="era" {...rest} />)`
   ${({ theme }) => theme.elements.era};
   position: absolute;
-  top: ${({ era, theme }) => theme.layout.gridHeight * era.yearIndex + theme.layout.topMargin}rem;
+  top: ${({ era, theme }) => getEraTop(theme, era)}rem;
   left: 0;
   min-width: 100vw;
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount)}rem`};
-  height: ${({ era, endYear, theme }) => theme.layout.gridHeight * (endYear.yearIndex - era.yearIndex)}rem;
+  height: ${({ era, endYear, theme }) => getEraHeight(theme, era, endYear)}rem;
   z-index: 1;
   transition: all 500ms ease-in-out;
 
@@ -148,8 +153,8 @@ export const Movie = styled(({ movie, characterCount, isCurrentYear, ...rest }) 
   ${({ theme }) => theme.elements.movie};
   position: absolute;
   left: ${({ theme }) => theme.layout.elements.movie.leftPageMargin}rem;
-  top: ${({ movie, theme }) => theme.layout.gridHeight * movie.yearIndex + (movie.index * theme.layout.gridHeight) + theme.layout.topMargin}rem;
-  height: ${({ movie, theme }) => theme.layout.gridHeight * (movie.years + 1)}rem;
+  top: ${({ movie, theme }) => getMovieTop(theme, movie)}rem;
+  height: ${({ movie, theme }) => getMovieHeight(theme, movie)}rem;
   min-width: calc(100vw - ${({ movie, theme }) => theme.layout.elements.movie.leftPageMargin + (movie.index * theme.layout.elements.movie.nextMoviePad) + 1}rem);
   width: ${({ theme, characterCount }) => `${getFullWidth(theme, characterCount) - theme.layout.elements.movie.leftPageMargin}rem`};
   z-index: 30;
