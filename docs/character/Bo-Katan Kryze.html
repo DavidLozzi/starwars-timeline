@@ -87,6 +87,17 @@
     gtag('config', 'G-0KMM0RG2X2');
   </script>
 
+  <!-- Brand webfonts, same two faces and same approach as the hub's header
+       wordmark (see ../starwars-guide/_includes/head.html): preloaded and
+       font-display: block so the heading paints in the right face on the first
+       frame instead of flashing a fallback. The @font-face blocks live below
+       rather than in styled-components, so the faces are declared before the
+       bundle parses -- a preload with no matching @font-face is dropped and
+       warned about. The filenames are not content-hashed; replace a face by
+       renaming the file and updating the preload and the @font-face together. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/ANewHope.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/AurebeshAF-Canon.woff2" crossorigin>
+
   <!--
       Critical boot CSS. styled-components injects everything else, but that only
       happens once the JS bundle has parsed and React has mounted -- until then the
@@ -104,6 +115,28 @@
       after 10s (pure CSS, no JS) so the pre-rendered content stays reachable.
     -->
   <style>
+    /* The two @font-face blocks are deliberately NOT scoped to html.booting --
+       the mounted app's heading uses both faces, so they have to outlive the
+       boot CSS. They declare no selectors, so nothing leaks into the app. */
+    @font-face {
+      font-family: 'A New Hope';
+      src: url('/fonts/ANewHope.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      /* block, not swap: both files are preloaded above, so the block window is
+         effectively zero, and the Aurebesh face has no sane fallback -- it would
+         render as plain latin letters for a frame. */
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: 'AurebeshAF';
+      src: url('/fonts/AurebeshAF-Canon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
     /* Everything here is scoped to html.booting. React renders INTO #root, so an
        unscoped `#root a` (or a `color` on body) would keep styling the live app
        after mount -- that is exactly how the character pills ended up with
@@ -186,7 +219,7 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/assets/index-BjCGB4pG.js"></script>
+  <script type="module" crossorigin src="/assets/index-k9t38m8m.js"></script>
   <title>Bo-Katan Kryze - Ultimate Star Wars Timeline</title>
   <meta data-react-helmet="true" name="description" content="Bo-Katan Kryze, Mandalorian warrior turned Mand'alor, fought Death Watch, Maul, and the Empire before uniting her people after the Great Purge.">
   <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
