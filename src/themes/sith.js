@@ -59,31 +59,52 @@ export default {
       background-color: rgb(${palette.black});
       margin: 0;
       font-family: 'Segoe UI', Roboto, sans-serif;
-      -webkit-font-smoothing: 'antialiased';
-      -moz-osx-font-smoothing: 'grayscale';
+      /* Unquoted on purpose -- these are keywords, and as quoted strings the
+         declarations were invalid and dropped, leaving light-on-dark text
+         subpixel-antialiased and visibly fatter. */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     `,
     header: css`
     background-color: rgb(${palette.black});
-    h1 {
+    > h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       color: rgb(224,196,56);
       margin-left: 2rem;
       font-size: 1.3rem;
-      font-family: Arial Black;
+      /* Brand wordmark face -- see the Jedi theme's header block for why. */
+      font-family: 'A New Hope', 'Arial Black', Arial, sans-serif;
+      letter-spacing: .02em;
+      line-height: 1.05;
       text-transform: uppercase;
-      /* matches the pill bezel: 1px light top edge + soft drop */
-      text-shadow: 0 1px 0 rgba(255,241,168,0.22), 0 .1rem .3rem rgba(0,0,0,0.55);
+      /* Both faces ship a single normal weight; an h1 is bold by default, so
+         without these the browser synthesizes the bold and the strokes smear. */
+      font-weight: normal;
+      font-synthesis: none;
+    }
+    > h1::after {
+      content: attr(data-aurebesh);
+      padding-top: .25em;
+      font-family: 'AurebeshAF', sans-serif;
+      font-size: .7em;
+      letter-spacing: .02em;
+      color: rgb(${palette.lightgray});
     }
   `,
+    // See the Jedi theme: the menu matches the search panel.
     menu: {
       ul: css`
-        background-color: rgba(${palette.black}, 0.95);
+        background-color: rgb(${palette.black});
       `,
+      badge: palette.secondary,
       li: css`
         color: rgb(${palette.white});
         a {
-          color: rgb(${palette.secondary});
+          color: rgb(${palette.white});
           :hover {
-            color: rgb(${palette.primary});
+            color: rgb(${palette.secondary});
           }
         }
       `,

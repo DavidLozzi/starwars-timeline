@@ -37,8 +37,26 @@ export const Header = styled.div`
   z-index: 100;
   width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* Mobile stacks: the title gets the full width on its own row and the menu
+     buttons sit underneath it. Side by side, the title had ~200px to work with
+     and wrapped mid-phrase. Both rows together have to stay inside
+     theme.layout.topMargin (6rem), which is where the timeline's first year
+     sits -- hence the tightened h1 margins and button padding below. */
+  flex-direction: column;
+  align-items: stretch;
+  /* Direct child only: the menu and filter panels render inside this header, so
+     a bare h1 selector styled the search panel's own heading too. */
+  > h1 {
+    margin: .3rem 0 .15rem;
+  }
+  ${({ theme }) => theme.breakpoints.md} {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    > h1 {
+      margin: .67em 0;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import analytics, { ACTIONS } from '../../analytics';
 import MenuImg from '../../assets/menu.svg?react';
 import SearchImg from '../../assets/search.svg?react';
 import HelpImg from '../../assets/help.svg?react';
-import AnnouncementImg from '../../assets/announcement.svg?react';
 import Filter from '../Filter';
 import News from '../News';
 
@@ -46,8 +44,16 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
     analytics.event(ACTIONS.OPEN_NEWS);
   }, [newestNewsDate]);
 
-  const openDonate = React.useCallback((e) => {
-    analytics.event(ACTIONS.MENU_ITEM, null, 'Support the Timeline');
+  const openCredit = React.useCallback((e) => {
+    analytics.event(ACTIONS.MENU_ITEM, null, 'Created By');
+  });
+
+  const openFeedback = React.useCallback((e) => {
+    analytics.event(ACTIONS.MENU_ITEM, null, 'Share Feedback');
+  });
+
+  const openAbout = React.useCallback((e) => {
+    analytics.event(ACTIONS.MENU_ITEM, null, 'About');
   });
 
   const toggleMenu = React.useCallback(() => {
@@ -90,25 +96,41 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
       {openedMenu === MENUS.FILTER &&
         <Filter onClose={() => setOpenedMenu('')} />
       }
-      <Styled.MenuButton onClick={toggleMenu}><MenuImg alt="open menu" /></Styled.MenuButton>
+      {/* News lives in the menu, so its unread dot has to ride the menu button --
+          otherwise the only signal is hidden behind a closed panel. */}
+      <Styled.MenuButton onClick={toggleMenu} aria-label="Open menu">
+        <Styled.IconBadge hasBadge={hasUnreadNews}>
+          <MenuImg alt="open menu" />
+        </Styled.IconBadge>
+      </Styled.MenuButton>
       {openedMenu === MENUS.MAIN &&
         <Styled.MenuWrapper>
           <Styled.Menu>
             {/* <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem> */}
-            <Styled.MenuItem><Link to="/hyperspace">Hyperspace Timeline</Link></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://github.com/DavidLozzi/starwars-timeline/issues" target="_blank" rel="noreferrer">Request an Update</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://starwars.guide/support-aurebesh-files.html" target="_blank" onClick={openDonate} rel="noreferrer">Support the Timeline</a></Styled.MenuItem>
-            <Styled.MenuItem><a href="https://starwars.guide/games" target="_blank" rel="noreferrer">Star Wars Games</a></Styled.MenuItem>
+            <Styled.MenuItem>
+              <Styled.MenuAction onClick={openNews}>
+                News{hasUnreadNews && <Styled.Dot aria-label="unread news" />}
+              </Styled.MenuAction>
+            </Styled.MenuItem>
+            {/* The brand address the hub publishes on /about/, not a personal one. */}
+            <Styled.MenuItem>
+              <a href="mailto:aurebeshfiles@gmail.com?subject=Ultimate%20Star%20Wars%20Timeline%20feedback" onClick={openFeedback}>Share Feedback</a>
+            </Styled.MenuItem>
+            {/* Trailing slash: every top-level hub page canonicalises to one and the
+                bare form 301s. No UTM -- the credit link below is the documented
+                exception to the hub's no-UTMs rule, not every outbound link. */}
+            <Styled.MenuItem>
+              <a href="https://starwars.guide/star-wars-timeline/" target="_blank" onClick={openAbout} rel="noreferrer">About</a>
+            </Styled.MenuItem>
+            {/* The hub credit every app and game carries (starwars-guide/CLAUDE.md). The app is
+                what gets shared and bookmarked, not its landing page, so this is the only path
+                from the timeline back to the brand — it points at the hub, never at a social
+                handle. UTM-tagged because it leaves the app; internal hub links never are. */}
             <Styled.MenuItem note>
-              Created By: <a href="https://twitter.com/aurebeshfiles" target="_blank" rel="noreferrer">@AurebeshFiles</a></Styled.MenuItem>
+              Created By: <a href="https://starwars.guide/?utm_source=timeline&utm_medium=app&utm_campaign=credit" target="_blank" onClick={openCredit} rel="noreferrer">AurebeshFiles</a></Styled.MenuItem>
           </Styled.Menu>
         </Styled.MenuWrapper>
       }
-      <Styled.MenuButton onClick={openNews} aria-label="Show news and announcements">
-        <Styled.IconBadge hasBadge={hasUnreadNews}>
-          <AnnouncementImg />
-        </Styled.IconBadge>
-      </Styled.MenuButton>
       <News
         isOpen={showNews}
         onClose={() => setShowNews(false)}
@@ -116,7 +138,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
         products={newsProducts}
       />
       <Styled.MenuButton
-        onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline', '_blank'))}
+        onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline/', '_blank'))}
         aria-label="Show help and onboarding guide"
       >
         <HelpImg alt="show the how to window" style={{ width: '22px' }} />

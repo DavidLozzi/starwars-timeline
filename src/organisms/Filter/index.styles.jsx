@@ -4,8 +4,11 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   z-index: 100;
   background-color: rgb(${({ theme }) => theme.palette.black});
-  position: fixed;
-  top: 3.5rem;
+  /* Hangs off the bottom of MainMenu's button row (which is position: relative)
+     rather than a fixed offset from the top of the page -- the header is two
+     rows tall on mobile, where the buttons are on their own line. */
+  position: absolute;
+  top: 100%;
   right: 0rem;
   width: 100vw;
   max-width: 30rem;
@@ -13,7 +16,10 @@ export const Wrapper = styled.div`
   color: #fff;
 `;
 
-export const H1 = styled.h1`
+/* An h2, not an h1: the page's only h1 is the timeline's title. The panel
+   renders inside the header, so this heading also used to inherit the wordmark
+   face from theme.elements.header until those rules were scoped to > h1. */
+export const H1 = styled.h2`
   font-size: 1rem;
   margin: 1rem;
 `;

@@ -39,13 +39,26 @@ const GuideContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 .5rem 0;
   font-size: 1.5rem;
   color: rgb(${({ theme }) => theme.palette.secondary});
   font-weight: bold;
 
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2rem;
+  }
+`;
+
+/* The hub credit, the same one the main menu carries -- this screen is the
+   app's front door on a first visit, so it names who made it right under the
+   welcome line. */
+const Credit = styled.p`
+  margin: 0 0 1.5rem 0;
+  font-size: .9rem;
+  color: rgb(${({ theme }) => theme.palette.lightergray});
+
+  a {
+    color: rgb(${({ theme }) => theme.palette.secondary});
   }
 `;
 
@@ -116,6 +129,7 @@ const DismissButton = styled.button`
 export default {
   GuideContainer,
   Title,
+  Credit,
   StepContent,
   StepTitle,
   StepText,

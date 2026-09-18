@@ -29,6 +29,10 @@ const OnboardingGuideComponent = ({ isOpen, onDismiss, openSource, allowKeyboard
     onDismiss();
   }, [onDismiss]);
 
+  const handleCreditClick = useCallback(() => {
+    analytics.event(ACTIONS.MENU_ITEM, null, 'Created By');
+  }, []);
+
   // Handle Escape key dismissal
   useEffect(() => {
     if (!isOpen || !allowKeyboardDismiss) return;
@@ -105,6 +109,16 @@ const OnboardingGuideComponent = ({ isOpen, onDismiss, openSource, allowKeyboard
         aria-modal="true"
       >
         <Styled.Title id="onboarding-title">Welcome to the Ultimate Star Wars Timeline</Styled.Title>
+        {/* Same credit and same UTM-tagged hub URL as the main menu's note item
+            (see CLAUDE.md) -- it points at the hub, never at a social handle. */}
+        <Styled.Credit>
+          Created by <a
+            href="https://starwars.guide/?utm_source=timeline&utm_medium=app&utm_campaign=credit"
+            target="_blank"
+            rel="noreferrer"
+            onClick={handleCreditClick}
+          >AurebeshFiles</a>
+        </Styled.Credit>
 
         {DEFAULT_ONBOARDING_CONTENT.steps.map((step) => (
           <StepContentMemo key={step.id} step={step} />

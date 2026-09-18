@@ -317,7 +317,11 @@ const Home = () => {
       <HeaderOutput />
       <Styled.Wrapper>
         <Styled.Header>
-          <h1>Ultimate Star Wars Timeline</h1>
+          {/* data-aurebesh is the same string rendered again in the Aurebesh
+              face beside the title, the hub's wordmark treatment. It is an
+              attribute rather than markup so the h1 stays one clean text node;
+              the theme's header block draws it. */}
+          <h1 data-aurebesh="Ultimate Star Wars Timeline">Ultimate Star Wars Timeline</h1>
           {/* <button onClick={() => scale.setScale(scale.scale - .1)}>-</button>
           <h1>{scale.scale.toFixed(1)}</h1>
           <button onClick={() => scale.setScale(scale.scale + .1)}>+</button> */}

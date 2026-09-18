@@ -8,7 +8,6 @@ import charactersData from '../../data/characters.json';
 import seenInData from '../../data/seenIn.json';
 import Dropdown from '../../molecules/dropdown';
 import searchSvg from '../../assets/search.svg';
-import filtersSvg from '../../assets/filters.svg';
 
 import * as Styled from './index.styles';
 import FilterCharacterDropdown from './Character';
@@ -105,7 +104,7 @@ const Filter = ({ onClose }) => {
         </Styled.FormValue>
       </Styled.FormRow>}
       <Styled.FormRow>
-        <Styled.FormLabel><Styled.Icon src={filtersSvg} alt="Filter characters icon" /> Filter characters:</Styled.FormLabel>
+        <Styled.FormLabel>Filter characters:</Styled.FormLabel>
       </Styled.FormRow>
       <Styled.FormRow>
         <Styled.FormLabel>Seen in Movie or TV Show:</Styled.FormLabel>
