@@ -36,7 +36,7 @@ import { sanitize, stripHtml, truncate, MAX_DESC } from './textUtils.js';
 
 dotenv.config();
 
-const MODEL = 'claude-opus-4-8';
+const MODEL = process.env.DESCRIPTION_MODEL || 'claude-opus-5-5';
 // Each character is minutes of model time, so throughput comes from running
 // them side by side rather than from making any one of them faster.
 const CONCURRENCY = 8;
@@ -50,6 +50,24 @@ const SOCIAL_MODEL = 'claude-sonnet-5';
 const SOCIAL_CONCURRENCY = 12;
 
 const client = new Anthropic();
+
+// $ per million tokens, first-party API list prices (from the claude-api skill, 2026-09).
+// The Claude Code driver reports its own total_cost_usd; the API returns only token
+// counts, so the API driver prices them here. Cache writes are 1.25x input (5-minute TTL),
+// cache reads 0.1x unless listed. An unknown model logs no cost rather than a guess.
+const PRICES = {
+  'claude-opus-5-5': { input: 4, output: 20, cacheRead: 0.2 },
+  'claude-opus-5': { input: 5, output: 25 },
+  'claude-opus-4-8': { input: 5, output: 25 },
+  'claude-sonnet-5': { input: 2, output: 10 },
+};
+const priceUsage = (model, { inputTokens, outputTokens, cacheReadTokens, cacheWriteTokens }) => {
+  const p = PRICES[model];
+  if (!p) return undefined;
+  const cacheRead = p.cacheRead ?? p.input * 0.1;
+  return (inputTokens * p.input + outputTokens * p.output
+    + (cacheReadTokens || 0) * cacheRead + (cacheWriteTokens || 0) * p.input * 1.25) / 1e6;
+};
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 
 const convertYear = (year) => {
@@ -69,10 +87,10 @@ const FIELD_GUIDE = `Every entry in our data file is one row of the timeline. Fi
 - startYearUnknown: true means the birth year is a guess we made to position the column, not a canon date. The app labels it "(this is a guess)".
 - endYear: the year the column ENDS. Usually the death year. When endYearUnknown is true, the character did not die then — they are alive, their fate is unknown, or we simply stopped drawing the column.
 - endYearEvent: the movie or series during which the character died, when we know it.
-- Years use the timeline convention: NEGATIVE is BBY, POSITIVE is ABY. -36 means 36 BBY. There is no year zero in our data.
+- Years use the timeline convention: NEGATIVE is BBY, POSITIVE is ABY. -36 means 36 BBY, and 0 is 0 BBY, the year of the Battle of Yavin.
+- We follow Wookieepedia's current dating, from the updated Star Wars: Galactic Atlas: the events of Rogue One and of A New Hope before the Battle of Yavin fall in 1 BBY (-1), not 0 BBY. A death during either film at -1 is correct; do not propose 0, and date those events 1 BBY in the timeline you write.
 - metadata: a list of {name, value} facts we display. Common names are Homeworld, Species, Force Sensitive, Creator, Clone — a character may have any subset.
 - seenIn: the movies and series the character appears in, by our display titles. Not exhaustive canon; it is what our timeline plots.
-- description: an older, hand-collected summary (often lifted from Wookieepedia). Treat it as a starting point that may be stale or wrong, not as truth.
 - imageUrl / imageYears: display assets only, ignore them.
 - wookiepedia / databank: reference URLs for this character.`;
 
@@ -89,9 +107,9 @@ const TASK = `You are building reference content for The Ultimate Star Wars Time
 
 For the character described below:
 
-1. VERIFY THE DATES FIRST. Fetch the character's Wookieepedia page (the wookiepedia URL in the payload) — that article is the primary source and usually answers everything. Budget roughly three web fetches total: spend them on the Wookieepedia article first, and only search further when it leaves a date genuinely unresolved or you hit a conflict worth reporting. Determine the canon birth year and death year. Pay particular attention to the dates we claim to know: a date is "claimed known" when startYearUnknown / endYearUnknown is absent or false. Those are the ones our app presents as fact, so an error there is worse than an imprecise guess. Confirm each against a source; if a date genuinely cannot be pinned down in canon, say so rather than inventing precision.
+1. VERIFY THE DATES FIRST. Read the character's Wookieepedia article, included below the payload as wikitext (the infobox's born/died fields are the dates). Wookieepedia blocks web fetches from this environment, so don't try to fetch it again. That article is the primary source and usually answers everything. Only search the web when it leaves a date genuinely unresolved or you hit a conflict worth reporting. Determine the canon birth year and death year. Pay particular attention to the dates we claim to know: a date is "claimed known" when startYearUnknown / endYearUnknown is absent or false. Those are the ones our app presents as fact, so an error there is worse than an imprecise guess. Confirm each against a source; if a date genuinely cannot be pinned down in canon, say so rather than inventing precision.
 
-2. Write "description": a single-paragraph summary of who the character is, what they are known for, and their major milestones. HTML, wrapped in one <p> tag. No links, no citations, no headings.
+2. Write "description": a single-paragraph summary of who the character is, what they are known for, and their major milestones. HTML, wrapped in one <p> tag. No links, no citations, no headings. Write it in your own words, not as a paraphrase of the article. In particular, don't open with Wookieepedia's lead formula ("X was a [species] [role] from [homeworld] who…"), and don't state species or homeworld at all: the page shows both as separate fields right above the paragraph. Mention them only where they are part of the story (e.g. a Wookiee freeing Kashyyyk), not as labels. Open with what the character is known for.
 
 3. Write "socialDesc": the meta description for this character's page — the line that appears under the title in Google results and on a shared social card.
 
@@ -101,7 +119,7 @@ ${SOCIAL_RULES}
 
 5. Report "notes": anything the maintainer should act on. This is the most valuable part of your output, so be specific and be willing to disagree with our data. Include:
    - dates in our payload that contradict what you found (say what we have, what it should be, and why),
-   - anything else factually wrong or out of date in our entry — species, homeworld, the old description, a "seenIn" appearance that is not real, a death recorded for a character who survives,
+   - anything else factually wrong or out of date in our entry — species, homeworld, a "seenIn" appearance that is not real, a death recorded for a character who survives,
    - things worth adding that we clearly do not track yet,
    - genuine canon ambiguity we should know about (conflicting sources, Legends vs canon, a date that only exists in a reference book).
    If a field checks out fine, do not write a note about it. An empty notes list is a valid answer for a well-maintained entry.`;
@@ -207,6 +225,41 @@ const tools = [
   submitTool,
 ];
 
+// Wookieepedia answers the model's own fetches with 402/403, so the article is
+// fetched here through api.php (the sanctioned route; /wiki/ HTML is blocked) and
+// put in the prompt. Refs are stripped and long articles cut: Obi-Wan's wikitext is
+// ~500 KB, and the infobox, lead and early biography carry what the prompt needs.
+const WIKITEXT = new Map();
+const WIKITEXT_MAX = 40000;
+const USER_AGENT = 'starwars-timeline-description/1.0 (https://timeline.starwars.guide)';
+let lastWikiFetch = Promise.resolve();
+
+const wikitextUrl = (url) =>
+  `https://starwars.fandom.com/api.php?action=query&prop=revisions&rvprop=content&rvslots=main&format=json&formatversion=2&redirects=1&titles=${encodeURIComponent(decodeURIComponent(url.split('/wiki/')[1] || ''))}`;
+
+// One request at a time, a second apart, however many characters run at once.
+const fetchWikitext = (url) => {
+  const turn = lastWikiFetch.then(async () => {
+    try {
+      const response = await fetch(wikitextUrl(url), { headers: { 'User-Agent': USER_AGENT } });
+      if (!response.ok) return null;
+      // The raw revision, not action=parse: parsing Anakin's 1.1 MB article times out (503).
+      const text = (await response.json())?.query?.pages?.[0]?.revisions?.[0]?.slots?.main?.content;
+      if (!text) return null;
+      const stripped = text
+        .replace(/<ref[^>/]*\/>/g, '')
+        .replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, '');
+      return stripped.length > WIKITEXT_MAX
+        ? `${stripped.slice(0, WIKITEXT_MAX)}\n\n[Article truncated at ${WIKITEXT_MAX.toLocaleString()} characters.]`
+        : stripped;
+    } catch {
+      return null;
+    }
+  });
+  lastWikiFetch = turn.then(() => new Promise((resolve) => setTimeout(resolve, 1000)));
+  return turn;
+};
+
 const buildPrompt = (character, handoff = HANDOFF.api) => {
   const claimedBirth = character.birthYear ?? character.startYear;
   const readable = [
@@ -226,11 +279,16 @@ ${FIELD_GUIDE}
 
 ${readable}
 
+
 ## Our full entry for ${character.title}
 
 \`\`\`json
 ${JSON.stringify(character, null, 2)}
-\`\`\``;
+\`\`\`
+
+## Wookieepedia article for ${character.title}
+
+${WIKITEXT.get(character.wookiepedia) || '(Not available: the article could not be fetched. Research with web search and say in your notes that the article was unavailable.)'}`;
 };
 
 // Structured output sometimes comes back with the HTML entity-escaped
@@ -333,6 +391,7 @@ const runViaClaudeCode = async (character) => {
       inputTokens: sum('inputTokens'),
       outputTokens: sum('outputTokens'),
       cacheReadTokens: sum('cacheReadInputTokens'),
+      cacheWriteTokens: sum('cacheCreationInputTokens'),
       webSearches: sum('webSearchRequests'),
       costUsd: message.total_cost_usd,
       // The allowlist is meant to hold this to web reads only. Record what the
@@ -347,7 +406,9 @@ const runViaClaudeCode = async (character) => {
       try {
         profile = JSON.parse(message.result);
       } catch {
-        throw new Error('result was not valid JSON and no structured_output was returned');
+        // Keep the model's own text: an API error (usage limit, unsupported model)
+        // arrives here as a plain-text "success" and is otherwise invisible.
+        throw new Error(`result was not valid JSON and no structured_output was returned: ${String(message.result || '').slice(0, 300)}`);
       }
     }
     return { profile, stats };
@@ -360,7 +421,7 @@ const runViaClaudeCode = async (character) => {
 const runViaApi = async (character) => {
   const messages = [{ role: 'user', content: buildPrompt(character) }];
   const startedAt = Date.now();
-  const totals = { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, webSearches: 0 };
+  const totals = { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, webSearches: 0 };
   let toolCalls = 0;
   const toolNames = {};
 
@@ -378,6 +439,7 @@ const runViaApi = async (character) => {
     totals.inputTokens += response.usage?.input_tokens || 0;
     totals.outputTokens += response.usage?.output_tokens || 0;
     totals.cacheReadTokens += response.usage?.cache_read_input_tokens || 0;
+    totals.cacheWriteTokens += response.usage?.cache_creation_input_tokens || 0;
     totals.webSearches += response.usage?.server_tool_use?.web_search_requests || 0;
     response.content
       .filter((block) => block.type === 'server_tool_use' || block.type === 'tool_use')
@@ -398,7 +460,7 @@ const runViaApi = async (character) => {
     if (submission) {
       return {
         profile: submission.input,
-        stats: { wallMs: Date.now() - startedAt, turns: turn + 1, toolCalls, toolNames, ...totals },
+        stats: { wallMs: Date.now() - startedAt, turns: turn + 1, toolCalls, toolNames, ...totals, costUsd: priceUsage(MODEL, totals) },
       };
     }
 
@@ -428,8 +490,18 @@ const runViaApi = async (character) => {
 };
 
 const viaClaudeCode = process.argv.includes('--via-claude-code');
-const runCharacter = (character) =>
-  (viaClaudeCode ? runViaClaudeCode : runViaApi)(character);
+// dotenv has already loaded build_scripts/.env. Claude Code prefers ANTHROPIC_API_KEY over
+// the local login, so leaving it set would bill the API balance instead of the Claude
+// subscription this flag exists to use.
+if (viaClaudeCode) delete process.env.ANTHROPIC_API_KEY;
+const runCharacter = async (character) => {
+  if (!WIKITEXT.has(character.wookiepedia)) {
+    const text = await fetchWikitext(character.wookiepedia);
+    if (text) WIKITEXT.set(character.wookiepedia, text);
+    else console.warn(`  ! ${character.title}: could not fetch the Wookieepedia article; researching without it`);
+  }
+  return (viaClaudeCode ? runViaClaudeCode : runViaApi)(character);
+};
 
 const selectCharacters = (existingResults) => {
   const args = process.argv.slice(2);

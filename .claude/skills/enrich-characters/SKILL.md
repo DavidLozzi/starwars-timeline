@@ -2,7 +2,7 @@
 name: enrich-characters
 description: >
   Generate/refresh AI character bios, timelines, and verified dates for the Star Wars
-  timeline by running build_scripts/description.js (Claude Opus 4.8 + web search/fetch
+  timeline by running build_scripts/description.js (Claude Opus 5.5 + prefetched Wookieepedia wikitext + web search
   against Wookieepedia). Use when the user adds a character to data.json and asks to
   "enrich" it, or wants to regenerate descriptions after a prompt change. Triggers:
   "/enrich-characters", "enrich the character file", "enrich <name>", "rerun all
@@ -11,8 +11,8 @@ description: >
 
 # Enrich Characters
 
-Wraps `build_scripts/description.js`. It runs Claude Opus 4.8 with web_search/web_fetch,
-reads each character's Wookieepedia page, verifies dates, and writes
+Wraps `build_scripts/description.js`. It runs Claude Opus 5.5 with the character's Wookieepedia article prefetched
+through api.php (the model's own fetches are blocked) plus web search, verifies dates, and writes
 `description` / `timeline` / `dates` / `notes` into
 `build_scripts/character_descriptions.json`. **Nothing writes back to `data.json`** —
 acting on a note is a manual edit.
@@ -38,7 +38,7 @@ Names must match `title` in `data.json` (case-insensitive). Unknown names abort 
 "Not found in data.json" list.
 
 Tuning lives at the top of `description.js`: `CONCURRENCY = 8`, `EFFORT = 'medium'`.
-~83s/character avg, ~$0.40/character.
+~30–60s/character, ~$0.25/character.
 
 `--social-only` is a different pass entirely: it never touches `data.json` or the web,
 just rewrites the stored `description` into the ~150-character `socialDesc` meta

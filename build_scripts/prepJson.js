@@ -158,7 +158,13 @@ const _characters = data
     let deathYearIndex = null;
     let deathEvent = null;
     if (!e.endYearUnknown) {
-      deathEvent = _newYears.find(y => y.events.some(ev => ev.title === e.endYearEvent)).events.find(ev => ev.title === e.endYearEvent);
+      // The death marker is drawn at a movie/show row, so a known death must name one.
+      const deathYear = _newYears.find(y => y.events.some(ev => ev.title === e.endYearEvent));
+      if (!deathYear) {
+        throw new Error(`${e.title}: endYearEvent ${JSON.stringify(e.endYearEvent ?? null)} is not a movie/tv title in data.json. `
+          + 'Set it to the movie or show they die in, or set endYearUnknown: true.');
+      }
+      deathEvent = deathYear.events.find(ev => ev.title === e.endYearEvent);
       deathYearIndex = deathEvent.yearIndex * (deathEvent.order || 1);
     }
 
@@ -257,7 +263,7 @@ characterHtml += '<h2>Star Wars Characters Timeline</h2>\n';
 characterHtml += '<p>Click on any of the Star Wars characters below to see it in the timline!</p>';
 _characters.forEach(character => {
   characterHtml += `<h3><a href="/character/${encodeURIComponent(character.title)}">${character.title}</a>, born ${convertYear(character.birthYear || character.startYear)}</h3>\n
-  <p>${character.description}</p>`;
+  ${character.description ? `<p>${character.description}</p>` : ''}`;
   
   // Add timeline if available
   if (character.timeline) {

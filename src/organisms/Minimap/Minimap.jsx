@@ -9,8 +9,8 @@ export const MAP_HEIGHT = 300;
 
 const COLORS = {
   era: ['lightgray', 0.25],
-  movie: ['secondary', 0.6],
-  character: ['primary', 0.9]
+  movie: ['primary', 0.6],
+  character: ['secondary', 0.9]
 };
 
 // Built from data, not the DOM: Home culls off-screen characters, so scanning the page would miss them.

@@ -46,15 +46,21 @@ export const Header = styled.div`
   align-items: stretch;
   /* Direct child only: the menu and filter panels render inside this header, so
      a bare h1 selector styled the search panel's own heading too. */
+  /* No margin shorthand: it zeroed the theme's margin-left and put the title
+     flush against the screen edge. The left inset belongs to the theme; the
+     right one only keeps a wrapped title off the edge on narrow screens. */
   > h1 {
-    margin: .3rem 0 .15rem;
+    margin-top: .3rem;
+    margin-bottom: .15rem;
+    margin-right: .5rem;
   }
   ${({ theme }) => theme.breakpoints.md} {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     > h1 {
-      margin: .67em 0;
+      margin-top: .67em;
+      margin-bottom: .67em;
     }
   }
 `;
