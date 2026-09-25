@@ -1106,7 +1106,7 @@
     "altTitle": "",
     "endYear": 15,
     "endYearUnknown": true,
-    "imageUrl": "/images/mothma.png",
+    "imageUrl": "/images/mothma_young.png",
     "seenIn": [
       "The Clone Wars (TV series)",
       "Episode III: Revenge of the Sith",
@@ -1135,11 +1135,6 @@
       }
     ],
     "imageYears": [
-      {
-        "startYear": -48,
-        "endYear": -13,
-        "imageUrl": "/images/mothma_young.png"
-      },
       {
         "startYear": -12,
         "endYear": -1,
@@ -2879,16 +2874,11 @@
     "startYear": -21,
     "endYear": -1,
     "endYearEvent": "Rogue One: A Star Wars Story",
-    "imageUrl": "/images/jyn.png",
+    "imageUrl": "/images/jyn-young.png",
     "seenIn": [
       "Rogue One: A Star Wars Story"
     ],
     "imageYears": [
-      {
-        "startYear": -21,
-        "endYear": -11,
-        "imageUrl": "/images/jyn-young.png"
-      },
       {
         "startYear": -10,
         "endYear": -1,
