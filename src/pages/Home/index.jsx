@@ -133,8 +133,9 @@ const Home = () => {
       const name = characterData?.title || character;
       const url = `https://timeline.starwars.guide/character/${encodeURIComponent(name)}`;
       const description = characterData?.metaDescription || `Learn more about ${name} on the Ultimate Star Wars Timeline!`;
-      const image = name === 'Luke Skywalker'
-        ? 'https://timeline.starwars.guide/social/social_Luke_Skywalker.png'
+      // Same rule as socialImage() in build_scripts/prerenderCharacters.js.
+      const image = characterData?.socialImage
+        ? `https://timeline.starwars.guide${encodeURI(characterData.socialImage.normalize('NFC'))}`
         : 'https://timeline.starwars.guide/social.png';
       return <Helmet>
         <meta name="description" content={description} />

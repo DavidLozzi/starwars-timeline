@@ -15,5 +15,8 @@
     "@anthropic-ai/sdk": "^0.112.4",
     "dotenv": "^17.4.2",
     "got": "^14.2.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

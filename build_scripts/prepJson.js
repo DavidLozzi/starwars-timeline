@@ -109,6 +109,11 @@ const _characters = data
     e.metaDescription = sanitize(enhancedData?.socialDesc || '')
       || truncate(stripHtml(sanitize(e.description || '')))
       || `Learn more about ${e.title} on the Ultimate Star Wars Timeline!`;
+    // Social-share card from socialCards.js, when one has been generated. Same
+    // filename rule as socialCards.js; prerenderCharacters.js and react-helmet both
+    // read this, so a character without a card falls back to the site card in both.
+    const socialCard = `social_${e.title.normalize('NFC').replace(/ /g, '_')}.jpg`;
+    e.socialImage = fs.existsSync(`../public/social/${socialCard}`) ? `/social/${socialCard}` : null;
     const seenInYears = [];
     e.seenIn.forEach((s, index) => {
       const eventStart = tvMovies.find(d => d.title === s).startYear; // get the start year for the event

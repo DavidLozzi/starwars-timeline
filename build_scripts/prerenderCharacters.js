@@ -41,10 +41,10 @@ const characterUrl = (title) => `${SITE}/character/${encodeURIComponent(title.no
 const absolute = (url) => `${SITE}/${String(url || '').replace(/^\/+/, '')}`;
 const meta = (character, name) => character.metadata?.find(m => m.name.toLowerCase() === name.toLowerCase())?.value;
 
-// Matches the react-helmet logic in src/pages/Home: only Luke has a bespoke
-// social card today, everyone else shares the site card.
-const socialImage = (character) => (character.title === 'Luke Skywalker'
-  ? `${SITE}/social/social_Luke_Skywalker.png`
+// Matches the react-helmet logic in src/pages/Home: the character's own card
+// (build_scripts/socialCards.js, recorded by prepJson.js), else the site card.
+const socialImage = (character) => (character.socialImage
+  ? `${SITE}${encodeURI(character.socialImage.normalize('NFC'))}`
   : `${SITE}/social.png`);
 
 // react-helmet's updateTags only removes tags carrying data-react-helmet, so
