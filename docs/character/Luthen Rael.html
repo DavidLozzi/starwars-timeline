@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!-- The `booting` class scopes the critical boot CSS below so it can never leak
+     into the mounted app; src/index.jsx removes it once React has rendered. -->
+<html lang="en" class="booting">
+
+<head>
+  <!-- Start Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  <!-- End Single Page Apps for GitHub Pages -->
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M6F2CL7');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Clarity tracking code for https://timeline.starwars.guide/ -->
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i + "?ref=bwt";
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "a8qek3lghk");
+  </script>
+
+  <!-- Google AdSense — loader only; the unit is rendered and filled by src/organisms/AdBanner -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
+    crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="apple-touch-icon" href="/Logo192.png" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+
+  <!-- build_scripts/prerenderCharacters.js replaces this exact line per character page. -->
+  <link rel="canonical" href="https://timeline.starwars.guide/character/Luthen%20Rael" />
+
+  <meta name="msvalidate.01" content="C64BB17D4D1CA118CE50A6F9CFAFD602" />
+  <meta name="yandex-verification" content="1b0908106ac369fa" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="/manifest.json" />
+  <!--
+      Paths above are absolute (/favicon.ico, /manifest.json, ...). Files served
+      this way live in public/, which Vite copies to the build root as-is.
+    -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMM0RG2X2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-0KMM0RG2X2');
+  </script>
+
+  <!-- Brand webfonts, same two faces and same approach as the hub's header
+       wordmark (see ../starwars-guide/_includes/head.html): preloaded and
+       font-display: block so the heading paints in the right face on the first
+       frame instead of flashing a fallback. The @font-face blocks live below
+       rather than in styled-components, so the faces are declared before the
+       bundle parses -- a preload with no matching @font-face is dropped and
+       warned about. The filenames are not content-hashed; replace a face by
+       renaming the file and updating the preload and the @font-face together. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/ANewHope.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/AurebeshAF-Canon.woff2" crossorigin>
+
+  <!--
+      Critical boot CSS. styled-components injects everything else, but that only
+      happens once the JS bundle has parsed and React has mounted -- until then the
+      pre-rendered #root SEO markup rendered as black-on-white default HTML.
+
+      #boot-loader is the classic opening title card. It is a SIBLING of #root and
+      is emitted BEFORE it in the body, so the browser paints it on the very first
+      frame -- ahead of the ~300kB of pre-rendered SEO markup that streams in after
+      it. (An earlier version lived inside #root, after that markup, and the content
+      flashed for a moment before the overlay covered it.)
+
+      Being outside #root also means ReactDOM.render does NOT wipe it: the app
+      mounts and paints underneath, and src/index.jsx calls window.__dismissBoot()
+      to fade the card away. If the bundle never loads, the card gives up on its own
+      after 10s (pure CSS, no JS) so the pre-rendered content stays reachable.
+    -->
+  <style>
+    /* The two @font-face blocks are deliberately NOT scoped to html.booting --
+       the mounted app's heading uses both faces, so they have to outlive the
+       boot CSS. They declare no selectors, so nothing leaks into the app. */
+    @font-face {
+      font-family: 'A New Hope';
+      src: url('/fonts/ANewHope.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      /* block, not swap: both files are preloaded above, so the block window is
+         effectively zero, and the Aurebesh face has no sane fallback -- it would
+         render as plain latin letters for a frame. */
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: 'AurebeshAF';
+      src: url('/fonts/AurebeshAF-Canon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    /* Everything here is scoped to html.booting. React renders INTO #root, so an
+       unscoped `#root a` (or a `color` on body) would keep styling the live app
+       after mount -- that is exactly how the character pills ended up with
+       unreadable light-gray text, since neither theme's body block sets a color
+       and the components inherit it. */
+    .booting body {
+      background-color: rgb(30, 30, 30);
+      color: rgb(200, 200, 200);
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .booting #root h1,
+    .booting #root h2,
+    .booting #root h3,
+    .booting #root h4,
+    .booting #root a {
+      color: rgb(224, 196, 56);
+    }
+
+    #boot-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      background-color: #000;
+      animation: boot-give-up 1s ease-in 10s forwards;
+    }
+
+    #boot-loader p {
+      margin: 0;
+      max-width: 30rem;
+      /* The crawl's opening card: News Gothic in the films, so aim for the
+         closest widely installed grotesques before falling back to Arial. */
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1.25rem, 5.5vw, 2.75rem);
+      line-height: 1.35;
+      letter-spacing: .01em;
+      color: #4bd5ee;
+      /* Kept short relative to the hold: the fade-in eats the front of it, so a
+         long one makes the card feel like it appeared for much less time than
+         HOLD_MS actually is. */
+      animation: boot-fade-in .8s ease-out both;
+    }
+
+    /* Set by window.__dismissBoot(); wins over the give-up animation. */
+    #boot-loader.boot-done {
+      animation: none;
+      opacity: 0;
+      transition: opacity 700ms ease-in;
+      pointer-events: none;
+    }
+
+    @keyframes boot-fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes boot-give-up {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #boot-loader p,
+      #boot-loader.boot-done {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-BhNKGMmy.js"></script>
+  <title>Luthen Rael - Ultimate Star Wars Timeline</title>
+  <meta data-react-helmet="true" name="description" content="Luthen Rael, the Imperial deserter turned antique dealer, secretly ran the Axis spy network that built the Rebellion and died on Coruscant in 1 BBY.">
+  <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
+  <meta data-react-helmet="true" name="twitter:site" content="@UltStarWarsTime">
+  <meta data-react-helmet="true" name="twitter:creator" content="@AurebeshFiles">
+  <meta data-react-helmet="true" name="twitter:title" content="Luthen Rael - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" name="twitter:description" content="Luthen Rael, the Imperial deserter turned antique dealer, secretly ran the Axis spy network that built the Rebellion and died on Coruscant in 1 BBY.">
+  <meta data-react-helmet="true" name="twitter:image" content="https://timeline.starwars.guide/social.png">
+  <meta data-react-helmet="true" property="og:type" content="profile">
+  <meta data-react-helmet="true" property="og:site_name" content="Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:title" content="Luthen Rael - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:url" content="https://timeline.starwars.guide/character/Luthen%20Rael">
+  <meta data-react-helmet="true" property="og:description" content="Luthen Rael, the Imperial deserter turned antique dealer, secretly ran the Axis spy network that built the Rebellion and died on Coruscant in 1 BBY.">
+  <meta data-react-helmet="true" property="og:image" content="https://timeline.starwars.guide/social.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://timeline.starwars.guide/character/Luthen%20Rael#person","name":"Luthen Rael","description":"Luthen Rael, the Imperial deserter turned antique dealer, secretly ran the Axis spy network that built the Rebellion and died on Coruscant in 1 BBY.","url":"https://timeline.starwars.guide/character/Luthen%20Rael","image":"https://timeline.starwars.guide/images/luthen.png","additionalType":"FictionalCharacter","homeLocation":{"@type":"Place","name":"Fondor"},"sameAs":["https://starwars.fandom.com/wiki/Luthen_Rael"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ultimate Star Wars Timeline","item":"https://timeline.starwars.guide/"},{"@type":"ListItem","position":2,"name":"Characters","item":"https://timeline.starwars.guide/starwars_characters.html"},{"@type":"ListItem","position":3,"name":"Luthen Rael","item":"https://timeline.starwars.guide/character/Luthen%20Rael"}]}]}</script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6F2CL7" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <!-- Must stay ABOVE #root so it is parsed and painted before the pre-rendered
+       SEO markup; see the boot CSS comment in <head>. -->
+  <div id="boot-loader">
+    <p>A long time ago in a galaxy far, far away....</p>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById('boot-loader');
+      // The home page holds the title card for a beat before revealing the
+      // timeline. Deep links (/character/<Name>, mostly arrivals from search)
+      // skip the hold and drop straight into the app -- the hold lands inside
+      // the home page's LCP, so every extra second costs real Core Web Vitals
+      // field data, and search traffic mostly lands on character pages.
+      var isHome = !/^\/character\//.test(window.location.pathname);
+      var HOLD_MS = isHome ? 3000 : 0;
+      var shownAt = Date.now();
+
+      window.__dismissBoot = function () {
+        window.__dismissBoot = function () { };
+        setTimeout(function () {
+          el.className = 'boot-done';
+          setTimeout(function () { el.remove(); }, 800);
+        }, Math.max(0, HOLD_MS - (Date.now() - shownAt)));
+      };
+    }());
+  </script>
+
+  <div id="root">
+    <!-- PRERENDER:BODY:START -->
+<h1>Luthen Rael</h1>
+<p class="breadcrumb"><a href="/">Ultimate Star Wars Timeline</a> &rsaquo; <a href="/starwars_characters.html">Characters</a> &rsaquo; Luthen Rael</p>
+<img src="/images/luthen.png" alt="Luthen Rael" width="200" />
+<p>Luthen Rael died in 1 BBY.</p>
+<div><p>The hidden architect of the early Rebellion, Luthen Rael spent nearly two decades running a secret spy network against the Empire while posing as a refined antiques dealer on Coruscant. Born under the name Lear, he served as an Imperial Army sergeant until he was ordered to take part in a massacre around 18 BBY. Sickened by it, he deserted and took with him a young survivor he named Kleya Marki, who grew up to be his second-in-command. From about 15 BBY he built the web of operatives, informants and financiers that the ISB would come to call "Axis." Mon Mothma's money funded it, he armed Saw Gerrera's Partisans, and he ran a mole, Lonni Jung, inside the ISB itself. In 5 BBY he recruited Cassian Andor from Ferrix and sent him on the Aldhani heist, a raid meant to provoke the Empire into a crackdown that would turn people against it. Rael was ruthless. He let Anto Kreegyr's fighters walk into a trap to protect his source, had Tay Kolma eliminated, and shot Jung once his cover was blown. When Dedra Meero finally identified him in 1 BBY, he stabbed himself rather than be captured. Imperial medics kept him alive for interrogation, but Kleya slipped into the hospital and let him die. Before his fall he had passed Jung's warning about Krennic's secret weapon to the Alliance, and the Rebellion he had sacrificed everything for went on to win without him.</p></div>
+<dl>
+  <dt>Homeworld</dt><dd>Fondor</dd>
+  <dt>Species</dt><dd>Human</dd>
+  <dt>Force Sensitive</dt><dd>No</dd>
+</dl>
+<h3>~18 BBY - Massacre and Desertion</h3><p>Lear, an Imperial Army sergeant from Fondor serving as a swamp trooper, has a crisis of conscience during a massacre. He deserts and takes with him a young survivor he later names Kleya Marki.</p><h3>~16 BBY - Bombing on Naboo</h3><p>Now calling himself Luthen Rael, he stages one of his first attacks, bombing an Imperial convoy on Naboo. Kleya is with him, but at the last moment he presses the detonator himself.</p><h3>15 BBY - Foundations of a Movement</h3><p>Rael starts building a counter-Imperial movement, knowing it will cost him any ordinary life.</p><h3>~10 BBY - Galactic Antiquities</h3><p>He opens Galactic Antiquities and Objects of Interest on Coruscant as a cover. The gallery gives him access to the elite, and he cultivates allies such as Mon Mothma, Saw Gerrera and the ISB mole Lonni Jung.</p><h3>5 BBY - Recruiting Cassian Andor</h3><p>Rael goes to Ferrix to buy a stolen Starpath unit and instead recruits Cassian Andor. The two fight their way past Preox-Morlana security to escape.</p><h3>5 BBY - The Aldhani Heist</h3><p>He places Andor on Vel Sartha's team, which robs the Aldhani Garrison of a sector's payroll. Afterward he tells Mon Mothma the point was to provoke the Empire into cracking down harder.</p><h3>5 BBY - The Spellhaus Sacrifice</h3><p>Jung warns him that the ISB has set a trap for Anto Kreegyr's attack on Spellhaus. Rael refuses to let Jung quit, persuades Saw Gerrera to let Kreegyr's group be wiped out so the mole stays hidden, and escapes an Imperial Arrestor cruiser on the way out.</p><h3>5 BBY - Ferrix Uprising</h3><p>He returns to Ferrix intending to kill Andor at Maarva Andor's funeral. Instead, after the riot, he accepts Andor into the rebellion.</p><h3>4 BBY - Mothma Family Wedding</h3><p>Rael attends Leida Mothma's wedding on Chandrila as the curator of a gift. While there he has Cinta Kaz eliminate Tay Kolma, who had become a security risk.</p><h3>3 BBY - Ghorman Intrigue</h3><p>Rael sends Andor to assess the Ghorman Front. When Andor turns the job down, Rael sends Vel Sartha and Cinta Kaz in his place. With Kleya's help he also removes the listening device from Davo Sculdun's collection during the Senate Investiture party.</p><h3>2 BBY - Ghorman Massacre and Mothma's Escape</h3><p>Rael sends Andor to kill Dedra Meero on Ghorman, but the attempt fails amid the massacre. He then warns Mothma that Bail Organa's extraction team has been compromised and arranges for Andor to get her off Coruscant.</p><h3>1 BBY - Killing Lonni Jung</h3><p>Jung tells him about Krennic's secret weapon project and Galen Erso. Rael then shoots Jung and passes the intelligence to Kleya to send on to the Alliance.</p><h3>1 BBY - Death on Coruscant</h3><p>Cornered by Dedra Meero in his gallery, Rael stabs himself. Imperial medics keep him alive at Lina Soh Hospital, but Kleya infiltrates the building and disconnects his life support, and he dies.</p>
+<h2>Luthen Rael in the timeline</h2>
+<ul>
+  <li><a href="/character/Luthen%20Rael?year=-5">Andor, 5 BBY</a></li>
+</ul>
+<p><a href="https://starwars.fandom.com/wiki/Luthen_Rael" rel="nofollow noopener" target="_blank">Luthen Rael on Wookieepedia</a></p>
+<p><a href="/starwars_characters.html">All Star Wars characters</a></p>
+    <!-- PRERENDER:BODY:END -->
+  </div>
+  <!--
+      This HTML file is the app entry point and the build template.
+
+      The #root markup above is pre-rendered SEO content, regenerated by
+      build_scripts/prepJson.js; React replaces it on mount.
+
+      To begin development, run `npm start`.
+      To create a production bundle, run `npm run build`.
+    -->
+</body>
+
+</html>

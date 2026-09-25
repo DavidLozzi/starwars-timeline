@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!-- The `booting` class scopes the critical boot CSS below so it can never leak
+     into the mounted app; src/index.jsx removes it once React has rendered. -->
+<html lang="en" class="booting">
+
+<head>
+  <!-- Start Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  <!-- End Single Page Apps for GitHub Pages -->
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M6F2CL7');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Clarity tracking code for https://timeline.starwars.guide/ -->
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i + "?ref=bwt";
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "a8qek3lghk");
+  </script>
+
+  <!-- Google AdSense — loader only; the unit is rendered and filled by src/organisms/AdBanner -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
+    crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="apple-touch-icon" href="/Logo192.png" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+
+  <!-- build_scripts/prerenderCharacters.js replaces this exact line per character page. -->
+  <link rel="canonical" href="https://timeline.starwars.guide/character/Jyn%20Erso" />
+
+  <meta name="msvalidate.01" content="C64BB17D4D1CA118CE50A6F9CFAFD602" />
+  <meta name="yandex-verification" content="1b0908106ac369fa" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="/manifest.json" />
+  <!--
+      Paths above are absolute (/favicon.ico, /manifest.json, ...). Files served
+      this way live in public/, which Vite copies to the build root as-is.
+    -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMM0RG2X2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-0KMM0RG2X2');
+  </script>
+
+  <!-- Brand webfonts, same two faces and same approach as the hub's header
+       wordmark (see ../starwars-guide/_includes/head.html): preloaded and
+       font-display: block so the heading paints in the right face on the first
+       frame instead of flashing a fallback. The @font-face blocks live below
+       rather than in styled-components, so the faces are declared before the
+       bundle parses -- a preload with no matching @font-face is dropped and
+       warned about. The filenames are not content-hashed; replace a face by
+       renaming the file and updating the preload and the @font-face together. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/ANewHope.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/AurebeshAF-Canon.woff2" crossorigin>
+
+  <!--
+      Critical boot CSS. styled-components injects everything else, but that only
+      happens once the JS bundle has parsed and React has mounted -- until then the
+      pre-rendered #root SEO markup rendered as black-on-white default HTML.
+
+      #boot-loader is the classic opening title card. It is a SIBLING of #root and
+      is emitted BEFORE it in the body, so the browser paints it on the very first
+      frame -- ahead of the ~300kB of pre-rendered SEO markup that streams in after
+      it. (An earlier version lived inside #root, after that markup, and the content
+      flashed for a moment before the overlay covered it.)
+
+      Being outside #root also means ReactDOM.render does NOT wipe it: the app
+      mounts and paints underneath, and src/index.jsx calls window.__dismissBoot()
+      to fade the card away. If the bundle never loads, the card gives up on its own
+      after 10s (pure CSS, no JS) so the pre-rendered content stays reachable.
+    -->
+  <style>
+    /* The two @font-face blocks are deliberately NOT scoped to html.booting --
+       the mounted app's heading uses both faces, so they have to outlive the
+       boot CSS. They declare no selectors, so nothing leaks into the app. */
+    @font-face {
+      font-family: 'A New Hope';
+      src: url('/fonts/ANewHope.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      /* block, not swap: both files are preloaded above, so the block window is
+         effectively zero, and the Aurebesh face has no sane fallback -- it would
+         render as plain latin letters for a frame. */
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: 'AurebeshAF';
+      src: url('/fonts/AurebeshAF-Canon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    /* Everything here is scoped to html.booting. React renders INTO #root, so an
+       unscoped `#root a` (or a `color` on body) would keep styling the live app
+       after mount -- that is exactly how the character pills ended up with
+       unreadable light-gray text, since neither theme's body block sets a color
+       and the components inherit it. */
+    .booting body {
+      background-color: rgb(30, 30, 30);
+      color: rgb(200, 200, 200);
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .booting #root h1,
+    .booting #root h2,
+    .booting #root h3,
+    .booting #root h4,
+    .booting #root a {
+      color: rgb(224, 196, 56);
+    }
+
+    #boot-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      background-color: #000;
+      animation: boot-give-up 1s ease-in 10s forwards;
+    }
+
+    #boot-loader p {
+      margin: 0;
+      max-width: 30rem;
+      /* The crawl's opening card: News Gothic in the films, so aim for the
+         closest widely installed grotesques before falling back to Arial. */
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1.25rem, 5.5vw, 2.75rem);
+      line-height: 1.35;
+      letter-spacing: .01em;
+      color: #4bd5ee;
+      /* Kept short relative to the hold: the fade-in eats the front of it, so a
+         long one makes the card feel like it appeared for much less time than
+         HOLD_MS actually is. */
+      animation: boot-fade-in .8s ease-out both;
+    }
+
+    /* Set by window.__dismissBoot(); wins over the give-up animation. */
+    #boot-loader.boot-done {
+      animation: none;
+      opacity: 0;
+      transition: opacity 700ms ease-in;
+      pointer-events: none;
+    }
+
+    @keyframes boot-fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes boot-give-up {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #boot-loader p,
+      #boot-loader.boot-done {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-BhNKGMmy.js"></script>
+  <title>Jyn Erso - Ultimate Star Wars Timeline</title>
+  <meta data-react-helmet="true" name="description" content="Jyn Erso, Galen Erso's daughter raised by Saw Gerrera, led Rogue One to steal the Death Star plans on Scarif and died there before the Battle of Yavin.">
+  <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
+  <meta data-react-helmet="true" name="twitter:site" content="@UltStarWarsTime">
+  <meta data-react-helmet="true" name="twitter:creator" content="@AurebeshFiles">
+  <meta data-react-helmet="true" name="twitter:title" content="Jyn Erso - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" name="twitter:description" content="Jyn Erso, Galen Erso's daughter raised by Saw Gerrera, led Rogue One to steal the Death Star plans on Scarif and died there before the Battle of Yavin.">
+  <meta data-react-helmet="true" name="twitter:image" content="https://timeline.starwars.guide/social.png">
+  <meta data-react-helmet="true" property="og:type" content="profile">
+  <meta data-react-helmet="true" property="og:site_name" content="Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:title" content="Jyn Erso - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:url" content="https://timeline.starwars.guide/character/Jyn%20Erso">
+  <meta data-react-helmet="true" property="og:description" content="Jyn Erso, Galen Erso's daughter raised by Saw Gerrera, led Rogue One to steal the Death Star plans on Scarif and died there before the Battle of Yavin.">
+  <meta data-react-helmet="true" property="og:image" content="https://timeline.starwars.guide/social.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://timeline.starwars.guide/character/Jyn%20Erso#person","name":"Jyn Erso","description":"Jyn Erso, Galen Erso's daughter raised by Saw Gerrera, led Rogue One to steal the Death Star plans on Scarif and died there before the Battle of Yavin.","url":"https://timeline.starwars.guide/character/Jyn%20Erso","image":"https://timeline.starwars.guide/images/jyn.png","additionalType":"FictionalCharacter","homeLocation":{"@type":"Place","name":"Vallt"},"sameAs":["https://starwars.fandom.com/wiki/Jyn_Erso"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ultimate Star Wars Timeline","item":"https://timeline.starwars.guide/"},{"@type":"ListItem","position":2,"name":"Characters","item":"https://timeline.starwars.guide/starwars_characters.html"},{"@type":"ListItem","position":3,"name":"Jyn Erso","item":"https://timeline.starwars.guide/character/Jyn%20Erso"}]}]}</script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6F2CL7" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <!-- Must stay ABOVE #root so it is parsed and painted before the pre-rendered
+       SEO markup; see the boot CSS comment in <head>. -->
+  <div id="boot-loader">
+    <p>A long time ago in a galaxy far, far away....</p>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById('boot-loader');
+      // The home page holds the title card for a beat before revealing the
+      // timeline. Deep links (/character/<Name>, mostly arrivals from search)
+      // skip the hold and drop straight into the app -- the hold lands inside
+      // the home page's LCP, so every extra second costs real Core Web Vitals
+      // field data, and search traffic mostly lands on character pages.
+      var isHome = !/^\/character\//.test(window.location.pathname);
+      var HOLD_MS = isHome ? 3000 : 0;
+      var shownAt = Date.now();
+
+      window.__dismissBoot = function () {
+        window.__dismissBoot = function () { };
+        setTimeout(function () {
+          el.className = 'boot-done';
+          setTimeout(function () { el.remove(); }, 800);
+        }, Math.max(0, HOLD_MS - (Date.now() - shownAt)));
+      };
+    }());
+  </script>
+
+  <div id="root">
+    <!-- PRERENDER:BODY:START -->
+<h1>Jyn Erso</h1>
+<p class="breadcrumb"><a href="/">Ultimate Star Wars Timeline</a> &rsaquo; <a href="/starwars_characters.html">Characters</a> &rsaquo; Jyn Erso</p>
+<img src="/images/jyn.png" alt="Jyn Erso" width="200" />
+<p>Jyn Erso was born in 21 BBY and died in 1 BBY.</p>
+<div><p>Jyn Erso is best remembered as the leader of Rogue One, the small band of rebels who stole the Death Star plans at the Battle of Scarif and so made the Rebel victory at Yavin possible. She was the daughter of scientist Galen Erso and his wife Lyra. Her early childhood was spent on the move: she was born in a Separatist prison, spent the last days of the Clone Wars on Coruscant and Lokori, and then lived inside the Empire's kyber research program until her parents fled to the remote farm world of Lah'mu. When she was eight, Orson Krennic found the family there. He killed her mother and took her father back to work on the Death Star. Saw Gerrera rescued Jyn and raised her as a child soldier among his Partisans, where she learned to fight and forge codes. At sixteen he abandoned her on Tamsye Prime to protect her identity. She briefly found a new family with the Pontas on Skuhl, but lost them to an Imperial crackdown. After that she survived for years as a forger, smuggler and petty criminal under a string of aliases, until she was sent to the Wobani labor camp. The Rebel Alliance freed her so she could reach Saw on Jedha. There she learned that her father had secretly built a fatal flaw into the Death Star, and she then watched him die on Eadu. When the Alliance Council refused to act, she and Cassian Andor took a volunteer squad to Scarif. Jyn transmitted the plans to the Rebel fleet, and she and Cassian died together when the Death Star's blast engulfed the base.</p></div>
+<dl>
+  <dt>Homeworld</dt><dd>Vallt</dd>
+  <dt>Species</dt><dd>Human</dd>
+  <dt>Force Sensitive</dt><dd>No</dd>
+</dl>
+<h3>21 BBY - Birth on Vallt</h3><p>Born to Galen and Lyra Erso inside the Separatist Tambolor prison on Vallt, where her father was being held for refusing to help the Confederacy.</p><h3>~20 BBY - Rescue to Coruscant</h3><p>About six months old when Lieutenant Commander Orson Krennic of the Republic extracts the family and brings them to the Institute of Applied Science on Coruscant.</p><h3>~20 BBY - Move to Lokori</h3><p>The family relocates to Lokori after Krennic arranges for Galen to take a position with Helical HyperCom.</p><h3>19 BBY - Battle on Lokori</h3><p>Trapped with her parents as Separatist droids overrun the Helical HyperCom facility, the family survives only because the droids shut down when the Clone Wars end.</p><h3>~19 BBY - Life inside Project Celestial Power</h3><p>Grows up in the project complex on Coruscant, mostly in the care of the nanny droid Mac-Vee, while her father's kyber research is secretly turned toward a superweapon.</p><h3>~18 BBY - Trip to Alpinn</h3><p>At age three, travels with her mother, Has Obitt and Nari Sable to an archaeological dig on Alpinn.</p><h3>~17 BBY - Flight from Coruscant</h3><p>At four, escapes the Empire with her parents aboard Saw Gerrera's ship and helps choose Lah'mu as their hiding place.</p><h3>~17–13 BBY - Childhood on Lah'mu</h3><p>Grows up on an isolated skycorn farm, taught at home by her mother and drilled in the family's emergency plans.</p><h3>13 BBY - Loss of her parents</h3><p>Krennic and his death troopers arrive at the homestead. Lyra is killed, Galen is taken away, and Jyn hides in the family's bunker until Saw Gerrera comes to rescue her.</p><h3>~13 BBY - Taken in by Saw Gerrera</h3><p>Brought to Saw's hidden outpost on Wrea and trained there in blasters, truncheons, hand-to-hand combat and forging codes.</p><h3>~10 BBY - Meeting Enfys Nest</h3><p>At eleven, goes with Saw to meet Enfys Nest and the Cloud-Riders, who offer him coaxium for the fight against the Empire.</p><h3>~9 BBY - Meeting Arhul Nemo</h3><p>At twelve, meets Arhul Nemo of the Commenor Underground.</p><h3>~9–5 BBY - Partisan missions</h3><p>Takes part in Partisan operations, including her first solo mission to Horuz and the massacre on Inusagi, where her friend Maia is killed.</p><h3>~5 BBY - Abandoned on Tamsye Prime</h3><p>At sixteen, after Reece Tallent betrays a mission, Saw leaves her hidden in a bunker and never returns. She escapes the planet on her own.</p><h3>~5 BBY - Life on Skuhl</h3><p>Taken in by freighter captain Akshaya Ponta. On Skuhl she begins a relationship with Akshaya's son, Hadder.</p><h3>~4 BBY - Escape from Skuhl</h3><p>Stormtroopers raid the Ponta home and the family flees. Hadder and Akshaya die when their freighter is destroyed, and Jyn reaches Five Points station alone.</p><h3>~4 BBY - Forger for Lucka Solange</h3><p>On Five Points, she is pressed into forging casino credits for Imperial Commander Lucka Solange.</p><h3>~4–1 BBY - Years as a criminal</h3><p>Drifts across the galaxy as a forger, smuggler and petty criminal under aliases such as Liana Hallik and Tanith Ponta. On Garel she rescues a girl's tooka-cat from stormtroopers.</p><h3>1 BBY - Imprisoned on Wobani</h3><p>Arrested as "Liana Hallik" and sentenced to twenty years at the Wobani labor camp. She helps Dunning Tredup's crew escape but gives herself up to save Theera.</p><h3>1 BBY - Freed by the Rebellion</h3><p>Freed during a prisoner transfer by a Rebel team including K-2SO, and recruited by Mon Mothma and Cassian Andor to find Saw Gerrera.</p><h3>1 BBY - Jedha</h3><p>Reunites with Saw on Jedha and sees her father's message about the Death Star's hidden flaw, just before the Death Star destroys Jedha City.</p><h3>1 BBY - Eadu</h3><p>Reaches her father on Eadu only to see him mortally wounded in a Rebel airstrike. He dies in her arms.</p><h3>1 BBY - Rogue One</h3><p>After the Alliance Council refuses to act, she and Cassian lead a volunteer squad to Scarif under the call sign Rogue One.</p><h3>1 BBY - Death on Scarif</h3><p>Steals the Death Star plans from the Citadel and transmits them to the Rebel fleet. She dies beside Cassian Andor when the Death Star fires on Scarif.</p>
+<h2>Jyn Erso in the timeline</h2>
+<ul>
+  <li><a href="/character/Jyn%20Erso?year=-1">Rogue One: A Star Wars Story, 1 BBY (20 years old)</a></li>
+</ul>
+<p><a href="https://starwars.fandom.com/wiki/Jyn_Erso" rel="nofollow noopener" target="_blank">Jyn Erso on Wookieepedia</a></p>
+<p><a href="/starwars_characters.html">All Star Wars characters</a></p>
+    <!-- PRERENDER:BODY:END -->
+  </div>
+  <!--
+      This HTML file is the app entry point and the build template.
+
+      The #root markup above is pre-rendered SEO content, regenerated by
+      build_scripts/prepJson.js; React replaces it on mount.
+
+      To begin development, run `npm start`.
+      To create a production bundle, run `npm run build`.
+    -->
+</body>
+
+</html>

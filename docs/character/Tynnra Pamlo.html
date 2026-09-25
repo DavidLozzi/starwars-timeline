@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!-- The `booting` class scopes the critical boot CSS below so it can never leak
+     into the mounted app; src/index.jsx removes it once React has rendered. -->
+<html lang="en" class="booting">
+
+<head>
+  <!-- Start Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  <!-- End Single Page Apps for GitHub Pages -->
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M6F2CL7');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Clarity tracking code for https://timeline.starwars.guide/ -->
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i + "?ref=bwt";
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "a8qek3lghk");
+  </script>
+
+  <!-- Google AdSense — loader only; the unit is rendered and filled by src/organisms/AdBanner -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
+    crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="apple-touch-icon" href="/Logo192.png" />
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+
+  <!-- build_scripts/prerenderCharacters.js replaces this exact line per character page. -->
+  <link rel="canonical" href="https://timeline.starwars.guide/character/Tynnra%20Pamlo" />
+
+  <meta name="msvalidate.01" content="C64BB17D4D1CA118CE50A6F9CFAFD602" />
+  <meta name="yandex-verification" content="1b0908106ac369fa" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="/manifest.json" />
+  <!--
+      Paths above are absolute (/favicon.ico, /manifest.json, ...). Files served
+      this way live in public/, which Vite copies to the build root as-is.
+    -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMM0RG2X2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-0KMM0RG2X2');
+  </script>
+
+  <!-- Brand webfonts, same two faces and same approach as the hub's header
+       wordmark (see ../starwars-guide/_includes/head.html): preloaded and
+       font-display: block so the heading paints in the right face on the first
+       frame instead of flashing a fallback. The @font-face blocks live below
+       rather than in styled-components, so the faces are declared before the
+       bundle parses -- a preload with no matching @font-face is dropped and
+       warned about. The filenames are not content-hashed; replace a face by
+       renaming the file and updating the preload and the @font-face together. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/ANewHope.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/AurebeshAF-Canon.woff2" crossorigin>
+
+  <!--
+      Critical boot CSS. styled-components injects everything else, but that only
+      happens once the JS bundle has parsed and React has mounted -- until then the
+      pre-rendered #root SEO markup rendered as black-on-white default HTML.
+
+      #boot-loader is the classic opening title card. It is a SIBLING of #root and
+      is emitted BEFORE it in the body, so the browser paints it on the very first
+      frame -- ahead of the ~300kB of pre-rendered SEO markup that streams in after
+      it. (An earlier version lived inside #root, after that markup, and the content
+      flashed for a moment before the overlay covered it.)
+
+      Being outside #root also means ReactDOM.render does NOT wipe it: the app
+      mounts and paints underneath, and src/index.jsx calls window.__dismissBoot()
+      to fade the card away. If the bundle never loads, the card gives up on its own
+      after 10s (pure CSS, no JS) so the pre-rendered content stays reachable.
+    -->
+  <style>
+    /* The two @font-face blocks are deliberately NOT scoped to html.booting --
+       the mounted app's heading uses both faces, so they have to outlive the
+       boot CSS. They declare no selectors, so nothing leaks into the app. */
+    @font-face {
+      font-family: 'A New Hope';
+      src: url('/fonts/ANewHope.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      /* block, not swap: both files are preloaded above, so the block window is
+         effectively zero, and the Aurebesh face has no sane fallback -- it would
+         render as plain latin letters for a frame. */
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: 'AurebeshAF';
+      src: url('/fonts/AurebeshAF-Canon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    /* Everything here is scoped to html.booting. React renders INTO #root, so an
+       unscoped `#root a` (or a `color` on body) would keep styling the live app
+       after mount -- that is exactly how the character pills ended up with
+       unreadable light-gray text, since neither theme's body block sets a color
+       and the components inherit it. */
+    .booting body {
+      background-color: rgb(30, 30, 30);
+      color: rgb(200, 200, 200);
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .booting #root h1,
+    .booting #root h2,
+    .booting #root h3,
+    .booting #root h4,
+    .booting #root a {
+      color: rgb(224, 196, 56);
+    }
+
+    #boot-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8vw;
+      background-color: #000;
+      animation: boot-give-up 1s ease-in 10s forwards;
+    }
+
+    #boot-loader p {
+      margin: 0;
+      max-width: 30rem;
+      /* The crawl's opening card: News Gothic in the films, so aim for the
+         closest widely installed grotesques before falling back to Arial. */
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1.25rem, 5.5vw, 2.75rem);
+      line-height: 1.35;
+      letter-spacing: .01em;
+      color: #4bd5ee;
+      /* Kept short relative to the hold: the fade-in eats the front of it, so a
+         long one makes the card feel like it appeared for much less time than
+         HOLD_MS actually is. */
+      animation: boot-fade-in .8s ease-out both;
+    }
+
+    /* Set by window.__dismissBoot(); wins over the give-up animation. */
+    #boot-loader.boot-done {
+      animation: none;
+      opacity: 0;
+      transition: opacity 700ms ease-in;
+      pointer-events: none;
+    }
+
+    @keyframes boot-fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes boot-give-up {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #boot-loader p,
+      #boot-loader.boot-done {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-BhNKGMmy.js"></script>
+  <title>Tynnra Pamlo - Ultimate Star Wars Timeline</title>
+  <meta data-react-helmet="true" name="description" content="Tynnra Pamlo, Taris's senator and a secret Rebel Alliance minister, fought the Empire's army bill and opposed the Scarif raid before quitting the Senate.">
+  <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
+  <meta data-react-helmet="true" name="twitter:site" content="@UltStarWarsTime">
+  <meta data-react-helmet="true" name="twitter:creator" content="@AurebeshFiles">
+  <meta data-react-helmet="true" name="twitter:title" content="Tynnra Pamlo - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" name="twitter:description" content="Tynnra Pamlo, Taris's senator and a secret Rebel Alliance minister, fought the Empire's army bill and opposed the Scarif raid before quitting the Senate.">
+  <meta data-react-helmet="true" name="twitter:image" content="https://timeline.starwars.guide/social.png">
+  <meta data-react-helmet="true" property="og:type" content="profile">
+  <meta data-react-helmet="true" property="og:site_name" content="Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:title" content="Tynnra Pamlo - Ultimate Star Wars Timeline">
+  <meta data-react-helmet="true" property="og:url" content="https://timeline.starwars.guide/character/Tynnra%20Pamlo">
+  <meta data-react-helmet="true" property="og:description" content="Tynnra Pamlo, Taris's senator and a secret Rebel Alliance minister, fought the Empire's army bill and opposed the Scarif raid before quitting the Senate.">
+  <meta data-react-helmet="true" property="og:image" content="https://timeline.starwars.guide/social.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://timeline.starwars.guide/character/Tynnra%20Pamlo#person","name":"Tynnra Pamlo","description":"Tynnra Pamlo, Taris's senator and a secret Rebel Alliance minister, fought the Empire's army bill and opposed the Scarif raid before quitting the Senate.","url":"https://timeline.starwars.guide/character/Tynnra%20Pamlo","image":"https://timeline.starwars.guide/images/pamlo.png","additionalType":"FictionalCharacter","homeLocation":{"@type":"Place","name":"Taris"},"sameAs":["https://starwars.fandom.com/wiki/Tynnra_Pamlo"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ultimate Star Wars Timeline","item":"https://timeline.starwars.guide/"},{"@type":"ListItem","position":2,"name":"Characters","item":"https://timeline.starwars.guide/starwars_characters.html"},{"@type":"ListItem","position":3,"name":"Tynnra Pamlo","item":"https://timeline.starwars.guide/character/Tynnra%20Pamlo"}]}]}</script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6F2CL7" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <!-- Must stay ABOVE #root so it is parsed and painted before the pre-rendered
+       SEO markup; see the boot CSS comment in <head>. -->
+  <div id="boot-loader">
+    <p>A long time ago in a galaxy far, far away....</p>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById('boot-loader');
+      // The home page holds the title card for a beat before revealing the
+      // timeline. Deep links (/character/<Name>, mostly arrivals from search)
+      // skip the hold and drop straight into the app -- the hold lands inside
+      // the home page's LCP, so every extra second costs real Core Web Vitals
+      // field data, and search traffic mostly lands on character pages.
+      var isHome = !/^\/character\//.test(window.location.pathname);
+      var HOLD_MS = isHome ? 3000 : 0;
+      var shownAt = Date.now();
+
+      window.__dismissBoot = function () {
+        window.__dismissBoot = function () { };
+        setTimeout(function () {
+          el.className = 'boot-done';
+          setTimeout(function () { el.remove(); }, 800);
+        }, Math.max(0, HOLD_MS - (Date.now() - shownAt)));
+      };
+    }());
+  </script>
+
+  <div id="root">
+    <!-- PRERENDER:BODY:START -->
+<h1>Tynnra Pamlo</h1>
+<p class="breadcrumb"><a href="/">Ultimate Star Wars Timeline</a> &rsaquo; <a href="/starwars_characters.html">Characters</a> &rsaquo; Tynnra Pamlo</p>
+<img src="/images/pamlo.png" alt="Tynnra Pamlo" width="200" />
+<p></p>
+<div><p>Tynnra Pamlo lived a double life in the Imperial Senate. She sat openly for Taris while secretly serving as Minister of Education in the Rebel Alliance's Civil Government. In the first days of the Empire she joined Bail Organa and Riyo Chuchi in fighting the Imperial Defense Recruitment Bill, arguing that the galaxy had more urgent needs than a costly new army. That effort collapsed when Palpatine used Admiral Rampart's destruction of Tipoca City as a reason to endorse the bill himself. In the years that followed, Pamlo worked with Rebel Intelligence and Airen Cracken. She gathered reports of Imperial atrocities and spread counterpropaganda, and she took part in the Organas' strategy dinners on Alderaan, which were disguised as social evenings. Although she opposed Palpatine, she was one of the Alliance's most cautious voices and would not drag her homeworld into open war. When Jyn Erso told the Alliance High Command about the Death Star, Pamlo argued for disbanding the Alliance rather than attacking Scarif, dismissing the plan as nothing but hope. After Rogue One went ahead anyway and the Galactic Civil War began, she returned to Coruscant, publicly condemned the battle station and resigned her Senate seat.</p></div>
+<dl>
+  <dt>Homeworld</dt><dd>Taris</dd>
+  <dt>Species</dt><dd>Human</dd>
+  <dt>Force Sensitive</dt><dd>No</dd>
+</dl>
+<h3>~18 BBY - Opposes the Defense Recruitment Bill</h3><p>As senator for Taris in the new Imperial Senate, Pamlo joins Bail Organa in opposing Admiral Rampart's plan to replace the clone army with conscripts. She argues that the war is over and that the galaxy has more pressing problems.</p><h3>~18 BBY - The vote is tabled</h3><p>Pamlo and Organa get Mas Amedda to table the vote again until provisions for retiring clones are clearly defined.</p><h3>~18 BBY - The Clone Conspiracy exposed</h3><p>Pamlo watches in shock as Riyo Chuchi reveals footage of Rampart destroying Tipoca City. Palpatine then appears, has Rampart arrested and uses the scandal to endorse the Defense Recruitment Bill, which marks the start of the stormtrooper era.</p><h3>Imperial Era - Secret rebel minister</h3><p>While still in the Senate, Pamlo becomes Minister of Education in the Alliance's Civil Government. She works with Rebel Intelligence and Airen Cracken, collecting reports of Imperial atrocities on Lasan, Geonosis and Ghorman and producing counterpropaganda.</p><h3>3 BBY - Leia Organa's Day of Demand</h3><p>Pamlo attends Leia's Day of Demand ceremony on Alderaan, where Queen Breha thanks her personally for coming.</p><h3>~3 BBY - Strategy dinners on Alderaan</h3><p>Pamlo attends the Organas' dinner parties, which are secretly rebel strategy meetings. At one of them Grand Moff Tarkin arrives unexpectedly, and Breha stages a drunken scene to hide what the guests are really discussing.</p><h3>1 BBY - Operation Fracture</h3><p>Pamlo is part of the Alliance leadership that plans to extract Galen Erso. She and Organa intend to bring him before the Senate to testify about the Empire's weapon.</p><h3>1 BBY - Council on Yavin 4</h3><p>After hearing from Jyn Erso and Cassian Andor, Pamlo asks what chance the rebels have against a planet-killing weapon. She calls for the Alliance to disband and scatter, and she rejects the raid on Scarif because it rests on nothing but hope.</p><h3>1 BBY - Resignation from the Senate</h3><p>After Rogue One's unsanctioned attack on Scarif starts the Galactic Civil War, Pamlo returns to Coruscant, publicly condemns the Death Star and resigns her Senate seat.</p>
+<h2>Tynnra Pamlo in the timeline</h2>
+<ul>
+  <li><a href="/character/Tynnra%20Pamlo?year=-19">The Bad Batch, 19 BBY</a></li>
+  <li><a href="/character/Tynnra%20Pamlo?year=-5">Andor, 5 BBY</a></li>
+  <li><a href="/character/Tynnra%20Pamlo?year=-1">Rogue One: A Star Wars Story, 1 BBY</a></li>
+</ul>
+<p><a href="https://starwars.fandom.com/wiki/Tynnra_Pamlo" rel="nofollow noopener" target="_blank">Tynnra Pamlo on Wookieepedia</a></p>
+<p><a href="/starwars_characters.html">All Star Wars characters</a></p>
+    <!-- PRERENDER:BODY:END -->
+  </div>
+  <!--
+      This HTML file is the app entry point and the build template.
+
+      The #root markup above is pre-rendered SEO content, regenerated by
+      build_scripts/prepJson.js; React replaces it on mount.
+
+      To begin development, run `npm start`.
+      To create a production bundle, run `npm run build`.
+    -->
+</body>
+
+</html>
