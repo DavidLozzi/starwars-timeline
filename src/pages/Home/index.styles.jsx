@@ -162,7 +162,9 @@ export const YearPill = styled(({ isCurrentYear, ...rest }) => <Year {...rest} d
     left: ${({ theme }) => theme.layout.elements.year.leftPageMargin}rem;
     z-index: 60;
     border-top: 0;
-    margin-top: .1rem;
+    height: ${({ theme }) => theme.layout.elements.year.height}rem;
+    display: flex;
+    align-items: center;
     pointer-events: none;
 
     ${Sticky} {

@@ -3,11 +3,11 @@ import { css } from 'styled-components';
 const layout = { // in rem
   pxInRem: 16, // pixels in a rem
   topMargin: 6,
-  gridHeight: 2,
+  gridHeight: 2.6, // year row pitch; keep equal to elements.year.height
   gridWidth: 2,
   elements: {
     year: {
-      height: 2,
+      height: 2.6,
       leftPageMargin: 2
     },
     movie: {
@@ -182,7 +182,7 @@ export default {
     },
     currentYear: {
       backgroundColor: `rgba(${palette.white},0.8)`,
-      height: '2rem',
+      height: '2.6rem',
       zIndex: '20'
     },
     currentYearText: {

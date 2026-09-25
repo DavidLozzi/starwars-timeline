@@ -274,11 +274,11 @@ const Home = () => {
     setCharacters(charactersData);
     setFilteredCharacters(charactersData);
 
-    setInterval(() => {
+    const scrollPoll = setInterval(() => {
       if (window.scrolling) {
         window.scrolling = false;
         const pxToRem = window.scrollY / theme.layout.pxInRem;
-        setCurrentYearIndex(Math.round(pxToRem / 2));
+        setCurrentYearIndex(Math.round(pxToRem / theme.layout.elements.year.height));
         setHasScrolled(new Date());
       }
     }, 75);
@@ -293,24 +293,33 @@ const Home = () => {
     window.curYPos = 0;
     window.curXPos = 0;
     window.curDown = false;
-    window.addEventListener('mousemove', function (e) {
+    const onMouseMove = (e) => {
       if (window.curDown) {
         cancelAnimationFrame(window.animationFrameId);
         window.animationFrameId = requestAnimationFrame(() => scrollPage(e));
       }
-    });
-
-    window.addEventListener('mousedown', function (e) {
+    };
+    const onMouseDown = (e) => {
       window.curYPos = e.pageY;
       window.curXPos = e.pageX;
       window.curDown = true;
-    });
-
-    window.addEventListener('mouseup', function (e) {
+    };
+    const onMouseUp = () => {
       window.curDown = false;
       cancelAnimationFrame(window.animationFrameId);
-    });
+    };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
 
+    // Without this, every remount (HMR in dev) stacks another poller and drag
+    // handler; stale pollers with old layout math fight over currentYear.
+    return () => {
+      clearInterval(scrollPoll);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
   }, []);
 
   return (
