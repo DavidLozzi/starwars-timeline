@@ -19,6 +19,15 @@ const layout = { // in rem
       spacer: 1,
       leftPageMargin: 10,
       pillHeight: 9.5 // CharacterDetail min-height; also how far the pill rides above the line
+    },
+    focus: {
+      panelWidth: 390, // px
+      leftInset: 7, // rem
+      cardWidth: 18, // rem
+      dotSize: .75, // rem
+      dimOpacity: .15,
+      expandMs: 600, // pill -> panel width/height animation
+      contentDelayMs: 200 // details fade in this long after the pill starts growing
     }
   }
 };
@@ -283,6 +292,26 @@ export default {
         background: `radial-gradient(circle at 34% 28%, rgba(197,138,183,0.92) 0%, rgba(${palette.secondary},0.9) 55%, rgba(140,77,126,0.92) 100%)`
       }
     },
+    focusEventDot: {
+      backgroundColor: 'rgb(224,196,56)',
+      borderRadius: '50%',
+      boxShadow: `0 0 0 2px rgba(${palette.black},0.9)`
+    },
+    focusEventCard: css`
+      background: linear-gradient(180deg, rgba(191,124,176,1) 0%, rgba(${palette.secondary},0.9) 55%, rgba(155,86,140,1) 100%); /* same as characterDetail */
+      border: 1px solid rgba(235,190,225,0.2);
+      box-shadow: 0 .15rem .5rem rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.28);
+      color: rgb(${palette.black});
+      font-size: .75rem;
+      line-height: 1.1rem;
+      border-radius: .8rem;
+      padding: .4rem .7rem;
+    `,
+    focusEventYear: css`
+      font-size: .65rem;
+      font-weight: bold;
+      color: rgba(${palette.black}, .7);
+    `,
     modalWrapper: {
       backgroundColor: `rgba(${palette.gray},0.8)`
     },

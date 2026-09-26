@@ -216,6 +216,25 @@ export const CharacterColumn = styled(({ character, ...rest }) => <div {...rest}
   height: ${({ character, theme }) => getCharacterHeight(theme, character)}rem;
   z-index: 30;
   pointer-events: auto;
+  /* opacity is animated by theme.elements.character's 'all 300ms' transition */
+  ${({ $dimmed, theme }) => $dimmed && `opacity: ${theme.layout.elements.focus?.dimOpacity ?? .15};`}
+`;
+
+// Focus mode: scrolls so the focused character's column lands `leftInset`
+// rem from the viewport's left edge (past the sticky year pills). gridWidth
+// is added because Wrapper's margin is `gridWidth` rem -- see the focus-mode
+// plan, decision 2.
+export const getFocusScrollLeft = (theme, character, scale) => Math.max(0, (theme.layout.gridWidth + getCharacterLeft(theme, character) * scale) * theme.layout.pxInRem - theme.layout.elements.focus.leftInset * theme.layout.pxInRem);
+
+// A 1px marker placed 100vw past the focused character's column so the page
+// can always scroll far enough to bring that column to the far-left inset,
+// even for the right-most character.
+export const FocusSpacer = styled.div`
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 `;
 
 export const AltTitle = styled.div`

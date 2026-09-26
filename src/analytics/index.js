@@ -11,7 +11,8 @@ export const ACTIONS = {
   MENU_ITEM: 'menu item',
   THEME: 'switch theme',
   OPEN_NEWS: 'open news',
-  NEWS_ITEM: 'news item'
+  NEWS_ITEM: 'news item',
+  CHARACTER_SEE_MORE: 'character see more'
 };
 
 export default {

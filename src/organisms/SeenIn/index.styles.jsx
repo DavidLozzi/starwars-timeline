@@ -9,6 +9,8 @@ export const SeenIn = styled((props) => <div {...props} data-testid="seenin" />)
   display: flex;
   justify-content: center;
   align-content: center;
+  transition: opacity 300ms ease-in-out;
+  ${({ $dimmed, theme }) => $dimmed && `opacity: ${theme.layout.elements.focus?.dimOpacity ?? .15};`}
 `;
 
 export const SeenInEvent = styled.span`

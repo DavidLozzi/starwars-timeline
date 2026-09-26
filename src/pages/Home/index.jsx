@@ -15,6 +15,8 @@ import Minimap from '../../organisms/Minimap/Minimap';
 import SeenIn from '../../organisms/SeenIn';
 import { Helmet } from 'react-helmet';
 import Death from '../../organisms/Death';
+import CharacterEvents from '../../organisms/CharacterEvents';
+import { buildCharacterEvents } from '../../organisms/CharacterEvents/events';
 const OnboardingGuide = React.lazy(() => import('../../organisms/OnboardingGuide'));
 import { getOnboardingState, decodeCharacterParam } from '../../utils';
 
@@ -48,6 +50,16 @@ const Home = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [modalContents, setModalContents] = React.useState();
   const [hasScrolled, setHasScrolled] = React.useState(new Date()); // just used to refresh the state/DOM to show/hide characters
+  const [focusedTitle, setFocusedTitle] = React.useState(null);
+  // Measured height (rem) of the expanded pill's details, for lifting the pill
+  // above the first event dot and for the entry scroll -- see focusLayout.
+  const [focusPanelHeight, setFocusPanelHeight] = React.useState(null);
+  // Set by enterFocus, consumed by the layout effect that scrolls once the
+  // expanded pill is in the DOM and can be measured.
+  const pendingFocusScroll = React.useRef(null);
+  // The column index the last focus scroll aimed at (see the hideDeceased
+  // re-scroll effect).
+  const focusScrolledIndex = React.useRef(null);
   const { filters, scrollTo, filterCount, scale, hideDeceased } = useAppContext();
 
   // zoom level, incremements of years to show
@@ -75,15 +87,40 @@ const Home = () => {
     setOnboardingOpenSource(null);
   }, []);
 
-  const showCharacter = (character) => {
-    history.push(`/character/${encodeURIComponent(character.title)}?year=${currentYear.year}&show=true`);
-    showCharacterModal(character);
+  // Puts the timeline into focus mode on `character` -- see the "Character
+  // focus mode" plan, decisions 1-3 and 10, and Revision 1. `year` defaults to
+  // the currently scrolled-to year, but the initial-load effect passes the
+  // year it just resolved instead, since currentYear (state) hasn't been set
+  // yet then. The scroll itself waits for the layout effect below, which can
+  // measure the expanded pill.
+  const enterFocus = (character, year = currentYear) => {
+    setFocusedTitle(character.title);
+    setFocusPanelHeight(null);
+    setCurrentCharacter(character.title);
+    setShowModal(false);
+    pendingFocusScroll.current = { title: character.title, year };
+
+    const samePathCharacter = routeCharacter?.toLowerCase() === character.title.toLowerCase();
+    const url = `/character/${encodeURIComponent(character.title)}?year=${year?.year}`;
+    if (samePathCharacter) {
+      history.replace(url);
+    } else {
+      history.push(url);
+    }
+
+    analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
   };
 
-  const showCharacterModal = (character, year = currentYear) => {
-    setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={year} />);
+  const exitFocus = React.useCallback(() => setFocusedTitle(null), []);
+
+  const showCharacter = (character) => {
+    enterFocus(character);
+  };
+
+  const showCharacterModal = (character, year = currentYear, timelineEventIndex = null) => {
+    setModalContents(<CharacterDetailModal character={character} onClose={() => setShowModal(false)} currentYear={year} timelineEventIndex={timelineEventIndex} />);
     setShowModal(true);
-    analytics.event(ACTIONS.OPEN_CHARACTER, 'character', character.title);
+    analytics.event(ACTIONS.CHARACTER_SEE_MORE, 'character', character.title);
   };
 
   // Deceased characters drop out as the scrolled-to year passes their death; orderByAge compacts the
@@ -94,6 +131,25 @@ const Home = () => {
     if (year === undefined) return filteredCharacters;
     return orderByAge(filteredCharacters.filter(c => c.endYearUnknown || c.endYear >= year));
   }, [filteredCharacters, hideDeceased, currentYear]);
+
+  const focusedCharacter = focusedTitle ? visibleCharacters.find(c => c.title === focusedTitle) : null;
+  const focusEvents = React.useMemo(
+    () => focusedCharacter ? buildCharacterEvents(focusedCharacter, years, theme) : null,
+    [focusedCharacter, years, theme]
+  );
+
+  // Where the expanded pill's sticky container starts (rem): lifted by the
+  // expanded height so its bottom rests just above the line's start or the
+  // first event dot, whichever is higher -- the same rule the collapsed pill
+  // follows with pillHeight, so no dot starts out hidden under the panel.
+  const pillHeight = theme.layout.elements.character.pillHeight;
+  const focusTop = focusedCharacter
+    ? Math.min(Styled.getCharacterTop(theme, focusedCharacter), (focusEvents?.dots[0]?.top ?? Infinity) - 0.4)
+      - Math.max(pillHeight, focusPanelHeight || pillHeight)
+    : undefined;
+
+  const onFocusSeeMore = React.useCallback((c) => showCharacterModal(c), [currentYear]);
+  const onFocusEventClick = React.useCallback((c, eventIndex) => showCharacterModal(c, currentYear, eventIndex), [currentYear]);
 
   const isCharacterInView = (character) => {
     if (!character) return false;
@@ -190,18 +246,18 @@ const Home = () => {
     if (years.length > 0 && characters.length > 0) {
       const searchParams = new URLSearchParams(window.location.search);
       let scrollToChar;
-      let openModal = false;
+      let openFocus = false;
       if (routeCharacter) {
         scrollToChar = charactersData.find(c => c.title.toLowerCase() === routeCharacter.toLowerCase());
         if (scrollToChar) {
           setCurrentCharacter(scrollToChar.title);
-          openModal = Boolean(searchParams.get('show')) == true;
+          openFocus = Boolean(searchParams.get('show')) == true;
         }
       }
       if (!scrollToChar) {
         scrollToChar = characters.find(c => c.title === 'Luke Skywalker') || characters[0];
         const defaultYearObj = years.find(y => y.year === 0) || years[0];
-        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}&show=true`);
+        history.push(`/character/${encodeURIComponent(scrollToChar.title)}?year=${defaultYearObj.year}`);
       }
 
       let scrollToYear = null;
@@ -227,11 +283,94 @@ const Home = () => {
       scrollTo(scrollToYear, scrollToChar);
       setCurrentCharacter(scrollToChar.title);
       setCurrentYearIndex(scrollToYear.yearIndex);
-      if (openModal) {
-        showCharacterModal(scrollToChar, scrollToYear);
+      if (openFocus) {
+        enterFocus(scrollToChar, scrollToYear);
       }
     }
   }, [years, characters]);
+
+  // Measures the expanded pill as soon as it is in the DOM, then runs the
+  // entry scroll enterFocus queued: horizontally, the column lands at the
+  // far-left inset; vertically, the target event dot (the first one at or
+  // after the current year when that is inside the character's life,
+  // otherwise their first event) lands just below the expanded pill, which
+  // sticks at 6rem. Children's layout effects run first, so the details'
+  // own measurement is already done.
+  React.useLayoutEffect(() => {
+    const request = pendingFocusScroll.current;
+    if (!request || !focusedCharacter || focusedCharacter.title !== request.title || !focusEvents) return;
+    pendingFocusScroll.current = null;
+
+    const { pxInRem, gridWidth } = theme.layout;
+    const panelEl = document.querySelector('[data-testid="focus-panel"]');
+    const viewportRem = window.innerHeight / pxInRem;
+    const measured = panelEl?.scrollHeight ? panelEl.scrollHeight / pxInRem : 0;
+    const panelHeight = Math.max(pillHeight, Math.min(measured, viewportRem - 8));
+    setFocusPanelHeight(panelHeight);
+
+    const character = focusedCharacter;
+    const left = Styled.getFocusScrollLeft(theme, character, scale.scale);
+    focusScrolledIndex.current = character.index;
+
+    const startYear = character.birthYear || character.startYear;
+    const endYear = character.endYearUnknown ? Infinity : character.endYear;
+    const yearValue = request.year?.year;
+    const withinRange = yearValue !== undefined && yearValue >= startYear && yearValue <= endYear;
+    const { dots } = focusEvents;
+    const targetDot = (withinRange && dots.find(d => d.year >= yearValue)) || dots[0];
+
+    let top = window.scrollY;
+    if (targetDot) {
+      const dotPx = (gridWidth + targetDot.top * scale.scale) * pxInRem;
+      const belowPanelPx = (6 + (panelHeight + 1.5) * scale.scale) * pxInRem;
+      top = Math.max(0, dotPx - belowPanelPx);
+    } else {
+      const startRow = years.find(y => y.year === character.startYear);
+      if (startRow) top = (startRow.yearIndex - 5) * theme.layout.elements.year.height * pxInRem + theme.layout.topMargin;
+    }
+
+    window.scrollTo({ left, top, behavior: 'smooth' });
+  }, [focusedCharacter, focusEvents]);
+
+  // With hideDeceased on, columns compact as the scrolled-to year passes
+  // deaths, so the focused character's index (and x position) changes while
+  // scrolling vertically. Follow it so the line stays at the far-left inset.
+  React.useEffect(() => {
+    if (!focusedCharacter || pendingFocusScroll.current) return;
+    if (focusScrolledIndex.current === focusedCharacter.index) return;
+    focusScrolledIndex.current = focusedCharacter.index;
+    window.scrollTo({ left: Styled.getFocusScrollLeft(theme, focusedCharacter, scale.scale), behavior: 'smooth' });
+  }, [focusedCharacter?.index]);
+
+  // Escape closes the modal first (if one is open), then exits focus mode.
+  React.useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key !== 'Escape') return;
+      if (showModal) {
+        setShowModal(false);
+      } else if (focusedTitle) {
+        exitFocus();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [showModal, focusedTitle]);
+
+  // A route change to a different character (e.g. the Back button) exits
+  // focus mode rather than leaving a stale panel pointed at the old route.
+  React.useEffect(() => {
+    if (focusedTitle && routeCharacter?.toLowerCase() !== focusedTitle.toLowerCase()) {
+      exitFocus();
+    }
+  }, [routeCharacter]);
+
+  // The focused character can drop out of visibleCharacters (a filter change,
+  // or hideDeceased passing their death year) without any route change.
+  React.useEffect(() => {
+    if (focusedTitle && visibleCharacters.length > 0 && !visibleCharacters.some(c => c.title === focusedTitle)) {
+      exitFocus();
+    }
+  }, [visibleCharacters]);
 
   React.useEffect(() => {
     if (filters?.character) {
@@ -338,7 +477,15 @@ const Home = () => {
           <MainMenu onShowOnboardingGuide={handleShowOnboardingGuide} />
         </Styled.Header>
         <Minimap years={years} characters={visibleCharacters} />
-        <div style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}>
+        <div
+          style={{ userSelect: 'none', transform: `scale(${scale.scale})`, transformOrigin: 'left top' }}
+          onClick={(e) => {
+            if (!focusedTitle) return;
+            if (Math.abs(e.pageX - window.curXPos) > 5 || Math.abs(e.pageY - window.curYPos) > 5) return;
+            if (e.target.closest?.('[data-focus-keep]')) return;
+            exitFocus();
+          }}
+        >
           {(years.length === 0 || characters.length === 0) && <Styled.Crawl><Styled.Long>A long time ago, in a galaxy far, far away...</Styled.Long><Styled.Note>Please wait while the page loads.</Styled.Note></Styled.Crawl>}
           {
             years
@@ -426,11 +573,18 @@ const Home = () => {
               .map(c => {
                 const character = visibleCharacters.find(f => f.title === c.title);
 
-                if (isCharacterInView(character)) {
+                // The focused character always renders: its expanded pill and
+                // line are the focus view, even mid-scroll.
+                const isFocused = character.title === focusedTitle;
+                if (isFocused || isCharacterInView(character)) {
+                  const isDimmed = Boolean(focusedTitle) && !isFocused;
                   return <React.Fragment
                     key={character.title}>
                     <Styled.CharacterColumn
                       character={character}
+                      $dimmed={isDimmed}
+                      data-dimmed={isDimmed ? 'true' : undefined}
+                      data-focus-keep={isFocused ? 'true' : undefined}
                     >
                     </Styled.CharacterColumn>
                     <CharacterDetailPill
@@ -438,6 +592,12 @@ const Home = () => {
                       currentYear={currentYear}
                       currentCharacter={currentCharacter}
                       onPillPress={showCharacter}
+                      isDimmed={isDimmed}
+                      isFocused={isFocused}
+                      focusTop={isFocused ? focusTop : undefined}
+                      plottedCount={isFocused ? focusEvents?.plottedCount : undefined}
+                      onSeeMore={onFocusSeeMore}
+                      onClose={exitFocus}
                     />
                     {
                       character.seenIn
@@ -445,6 +605,8 @@ const Home = () => {
                         .map((seen) => <SeenIn
                           seen={seen}
                           character={character}
+                          isDimmed={isDimmed}
+                          isFocused={isFocused}
                           key={`seen${seen.year}${character.title}`}
                         />
                         )
@@ -460,9 +622,20 @@ const Home = () => {
               .filter(c => !c.endYearUnknown)
               .map(c => {
                 const character = visibleCharacters.find(f => f.title === c.title);
-                return <Death character={character} key={character.title} />;
+                const isFocused = character.title === focusedTitle;
+                const isDimmed = Boolean(focusedTitle) && !isFocused;
+                return <Death character={character} isDimmed={isDimmed} isFocused={isFocused} key={character.title} />;
               })
           }
+          {focusedCharacter && focusEvents && <>
+            <CharacterEvents
+              character={focusedCharacter}
+              dots={focusEvents.dots}
+              cards={focusEvents.cards}
+              onEventClick={onFocusEventClick}
+            />
+            <Styled.FocusSpacer style={{ left: `calc(${Styled.getCharacterLeft(theme, focusedCharacter)}rem + 100vw)` }} />
+          </>}
         </div>
       </Styled.Wrapper>
       {showModal && <Modal onClickBg={() => setShowModal(false)}>{modalContents}</Modal>}

@@ -3,7 +3,7 @@ import React from 'react';
 import * as Styled from './index.styles';
 import { useTheme } from 'styled-components';
 
-const SeenIn = ({ seen, character }) => {
+const SeenIn = ({ seen, character, isDimmed = false, isFocused = false }) => {
   const theme = useTheme();
 
   return <>
@@ -12,6 +12,9 @@ const SeenIn = ({ seen, character }) => {
       .sort((a, b) => a.index < b.index ? 1 : -1)
       .map(movie => <Styled.SeenIn
         key={`${character.title}${movie.title}`}
+        $dimmed={isDimmed}
+        data-dimmed={isDimmed ? 'true' : undefined}
+        data-focus-keep={isFocused ? 'true' : undefined}
         style={{
           top: `${theme.layout.elements.year.height * seen.yearIndex + theme.layout.topMargin + (movie.index * theme.layout.elements.year.height)}rem`,
           left: `${(theme.layout.elements.character.width + theme.layout.elements.character.spacer) * character.index + theme.layout.elements.character.leftPageMargin}rem`

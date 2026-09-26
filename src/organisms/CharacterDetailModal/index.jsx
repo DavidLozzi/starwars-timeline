@@ -5,11 +5,20 @@ import Styled from './index.styles';
 import { useAppContext } from '../../AppContext';
 import analytics, { ACTIONS } from '../../analytics';
 
-const CharacterDetailModal = ({ character, onClose, currentYear }) => {
+const CharacterDetailModal = ({ character, onClose, currentYear, timelineEventIndex = null }) => {
   const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
   const [birthYear, setBirthYear] = React.useState(0);
   const [seenInListData, setSeenInListData] = React.useState([]);
   const { scrollTo } = useAppContext();
+  const timelineRef = React.useRef(null);
+
+  // Opened from a focus-mode event card: bring that card's first event (the
+  // Nth <h3> in the timeline HTML, same order events.js parses them in) into view.
+  React.useEffect(() => {
+    if (timelineEventIndex === null || !timelineRef.current) return;
+    const heading = timelineRef.current.querySelectorAll('h3')[timelineEventIndex];
+    if (heading && heading.scrollIntoView) heading.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }, [timelineEventIndex]);
 
   const convertYear = (year) => {
     if (year <= 0) return `${year * -1} BBY`;
@@ -66,7 +75,7 @@ const CharacterDetailModal = ({ character, onClose, currentYear }) => {
       {character.description && <Styled.Description>{parse(character.description)}</Styled.Description>}
       {character.timeline && character.timeline.trim() && <>
         <Styled.SectionTitle>Timeline Summary</Styled.SectionTitle>
-        <Styled.Timeline>{parse(character.timeline)}</Styled.Timeline>
+        <Styled.Timeline ref={timelineRef}>{parse(character.timeline)}</Styled.Timeline>
       </>}
       <Styled.ListViewWrapper>
         <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
