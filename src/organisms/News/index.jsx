@@ -61,7 +61,10 @@ const News = ({ isOpen, onClose, items, products }) => {
                     href={item.url}
                     target="_blank"
                     rel="noreferrer"
-                    onClick={() => analytics.event(ACTIONS.NEWS_ITEM, 'news', item.id)}
+                    onClick={() => {
+                      analytics.event(ACTIONS.NEWS_ITEM, 'news', item.id);
+                      analytics.selectContent('hub_link');
+                    }}
                   >
                     {item.link_text || 'Read more'}
                   </Styled.ReadMore>
@@ -71,7 +74,7 @@ const News = ({ isOpen, onClose, items, products }) => {
           })}
         </Styled.List>
         <Styled.Footer>
-          <a href={ALL_NEWS_URL} target="_blank" rel="noreferrer">All news from Star Wars Guide</a>
+          <a href={ALL_NEWS_URL} target="_blank" rel="noreferrer" onClick={() => analytics.selectContent('hub_link')}>All news from Star Wars Guide</a>
         </Styled.Footer>
       </Styled.Wrapper>
     </Modal>,

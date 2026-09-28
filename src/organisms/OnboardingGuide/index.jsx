@@ -31,6 +31,7 @@ const OnboardingGuideComponent = ({ isOpen, onDismiss, openSource, allowKeyboard
 
   const handleCreditClick = useCallback(() => {
     analytics.event(ACTIONS.MENU_ITEM, null, 'Created By');
+    analytics.selectContent('credit');
   }, []);
 
   // Handle Escape key dismissal

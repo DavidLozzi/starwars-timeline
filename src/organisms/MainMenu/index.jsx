@@ -46,6 +46,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
 
   const openCredit = React.useCallback((e) => {
     analytics.event(ACTIONS.MENU_ITEM, null, 'Created By');
+    analytics.selectContent('credit');
   });
 
   const openFeedback = React.useCallback((e) => {
@@ -54,6 +55,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
 
   const openAbout = React.useCallback((e) => {
     analytics.event(ACTIONS.MENU_ITEM, null, 'About');
+    analytics.selectContent('hub_link');
   });
 
   const toggleMenu = React.useCallback(() => {
@@ -138,7 +140,10 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
         products={newsProducts}
       />
       <Styled.MenuButton
-        onClick={onShowOnboardingGuide || (() => window.open('https://starwars.guide/star-wars-timeline/', '_blank'))}
+        onClick={onShowOnboardingGuide || (() => {
+          analytics.selectContent('hub_link');
+          window.open('https://starwars.guide/star-wars-timeline/', '_blank');
+        })}
         aria-label="Show help and onboarding guide"
       >
         <HelpImg alt="show the how to window" style={{ width: '22px' }} />

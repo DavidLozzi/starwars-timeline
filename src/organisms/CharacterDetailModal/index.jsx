@@ -81,7 +81,7 @@ const CharacterDetailModal = ({ character, onClose, currentYear, timelineEventIn
         <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
         <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />
       </Styled.ListViewWrapper>
-      {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank">Learn more on Wookiepedia.com</Styled.Wookiepedia>}
+      {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank" onClick={() => analytics.selectContent('wookieepedia')}>Learn more on Wookiepedia.com</Styled.Wookiepedia>}
     </Styled.Body>
   </Styled.Wrapper>;
 }

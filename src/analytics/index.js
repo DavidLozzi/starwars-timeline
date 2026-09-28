@@ -23,5 +23,17 @@ export default {
     } catch {
       // blocked scripts / privacy tools — do not break the app
     }
+  },
+  // Shared brand event (starwars-guide/marketing/analytics.md): fired alongside
+  // the app's own event on a cross-sell or outbound click, so every app reports
+  // the same name to the brand property. content_type: 'credit', 'hub_link',
+  // 'wookieepedia'.
+  selectContent: (content_type) => {
+    if (typeof gtag !== 'function') return;
+    try {
+      gtag('event', 'select_content', { content_type });
+    } catch {
+      // blocked scripts / privacy tools — do not break the app
+    }
   }
 };
