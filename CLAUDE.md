@@ -25,6 +25,8 @@ Division of ownership:
 - Timeline events are emitted as `<h3>` (were `<h4>`), matching the h1 → h2 outline the hub layout supplies.
 - **Every emitted internal link must be the exact canonical URL — no redirect, no alternate form.** Two rules, both learned from Search Console: character pages have no `permalink`, so Jekyll emits `<slug>.html` and *that* is the canonical, but Netlify also serves the extensionless `/character/<slug>` with a 200 — linking the extensionless form made Google index the `.html` URL and file the linked one as "Alternate page with proper canonical tag" (fixed 2026-08-10). Use the `characterPageUrl()` helper, never hand-build the path. Separately, `/character` 301s to `/character/`, so the "Back to All Characters" links are written with the trailing slash. Slugs also stay lowercase — see the comment above `slug()`.
 
+`build_scripts/moviePages.js` also writes into the hub: one `movie/<slug>.md` per movie (`permalink: /movie/<slug>/`, `layout: page`) plus `movie/index.md` at `/movie/`. Each page lists the age of everyone whose `seenIn` includes that movie, then every other character that year grouped as alive / fate unknown / already dead / not born yet. It reads `data.json` directly because `characters.json` drops `imageYears` and `endYearEvent`; the portrait is picked for the movie's year with the same rules as the app's `getCharacterImageForYear`, and copied into the hub's `assets/characters/` only if missing (the hub recompresses some by hand). Cards reuse the hub's `.character-index-*` styles plus `.movie-age*` rules in its `_sass/_character.scss`. Movies no character appears in are skipped. Shared page-writing helpers (`writePage`, `slug`, `characterPageUrl`, …) live in `build_scripts/hubUtils.js`.
+
 Changing the shape of that generated output (front matter keys, heading levels, file naming) is a **cross-repo change** — check the hub's `_layouts/character.html` and `_includes/structured-data.html` before shipping it.
 
 ## Brand ecosystem — all apps
@@ -40,7 +42,7 @@ Every repo is checked out beside this one under `/Volumes/T9/git/`. The canonica
 | `hyperpanels/search` | Next.js comic-panel search FE + admin | hyperpanels.starwars.guide |
 | `hyperpanels/data` | Python ingestion pipeline (panels → OpenAI Vision → Typesense) | — |
 | `hyperpanels/keyboard` | iOS app + custom keyboard over the same Typesense catalog | App Store (in progress) |
-| `clone-defense` | Canvas 2D tower-defense game (Jedi Defense); ships as a subdirectory of the hub | starwars.guide/clone-defense (launching) |
+| `clone-defense` | Canvas 2D tower-defense game (Jedi Defense); ships as a subdirectory of the hub | starwars.guide/clone-defense/ (live) |
 
 ## Commands
 

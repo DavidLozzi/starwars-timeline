@@ -109,12 +109,17 @@ jobs:
       if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       run: |
         ln -sfn "$GITHUB_WORKSPACE/starwars-guide" "$GITHUB_WORKSPACE/../starwars-guide"
-        mkdir -p "$GITHUB_WORKSPACE/starwars-guide/character" "$GITHUB_WORKSPACE/starwars-guide/assets/characters"
+        mkdir -p "$GITHUB_WORKSPACE/starwars-guide/character" "$GITHUB_WORKSPACE/starwars-guide/movie" "$GITHUB_WORKSPACE/starwars-guide/assets/characters"
 
     - name: Generate character pages (website.js)
       if: github.event_name == 'push' && env.SYNC_TOKEN != ''
       working-directory: build_scripts
       run: node website.js
+
+    - name: Generate movie age pages (moviePages.js)
+      if: github.event_name == 'push' && env.SYNC_TOKEN != ''
+      working-directory: build_scripts
+      run: node moviePages.js
 
     - name: Commit and push starwars-guide
       if: github.event_name == 'push' && env.SYNC_TOKEN != ''
@@ -124,7 +129,7 @@ jobs:
         cd "$GITHUB_WORKSPACE/starwars-guide"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add character assets/characters
+        git add character movie assets/characters
         if git diff --cached --quiet; then
           echo "No starwars-guide changes"
         else
