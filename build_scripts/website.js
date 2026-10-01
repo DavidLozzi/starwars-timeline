@@ -135,13 +135,13 @@ data
     <img src="${imageSrc(character.imageUrl)}" alt="${character.title}" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6056590143595280"
         crossorigin="anonymous"></script>
-    <!-- starwars character -->
+    <!-- starwars character fluid -->
     <ins class="adsbygoogle"
-        style="display:block; min-height: 280px; width: 100%;"
+        style="display:block"
+        data-ad-format="fluid"
+        data-ad-layout-key="-fb+5w+4e-db+86"
         data-ad-client="ca-pub-6056590143595280"
-        data-ad-slot="1622037034"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
+        data-ad-slot="2635465216"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
@@ -167,11 +167,16 @@ const listFrontMatter = [
 let listView = `
 Explore all of the characters from the <a href="https://timeline.starwars.guide" target="_blank">Ultimate Star Wars Timeline</a>, or see <a href="/movie/">how old everyone is in each movie</a>.
 
-<ul class="character_list">
-${data
-    .sort((a, b) => a.title > b.title ? 1 : -1)
-    .map(character => `<li><a href="${characterPageUrl(character.title)}">${character.title}</a></li>`).join('\n')}
-</ul>
+${(() => {
+  const sorted = data.sort((a, b) => a.title > b.title ? 1 : -1);
+  const size = Math.ceil(sorted.length / 3);
+  const thirds = [0, 1, 2].map(i => sorted.slice(i * size, (i + 1) * size));
+  return thirds
+    .map(third => `<ul class="character_list">
+${third.map(character => `<li><a href="${characterPageUrl(character.title)}">${character.title}</a></li>`).join('\n')}
+</ul>`)
+    .join('\n\n{% include sw/ad-fluid.html %}\n\n');
+})()}
 `;
 const indexUnchanged = writePage('../../starwars-guide/character/index.md', listFrontMatter, listView);
 console.log(`index${indexUnchanged ? ' (unchanged)' : ''}`);
