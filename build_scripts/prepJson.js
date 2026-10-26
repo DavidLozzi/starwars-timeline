@@ -109,6 +109,11 @@ const _characters = data
     e.metaDescription = sanitize(enhancedData?.socialDesc || '')
       || truncate(stripHtml(sanitize(e.description || '')))
       || `Learn more about ${e.title} on the Ultimate Star Wars Timeline!`;
+    // Same single-source rule for the <title>/og:title. Leads with the name plus
+    // the words people actually search ("how old is …", "… timeline"); the long
+    // form drops "& Appearances" to stay inside Google's ~60-char title cut.
+    const longTitle = `${e.title}: Age, Timeline & Appearances | Star Wars`;
+    e.metaTitle = longTitle.length <= 60 ? longTitle : `${e.title}: Age & Timeline | Star Wars`;
     // Social-share card from socialCards.js, when one has been generated. Same
     // filename rule as socialCards.js; prerenderCharacters.js and react-helmet both
     // read this, so a character without a card falls back to the site card in both.

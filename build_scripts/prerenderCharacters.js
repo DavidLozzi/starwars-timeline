@@ -56,7 +56,7 @@ const metaTag = (attr, name, content) =>
 
 const headFor = (character) => {
   const url = characterUrl(character.title);
-  const title = `${character.title} - Ultimate Star Wars Timeline`;
+  const title = character.metaTitle || `${character.title} - Ultimate Star Wars Timeline`;
   const description = character.metaDescription;
   const image = socialImage(character);
 

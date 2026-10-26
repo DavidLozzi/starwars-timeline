@@ -189,6 +189,7 @@ const Home = () => {
       const name = characterData?.title || character;
       const url = `https://timeline.starwars.guide/character/${encodeURIComponent(name)}`;
       const description = characterData?.metaDescription || `Learn more about ${name} on the Ultimate Star Wars Timeline!`;
+      const title = characterData?.metaTitle || `${name} - Ultimate Star Wars Timeline`;
       // Same rule as socialImage() in build_scripts/prerenderCharacters.js.
       const image = characterData?.socialImage
         ? `https://timeline.starwars.guide${encodeURI(characterData.socialImage.normalize('NFC'))}`
@@ -198,16 +199,16 @@ const Home = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@UltStarWarsTime" />
         <meta name="twitter:creator" content="@AurebeshFiles" />
-        <meta name="twitter:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
         <meta property="og:type" content="profile" />
         <meta property="og:site_name" content="Ultimate Star Wars Timeline" />
-        <meta property="og:title" content={`${name} - Ultimate Star Wars Timeline`} />
+        <meta property="og:title" content={title} />
         <meta property="og:url" content={url} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
-        <title>{name} - Ultimate Star Wars Timeline</title>
+        <title>{title}</title>
       </Helmet>;
     }
     return <Helmet>

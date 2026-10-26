@@ -24,6 +24,11 @@
 //   node description.js --social-only --all      rewrite every socialDesc
 //   node description.js --social-only "Thrawn"   rewrite just the named characters
 //
+// --social-only also opens every meta description with how old the character is in
+// their first movie or show ("Mace Windu is 40 in The Phantom Menace."). Code writes
+// that sentence from data.json, so the number never comes from the model; Claude
+// writes only what follows, inside whatever is left of the 155-character budget.
+//
 // --social-only rewrites the stored description into a meta description. It does
 // no research (no web tools, no data.json lookup), so it is seconds per character
 // on a small model rather than minutes on Opus. Use it to backfill entries that
@@ -310,6 +315,31 @@ const unescapeMarkup = (html) => {
 const normalizeSocialDesc = (text) => stripHtml(sanitize(text || ''))
   .replace(/^["'“”]+|["'“”]+$/g, '')
   .trim();
+
+// "<Name> is 40 in The Phantom Menace." — age in the character's earliest movie/show.
+// An age built on a guessed birth year says "about"; a character born in that very
+// movie says "is born in". Shows that span years say "at the start of". The
+// "Episode I:" prefix and "(TV series)" tag are dropped; they only eat the budget.
+const mediaByTitle = Object.fromEntries(
+  data.filter((d) => d.type === 'movie' || d.type === 'tv').map((d) => [d.title, d])
+);
+const shortMediaTitle = (title) => title
+  .replace(/^Episode [IVX]+: /, '')
+  .replace(/ \((movie|TV series)\)$/, '');
+
+const ageLineFor = (character) => {
+  const works = (character?.seenIn || []).map((t) => mediaByTitle[t]).filter(Boolean);
+  if (works.length === 0) return null;
+  const first = works.sort((a, b) => a.startYear - b.startYear)[0];
+  const born = character.birthYear ?? character.startYear;
+  const age = Math.max(first.startYear, born) - born;
+  // A very long life (Yoda: 664 in a Young Jedi Adventures episode) is noise, not an answer.
+  if (age > 150) return null;
+  const title = shortMediaTitle(first.title);
+  if (!character.startYearUnknown && age === 0) return `${character.title} is born in ${title}.`;
+  const when = first.type === 'tv' && first.endYear > first.startYear ? `at the start of ${title}` : `in ${title}`;
+  return `${character.title} is ${character.startYearUnknown ? 'about ' : ''}${age} ${when}.`;
+};
 
 // Deterministic cross-check: whatever Claude concluded, compare it to the data
 // we actually ship so a disagreement can't be lost in prose.
@@ -656,7 +686,12 @@ const processCharacters = async () => {
 
 const SOCIAL_RESULT_SCHEMA = {
   type: 'object',
-  properties: { socialDesc: socialDescSchema },
+  properties: {
+    socialDesc: {
+      type: 'string',
+      description: 'The meta description. When an opening sentence was supplied, only the sentence that follows it, never repeating the name.',
+    },
+  },
   required: ['socialDesc'],
   additionalProperties: false,
 };
@@ -671,7 +706,26 @@ const socialTool = {
 // `rejected` is a previous answer that came back over the character limit. Asking
 // again with it quoted is better than truncating: truncation puts back the
 // mid-sentence ellipsis this whole change exists to remove.
-const buildSocialPrompt = (entry, rejected = '') => `${rejected ? `Your previous attempt was ${rejected.length} characters — too long. Rewrite it shorter, keeping the same angle. Do not simply trim the end; recompose it so it still finishes cleanly.
+const buildSocialPrompt = (entry, rejected = '', age = null) => age ? `${rejected ? `Your previous attempt was ${rejected.length} characters — too long. Recompose it shorter, keeping the same angle.
+
+Previous attempt:
+${rejected}
+
+` : ''}You are writing the second half of a search-result meta description for a character page on The Ultimate Star Wars Timeline, a canon-focused interactive timeline. The first sentence is already written:
+
+"${age.line}"
+
+Write ONE sentence that follows it.
+
+- At most ${age.budget} characters including spaces. Hard limit: the whole description is cut off by Google at ${MAX_DESC}.
+- Never write "${entry.character}" — the first sentence already has the name. Open with a role or what they are known for ("Viceroy who…", "Jedi Master who…").
+- Concrete: role, era, allegiance, and fate where canon settles it. Do not mention age or years lived.
+- Independently written, not the bio's opening clause trimmed down.
+- Plain text, a complete sentence ending in a full stop. No quotes, no ellipsis.
+
+## ${entry.character}'s bio
+
+${stripHtml(entry.description || '')}` : `${rejected ? `Your previous attempt was ${rejected.length} characters — too long. Rewrite it shorter, keeping the same angle. Do not simply trim the end; recompose it so it still finishes cleanly.
 
 Previous attempt:
 ${rejected}
@@ -686,14 +740,14 @@ ${SOCIAL_RULES}
 
 ${stripHtml(entry.description || '')}`;
 
-const runSocialViaApi = async (entry, rejected) => {
+const runSocialViaApi = async (entry, rejected, age) => {
   const response = await client.messages
     .stream({
       model: SOCIAL_MODEL,
       max_tokens: 2000,
       tools: [socialTool],
       tool_choice: { type: 'tool', name: socialTool.name },
-      messages: [{ role: 'user', content: buildSocialPrompt(entry, rejected) }],
+      messages: [{ role: 'user', content: buildSocialPrompt(entry, rejected, age) }],
     })
     .finalMessage();
 
@@ -704,9 +758,9 @@ const runSocialViaApi = async (entry, rejected) => {
   return submission.input.socialDesc;
 };
 
-const runSocialViaClaudeCode = async (entry, rejected) => {
+const runSocialViaClaudeCode = async (entry, rejected, age) => {
   const session = query({
-    prompt: `${buildSocialPrompt(entry, rejected)}
+    prompt: `${buildSocialPrompt(entry, rejected, age)}
 
 Return the result as JSON matching the required output schema. Do not summarize what you did — only the JSON is read.`,
     options: {
@@ -733,17 +787,27 @@ Return the result as JSON matching the required output schema. Do not summarize 
   throw new Error('Claude Code session ended without a result message');
 };
 
-const runSocialOnce = (entry, rejected) =>
-  (viaClaudeCode ? runSocialViaClaudeCode : runSocialViaApi)(entry, rejected);
+const runSocialOnce = (entry, rejected, age) =>
+  (viaClaudeCode ? runSocialViaClaudeCode : runSocialViaApi)(entry, rejected, age);
 
-// One retry when the answer overruns, then truncate as a last resort.
-const runSocial = async (entry) => {
-  const first = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry)));
-  if (first.length <= MAX_DESC) return { socialDesc: first, retried: false };
+// One retry when the answer overruns, then truncate as a last resort. With an age
+// line, Claude writes only the sentence after it, so the budget is what is left and
+// the name must not come back.
+const runSocial = async (entry, character) => {
+  const line = ageLineFor(character);
+  const age = line ? { line, budget: MAX_DESC - line.length - 1 } : null;
+  const limit = age ? age.budget : MAX_DESC;
+  const bad = (text) => text.length > limit
+    || (age && text.toLowerCase().includes(entry.character.toLowerCase()));
+  const join = (text) => (age ? `${age.line} ${text}` : text);
 
-  const second = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry, first)));
-  if (second.length <= MAX_DESC) return { socialDesc: second, retried: true };
-  return { socialDesc: truncate(second), retried: true, truncatedFrom: second.length };
+  const first = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry, '', age)));
+  if (!bad(first)) return { socialDesc: join(first), hasAge: Boolean(age), retried: false };
+
+  const second = normalizeSocialDesc(unescapeMarkup(await runSocialOnce(entry, first, age)));
+  if (!bad(second)) return { socialDesc: join(second), hasAge: Boolean(age), retried: true };
+  const full = join(second);
+  return { socialDesc: truncate(full), hasAge: Boolean(age), retried: true, truncatedFrom: full.length };
 };
 
 // Mirrors selectCharacters, but selects over character_descriptions.json rather
@@ -764,7 +828,7 @@ const selectSocialEntries = (results) => {
     }
     return { entries: matched, mode: 'named' };
   }
-  return { entries: all.filter(([, entry]) => !entry.socialDesc), mode: 'missing' };
+  return { entries: all.filter(([, entry]) => !entry.socialDesc || !entry.socialDescHasAge), mode: 'missing' };
 };
 
 const processSocialDescriptions = async () => {
@@ -801,12 +865,14 @@ const processSocialDescriptions = async () => {
 
   await runPool(entries, async ([key, entry]) => {
     try {
-      const { socialDesc, retried, truncatedFrom } = await runSocial(entry);
+      const character = data.find((d) => d.type === 'character' && d.wookiepedia === key);
+      const { socialDesc, hasAge, retried, truncatedFrom } = await runSocial(entry, character);
       if (truncatedFrom) overshot.push({ title: entry.character, length: truncatedFrom });
 
       results[key] = {
         ...entry,
         socialDesc,
+        socialDescHasAge: hasAge,
         socialDescGeneratedAt: new Date().toISOString(),
         socialDescModel: SOCIAL_MODEL,
       };
