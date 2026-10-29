@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as Styled from './index.styles';
 import { truncateDescription } from './text';
+import HubValue from '../../molecules/HubValue';
 
 // The right-hand half of an expanded character pill (focus mode). It is
 // rendered *inside* CharacterDetailPill's yellow pill, beside the unchanged
@@ -44,7 +45,7 @@ const CharacterFocusPanel = ({ character, plottedCount, onSeeMore, onClose, isOp
         </>}
         {character.metadata?.map((m) => <React.Fragment key={m.name}>
           <dt>{m.name}</dt>
-          <dd>{m.value}</dd>
+          <dd><HubValue name={m.name} value={m.value} /></dd>
         </React.Fragment>)}
         <dt>Events</dt>
         <dd>{plottedCount}</dd>

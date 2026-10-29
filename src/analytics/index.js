@@ -12,7 +12,8 @@ export const ACTIONS = {
   THEME: 'switch theme',
   OPEN_NEWS: 'open news',
   NEWS_ITEM: 'news item',
-  CHARACTER_SEE_MORE: 'character see more'
+  CHARACTER_SEE_MORE: 'character see more',
+  HUB_LINK: 'hub link'
 };
 
 export default {

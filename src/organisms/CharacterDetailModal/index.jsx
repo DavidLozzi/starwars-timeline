@@ -4,6 +4,7 @@ import ListView from '../../molecules/listview';
 import Styled from './index.styles';
 import { useAppContext } from '../../AppContext';
 import analytics, { ACTIONS } from '../../analytics';
+import HubValue, { hubCharacter } from '../../molecules/HubValue';
 
 const CharacterDetailModal = ({ character, onClose, currentYear, timelineEventIndex = null }) => {
   const [imageUrl, setImageUrl] = React.useState('/images/starwars.jpg');
@@ -65,7 +66,7 @@ const CharacterDetailModal = ({ character, onClose, currentYear, timelineEventIn
           <Styled.MetadataWrapper>
             {character.metadata.map(m => <Styled.Metadata key={m.name}>
               <Styled.MetadataLabel>{m.name}</Styled.MetadataLabel>
-              <Styled.MetadataValue>{m.value}</Styled.MetadataValue>
+              <Styled.MetadataValue><HubValue name={m.name} value={m.value} /></Styled.MetadataValue>
             </Styled.Metadata>)}
           </Styled.MetadataWrapper>
         }
@@ -81,7 +82,9 @@ const CharacterDetailModal = ({ character, onClose, currentYear, timelineEventIn
         <Styled.ListViewTitle>{character.title} on the timeline:</Styled.ListViewTitle>
         <ListView data={seenInListData} onClick={(item) => goToSeenIn(item)} />
       </Styled.ListViewWrapper>
-      {character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank" onClick={() => analytics.selectContent('wookieepedia')}>Learn more on Wookiepedia.com</Styled.Wookiepedia>}
+      {hubCharacter(character.title)
+        ? <Styled.Wookiepedia href={hubCharacter(character.title)} target="_blank" onClick={() => analytics.selectContent('hub_link')}>Learn more on starwars.guide</Styled.Wookiepedia>
+        : character.wookiepedia && <Styled.Wookiepedia href={character.wookiepedia} target="_blank" onClick={() => analytics.selectContent('wookieepedia')}>Learn more on Wookiepedia.com</Styled.Wookiepedia>}
     </Styled.Body>
   </Styled.Wrapper>;
 }

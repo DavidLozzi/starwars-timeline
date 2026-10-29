@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { sanitize, stripHtml, truncate } from './textUtils.js';
-import { convertYear, yaml, imageSrc, characterPageUrl, meta, slug, writePage } from './hubUtils.js';
+import { convertYear, yaml, imageSrc, characterPageUrl, meta, slug, writePage, rewriteHubLinks } from './hubUtils.js';
 
 const data = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf8'));
 const characterDescriptions = JSON.parse(fs.readFileSync('./character_descriptions.json', 'utf8'));
@@ -71,11 +71,11 @@ data
       || truncate(fallbackDescription(character, _birthYear, appearances));
 
     const frontMatter = [
-      `title: ${yaml(`${character.title}'s Timeline`)}`,
+      `title: ${yaml(`${character.title}: Age, Story & Every Appearance`)}`,
       'layout: character',
       'date: 2022-05-08',
       'last_modified_at: PLACEHOLDER',
-      `social-title: ${yaml(`${character.title} — Star Wars Timeline & Story`)}`,
+      `social-title: ${yaml(`${character.title}: Age, Story & Every Appearance`)}`,
       `social-desc: ${yaml(socialDesc)}`,
       `social-image: /assets/characters/${characterImage}`,
       `character:`,
@@ -125,7 +125,7 @@ data
 
     <p>&nbsp;</p>
 
-    ${character.wookiepedia ? `<a href="${character.wookiepedia}" target="_blank">Learn more on Wookiepedia.com</a>` : ''}
+    ${character.wookiepedia ? '@@WOOKIEPEDIA_LINK@@' : ''}
 
     <p>&nbsp;</p>
     <a href="/character/" class="smaller">Back to All Characters</a>
@@ -148,6 +148,10 @@ data
   </div>
 </div>
 `;
+    // Hub-first links: rewrite any Wookieepedia href that has a starwars.guide page.
+    // The profile's own "Learn more" link is added afterwards, so it is never
+    // rewritten into a self-link (the hub page reads the wookieepedia: field).
+    body = rewriteHubLinks(body).replace('@@WOOKIEPEDIA_LINK@@', `<a href="${character.wookiepedia}" target="_blank">Learn more on Wookiepedia.com</a>`);
       
     const filePath = `../../starwars-guide/character/${slug(character.title)}.md`;
     const unchanged = writePage(filePath, frontMatter, body);
@@ -162,6 +166,7 @@ const listFrontMatter = [
   `social-title: ${yaml('All Star Wars Character Timelines')}`,
   `social-desc: ${yaml(`Browse timelines for ${data.length} Star Wars characters — birth and death years, species, homeworlds, and every movie and series they appear in.`)}`,
   'social-image: /assets/social.png',
+  'character_index: true',
 ];
 
 let listView = `

@@ -2,6 +2,7 @@
 // (website.js, moviePages.js). Dependency-free for the same reason as
 // textUtils.js: CI never installs build_scripts/node_modules.
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 export const HUB = '../../starwars-guide';
 
@@ -67,3 +68,50 @@ export const writePage = (filePath, frontMatterLines, body) => {
   fs.writeFileSync(filePath, `---\n${withStamp.join('\n')}\n---\n${body}`);
   return unchanged;
 };
+
+// Wookieepedia URL -> starwars.guide URL, staged by the archives repo. Owner's
+// rule: no link goes to Wookieepedia when a starwars.guide page exists. The file
+// may not exist yet, so a missing or unreadable map just means "rewrite nothing".
+const normaliseWookieepedia = (url) => {
+  let u = String(url).trim().replace(/&amp;/g, '&');
+  try { u = decodeURIComponent(u); } catch { /* keep the raw form */ }
+  return u
+    .replace(/^http:\/\//i, 'https://')
+    .replace(/[\s_]+/g, '_')
+    .replace(/[#?].*$/, '')
+    .replace(/\/+$/, '')
+    .toLowerCase();
+};
+
+let hubUrlIndex = null;
+const loadHubUrlIndex = () => {
+  if (hubUrlIndex) return hubUrlIndex;
+  hubUrlIndex = { exact: new Map(), normal: new Map() };
+  try {
+    const file = fileURLToPath(new URL('./hub-url-map.json', import.meta.url));
+    const map = JSON.parse(fs.readFileSync(file, 'utf8'));
+    Object.entries(map).forEach(([from, to]) => {
+      hubUrlIndex.exact.set(from, to);
+      hubUrlIndex.normal.set(normaliseWookieepedia(from), to);
+    });
+  } catch {
+    // no map staged yet
+  }
+  return hubUrlIndex;
+};
+
+export const hubUrlFor = (url) => {
+  if (!/wookieepedia|wikia|fandom/i.test(url || '')) return null;
+  const { exact, normal } = loadHubUrlIndex();
+  return exact.get(url) || normal.get(normaliseWookieepedia(url)) || null;
+};
+
+// Rewrites every Wookieepedia href in an HTML string that has a hub page; links
+// with no hub page are left as they are.
+export const rewriteHubLinks = (html) => String(html ?? '').replace(
+  /(href=)(["'])([^"']*)\2/gi,
+  (match, attr, quote, url) => {
+    const hub = hubUrlFor(url);
+    return hub ? `${attr}${quote}${hub}${quote}` : match;
+  },
+);

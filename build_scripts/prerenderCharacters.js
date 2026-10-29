@@ -14,6 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { sanitize, escapeAttr, escapeHtml } from './textUtils.js';
+import { rewriteHubLinks } from './hubUtils.js';
 
 const SITE = 'https://timeline.starwars.guide';
 const BUILD_DIR = '../build';
@@ -24,6 +25,14 @@ const HOME_CANONICAL = `<link rel="canonical" href="${SITE}/" />`;
 
 const template = fs.readFileSync(`${BUILD_DIR}/index.html`, 'utf-8');
 const characters = JSON.parse(fs.readFileSync('../src/data/characters.json', 'utf-8'));
+// Homeworld/Species -> starwars.guide page, staged by `swkg stage timeline` (archives).
+const hubLinks = fs.existsSync('../src/data/hubLinks.json')
+  ? JSON.parse(fs.readFileSync('../src/data/hubLinks.json', 'utf-8'))
+  : {};
+const metaValue = (m) => {
+  const href = hubLinks[m.name]?.[m.value];
+  return href ? `<a href="${escapeAttr(href)}">${escapeHtml(m.value)}</a>` : escapeHtml(m.value);
+};
 
 const bodyStartAt = template.indexOf(BODY_START);
 const bodyEndAt = template.indexOf(BODY_END);
@@ -133,7 +142,7 @@ const bodyFor = (character) => {
 <p>${escapeHtml(lifespan(character))}</p>
 <div>${sanitize(character.description || '')}</div>
 ${(character.metadata?.length > 0)
-    ? `<dl>\n${character.metadata.map(m => `  <dt>${escapeHtml(m.name)}</dt><dd>${escapeHtml(m.value)}</dd>`).join('\n')}\n</dl>`
+    ? `<dl>\n${character.metadata.map(m => `  <dt>${escapeHtml(m.name)}</dt><dd>${metaValue(m)}</dd>`).join('\n')}\n</dl>`
     : ''}
 ${timeline}
 <h2>${name} in the timeline</h2>
@@ -143,9 +152,11 @@ ${events.map(({ year, event }) => {
     return `  <li><a href="${escapeAttr(`${url}?year=${event.startYear}`)}">${escapeHtml(event.title)}, ${escapeHtml(event.startYearDisplay)}${age}</a></li>`;
   }).join('\n')}
 </ul>
-${character.wookiepedia
-    ? `<p><a href="${escapeAttr(character.wookiepedia)}" rel="nofollow noopener" target="_blank">${name} on Wookieepedia</a></p>`
-    : ''}
+${hubLinks.Character?.[character.title]
+    ? `<p><a href="${escapeAttr(hubLinks.Character[character.title])}">${name} on starwars.guide</a></p>`
+    : (character.wookiepedia
+      ? `<p><a href="${escapeAttr(character.wookiepedia)}" rel="nofollow noopener" target="_blank">${name} on Wookieepedia</a></p>`
+      : '')}
 <p><a href="/starwars_characters.html">All Star Wars characters</a></p>`;
 };
 
@@ -164,7 +175,7 @@ characters.forEach(character => {
     + `<link rel="canonical" href="${characterUrl(character.title)}" />`
     + head.slice(canonicalAt + HOME_CANONICAL.length);
 
-  const page = `${headWithCanonical}${headFor(character)}\n${betweenHeadAndBody}\n${bodyFor(character)}\n    ${afterBody}`;
+  const page = `${headWithCanonical}${headFor(character)}\n${betweenHeadAndBody}\n${rewriteHubLinks(bodyFor(character))}\n    ${afterBody}`;
 
   // The filename is the literal (NFC) title; GitHub Pages percent-decodes the
   // request path before the filesystem lookup, so spaces and accents resolve.
