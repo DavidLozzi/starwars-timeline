@@ -3,6 +3,7 @@ import analytics, { ACTIONS } from '../../analytics';
 import MenuImg from '../../assets/menu.svg?react';
 import SearchImg from '../../assets/search.svg?react';
 import HelpImg from '../../assets/help.svg?react';
+import BellImg from '../../assets/bell.svg?react';
 import Filter from '../Filter';
 import News from '../News';
 
@@ -25,7 +26,7 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
 
   const [openedMenu, setOpenedMenu] = React.useState('');
 
-  // News lives in a modal, not one of the anchored panels, so it gets its own flag
+  // News opens a modal, not one of the anchored panels, so it gets its own flag
   const { items: newsItems, products: newsProducts } = useNewsFeed();
   const [showNews, setShowNews] = React.useState(false);
   const [lastReadNews, setLastReadNews] = React.useState(() => getLastNewsDate());
@@ -98,22 +99,23 @@ const MainMenu = ({ onShowOnboardingGuide }) => {
       {openedMenu === MENUS.FILTER &&
         <Filter onClose={() => setOpenedMenu('')} />
       }
-      {/* News lives in the menu, so its unread dot has to ride the menu button --
-          otherwise the only signal is hidden behind a closed panel. */}
+      {/* News gets its own header button (the bell Clone Defense uses) rather than a
+          row inside the menu: with it in the menu, 1.5% of users ever opened the menu
+          and fewer reached news. No feed, no button -- same rule as Clone Defense. */}
+      {newsItems.length > 0 &&
+        <Styled.MenuButton onClick={openNews} aria-label={hasUnreadNews ? 'News (unread)' : 'News'}>
+          <Styled.IconBadge hasBadge={hasUnreadNews}>
+            <BellImg alt="open news" />
+          </Styled.IconBadge>
+        </Styled.MenuButton>
+      }
       <Styled.MenuButton onClick={toggleMenu} aria-label="Open menu">
-        <Styled.IconBadge hasBadge={hasUnreadNews}>
-          <MenuImg alt="open menu" />
-        </Styled.IconBadge>
+        <MenuImg alt="open menu" />
       </Styled.MenuButton>
       {openedMenu === MENUS.MAIN &&
         <Styled.MenuWrapper>
           <Styled.Menu>
             {/* <Styled.MenuItem hr><ThemeSwitcher /></Styled.MenuItem> */}
-            <Styled.MenuItem>
-              <Styled.MenuAction onClick={openNews}>
-                News{hasUnreadNews && <Styled.Dot aria-label="unread news" />}
-              </Styled.MenuAction>
-            </Styled.MenuItem>
             {/* The brand address the hub publishes on /about/, not a personal one. */}
             <Styled.MenuItem>
               <a href="mailto:aurebeshfiles@gmail.com?subject=Ultimate%20Star%20Wars%20Timeline%20feedback" onClick={openFeedback}>Share Feedback</a>

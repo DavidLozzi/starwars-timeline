@@ -123,8 +123,6 @@ export default {
       ul: css`
         background-color: rgb(${palette.black});
       `,
-      // The unread-news dot inside the menu, on that black panel.
-      badge: palette.secondary,
       li: css`
         color: rgb(${palette.white});
         a {

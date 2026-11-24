@@ -50,42 +50,6 @@ export const MenuLink = styled.a`
   color: ${({ theme }) => `rgb(${theme.palette.white})`};
 `;
 
-/* A menu row that acts rather than navigates (News opens a modal). Styled to
-   match the anchors the theme's menu block draws, so the row reads the same
-   whether it is a link or a button. */
-export const MenuAction = styled.button`
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  color: inherit;
-  /* A button carries no underline of its own; the rest of the menu is anchors,
-     so it has to draw one to sit in the same list. The dot is a flex sibling,
-     so the rule lands on the label only. */
-  text-decoration: underline;
-
-  &:hover {
-    color: rgb(${({ theme }) => theme.palette.secondary});
-  }
-`;
-
-/* The same unread mark the menu button carries, inline after the News label.
-   Its color comes from the theme's menu block -- the header badge's yellow
-   disappears against the Jedi menu's near-white panel. */
-export const Dot = styled.span`
-  flex-shrink: 0;
-  width: .5rem;
-  height: .5rem;
-  border-radius: 50%;
-  background-color: rgb(${({ theme }) => theme.elements.menu.badge});
-`;
-
 export const MenuWrapper = styled.div`
   /* Anchored to the button row rather than a fixed 2.5rem from the top: the
      header is taller on mobile, where the buttons are on their own line. */

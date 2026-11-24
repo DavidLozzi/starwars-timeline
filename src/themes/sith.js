@@ -107,7 +107,6 @@ export default {
       ul: css`
         background-color: rgb(${palette.black});
       `,
-      badge: palette.secondary,
       li: css`
         color: rgb(${palette.white});
         a {
