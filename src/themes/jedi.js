@@ -249,7 +249,7 @@ export default {
       transition: 'all 150ms eaase-in-out'
     },
     characterDetailModal: css`
-      color: rgb(${palette.black});
+      color: rgb(${palette.white});
     `,
     characterDetailCurrentAnimation: {
       '0%': {
@@ -348,9 +348,11 @@ export default {
     modalWrapper: css`
       background-color: rgba(${palette.gray},0.7)
     `,
+    // Dark mode: modals are a black panel with white text, same as the Sith theme,
+    // the menu and the search panel.
     modal: css`
-      background-color: rgba(${palette.white},1);
-      color: ${palette.white};
+      background-color: rgb(${palette.black});
+      color: rgb(${palette.white});
     `,
     modalClose: css`
 

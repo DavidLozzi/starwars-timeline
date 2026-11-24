@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  /* theme.elements.modal sets an unwrapped color value, so set ours explicitly */
-  color: rgb(${({ theme }) => theme.palette.black});
+  /* The modal is a dark panel in both themes */
+  color: rgb(${({ theme }) => theme.palette.white});
   padding: 0 2rem;
 `;
 
@@ -42,7 +42,7 @@ export const Chip = styled.span`
 
 export const Date = styled.span`
   font-size: .75rem;
-  color: rgb(${({ theme }) => theme.palette.gray});
+  color: rgb(${({ theme }) => theme.palette.lightgray});
 `;
 
 export const Title = styled.h2`
